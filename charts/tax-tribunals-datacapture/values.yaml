@@ -1,0 +1,90 @@
+base:
+  applicationPort: 3000
+  readinessPath: /status
+  livenessPath: /status
+  startupPath: /status
+  image: 'sdshmctspublic.azurecr.io/tax-tribunals-datacapture/application:latest'
+  ingressHost: tax-tribunals-datacapture.{{ .Values.global.environment }}.platform.hmcts.net
+  aadIdentityName: c100
+  environment:
+    RAILS_ENV: 'production'
+  keyVaults:
+    c100:
+      secrets:
+        - name: tt-postgres-user-name
+          alias: DATABASE_USERNAME
+        - name: tt-postgres-password
+          alias: DATABASE_PASSWORD
+        - name: tt-postgres-host-name
+          alias: DATABASE_HOST
+        - name: tt-postgres-database
+          alias: DATABASE_NAME
+        - name: redis-url
+          alias: REDIS_URL
+        - name: external-url
+          alias: EXTERNAL_URL
+        - name: payment-endpoint
+          alias: PAYMENT_ENDPOINT
+        - name: fees-external-url
+          alias: FEES_EXTERNAL_URL
+        - name: moj-file-uploader-endpoint
+          alias: MOJ_FILE_UPLOADER_ENDPOINT
+        - name: tax-tribunals-downloader-url
+          alias: TAX_TRIBUNALS_DOWNLOADER_URL
+        - name: glimr-api-url
+          alias: GLIMR_API_URL
+        - name: external-url
+          alias: EXTERNAL_URL
+        - name: session-expires-in-minutes
+          alias: SESSION_EXPIRES_IN_MINUTES
+        - name: session-warning-when-remaining
+          alias: SESSION_WARNING_WHEN_REMAINING
+        - name: upload-problems-report-auth-user
+          alias: UPLOAD_PROBLEMS_REPORT_AUTH_USER
+        - name: upload-problems-report-auth-digest
+          alias: UPLOAD_PROBLEMS_REPORT_AUTH_DIGEST
+        - name: admin-username
+          alias: ADMIN_USERNAME
+        - name: admin-password
+          alias: ADMIN_PASSWORD
+        - name: govuk-notify-api-key
+          alias: GOVUK_NOTIFY_API_KEY
+        - name: notify-case-confirmation-template-id
+          alias: NOTIFY_CASE_CONFIRMATION_TEMPLATE_ID
+        - name: notify-ftt-case-notification-template-id
+          alias: NOTIFY_FTT_CASE_NOTIFICATION_TEMPLATE_ID
+        - name: notify-new-case-saved-template-id
+          alias: NOTIFY_NEW_CASE_SAVED_TEMPLATE_ID
+        - name: notify-change-password-template-id
+          alias: NOTIFY_CHANGE_PASSWORD_TEMPLATE_ID
+        - name: notify-reset-password-template-id
+          alias: NOTIFY_RESET_PASSWORD_TEMPLATE_ID
+        - name: notify-case-first-reminder-template-id
+          alias: NOTIFY_CASE_FIRST_REMINDER_TEMPLATE_ID
+        - name: notify-case-last-reminder-template-id
+          alias: NOTIFY_CASE_LAST_REMINDER_TEMPLATE_ID
+        - name: notify-report-problem-template-id
+          alias: NOTIFY_REPORT_PROBLEM_TEMPLATE_ID
+        - name: notify-send-application-detail-template-id
+          alias: NOTIFY_SEND_APPLICATION_DETAIL_TEMPLATE_ID
+        - name: notify-send-application-detail-text-template-id
+          alias: NOTIFY_SEND_APPLICATION_DETAIL_TEXT_TEMPLATE_ID
+        - name: notify-glimr-generation-complete-id
+          alias: NOTIFY_GLIMR_GENERATION_COMPLETE_ID
+        - name: report-problem-email-address
+          alias: REPORT_PROBLEM_EMAIL_ADDRESS
+        - name: notify-case-confirmation-cy-template-id
+          alias: NOTIFY_CASE_CONFIRMATION_CY_TEMPLATE_ID
+        - name: notify-ftt-case-notification-cy-template-id
+          alias: NOTIFY_FTT_CASE_NOTIFICATION_CY_TEMPLATE_ID
+        - name: notify-new-case-saved-cy-template-id
+          alias: NOTIFY_NEW_CASE_SAVED_CY_TEMPLATE_ID
+        - name: notify-change-password-cy-template-id
+          alias: NOTIFY_CHANGE_PASSWORD_CY_TEMPLATE_ID
+        - name: notify-reset-password-cy-template-id
+          alias: NOTIFY_RESET_PASSWORD_CY_TEMPLATE_ID
+        - name: notify-case-first-reminder-cy-template-id
+
+
+redis:
+  enabled: false
