@@ -30,7 +30,7 @@ or follow this guide here: https://www.driftingruby.com/episodes/antivirus-uploa
 
 Then run `freshclam && clamd`
 
-
+ 
 ## Mutation testing performance issues and resolution
 
 ### Background
