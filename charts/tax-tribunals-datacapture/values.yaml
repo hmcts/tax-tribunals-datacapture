@@ -9,9 +9,9 @@ base:
   environment:
     RAILS_ENV: 'production'
   keyVaults:
-    tax_tribunals_datacapture:
+    tax_tribunals:
       secrets:
-        - name: database-url
+        - name: tt-postgres-user
           alias: DATABASE_USERNAME
         - name: tt-postgres-password
           alias: DATABASE_PASSWORD
@@ -23,12 +23,6 @@ base:
           alias: REDIS_URL
         - name: external-url
           alias: EXTERNAL_URL
-        - name: payment-endpoint
-          alias: PAYMENT_ENDPOINT
-        - name: fees-external-url
-          alias: FEES_EXTERNAL_URL
-        - name: moj-file-uploader-endpoint
-          alias: MOJ_FILE_UPLOADER_ENDPOINT
         - name: tax-tribunals-downloader-url
           alias: TAX_TRIBUNALS_DOWNLOADER_URL
         - name: glimr-api-url
@@ -69,10 +63,6 @@ base:
           alias: NOTIFY_SEND_APPLICATION_DETAIL_TEMPLATE_ID
         - name: notify-send-application-detail-text-template-id
           alias: NOTIFY_SEND_APPLICATION_DETAIL_TEXT_TEMPLATE_ID
-        - name: notify-glimr-generation-complete-id
-          alias: NOTIFY_GLIMR_GENERATION_COMPLETE_ID
-        - name: report-problem-email-address
-          alias: REPORT_PROBLEM_EMAIL_ADDRESS
         - name: notify-case-confirmation-cy-template-id
           alias: NOTIFY_CASE_CONFIRMATION_CY_TEMPLATE_ID
         - name: notify-ftt-case-notification-cy-template-id
@@ -84,7 +74,47 @@ base:
         - name: notify-reset-password-cy-template-id
           alias: NOTIFY_RESET_PASSWORD_CY_TEMPLATE_ID
         - name: notify-case-first-reminder-cy-template-id
-
+          alias: NOTIFY_CASE_FIRST_REMINDER_CY_TEMPLATE_ID
+        - name: notify-case-last-reminder-cy-template-id
+          alias: NOTIFY_CASE_LAST_REMINDER_CY_TEMPLATE_ID
+        - name: notify-send-application-detail-cy-template-id
+          alias: NOTIFY_SEND_APPLICATION_DETAIL_CY_TEMPLATE_ID
+        - name: notify-send-application-detail-text-cy-template-id
+          alias: NOTIFY_SEND_APPLICATION_DETAIL_TEXT_CY_TEMPLATE_ID
+        - name: notify-glimr-generation-complete-id
+          alias: NOTIFY_GLIMR_GENERATION_COMPLETE_ID
+        - name: report-problem-email-address
+          alias: REPORT_PROBLEM_EMAIL_ADDRESS
+        - name: tax-tribunal-email
+          alias: TAX_TRIBUNAL_EMAIL
+        - name: zendesk-username
+          alias: ZENDESK_USERNAME
+        - name: zendesk-token
+          alias: ZENDESK_TOKEN
+        - name: sauce-username
+          alias: SAUCE_USERNAME
+        - name: sauce-access-key
+          alias: SAUCE_ACCESS_KEY
+        - name: disable-rack-attack-safelists
+          alias: DISABLE_RACK_ATTACK_SAFELISTS
+        - name: address-lookup-endpoint
+          alias: ADDRESS_LOOKUP_ENDPOINT
+        - name: address-lookup-api-key
+          alias: ADDRESS_LOOKUP_API_KEY
+        - name: address-lookup-api-secret
+          alias: ADDRESS_LOOKUP_API_SECRET
+        - name: maintenance-enabled
+          alias: MAINTENANCE_ENABLED
+        - name: maintenance-allowed-ips
+          alias: MAINTENANCE_ALLOWED_IPS
+        - name: azure-storage-account
+          alias: AZURE_STORAGE_ACCOUNT
+        - name: azure-storage-key
+          alias: AZURE_STORAGE_KEY
+        - name: azure-storage-container
+          alias: AZURE_STORAGE_CONTAINER
+        - name: virus-scanner-enabled
+          alias: VIRUS_SCANNER_ENABLED
 
 redis:
   enabled: false
