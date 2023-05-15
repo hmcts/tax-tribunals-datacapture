@@ -5,13 +5,13 @@ base:
   startupPath: /status
   image: 'sdshmctspublic.azurecr.io/tax-tribunals-datacapture/application:latest'
   ingressHost: tax-tribunals-datacapture.{{ .Values.global.environment }}.platform.hmcts.net
-  aadIdentityName: c100
+  aadIdentityName: tax-tribunals
   environment:
     RAILS_ENV: 'production'
   keyVaults:
-    c100:
+    tax_tribunals_datacapture:
       secrets:
-        - name: tt-postgres-user-name
+        - name: database-url
           alias: DATABASE_USERNAME
         - name: tt-postgres-password
           alias: DATABASE_PASSWORD
