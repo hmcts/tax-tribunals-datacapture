@@ -52,9 +52,6 @@ jobs:
       env: 'test'
       external_url: 'test'
       govuk_notify_api_key: 'test'
-      moj_file_uploader_endpoint: 'http://127.0.0.1:9292'
-      payement_endpoint: 'http://localhost:4500'
-      fees_external_url: 'http://localhost:3003/case_requests'
       tax_tribunals_downloader_url: 'http://localhost:9393'
       aptDependencies: 'postgresql-client shared-mime-info'
       nocoverage: true
