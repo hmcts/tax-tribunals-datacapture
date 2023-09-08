@@ -1,6 +1,6 @@
 #!groovy
 
-@Library("Infrastructure")
+@Library("Infrastructure@ruby-troubleshoot")
 
 def type = "ruby"
 def product = "tax-tribunals"
