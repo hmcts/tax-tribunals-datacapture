@@ -51,6 +51,9 @@ withPipeline(type, product, component) {
     env.NOTIFY_REPORT_PROBLEM_CY_TEMPLATE_ID = 'replace_this_at_build_time'
     env.NOTIFY_SEND_APPLICATION_DETAIL_CY_TEMPLATE_ID = 'replace_this_at_build_time'
     env.NOTIFY_SEND_APPLICATION_DETAIL_CY_TEXT_TEMPLATE_ID = 'replace_this_at_build_time'
+    env.ADDRESS_LOOKUP_ENDPOINT = 'https://example.com/replace_this_at_build_time'
+    env.ADDRESS_LOOKUP_API_KEY = 'replace_this_at_build_time'
+    env.ADDRESS_LOOKUP_API_SECRET = 'replace_this_at_build_time'
 
     enableDbMigration(product)
 
