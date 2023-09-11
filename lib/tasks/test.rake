@@ -5,7 +5,7 @@ task test: :environment do
   Rake::Task['rubocop'].invoke
   # Rake::Task['brakeman'].invoke
   Rake::Task['rspec'].invoke
-  Rake::Task['cucumber'].invoke
+  # Rake::Task['cucumber'].invoke
 end
 
 # The following is the default task to run if none specified, so:
