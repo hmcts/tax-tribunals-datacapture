@@ -76,6 +76,13 @@ When("I press email and enter a invalid then valid email") do
   end
 end
 
+When("I press Email only and submit a non matching email") do
+  RSpec::Mocks.with_temporary_scope do
+    stub_uploader
+    send_representative_copy_page.submit_invalid_email
+  end
+end
+
 When("I click the drop down information bar") do
   has_representative_page.representative_dropdown
 end

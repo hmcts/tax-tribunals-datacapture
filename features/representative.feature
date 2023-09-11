@@ -27,8 +27,7 @@ Feature: Representative Path
     Then I will see the pages error messages
     When I fill in the details and progress to the representative copy page
     When I select nothing and see the error messages
-    When I press Email only
-    When I enter an invalid non matching email address
+    When I press Email only and submit a non matching email
     Then I will see the error response
     Then I enter a valid matching email address
     Then I see the grounds for appeal page
