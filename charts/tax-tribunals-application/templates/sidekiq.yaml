@@ -6,7 +6,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ template "hmcts.releasename.v2" $base }}-sidekiq
+  name: sidekiq
   labels:
     app.kubernetes.io/name: {{ template "hmcts.releasename.v2" $base }}-sidekiq
     helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version }}
