@@ -87,6 +87,7 @@ group :test do
   gem 'apparition', '0.6.0'
   gem 'capybara', '3.35.3'
   gem 'cucumber-rails', '~> 1.5', require: false
+  gem 'capybara-screenshot'
   gem 'database_cleaner-active_record'
   gem 'geckodriver-helper', '~> 0.23.0'
   gem 'factory_bot_rails', '6.1.0'
