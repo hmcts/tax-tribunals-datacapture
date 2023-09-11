@@ -32,6 +32,7 @@ module DocumentAttachable
   def valid_uploaded_file
     return true if document.nil? || document.valid?
     retrieve_document_errors
+    errors.empty?
   end
 
   def upload_document_if_present

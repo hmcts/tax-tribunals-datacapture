@@ -128,6 +128,7 @@ class TribunalCase < ApplicationRecord
   private
 
   def sanitize
+    # debugger
     self.class.columns.each do |col|
       # Skip uuids, integers, datetimes, et al.
       next unless [:string, :text].include?(col.type)
