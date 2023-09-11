@@ -11,14 +11,14 @@ base:
   keyVaults:
     tax-tribunals-cft:
       secrets:
-        - name: tt-postgres-user
-          alias: DATABASE_USERNAME
-        - name: tt-postgres-password
-          alias: DATABASE_PASSWORD
-        - name: tt-postgres-host-name
-          alias: DATABASE_HOST
-        - name: tt-postgres-database
-          alias: DATABASE_NAME
+        - name: tt-username
+          alias: DB_USERNAME
+        - name: tt-password
+          alias: DB_PASSWORD
+        - name: tt-fqdn
+          alias: DB_HOST
+        - name: tt-instance-id
+          alias: DB_NAME
         - name: redis-url
           alias: REDIS_URL
         - name: external-url
