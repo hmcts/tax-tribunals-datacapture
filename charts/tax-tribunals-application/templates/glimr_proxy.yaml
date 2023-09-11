@@ -1,0 +1,84 @@
+{{- $globals := .Values.global | default dict -}}
+{{- $baseValues := dict "Values" .Values.base -}}
+{{- $noValues := omit . "Values" -}}
+{{- $base := merge $baseValues  $noValues }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "hmcts.releasename.v2" $base }}-glimr-proxy
+  labels:
+    app.kubernetes.io/name: {{ template "hmcts.releasename.v2" $base }}-glimr-proxy
+    helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    app.kubernetes.io/instance: {{ template "hmcts.releasename.v2" $base }}-glimr-proxy
+    aadpodidbinding: {{ .Values.base.aadIdentityName }}
+{{- include "hmcts.annotations.v2" $base | indent 2 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ template "hmcts.releasename.v2" $base }}-glimr-proxy
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ template "hmcts.releasename.v2" $base }}-glimr-proxy
+        helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+        app.kubernetes.io/managed-by: {{ .Release.Service }}
+        app.kubernetes.io/instance: {{ template "hmcts.releasename.v2" $base }}-glimr-proxy
+        aadpodidbinding: {{ .Values.base.aadIdentityName }}
+    {{- (include "hmcts.annotations.v2" $base) | indent 6 }}
+    spec:
+      terminationGracePeriodSeconds: 60
+      securityContext:
+        runAsUser: 1000
+        fsGroup: 1000
+      {{- include "hmcts.interpodantiaffinity.v2" $base | indent 6 }}
+      {{- ( include "hmcts.dnsConfig.v2" $base ) | indent 6 }}
+      {{- if $globals.enableKeyVaults }}
+      volumes:
+        - name: vault-tax-tribunals
+          csi:
+            driver: secrets-store.csi.k8s.io
+            readOnly: true
+            volumeAttributes:
+              secretProviderClass: {{ .Release.Name }}-base-tax-tribunals
+      {{- end }}
+      containers:
+        - name: glimr-proxy
+          image: employmenttribunal.azurecr.io/tt-wsproxy:latest
+          # Assuming this command, adjust if different
+          # command: ["./glimr-proxy.sh", "start"]
+          resources:
+            requests:
+              cpu: 20m
+              memory: 500Mi
+            limits:
+              cpu: 250m
+              memory: 4Gi
+          ports:
+            - containerPort: 7433 # Adjust the port if different
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 7433
+            initialDelaySeconds: 80
+            timeoutSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 7433
+            initialDelaySeconds: 80 
+            timeoutSeconds: 5
+          # lifecycle:
+          #   preStop:
+          #     exec:
+          #       command: ["./glimr-proxy.sh", "stop"]
+          securityContext:
+            allowPrivilegeEscalation: false
+          {{- ( include "hmcts.secretMounts.v2" $base ) | indent 10 }}
+          # env:
+          #   # Update the environment variables based on the requirements of glimr-proxy
+          #   - name: SOME_ENV_VARIABLE
+          #     value: replace_this_at_build_time
+          #   # ... other environment variables ...

@@ -37,12 +37,12 @@ spec:
       {{- ( include "hmcts.dnsConfig.v2" $base ) | indent 6 }}
       {{- if $globals.enableKeyVaults }}
       volumes:
-        - name: vault-c100
+        - name: vault-tax-tribunals
           csi:
             driver: secrets-store.csi.k8s.io
             readOnly: true
             volumeAttributes:
-              secretProviderClass: {{ .Release.Name }}-base-c100
+              secretProviderClass: {{ .Release.Name }}-base-tax-tribunals
       {{- end }}
       containers:
         - name: sidekiq
