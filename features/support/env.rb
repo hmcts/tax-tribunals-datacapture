@@ -6,7 +6,6 @@
 require 'capybara/cucumber'
 require 'capybara/dsl'
 require 'capybara/apparition'
-require 'capybara-screenshot/cucumber'
 require 'cucumber/rails'
 require 'rest-client'
 require 'selenium-webdriver'

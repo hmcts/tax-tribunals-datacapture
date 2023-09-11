@@ -86,7 +86,6 @@ group :test do
   gem 'brakeman'
   gem 'apparition', '0.6.0'
   gem 'capybara', '3.35.3'
-  gem 'capybara-screenshot' , '1.0.25'
   gem 'cucumber-rails', '~> 1.5', require: false
   gem 'database_cleaner-active_record'
   gem 'geckodriver-helper', '~> 0.23.0'
