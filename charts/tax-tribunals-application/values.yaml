@@ -9,7 +9,7 @@ base:
   environment:
     RAILS_ENV: 'production'
   keyVaults:
-    tax_tribunals:
+    tax-tribunals-cft:
       secrets:
         - name: tt-postgres-user
           alias: DATABASE_USERNAME
