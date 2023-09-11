@@ -27,11 +27,11 @@ Feature: Representative Path
     Then I will see the pages error messages
     When I fill in the details and progress to the representative copy page
     When I select nothing and see the error messages
-#    When I press yes and enter a invalid then valid email
+    When I press Email only
     When I enter an invalid non matching email address
     Then I will see the error response
     Then I enter a valid matching email address
-#    Then I see the grounds for appeal page
+    Then I see the grounds for appeal page
 
   Scenario: Representative type page alternative route
     When I advance to the representative professional status page
