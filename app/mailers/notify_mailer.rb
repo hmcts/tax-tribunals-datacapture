@@ -130,7 +130,7 @@ class NotifyMailer < GovukNotifyRails::Mailer
   end
 
   def glimr_batch_complete(email, status)
-    set_template(ENV.fetch('NOTIFY_GLIMR_GENERATION_COMPLETE_ID'))
+    set_template(ENV.fetch('NOTIFY_GLIMR_GENERATION_COMPLETE_TEMPLATE_ID'))
     set_personalisation(
       successes: status.total - status.failures,
       total: status.total

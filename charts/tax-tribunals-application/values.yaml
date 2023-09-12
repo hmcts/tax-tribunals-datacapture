@@ -27,12 +27,6 @@ base:
           alias: TAX_TRIBUNALS_DOWNLOADER_URL
         - name: glimr-api-url
           alias: GLIMR_API_URL
-        - name: external-url
-          alias: EXTERNAL_URL
-        - name: session-expires-in-minutes
-          alias: SESSION_EXPIRES_IN_MINUTES
-        - name: session-warning-when-remaining
-          alias: SESSION_WARNING_WHEN_REMAINING
         - name: upload-problems-report-auth-user
           alias: UPLOAD_PROBLEMS_REPORT_AUTH_USER
         - name: upload-problems-report-auth-digest
@@ -81,8 +75,8 @@ base:
           alias: NOTIFY_SEND_APPLICATION_DETAIL_CY_TEMPLATE_ID
         - name: notify-send-application-detail-text-cy-template-id
           alias: NOTIFY_SEND_APPLICATION_DETAIL_TEXT_CY_TEMPLATE_ID
-        - name: notify-glimr-generation-complete-id
-          alias: NOTIFY_GLIMR_GENERATION_COMPLETE_ID
+        - name: notify-glimr-generation-complete-template-id
+          alias: NOTIFY_GLIMR_GENERATION_COMPLETE_TEMPLATE_ID
         - name: report-problem-email-address
           alias: REPORT_PROBLEM_EMAIL_ADDRESS
         - name: tax-tribunal-email
