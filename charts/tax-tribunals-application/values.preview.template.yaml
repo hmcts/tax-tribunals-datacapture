@@ -2,3 +2,4 @@ base:
   # Don't modify below here
   image: ${IMAGE_NAME}
   ingressHost: ${SERVICE_FQDN}
+  workloadClientID: "0af403db-e3ab-450b-bcde-884101a065cd"
