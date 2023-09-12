@@ -3,7 +3,7 @@ base:
   readinessPath: /status
   livenessPath: /status
   startupPath: /status
-  image: "sdshmctspublic.azurecr.io/tax-tribunals-datacapture/application:latest"
+  image: "hmctspublic.azurecr.io/tax-tribunals-datacapture/application:latest"
   ingressHost: tax-tribunals-datacapture.{{ .Values.global.environment }}.platform.hmcts.net
   aadIdentityName: tax-tribunals
   environment:
