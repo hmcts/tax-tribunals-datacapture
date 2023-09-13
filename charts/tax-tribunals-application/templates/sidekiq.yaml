@@ -76,6 +76,8 @@ spec:
             allowPrivilegeEscalation: false
           {{- ( include "hmcts.secretMounts.v2" $base ) | indent 10 }}
           env:
+            - name: SECRETS_PATH
+              value: "/mnt/secrets/tax-tribunals-cft"
             - name: GOVUK_NOTIFY_API_KEY
               value: replace_this_at_build_time
             - name: GOVUK_PAY_API_KEY

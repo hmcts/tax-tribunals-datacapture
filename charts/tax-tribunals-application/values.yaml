@@ -7,12 +7,13 @@ base:
   ingressHost: tax-tribunals-datacapture.{{ .Values.global.environment }}.platform.hmcts.net
   useWorkloadIdentity: true
   environment:
+    SECRETS_PATH: "/mnt/secrets/tax-tribunals-cft"
     RAILS_ENV: 'production'
   keyVaults:
     tax-tribunals-cft:
       secrets:
-        - name: rails-master-key
-          alias: RAILS_MASTER_KEY
+        - name: secret-key-base
+          alias: SECRET_KEY_BASE
         - name: tt-username
           alias: DB_USERNAME
         - name: tt-password
