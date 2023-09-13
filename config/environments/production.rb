@@ -18,8 +18,6 @@ Rails.application.configure do
     }
   end
 
-  # config.read_encrypted_secrets = true
-
   config.cache_classes = true
   config.cache_store = :memory_store
 
