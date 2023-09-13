@@ -46,7 +46,7 @@ spec:
       containers:
         - name: sidekiq
           image: {{ .Values.base.image }}
-          command: ["./sidekiq.sh", "start"]
+          command: ["./sidekiq.sh"]
           resources:
             requests:
               cpu: 20m
