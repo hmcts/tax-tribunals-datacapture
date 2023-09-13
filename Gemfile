@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.2.2'
 
 gem 'azure_env_secrets', git: 'https://github.com/hmcts/azure_env_secrets.git', tag: 'v1.0.1'
-gem 'bootsnap',                        '1.7.3', require: false
+gem 'bootsnap',                        '~> 1.16', require: false
 gem 'devise',                          '~> 4.7.3'
 gem "valid_email2",                    '3.6.0'
 gem 'glimr-api-client', github: 'ministryofjustice/glimr-api-client', tag: 'v0.4.1'
@@ -59,7 +59,6 @@ group :development do
   gem 'better_errors',                 '2.9.1'
   gem 'binding_of_caller',             '1.0.0'
   gem 'i18n-debug',                    '1.2.0'
-  gem 'listen', '~> 3.0.5',            '3.0.8'
   gem 'hashdiff', '>= 0.4.0',          '1.0.1'
   gem 'web-console',                   '4.1.0'
   gem 'spring',                        '3.1.1'

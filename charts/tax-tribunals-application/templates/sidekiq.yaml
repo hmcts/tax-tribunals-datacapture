@@ -6,13 +6,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sidekiq
+  name: {{ template "hmcts.releasename.v2" $base }}-sidekiq
   labels:
     app.kubernetes.io/name: {{ template "hmcts.releasename.v2" $base }}-sidekiq
     helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
     app.kubernetes.io/instance: {{ template "hmcts.releasename.v2" $base }}-sidekiq
-    aadpodidbinding: {{ .Values.base.aadIdentityName }}
 {{- include "hmcts.annotations.v2" $base | indent 2 }}
 spec:
   replicas: 1
@@ -26,9 +25,9 @@ spec:
         helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version }}
         app.kubernetes.io/managed-by: {{ .Release.Service }}
         app.kubernetes.io/instance: {{ template "hmcts.releasename.v2" $base }}-sidekiq
-        aadpodidbinding: {{ .Values.base.aadIdentityName }}
     {{- (include "hmcts.annotations.v2" $base) | indent 6 }}
     spec:
+      serviceAccountName: {{ .Release.Namespace }}
       terminationGracePeriodSeconds: 60
       securityContext:
         runAsUser: 1000
@@ -37,17 +36,17 @@ spec:
       {{- ( include "hmcts.dnsConfig.v2" $base ) | indent 6 }}
       {{- if $globals.enableKeyVaults }}
       volumes:
-        - name: vault-tax-tribunals
+        - name: vault-tax-tribunals-cft
           csi:
             driver: secrets-store.csi.k8s.io
             readOnly: true
             volumeAttributes:
-              secretProviderClass: {{ .Release.Name }}-base-tax-tribunals
+              secretProviderClass: {{ .Release.Name }}-base-tax-tribunals-cft
       {{- end }}
       containers:
         - name: sidekiq
           image: {{ .Values.base.image }}
-          command: ["./sidekiq.sh", "start"]
+          command: ["./sidekiq.sh"]
           resources:
             requests:
               cpu: 20m
@@ -69,14 +68,12 @@ spec:
               port: 7433
             initialDelaySeconds: 80 
             timeoutSeconds: 5
-          lifecycle:
-            preStop:
-              exec:
-                command: ["./sidekiq.sh", "stop"]
           securityContext:
             allowPrivilegeEscalation: false
           {{- ( include "hmcts.secretMounts.v2" $base ) | indent 10 }}
           env:
+            - name: SECRETS_PATH
+              value: "/mnt/secrets/tax-tribunals-cft"
             - name: GOVUK_NOTIFY_API_KEY
               value: replace_this_at_build_time
             - name: GOVUK_PAY_API_KEY

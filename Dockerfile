@@ -100,7 +100,16 @@ RUN chown -R appuser:appgroup /var/lib/clamav /var/log/clamav /var/run/clamav /e
 ENV PUMA_PORT 8000
 EXPOSE $PUMA_PORT
 
+## adding cron jobs
+ADD daily-export /etc/periodic/daily
+
+RUN chmod +x /etc/periodic/daily/*
+
 RUN mkdir -p /home/app
+RUN chown appuser:appgroup /home/app
+
+USER appuser
+
 WORKDIR /home/app
 COPY Gemfile* .ruby-version ./
 
@@ -109,7 +118,7 @@ RUN gem install bundler -v 2.3.15 && \
     bundle config without test:development && \
     bundle install
 
-COPY . .
+COPY --chown=appuser:appgroup . .
 
 RUN yarn install --check-files
 
@@ -121,17 +130,12 @@ RUN bundle exec rails assets:precompile RAILS_ENV=production SECRET_KEY_BASE=req
 RUN cp node_modules/govuk-frontend/govuk/assets/fonts/*  public/assets/govuk-frontend/govuk/assets/fonts
 RUN cp node_modules/govuk-frontend/govuk/assets/images/* public/assets/govuk-frontend/govuk/assets/images
 
-## adding cron jobs
-ADD daily-export /etc/periodic/daily
-
-RUN chmod +x /etc/periodic/daily/*
-
 ## Set up sidekiq
-COPY run_sidekiq.sh /home/app/run_sidekiq
-RUN chmod +x /home/app/run_sidekiq
+COPY --chown=appuser:appgroup sidekiq.sh /home/app/sidekiq.sh
+RUN chmod +x /home/app/sidekiq.sh
 
 # running app as a service
 ENV PHUSION true
-COPY run.sh /home/app/run
+COPY --chown=appuser:appgroup run.sh /home/app/run
 RUN chmod +x /home/app/run
 CMD ["./run"]

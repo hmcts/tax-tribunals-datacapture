@@ -5,12 +5,15 @@ base:
   startupPath: /status
   image: "hmctspublic.azurecr.io/tax-tribunals-datacapture/application:latest"
   ingressHost: tax-tribunals-datacapture.{{ .Values.global.environment }}.platform.hmcts.net
-  aadIdentityName: tax-tribunals
+  useWorkloadIdentity: true
   environment:
+    SECRETS_PATH: "/mnt/secrets/tax-tribunals-cft"
     RAILS_ENV: 'production'
   keyVaults:
     tax-tribunals-cft:
       secrets:
+        - name: secret-key-base
+          alias: SECRET_KEY_BASE
         - name: tt-username
           alias: DB_USERNAME
         - name: tt-password
@@ -112,3 +115,32 @@ base:
 
 redis:
   enabled: false
+
+# wsproxy:
+#   applicationPort: 8080
+#   readinessPath: /status
+#   livenessPath: /status
+#   startupPath: /status
+#   replicaCount: 1
+#   image:
+#     repository: employmenttribunal.azurecr.io/tt-dss-a
+#     pullPolicy: Always
+#   nameOverride: ""
+#   fullnameOverride: ""
+#   service:
+#     type: ClusterIP
+#     port: 8080
+#   wsservice:
+#     type: ClusterIP
+#     port: 443
+#   ingress:
+#     enabled: false
+#     annotations:
+#       kubernetes.io/ingress.class: traefik-tt
+#     paths:
+#       - /
+#     tls: []
+#   resources:
+#   nodeSelector: {}
+#   tolerations: []
+#   affinity: {}
