@@ -46,7 +46,7 @@ spec:
       containers:
         - name: sidekiq
           image: {{ .Values.base.image }}
-          command: [".sidekiq.sh"]
+          command: ["./sidekiq.sh"]
           resources:
             requests:
               cpu: 20m
@@ -68,10 +68,6 @@ spec:
               port: 7433
             initialDelaySeconds: 80 
             timeoutSeconds: 5
-          lifecycle:
-            preStop:
-              exec:
-                command: ["./sidekiq.sh", "stop"]
           securityContext:
             allowPrivilegeEscalation: false
           {{- ( include "hmcts.secretMounts.v2" $base ) | indent 10 }}
