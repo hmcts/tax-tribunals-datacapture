@@ -59,7 +59,6 @@ group :development do
   gem 'better_errors',                 '2.9.1'
   gem 'binding_of_caller',             '1.0.0'
   gem 'i18n-debug',                    '1.2.0'
-  gem 'listen', '~> 3.0.5',            '3.0.8'
   gem 'hashdiff', '>= 0.4.0',          '1.0.1'
   gem 'web-console',                   '4.1.0'
   gem 'spring',                        '3.1.1'
