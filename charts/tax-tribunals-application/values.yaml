@@ -6,6 +6,8 @@ base:
   image: "hmctspublic.azurecr.io/tax-tribunals-datacapture/application:latest"
   ingressHost: tax-tribunals-datacapture.{{ .Values.global.environment }}.platform.hmcts.net
   useWorkloadIdentity: true
+  # set for aat and preview, overridden in flux for other environments
+  workloadClientID: "0af403db-e3ab-450b-bcde-884101a065cd"
   environment:
     SECRETS_PATH: "/mnt/secrets/tax-tribunals-cft"
     RAILS_ENV: 'production'
