@@ -14,8 +14,12 @@ GIT
       typhoeus (~> 1.1.2)
 
 GEM
-  remote: https://rubygems.org/
   remote: https://oss:Q7U7p2q2XlpY45kwqjCpXLIPf122rjkR@gem.mutant.dev/
+  specs:
+    mutant-license (0.1.1.2.1739399027284447558325915053311580324856.4)
+
+GEM
+  remote: https://rubygems.org/
   specs:
     actioncable (6.1.7.6)
       actionpack (= 6.1.7.6)
@@ -106,8 +110,8 @@ GEM
     bindex (0.8.1)
     binding_of_caller (1.0.0)
       debug_inspector (>= 0.0.1)
-    bootsnap (1.7.3)
-      msgpack (~> 1.0)
+    bootsnap (1.16.0)
+      msgpack (~> 1.2)
     brakeman (6.0.1)
     builder (3.2.4)
     bundler-audit (0.9.1)
@@ -293,7 +297,6 @@ GEM
       parser (~> 3.0.0)
       regexp_parser (~> 2.0, >= 2.0.3)
       unparser (~> 0.6.0)
-    mutant-license (0.1.1.2.1739399027284447558325915053311580324856.4)
     mutant-rspec (0.10.29)
       mutant (= 0.10.29)
       rspec-core (>= 3.8.0, < 4.0.0)
@@ -554,7 +557,7 @@ DEPENDENCIES
   azure_env_secrets!
   better_errors (= 2.9.1)
   binding_of_caller (= 1.0.0)
-  bootsnap (= 1.7.3)
+  bootsnap (~> 1.16)
   brakeman
   bundler-audit
   byebug (= 11.1.3)
@@ -629,4 +632,4 @@ RUBY VERSION
    ruby 3.2.2p53
 
 BUNDLED WITH
-   2.1.4
+   2.4.19
