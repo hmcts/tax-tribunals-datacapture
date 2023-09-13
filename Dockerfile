@@ -100,7 +100,7 @@ RUN chown -R appuser:appgroup /var/lib/clamav /var/log/clamav /var/run/clamav /e
 ENV PUMA_PORT 8000
 EXPOSE $PUMA_PORT
 
-RUN mkdir -p /home/app
+RUN mkdir -p /home/app && chown appuser:appgroup /home/app
 WORKDIR /home/app
 COPY Gemfile* .ruby-version ./
 
