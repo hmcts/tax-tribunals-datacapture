@@ -11,8 +11,8 @@ base:
   keyVaults:
     tax-tribunals-cft:
       secrets:
-        - name: secret-key-base
-          alias: SECRET_KEY_BASE
+        - name: rails-master-key
+          alias: RAILS_MASTER_KEY
         - name: tt-username
           alias: DB_USERNAME
         - name: tt-password
