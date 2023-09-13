@@ -95,7 +95,7 @@ RUN chmod +x /usr/local/bin/*
 RUN addgroup -g 1000 -S appgroup && \
     adduser -u 1000 -S appuser -G appgroup
 
-RUN chown -R appuser:appgroup /var/lib/clamav /var/log/clamav /var/run/clamav /etc/clamav
+RUN chown -R appuser:appgroup /home/app /var/lib/clamav /var/log/clamav /var/run/clamav /etc/clamav
 
 ENV PUMA_PORT 8000
 EXPOSE $PUMA_PORT
