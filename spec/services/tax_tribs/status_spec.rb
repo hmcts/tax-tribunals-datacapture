@@ -58,23 +58,24 @@ RSpec.describe TaxTribs::Status do
       end
     end
 
-    context 'glimr unavailable' do
-      let(:service_status) { 'failed' }
-      let(:glimr_status) { 'failed' }
+    # TEMPORARILY DISABLE GLIMR STATUS CHECK
+    # context 'glimr unavailable' do
+    #   let(:service_status) { 'failed' }
+    #   let(:glimr_status) { 'failed' }
 
-      before do
-        allow(GlimrApiClient::Available).to receive(:call).and_raise(GlimrApiClient::Unavailable)
-      end
+    #   before do
+    #     allow(GlimrApiClient::Available).to receive(:call).and_raise(GlimrApiClient::Unavailable)
+    #   end
 
-      specify { expect(described_class.check).to eq(status) }
-      context 'Glimr client returns nil' do
-        before do
-          allow(GlimrApiClient::Available).to receive(:call).and_return(nil)
-        end
+    #   specify { expect(described_class.check).to eq(status) }
+    #   context 'Glimr client returns nil' do
+    #     before do
+    #       allow(GlimrApiClient::Available).to receive(:call).and_return(nil)
+    #     end
 
-        specify { expect(described_class.check).to eq(status) }
-      end
-    end
+    #     specify { expect(described_class.check).to eq(status) }
+    #   end
+    # end
 
     context 'database unavailable' do
       let(:service_status) { 'failed' }

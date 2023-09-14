@@ -13,6 +13,7 @@ RSpec.describe 'external dependencies routes', type: :routing do
     end
   end
 
+
   describe 'health checks' do
     specify do
       expect(get: '/health').to route_to(
