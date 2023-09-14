@@ -25,6 +25,7 @@ production:
   username: <%= ENV["DB_USERNAME"] %>
   password: '<%= ENV["DB_PASSWORD"] %>'
   host: <%= ENV.fetch('DB_HOST', 'localhost') %>
+  sslmode: 'require'
 
 cucumber:
   adapter: postgresql
