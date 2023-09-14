@@ -80,6 +80,8 @@ spec:
               value: replace_this_at_build_time
             - name: SECRET_KEY_BASE
               value: replace_this_at_build_time
+            - name: RAILS_ENV
+              value: 'production'
             #
             # secrets created by `terraform`
             #
