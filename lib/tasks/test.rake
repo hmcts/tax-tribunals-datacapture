@@ -17,11 +17,3 @@ namespace :test do
     puts "No functional tests yet"
   end
 end
-
-# The following is the default task to run if none specified, so:
-#   `bundle exec rake`
-# will be equivalent to:
-#   `bundle exec rake test`
-#
-# task(:default).prerequisites.clear << task('test')
-  
