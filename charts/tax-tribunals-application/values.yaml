@@ -354,31 +354,11 @@ job:
           alias: AZURE_STORAGE_CONTAINER
         - name: virus-scanner-enabled
           alias: VIRUS_SCANNER_ENABLED
-# wsproxy:
-#   applicationPort: 8080
-#   readinessPath: /status
-#   livenessPath: /status
-#   startupPath: /status
-#   replicaCount: 1
-#   image:
-#     repository: employmenttribunal.azurecr.io/tt-dss-a
-#     pullPolicy: Always
-#   nameOverride: ""
-#   fullnameOverride: ""
-#   service:
-#     type: ClusterIP
-#     port: 8080
-#   wsservice:
-#     type: ClusterIP
-#     port: 443
-#   ingress:
-#     enabled: false
-#     annotations:
-#       kubernetes.io/ingress.class: traefik-tt
-#     paths:
-#       - /
-#     tls: []
-#   resources:
-#   nodeSelector: {}
-#   tolerations: []
-#   affinity: {}
+wsproxy:
+  applicationPort: 8080
+  readinessPath: /
+  livenessPath: /
+  startupPath: /
+  replicaCount: 1
+  image: "hmctsprivate.azurecr.io/tax-tribunals/dss-a"
+  imagePullPolicy: Always
