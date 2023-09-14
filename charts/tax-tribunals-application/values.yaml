@@ -232,7 +232,6 @@ sidekiq:
         - name: virus-scanner-enabled
           alias: VIRUS_SCANNER_ENABLED
 job:
-
   image: "hmctspublic.azurecr.io/tax-tribunals/application"
   useWorkloadIdentity: true
   # set for aat and preview, overridden in flux for other environments
