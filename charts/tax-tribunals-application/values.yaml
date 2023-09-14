@@ -11,6 +11,7 @@ base:
   environment:
     SECRETS_PATH: "/mnt/secrets/tax-tribunals-cft"
     RAILS_ENV: 'production'
+    DB_NAME: taxtribunals
   keyVaults:
     tax-tribunals-cft:
       secrets:
@@ -22,8 +23,6 @@ base:
           alias: DB_PASSWORD
         - name: tt-fqdn
           alias: DB_HOST
-        - name: tt-instance-id
-          alias: DB_NAME
         - name: redis-url
           alias: REDIS_URL
         - name: external-url
