@@ -6,10 +6,10 @@ version: 0.0.18
 description: Tax Tribunals
 dependencies:
   - name: base
-    version: 1.0.1
+    version: 1.0.0
     repository: https://hmctspublic.azurecr.io/helm/v1/repo/
   - name: base
-    version: 1.0.1
+    version: 1.0.0
     alias: sidekiq
     repository: https://hmctspublic.azurecr.io/helm/v1/repo/
   - name: job
