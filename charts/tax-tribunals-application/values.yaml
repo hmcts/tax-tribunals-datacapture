@@ -360,5 +360,7 @@ wsproxy:
   livenessPath: /
   startupPath: /
   replicaCount: 1
+  # 3rd party image, doesn't work as non-root
+  runAsRoot: true
   image: "hmctsprivate.azurecr.io/tax-tribunals/dss-a"
   imagePullPolicy: Always
