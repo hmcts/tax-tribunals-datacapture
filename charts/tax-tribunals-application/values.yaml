@@ -116,9 +116,6 @@ redis:
 
 sidekiq:
   applicationPort: 7433
-  readinessPath: /status
-  livenessPath: /status
-  startupPath: /status
   image: "hmctspublic.azurecr.io/tax-tribunals/application"
   ingressHost: tax-tribunals-datacapture.{{ .Values.global.environment }}.platform.hmcts.net
   args: [ './sidekiq.sh' ]
