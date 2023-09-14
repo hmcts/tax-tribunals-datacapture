@@ -8,10 +8,12 @@ task test: :environment do
   # Rake::Task['cucumber'].invoke
 end
 
-# The following is the default task to run if none specified, so:
-#   `bundle exec rake`
-# will be equivalent to:
-#   `bundle exec rake test`
-#
-# task(:default).prerequisites.clear << task('test')
-  
+namespace :test do
+  task :smoke do
+    puts "No smoke tests yet"
+  end
+
+  task :functional do
+    puts "No functional tests yet"
+  end
+end
