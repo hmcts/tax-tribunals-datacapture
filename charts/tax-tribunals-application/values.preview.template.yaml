@@ -10,3 +10,9 @@ sidekiq:
 job:
   # Don't modify below here
   image: ${IMAGE_NAME}
+
+wsproxy:
+  devmemoryRequests: '1Gi'
+  devcpuRequests: '250m'
+  devmemoryLimits: '2Gi'
+  devcpuLimits: '2500m'
