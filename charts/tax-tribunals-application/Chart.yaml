@@ -3,7 +3,7 @@ appVersion: "1.0"
 # shortened name to avoid hitting 52 character limit for metadata.name being added in templates folder
 name: tax-tribs
 home: https://github.com/hmcts/tax-tribunals
-version: 0.0.16
+version: 0.0.17
 description: Tax Tribunals
 dependencies:
   - name: base
