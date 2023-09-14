@@ -20,13 +20,6 @@ class ApplicationController < ActionController::Base
     when Errors::CaseSubmitted
       redirect_to case_submitted_errors_path
     else
-      Rails.logger.error "Unhandled exception: #{exception.class.name}: #{exception.message}"
-      Rails.logger.error exception.backtrace.join("\n")
-
-      Rails.logger.info "Current user: #{current_user&.id || 'Guest'}"
-      Rails.logger.info "Request path: #{request.fullpath}"
-      Rails.logger.info "Request params: #{request.parameters.inspect}"
-
       raise if Rails.application.config.consider_all_requests_local
 
       Sentry.capture_exception(exception)

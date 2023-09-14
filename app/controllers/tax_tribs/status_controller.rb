@@ -1,9 +1,16 @@
 module TaxTribs
   class StatusController < ApplicationController
-    respond_to :json
-
     def index
-      respond_with(Status.check)
+      check = Status.check
+      render json: check, status: check[:service_status] == 'ok' ? :ok : :internal_server_error
+    end
+
+    def liveness
+      render json: { status: 'ok' }
+    end
+
+    def readiness
+      render json: { status: 'ok' }
     end
   end
 end
