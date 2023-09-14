@@ -3,9 +3,13 @@ appVersion: "1.0"
 # shortened name to avoid hitting 52 character limit for metadata.name being added in templates folder
 name: tax-tribs
 home: https://github.com/hmcts/tax-tribunals
-version: 0.0.14
+version: 0.0.15
 description: Tax Tribunals
 dependencies:
   - name: base
     version: 1.0.0
+    repository: https://hmctspublic.azurecr.io/helm/v1/repo/
+  - name: base
+    version: 1.0.0
+    alias: sidekiq
     repository: https://hmctspublic.azurecr.io/helm/v1/repo/
