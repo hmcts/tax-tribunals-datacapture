@@ -243,7 +243,9 @@ job:
   startingDeadlineSeconds: 300
   ttlSecondsAfterFinished: 216000 # 60 hours
   backoffLimit: 0
-  command: ['bin/rails', 'daily_tasks']
+  command:
+    - "bin/rails"
+    - "daily_tasks"
   environment:
     SECRETS_PATH: "/mnt/secrets/tax-tribunals-cft"
     RAILS_ENV: 'production'
