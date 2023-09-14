@@ -3,7 +3,7 @@ base:
   readinessPath: /status
   livenessPath: /status
   startupPath: /status
-  image: "hmctspublic.azurecr.io/tax-tribunals-datacapture/application:latest"
+  image: "hmctspublic.azurecr.io/tax-tribunals/application:latest"
   ingressHost: tax-tribunals-datacapture.{{ .Values.global.environment }}.platform.hmcts.net
   useWorkloadIdentity: true
   # set for aat and preview, overridden in flux for other environments
@@ -123,7 +123,7 @@ sidekiq:
   readinessPath: /status
   livenessPath: /status
   startupPath: /status
-  image: "hmctspublic.azurecr.io/tax-tribunals-datacapture/application:latest"
+  image: "hmctspublic.azurecr.io/tax-tribunals/application:latest"
   ingressHost: tax-tribunals-datacapture.{{ .Values.global.environment }}.platform.hmcts.net
   args: [ './sidekiq.sh' ]
   useWorkloadIdentity: true
