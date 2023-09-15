@@ -98,7 +98,7 @@ group :test do
   gem 'selenium-webdriver'
   gem 'simplecov', '0.21.2', require: false
   gem 'simplecov-rcov', '0.2.3'
-  gem 'site_prism', '3.7.1'
+  gem 'site_prism', '3.7.3'
   gem 'webmock', '3.12.2', require: false
   gem 'rspec-sidekiq', '3.1.0'
 end
