@@ -70,8 +70,12 @@ RSpec.describe Users::LoginsController do
   end
 
   describe '#destroy' do
+
+    let(:user) { User.new(email: 'foo@bar.com') }
+
     it 'redirects to the logged out page' do
       local_delete :destroy
+      expect(subject.current_user).to be_nil
       expect(subject).to redirect_to(users_login_logged_out_path)
     end
   end

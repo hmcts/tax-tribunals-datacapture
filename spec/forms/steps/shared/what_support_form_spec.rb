@@ -73,6 +73,32 @@ RSpec.describe Steps::Shared::WhatSupportForm do
       end
     end
 
+    context 'when there is a tribunal_case and all values' do
+
+      let(:language_interpreter_details) { 'language details' }
+      let(:sign_language_interpreter_details) { 'sign language details' }
+      let(:other_support_details) { 'other language details' }
+      let(:language_interpreter) { true }
+      let(:sign_language_interpreter) { true }
+      let(:other_support) { true }
+
+      it 'saves the values' do
+        expect(tribunal_case).to receive(:update).with(
+          {
+            language_interpreter_details: language_interpreter_details,
+            sign_language_interpreter_details: sign_language_interpreter_details,
+            other_support_details: other_support_details,
+            disabled_access: nil,
+            hearing_loop: nil,
+            language_interpreter: language_interpreter,
+            sign_language_interpreter: sign_language_interpreter,
+            other_support: other_support
+          }
+        ).and_return(true)
+        expect(subject.save).to be(true)
+      end
+    end
+
     context 'when no tribunal_case is associated with the form' do
       let(:tribunal_case)  { nil }
       let(:disabled_access) { true }

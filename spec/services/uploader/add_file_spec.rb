@@ -59,6 +59,18 @@ RSpec.describe Uploader::AddFile do
 
     end
 
+    context 'when the ENV is not found it raises error' do
+      before do
+        allow_any_instance_of(Azure::Storage::Blob::BlobService).
+          to receive(:create_block_blob).
+            and_raise(KeyError, 'Env not found')
+      end
+
+      it 'raises the error' do
+        expect { subject }.to raise_error(KeyError, 'Env not found')
+      end
+    end
+
   end
 
   describe '.scan_file' do
@@ -139,6 +151,41 @@ RSpec.describe Uploader::AddFile do
         exactly(described_class::UPLOAD_RETRIES+2).and_raise(StandardError)
 
       expect { subject }.to raise_error(Uploader::UploaderError)
+    end
+  end
+
+  describe '.backup_or_raise' do
+    before do
+      expect_any_instance_of(Azure::Storage::Blob::BlobService).
+        to receive(:create_block_blob).
+          exactly(described_class::UPLOAD_RETRIES+2).and_raise(StandardError)
+    end
+    context 'when BackupNoa.is_noa? returns true' do
+      before do
+        allow(BackupNoa).to receive(:is_noa?).and_return(true)
+        allow(BackupNoa).to receive(:keep_noa)
+      end
+
+      it 'does not raise an error and calls keep_noa' do
+        expect { subject }.not_to raise_error(Uploader::UploaderError)
+
+        expect(BackupNoa).to have_received(:keep_noa).with(
+          collection_ref: collection_ref,
+          folder: document_key.to_s,
+          filename: filename,
+          data: data
+        )
+      end
+    end
+
+    context 'when BackupNoa.is_noa? returns false' do
+      before do
+        allow(BackupNoa).to receive(:is_noa?).and_return(false)
+      end
+
+      it 'raises Uploader::UploaderError' do
+        expect { subject }.to raise_error(Uploader::UploaderError)
+      end
     end
   end
 

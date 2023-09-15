@@ -42,4 +42,18 @@ RSpec.describe TaxTribs::RebuildPdf do
     end
   end
 
+  context 'when an invalid pdf_generation_status is present' do
+    before do
+      @tc = TribunalCase.create(case_reference: 'TC/2016/12345',
+                                pdf_generation_status: 'random_status')
+    end
+
+    after do
+      @tc.destroy
+    end
+
+    it 're-attempts raises a standard error' do
+      expect{described_class.controller_for(@tc)}.to raise_error(StandardError, 'Pdf generation status random_status not found')
+    end
+  end
 end

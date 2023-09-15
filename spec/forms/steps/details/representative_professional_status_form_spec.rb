@@ -70,5 +70,19 @@ RSpec.describe Steps::Details::RepresentativeProfessionalStatusForm do
         expect(subject.save).to be(true)
       end
     end
+
+    context 'when representative_professional_status is friends or family ' do
+
+      let(:representative_professional_status) { 'friend_or_family' }
+
+      it 'saves the record' do
+        expect(tribunal_case).to receive(:update).with(
+          has_representative: HasRepresentative::YES,
+          representative_professional_status: RepresentativeProfessionalStatus::FRIEND_OR_FAMILY,
+          representative_type: ContactableEntityType::INDIVIDUAL
+        ).and_return(true)
+        expect(subject.save).to be(true)
+      end
+    end
   end
 end
