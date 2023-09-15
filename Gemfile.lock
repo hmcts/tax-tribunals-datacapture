@@ -464,7 +464,7 @@ GEM
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
       redis (>= 4.2.0)
-    sidekiq-batch (0.1.6)
+    sidekiq-batch (0.1.9)
       sidekiq (>= 3)
     sidekiq_alive (2.1.4)
       sidekiq
@@ -610,7 +610,7 @@ DEPENDENCIES
   sentry-rails (~> 5.8)
   sentry-ruby (~> 5.8)
   sidekiq (= 6.4.1)
-  sidekiq-batch (= 0.1.6)
+  sidekiq-batch (= 0.1.9)
   sidekiq_alive (= 2.1.4)
   simplecov (= 0.21.2)
   simplecov-rcov (= 0.2.3)
