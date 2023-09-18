@@ -1,4 +1,4 @@
-require 'glimr_api_client'
+require 'glimr_direct_api_client'
 
 module TaxTribs
   class Status
@@ -38,10 +38,10 @@ module TaxTribs
     def glimr_status
       @glimr_status ||=
         begin
-          if GlimrApiClient::Available.call.available?
+          if GlimrDirectApiClient::Available.call.available?
             'ok'
           end
-        rescue GlimrApiClient::Unavailable
+        rescue GlimrDirectApiClient::Unavailable
           'failed'
         rescue NoMethodError
           'failed'

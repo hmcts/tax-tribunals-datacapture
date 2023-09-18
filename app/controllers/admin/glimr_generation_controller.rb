@@ -1,4 +1,4 @@
-require 'glimr_api_client'
+require 'glimr_direct_api_client'
 
 class Admin::GlimrGenerationController < AdminController
   def new; end
@@ -25,7 +25,7 @@ class Admin::GlimrGenerationController < AdminController
   end
 
   def jurisdiction_id
-    GlimrApiClient::RegisterNewCase::TRIBUNAL_JURISDICTION_ID
+    GlimrDirectApiClient::RegisterNewCase::TRIBUNAL_JURISDICTION_ID
   end
 
   def generator_params

@@ -1,6 +1,6 @@
 module GlimrDirectApiClient
   class Available
-    include GlimrApiClient::Api
+    include GlimrDirectApiClient::Api
     extend SingleForwardable
 
     def_delegator :new, :call
