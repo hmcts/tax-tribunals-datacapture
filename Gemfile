@@ -85,7 +85,7 @@ end
 group :test do
   gem 'brakeman'
   gem 'apparition', '0.6.0'
-  gem 'capybara', '3.35.3'
+  gem 'capybara', '3.39.2'
   gem 'cucumber-rails', '~> 1.5', require: false
   gem 'capybara-screenshot'
   gem 'database_cleaner-active_record'
