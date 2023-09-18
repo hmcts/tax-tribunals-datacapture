@@ -56,7 +56,7 @@ group :production do
 end
 
 group :development do
-  gem 'better_errors',                 '2.9.1'
+  gem 'better_errors',                 '2.10.1'
   gem 'binding_of_caller',             '1.0.0'
   gem 'i18n-debug',                    '1.2.0'
   gem 'listen'
