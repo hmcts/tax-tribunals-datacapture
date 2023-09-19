@@ -90,7 +90,7 @@ group :test do
   gem 'capybara-screenshot'
   gem 'database_cleaner-active_record'
   gem 'geckodriver-helper', '~> 0.23.0'
-  gem 'factory_bot_rails', '6.1.0'
+  gem 'factory_bot_rails', '6.2.0'
   gem 'phantomjs', '2.1.1.0'
   gem 'poltergeist', '~> 1.18', '>= 1.18.1'
   gem 'rails-controller-testing', '1.0.5'

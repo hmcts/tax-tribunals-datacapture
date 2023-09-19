@@ -192,10 +192,10 @@ GEM
     ethon (0.16.0)
       ffi (>= 1.15.0)
     execjs (2.8.1)
-    factory_bot (6.1.0)
+    factory_bot (6.2.1)
       activesupport (>= 5.0.0)
-    factory_bot_rails (6.1.0)
-      factory_bot (~> 6.1.0)
+    factory_bot_rails (6.2.0)
+      factory_bot (~> 6.2.0)
       railties (>= 5.0.0)
     faker (2.20.0)
       i18n (>= 1.8.11, < 2)
@@ -568,7 +568,7 @@ DEPENDENCIES
   database_cleaner-active_record
   devise (~> 4.7.3)
   dotenv-rails (= 2.7.6)
-  factory_bot_rails (= 6.1.0)
+  factory_bot_rails (= 6.2.0)
   faker (= 2.20.0)
   geckodriver-helper (~> 0.23.0)
   glimr-api-client!
