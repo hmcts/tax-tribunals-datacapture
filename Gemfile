@@ -89,7 +89,7 @@ group :test do
   gem 'cucumber-rails', '~> 1.5', require: false
   gem 'capybara-screenshot'
   gem 'database_cleaner-active_record'
-  gem 'geckodriver-helper', '~> 0.23.0'
+  gem 'geckodriver-helper', '~> 0.24.0'
   gem 'factory_bot_rails'
   gem 'phantomjs', '2.1.1.0'
   gem 'poltergeist', '~> 1.18', '>= 1.18.1'

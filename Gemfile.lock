@@ -226,7 +226,7 @@ GEM
     faraday_middleware (1.2.0)
       faraday (~> 1.0)
     ffi (1.15.5)
-    geckodriver-helper (0.23.0)
+    geckodriver-helper (0.24.0)
       archive-zip (~> 0.7)
     gherkin (5.1.0)
     globalid (1.2.1)
@@ -572,7 +572,7 @@ DEPENDENCIES
   dotenv-rails
   factory_bot_rails
   faker (= 2.23.0)
-  geckodriver-helper (~> 0.23.0)
+  geckodriver-helper (~> 0.24.0)
   glimr-api-client!
   govuk_design_system_formbuilder (~> 2.5)
   govuk_notify_rails (~> 2.1)
