@@ -5,20 +5,20 @@ ruby '3.2.2'
 
 gem 'azure_env_secrets', git: 'https://github.com/hmcts/azure_env_secrets.git', tag: 'v1.0.1'
 gem 'bootsnap',                        '~> 1.16', require: false
-gem 'devise',                          '~> 4.7.3'
+gem 'devise'
 gem "valid_email2",                    '3.6.0'
 gem 'glimr-api-client', github: 'ministryofjustice/glimr-api-client', tag: 'v0.4.1'
 gem 'govuk_design_system_formbuilder', '~> 2.5'
 gem 'govuk_notify_rails',              '~> 2.1'
 gem 'jquery-rails',                    '4.4.0'
-gem 'nokogiri',                        '~> 1.14.3'
+gem 'nokogiri'
 gem 'pg'                              
 gem 'pry-rails'
 gem 'puma',                            '~> 5'
 gem 'rack-attack',                     '~> 5.4.2'
 gem 'rails',                           '~> 6.1.7.6'
 gem 'responders',                      '3.0.1'
-gem 'sanitize',                        '~> 6.0'                        
+gem 'sanitize'
 gem 'sassc-rails',                     '~> 2.1.2'
 gem 'sentry-ruby',                     '~> 5.8'
 gem 'sentry-rails',                    '~> 5.8'
@@ -56,7 +56,7 @@ group :production do
 end
 
 group :development do
-  gem 'better_errors',                 '2.9.1'
+  gem 'better_errors'
   gem 'binding_of_caller',             '1.0.0'
   gem 'i18n-debug',                    '1.2.0'
   gem 'listen'
@@ -69,7 +69,7 @@ end
 
 group :development, :test do
   gem 'byebug', '11.1.3', platform: :mri
-  gem 'dotenv-rails',                  '2.7.6'
+  gem 'dotenv-rails'
   gem 'faker',                         '2.20.0'
   gem 'launchy',                       '2.5.2'
   gem 'mutant-rspec',                  '0.10.29'
@@ -85,12 +85,12 @@ end
 group :test do
   gem 'brakeman'
   gem 'apparition', '0.6.0'
-  gem 'capybara', '3.35.3'
+  gem 'capybara'
   gem 'cucumber-rails', '~> 1.5', require: false
   gem 'capybara-screenshot'
   gem 'database_cleaner-active_record'
   gem 'geckodriver-helper', '~> 0.23.0'
-  gem 'factory_bot_rails', '6.1.0'
+  gem 'factory_bot_rails'
   gem 'phantomjs', '2.1.1.0'
   gem 'poltergeist', '~> 1.18', '>= 1.18.1'
   gem 'rails-controller-testing', '1.0.5'
