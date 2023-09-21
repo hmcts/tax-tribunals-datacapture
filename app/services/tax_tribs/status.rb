@@ -1,4 +1,4 @@
-require 'glimr_direct_api_client'
+require_relative '../glimr_direct_api_client'
 
 module TaxTribs
   class Status

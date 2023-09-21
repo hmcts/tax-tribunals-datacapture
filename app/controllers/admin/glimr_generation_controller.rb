@@ -1,4 +1,4 @@
-require 'glimr_direct_api_client'
+require_relative '../../services/glimr_direct_api_client'
 
 class Admin::GlimrGenerationController < AdminController
   def new; end
