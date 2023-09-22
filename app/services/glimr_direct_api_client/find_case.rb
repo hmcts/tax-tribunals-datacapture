@@ -13,6 +13,7 @@ module GlimrDirectApiClient
     end
 
     def initialize(case_reference, confirmation_code)
+      super
       @case_reference = case_reference
       @confirmation_code = confirmation_code
     end

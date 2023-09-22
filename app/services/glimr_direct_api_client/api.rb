@@ -52,7 +52,7 @@ module GlimrDirectApiClient
       response = client(endpoint, body)
       puts "GLIMR RESPONSE: #{response.body}" if ENV.key?('GLIMR_API_DEBUG')
       parse_response(response.body)
-    rescue RestClient::RequestTimeout => e
+    rescue RestClient::RequestTimeout
       re_raise_error(message: 'timed out')
     rescue RestClient::ExceptionWithResponse => e
       if (400..599).cover?(e.http_code)
@@ -69,7 +69,7 @@ module GlimrDirectApiClient
           'Content-Type' => 'application/json',
           'Accept' => 'application/json'
         },
-        timeout: timeout
+        timeout:
       )
     end
   end

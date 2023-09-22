@@ -17,6 +17,7 @@ module GlimrDirectApiClient
     attr_reader :request_body
 
     def initialize(params)
+      super
       @request_body = params
     end
 
