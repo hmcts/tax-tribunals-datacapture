@@ -38,8 +38,8 @@ module TaxTribs
     def glimr_status
       @glimr_status ||=
         begin
-          if ENV.fetch('GLIMR_API_CLIENT_MOCK',
-                       GlimrApiClient::Available.call.available?)
+          if ENV.fetch('GLIMR_API_CLIENT_MOCK', nil).present? ||
+                       GlimrApiClient::Available.call.available?
             'ok'
           end
         rescue GlimrApiClient::Unavailable
