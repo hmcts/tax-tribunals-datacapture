@@ -16,7 +16,7 @@ module GlimrDirectApiClient
     end
 
     def timeout
-      Integer(ENV.fetch('GLIMR_API_TIMEOUT_SECONDS', 5))
+      5
     end
 
     private
@@ -45,8 +45,7 @@ module GlimrDirectApiClient
     # that uses the dotenv gem, then it will always fall through to the default
     # unless dotenv is included and required before this gem is loaded.
     def api_url
-      ENV.fetch('GLIMR_API_URL',
-                'https://glimr-api.taxtribunals.dsd.io/Live_API/api/tdsapi')
+      ENV.fetch('GLIMR_API_URL')
     end
 
     def make_request(endpoint, body)
