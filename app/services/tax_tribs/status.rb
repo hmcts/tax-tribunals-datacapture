@@ -49,8 +49,10 @@ module TaxTribs
     end
 
     def service_status
-      unless database_status.eql?('ok') &&
+      if database_status.eql?('ok') &&
         glimr_status.eql?('ok')
+        'ok'
+      else
         'failed'
       end
     end
