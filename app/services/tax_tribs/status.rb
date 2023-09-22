@@ -49,10 +49,8 @@ module TaxTribs
     end
 
     def service_status
-      # TEMPORARILY REMOVE GLIMR STATUS CHECK
-      if database_status.eql?('ok') # &&
-        # glimr_status.eql?('ok')
-        'ok'
+      if database_status.eql?('ok') &&
+        glimr_status.eql?('ok')
       else
         'failed'
       end
