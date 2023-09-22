@@ -10,7 +10,7 @@ module CheckAnswers
     end
 
     def default_url_options
-      { locale: locale}
+      { locale:}
     end
 
     # Used by Rails to determine which partial to render

@@ -8,8 +8,8 @@ module TaxTribs
 
     def check
       {
-        service_status: service_status,
-        version: version,
+        service_status:,
+        version:,
         dependencies: {
           glimr_status:,
           database_status:
@@ -48,9 +48,8 @@ module TaxTribs
     end
 
     def service_status
-      if database_status.eql?('ok') &&
+      unless database_status.eql?('ok') &&
         glimr_status.eql?('ok')
-      else
         'failed'
       end
     end
