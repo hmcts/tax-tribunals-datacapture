@@ -28,7 +28,7 @@ gem 'virtus',                          '1.0.5'
 gem 'zendesk_api',                     '~> 1.28'
 gem 'application_insights',            '~> 0.5.6'
 gem 'sprockets',                       '3.7.2'
-gem 'rest-client',                     '2.0.2'
+gem 'rest-client',                     '2.1.0'
 
 # Admin
 gem 'sidekiq',                         '6.4.1'
