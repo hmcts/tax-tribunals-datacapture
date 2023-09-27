@@ -37,7 +37,7 @@ RSpec.describe GlimrDirectApiClient::RegisterNewCase do
     end
 
     it 'does not raise an error when required parameters are provided' do
-      stub_request(:post, /glimr/).to_return(status: 200, body: {response: 'repsonse'}.to_json)
+      stub_request(:post, /glimr/).to_return(status: 200, body: {response: 'response'}.to_json)
       expect { described_class.call(valid_params) }.not_to raise_error
     end
   end

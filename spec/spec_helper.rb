@@ -4,6 +4,8 @@ require "simplecov_json_formatter"
 
 ENV['RAILS_ENV'] ||= 'test'
 
+WebMock.disable_net_connect!(allow_localhost: true)
+
 require 'simplecov'
 SimpleCov.minimum_coverage 98
 SimpleCov.formatter = SimpleCov::Formatter::JSONFormatter
