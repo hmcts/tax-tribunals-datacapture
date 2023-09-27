@@ -41,7 +41,7 @@ gem 'grover'
 
 # Azure blob storage
 gem 'azure-storage-blob', '~> 2'
-gem 'mimemagic', '~> 0.3.3'
+gem 'mimemagic', '~> 0.4.0'
 
 # Virus scanning
 gem 'clamby'
