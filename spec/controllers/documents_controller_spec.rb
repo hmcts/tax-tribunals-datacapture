@@ -14,7 +14,7 @@ RSpec.describe DocumentsController, type: :controller do
       case_status: nil
     )
   }
-  let(:file) { fixture_file_upload('files/image.jpg', 'image/jpeg') }
+  let(:file) { fixture_file_upload('image.jpg', 'image/jpeg') }
 
   let(:document_upload) { instance_double(DocumentUpload, upload!: {}, valid?: true, errors?: false, to_hash: {name: 'image.jpg', encoded_name: "aW1hZ2UuanBn\n", collection_ref: '12345'}) }
 

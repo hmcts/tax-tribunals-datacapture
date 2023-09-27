@@ -16,6 +16,29 @@ Bundler.require(*Rails.groups)
 
 module TaxTribunalsDatacapture
   class Application < Rails::Application
+    # *** Add environment variables ***
+    #
+    # In CFT, env vars are mounted to the filesystem.
+    #
+    # Must be done here and not an initializer as
+    # env vars are needed for boot.
+    #
+    # Note we don't overwrite env vars that are already set
+    # because in dev environment, we must set some env vars
+    # in the pipeline.
+    #
+    # :nocov:
+    if Dir.exist?("/mnt/secrets/tax-tribunals")
+      Dir["/mnt/secrets/tax-tribunals/*"].each do |filepath|
+        name = filepath.split('/')[-1]
+        value = File.open(filepath).read
+        ENV[name] ||= value
+        ENV[name] = value if ENV[name].eql? 'replace_this_at_build_time'
+      end
+    end
+    # :nocov:
+
+
     config.load_defaults 6.0
 
     config.middleware.use Rack::Attack
@@ -44,8 +67,8 @@ module TaxTribunalsDatacapture
     config.x.address_lookup.api_key = ENV['ADDRESS_LOOKUP_API_KEY']
     config.x.address_lookup.api_secret = ENV['ADDRESS_LOOKUP_API_SECRET']
 
-    if ENV['AZURE_APP_INSIGHTS_INSTRUMENTATION_KEY']
-      config.middleware.use ApplicationInsights::Rack::TrackRequest, ENV['AZURE_APP_INSIGHTS_INSTRUMENTATION_KEY']
+    if ENV['APP_INSIGHTS_INSTRUMENTATION_KEY']
+      config.middleware.use ApplicationInsights::Rack::TrackRequest, ENV['APP_INSIGHTS_INSTRUMENTATION_KEY']
     end
 
     config.maintenance_enabled = ENV.fetch('MAINTENANCE_ENABLED', 'false').downcase == 'true'

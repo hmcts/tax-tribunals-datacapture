@@ -23,9 +23,9 @@ Capybara.register_driver :chrome do |app|
   Capybara::Selenium::Driver.new(app, browser: :chrome)
 end
 
-Capybara::Screenshot.register_driver(:chrome) do |driver, path|
-  driver.browser.save_screenshot(path)
-end
+# Capybara::Screenshot.register_driver(:chrome) do |driver, path|
+#   driver.browser.save_screenshot(path)
+# end
 
 Capybara.register_driver :firefox do |app|
   options = Selenium::WebDriver::Firefox::Options.new
@@ -35,11 +35,6 @@ end
 
 Capybara.register_driver :safari do |app|
   Capybara::Selenium::Driver.new(app, browser: :safari)
-end
-
-Capybara::Screenshot.register_filename_prefix_formatter(:cucumber) do |scenario|
-  title = scenario.name.tr(' ', '-').gsub(%r{/^.*\/cucumber\//}, '')
-  "screenshot_cucumber_#{title}"
 end
 
 #............. Sauce Labs .............#
