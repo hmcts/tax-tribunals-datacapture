@@ -67,8 +67,8 @@ module TaxTribunalsDatacapture
     config.x.address_lookup.api_key = ENV['ADDRESS_LOOKUP_API_KEY']
     config.x.address_lookup.api_secret = ENV['ADDRESS_LOOKUP_API_SECRET']
 
-    if ENV['AZURE_APP_INSIGHTS_INSTRUMENTATION_KEY']
-      config.middleware.use ApplicationInsights::Rack::TrackRequest, ENV['AZURE_APP_INSIGHTS_INSTRUMENTATION_KEY']
+    if ENV['APP_INSIGHTS_INSTRUMENTATION_KEY']
+      config.middleware.use ApplicationInsights::Rack::TrackRequest, ENV['APP_INSIGHTS_INSTRUMENTATION_KEY']
     end
 
     config.maintenance_enabled = ENV.fetch('MAINTENANCE_ENABLED', 'false').downcase == 'true'
