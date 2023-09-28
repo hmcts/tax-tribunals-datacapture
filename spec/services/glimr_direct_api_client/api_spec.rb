@@ -24,6 +24,8 @@ RSpec.describe GlimrDirectApiClient::Api do
       # stub ENV
       allow(ENV).to receive(:fetch).with('GLIMR_API_URL').
         and_return('https://glimr-api.taxtribunals.dsd.io/Live_API/api/tdsapi')
+      allow(ENV).to receive(:fetch).with('GLIMR_AUTHORIZATION_KEY', '').and_return('key')
+      allow(ENV).to receive(:fetch).with('GLIMR_REGISTER_NEW_CASE_TIMEOUT_SECONDS', 32).and_return('32')
       stub_request(:post, /endpoint$/)
         .to_return(status: 200, body: body.to_json)
     end
@@ -51,12 +53,15 @@ RSpec.describe GlimrDirectApiClient::Api do
 
   describe 'REST client' do
     before do
+      allow(ENV).to receive(:fetch).with('GLIMR_API_URL').and_return('https://glimr-api-emulator.herokuapp.com/Live_API/api/tdsapi/')
+      allow(ENV).to receive(:fetch).with('GLIMR_AUTHORIZATION_KEY', '').and_return('key')
+      allow(ENV).to receive(:fetch).with('GLIMR_REGISTER_NEW_CASE_TIMEOUT_SECONDS', 32).and_return('32')
       stub_request(:post, /endpoint$/)
         .to_return(status: 200, body: {response: 'response'}.to_json)
     end
 
     it 'sends the correct headers' do
-      headers = { 'Content-Type' => 'application/json', 'Accept' => 'application/json' }
+      headers = { 'Content-Type' => 'application/json', 'Accept' => 'application/json', 'Authorization' => 'apikey key' }
       expect(RestClient::Request).to receive(:execute).with(hash_including(headers: headers)).and_call_original
       subject.post
     end
