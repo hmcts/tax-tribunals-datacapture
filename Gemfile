@@ -94,7 +94,7 @@ group :test do
   gem 'phantomjs', '2.1.1.0'
   gem 'poltergeist', '~> 1.18', '>= 1.18.1'
   gem 'rails-controller-testing', '1.0.5'
-  gem 'rspec_junit_formatter', '~> 0.4.1'
+  gem 'rspec_junit_formatter', '~> 0.6.0'
   gem 'selenium-webdriver'
   gem 'simplecov', '0.21.2', require: false
   gem 'simplecov-rcov', '0.2.3'
