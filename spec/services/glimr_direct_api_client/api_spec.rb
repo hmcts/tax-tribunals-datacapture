@@ -41,6 +41,16 @@ RSpec.describe GlimrDirectApiClient::Api do
       subject.post
       expect(subject.response_body).to eq({ response: 'response' })
     end
+
+    context 'timeout' do
+      before do
+        stub_request(:post, /endpoint$/).to_timeout
+      end
+
+      it 'raises Unavailable "timed out"' do
+        expect{ subject.post }.to raise_error(GlimrDirectApiClient::Unavailable, 'timed out')
+      end
+    end
   end
 
   describe 'configuration' do
