@@ -47,6 +47,8 @@ RSpec.describe GlimrDirectApiClient::RegisterNewCase do
     let(:body) { { message: '' } }
 
     before do
+      expect(ENV).to receive(:fetch).with('GLIMR_API_URL').and_return('https://glimr-api-emulator.herokuapp.com/Live_API/api/tdsapi/')
+      stub_request(:post, /glimr/).to_return(status: 200, body: body.to_json)
     end
 
     # are not processed here.
@@ -54,8 +56,6 @@ RSpec.describe GlimrDirectApiClient::RegisterNewCase do
       let(:body) { { glimrerrorcode: 411, message: 'Not found' } }
 
       it 'raises JurisdictionNotFound' do
-        stub_request(:post, /glimr/).to_return(status: 200, body: { glimrerrorcode: 411, message: 'Not found' }.to_json)
-
         expect {
           described_class.call(params)
         }.to raise_error(GlimrDirectApiClient::RegisterNewCase::JurisdictionNotFound, 'Not found')
@@ -66,8 +66,6 @@ RSpec.describe GlimrDirectApiClient::RegisterNewCase do
       let(:body) { { glimrerrorcode: 412, message: 'Not found' } }
 
       it 'raises OnlineMappingNotFoundOrInvalid' do
-        stub_request(:post, /glimr/).to_return(status: 200, body: { glimrerrorcode: 412, message: 'Not found' }.to_json)
-
         expect {
           described_class.call(params)
         }.to raise_error(GlimrDirectApiClient::RegisterNewCase::OnlineMappingNotFoundOrInvalid, 'Not found')
@@ -78,8 +76,6 @@ RSpec.describe GlimrDirectApiClient::RegisterNewCase do
       let(:body) { { glimrerrorcode: 421, message: 'Failed' } }
 
       it 'raises CaseCreationFailed' do
-        stub_request(:post, /glimr/).to_return(status: 200, body: { glimrerrorcode: 421, message: 'Failed' }.to_json)
-
         expect {
           described_class.call(params)
         }.to raise_error(GlimrDirectApiClient::RegisterNewCase::CaseCreationFailed, 'Failed')
@@ -90,8 +86,6 @@ RSpec.describe GlimrDirectApiClient::RegisterNewCase do
       let(:body) { { glimrerrorcode: 5_000, message: 'Boom' } }
 
       it 'raises Unavailable with the error message' do
-        stub_request(:post, /glimr/).to_return(status: 200, body: { glimrerrorcode: 5_000, message: 'Boom' }.to_json)
-
         expect {
           described_class.call(params)
         }.to raise_error(GlimrDirectApiClient::Unavailable, 'Boom')
