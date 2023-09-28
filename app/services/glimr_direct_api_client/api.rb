@@ -67,7 +67,8 @@ module GlimrDirectApiClient
         payload: body,
         headers: {
           'Content-Type' => 'application/json',
-          'Accept' => 'application/json'
+          'Accept' => 'application/json',
+          'Authorization' => "apikey #{ENV.fetch('GLIMR_AUTHORIZATION_KEY', '')}"
         },
         timeout:
       )

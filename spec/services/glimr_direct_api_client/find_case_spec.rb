@@ -53,6 +53,9 @@ RSpec.describe GlimrDirectApiClient::FindCase do
   let(:rest_client) { double.as_null_object }
 
   before do
+    allow(ENV).to receive(:fetch).with('GLIMR_API_URL').and_return('https://glimr-api-emulator.herokuapp.com/Live_API/api/tdsapi/')
+    allow(ENV).to receive(:fetch).with('GLIMR_AUTHORIZATION_KEY', '').and_return('key')
+    allow(ENV).to receive(:fetch).with('GLIMR_REGISTER_NEW_CASE_TIMEOUT_SECONDS', 32).and_return('32')
     stub_request(:post, /glimr/).to_return(status: 200, body: response.to_json)
   end
 
@@ -182,6 +185,9 @@ RSpec.describe GlimrDirectApiClient::FindCase do
     let(:body) { { message: '' } }
 
     before do
+      allow(ENV).to receive(:fetch).with('GLIMR_API_URL').and_return('https://glimr-api-emulator.herokuapp.com/Live_API/api/tdsapi/')
+      allow(ENV).to receive(:fetch).with('GLIMR_AUTHORIZATION_KEY', '').and_return('key')
+      allow(ENV).to receive(:fetch).with('GLIMR_REGISTER_NEW_CASE_TIMEOUT_SECONDS', 32).and_return('32')
       stub_request(:post, /glimr/).to_return(status: 200, body: body.to_json)
     end
 
