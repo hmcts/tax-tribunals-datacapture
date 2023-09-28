@@ -1,5 +1,4 @@
 require 'json'
-require_relative 'glimr_direct_api_client/version'
 
 require_relative 'glimr_direct_api_client/api'
 require_relative 'glimr_direct_api_client/base'
