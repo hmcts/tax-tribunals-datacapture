@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe TaxTribs::Status do
   let(:glimr_available) {
-    instance_double(GlimrApiClient::Available, available?: true)
+    instance_double(GlimrDirectApiClient::Available, available?: true)
   }
 
   let(:status) do
@@ -23,7 +23,7 @@ RSpec.describe TaxTribs::Status do
   let(:database_status) { 'ok' }
 
   before do
-    allow(GlimrApiClient::Available).to receive(:call).and_return(glimr_available)
+    allow(GlimrDirectApiClient::Available).to receive(:call).and_return(glimr_available)
     allow(ActiveRecord::Base).to receive(:connection).and_return(double)
 
     allow_any_instance_of(described_class).to receive(:`).with('git rev-parse HEAD').and_return('ABC123')
