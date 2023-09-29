@@ -8,8 +8,8 @@ module TaxTribs
 
     def check
       {
-        service_status: service_status,
-        version: version,
+        service_status:,
+        version:,
         dependencies: {
           glimr_status:,
           database_status:
@@ -38,7 +38,8 @@ module TaxTribs
     def glimr_status
       @glimr_status ||=
         begin
-          if GlimrApiClient::Available.call.available?
+          if ENV.fetch('GLIMR_API_CLIENT_MOCK', nil) == 'true' ||
+                       GlimrApiClient::Available.call.available?
             'ok'
           end
         rescue GlimrApiClient::Unavailable
@@ -49,9 +50,8 @@ module TaxTribs
     end
 
     def service_status
-      # TEMPORARILY REMOVE GLIMR STATUS CHECK
-      if database_status.eql?('ok') # &&
-        # glimr_status.eql?('ok')
+      if database_status.eql?('ok') &&
+        glimr_status.eql?('ok')
         'ok'
       else
         'failed'
