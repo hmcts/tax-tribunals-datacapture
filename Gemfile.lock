@@ -528,7 +528,7 @@ GEM
       equalizer (~> 0.0, >= 0.0.9)
     warden (1.2.9)
       rack (>= 2.0.9)
-    web-console (4.1.0)
+    web-console (4.2.1)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
@@ -629,7 +629,7 @@ DEPENDENCIES
   uglifier (= 4.2.0)
   valid_email2 (= 3.7.0)
   virtus (= 1.0.5)
-  web-console (= 4.1.0)
+  web-console (= 4.2.1)
   webmock (= 3.12.2)
   zendesk_api (~> 1.28)
 

@@ -61,7 +61,7 @@ group :development do
   gem 'i18n-debug',                    '1.2.0'
   gem 'listen'
   gem 'hashdiff', '>= 0.4.0',          '1.0.1'
-  gem 'web-console',                   '4.1.0'
+  gem 'web-console',                   '4.2.1'
   gem 'spring',                        '3.1.1'
   gem 'spring-commands-rspec',         '1.0.4'
   gem "spring-commands-cucumber",      '1.0.1'
