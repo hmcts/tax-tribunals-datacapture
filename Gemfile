@@ -6,7 +6,7 @@ ruby '3.2.2'
 gem 'azure_env_secrets', git: 'https://github.com/hmcts/azure_env_secrets.git', tag: 'v1.0.1'
 gem 'bootsnap',                        '~> 1.16', require: false
 gem 'devise'
-gem "valid_email2",                    '3.6.0'
+gem "valid_email2",                    '3.7.0'
 gem 'glimr-api-client', github: 'ministryofjustice/glimr-api-client', tag: 'v0.4.1'
 gem 'govuk_design_system_formbuilder', '~> 2.5'
 gem 'govuk_notify_rails',              '~> 2.1'
