@@ -533,8 +533,8 @@ GEM
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
-    webmock (3.12.2)
-      addressable (>= 2.3.6)
+    webmock (3.19.1)
+      addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
     webrick (1.8.1)
@@ -630,7 +630,7 @@ DEPENDENCIES
   valid_email2 (= 3.7.0)
   virtus (= 1.0.5)
   web-console (= 4.2.1)
-  webmock (= 3.12.2)
+  webmock (= 3.19.1)
   zendesk_api (~> 1.28)
 
 RUBY VERSION
