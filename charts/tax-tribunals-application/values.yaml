@@ -111,13 +111,10 @@ base:
           alias: AZURE_STORAGE_CONTAINER
         - name: virus-scanner-enabled
           alias: VIRUS_SCANNER_ENABLED
-<<<<<<< HEAD
         - name: glimr-authorization-key
           alias: GLIMR_AUTHORIZATION_KEY
-=======
         - name: glimr-api-client-mock
           alias: GLIMR_API_CLIENT_MOCK
->>>>>>> 1e891a6 (move to env var to aat)
 
 redis:
   enabled: false
