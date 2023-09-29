@@ -17,7 +17,7 @@ gem 'pry-rails'
 gem 'puma',                            '~> 5'
 gem 'rack-attack',                     '~> 5.4.2'
 gem 'rails',                           '~> 6.1.7.6'
-gem 'responders',                      '3.0.1'
+gem 'responders',                      '3.1.0'
 gem 'sanitize'
 gem 'sassc-rails',                     '~> 2.1.2'
 gem 'sentry-ruby',                     '~> 5.8'
@@ -28,12 +28,12 @@ gem 'virtus',                          '1.0.5'
 gem 'zendesk_api',                     '~> 1.28'
 gem 'application_insights',            '~> 0.5.6'
 gem 'sprockets',                       '3.7.2'
-gem 'rest-client',                     '2.0.2'
+gem 'rest-client',                     '2.1.0'
 
 # Admin
 gem 'sidekiq',                         '6.4.1'
 gem 'sidekiq-batch',                   '0.1.9'                   
-gem 'sidekiq_alive',                   '2.1.4'
+gem 'sidekiq_alive',                   '2.3.0'
 
 # PDF generation
 gem "select2-rails",                   '4.0.13'
@@ -41,7 +41,7 @@ gem 'grover'
 
 # Azure blob storage
 gem 'azure-storage-blob', '~> 2'
-gem 'mimemagic', '~> 0.3.3'
+gem 'mimemagic', '~> 0.4.0'
 
 # Virus scanning
 gem 'clamby'
@@ -76,7 +76,7 @@ group :development, :test do
   gem 'bundler-audit'
   gem 'pry-byebug'
   gem 'timecop', '0.9.7'
-  gem 'rspec-rails', '5.0.1'
+  gem 'rspec-rails', '5.1.2'
   gem 'rubocop', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rspec', require: false
@@ -94,9 +94,9 @@ group :test do
   gem 'phantomjs', '2.1.1.0'
   gem 'poltergeist', '~> 1.18', '>= 1.18.1'
   gem 'rails-controller-testing', '1.0.5'
-  gem 'rspec_junit_formatter', '~> 0.4.1'
+  gem 'rspec_junit_formatter', '~> 0.6.0'
   gem 'selenium-webdriver'
-  gem 'simplecov', '0.21.2', require: false
+  gem 'simplecov', '0.22.0', require: false
   gem 'simplecov-rcov', '0.2.3'
   gem 'site_prism', '3.7.3'
   gem 'webmock', '3.12.2', require: false
