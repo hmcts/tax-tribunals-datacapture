@@ -12,5 +12,10 @@ module TaxTribs
     def readiness
       render json: { status: 'ok' }
     end
+
+    def glimr
+      check = Status.glimr
+      render json: check, status: check[:glimr_status] == 'ok' ? :ok : :internal_server_error
+    end
   end
 end

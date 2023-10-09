@@ -17,6 +17,12 @@ module TaxTribs
       }
     end
 
+    def check_glimr
+      {
+        glimr_status:,
+      }
+    end
+
     private
 
     def version
