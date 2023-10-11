@@ -51,7 +51,7 @@ source 'https://oss:Q7U7p2q2XlpY45kwqjCpXLIPf122rjkR@gem.mutant.dev' do
 end
 
 group :production do
-  gem 'lograge',                       '0.13.0'
+  gem 'lograge',                       '0.14.0'
   gem 'logstash-event',                '1.2.02'
 end
 
