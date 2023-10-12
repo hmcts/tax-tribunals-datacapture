@@ -10,14 +10,14 @@ gem "valid_email2",                    '3.7.0'
 gem 'glimr-api-client', github: 'ministryofjustice/glimr-api-client', tag: 'v0.4.1'
 gem 'govuk_design_system_formbuilder', '~> 2.5'
 gem 'govuk_notify_rails',              '~> 2.1'
-gem 'jquery-rails',                    '4.5.1'
+gem 'jquery-rails',                    '4.6.0'
 gem 'nokogiri'
 gem 'pg'                              
 gem 'pry-rails'
 gem 'puma',                            '~> 5'
 gem 'rack-attack',                     '~> 5.4.2'
 gem 'rails',                           '~> 6.1.7.6'
-gem 'responders',                      '3.1.0'
+gem 'responders',                      '3.1.1'
 gem 'sanitize'
 gem 'sassc-rails',                     '~> 2.1.2'
 gem 'sentry-ruby',                     '~> 5.8'
@@ -51,7 +51,7 @@ source 'https://oss:Q7U7p2q2XlpY45kwqjCpXLIPf122rjkR@gem.mutant.dev' do
 end
 
 group :production do
-  gem 'lograge',                       '0.13.0'
+  gem 'lograge',                       '0.14.0'
   gem 'logstash-event',                '1.2.02'
 end
 
@@ -72,7 +72,7 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'faker',                         '2.23.0'
   gem 'launchy',                       '2.5.2'
-  gem 'mutant-rspec',                  '0.10.29'
+  gem 'mutant-rspec',                  '0.11.24'
   gem 'bundler-audit'
   gem 'pry-byebug'
   gem 'timecop', '0.9.7'

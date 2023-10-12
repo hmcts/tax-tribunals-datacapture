@@ -195,8 +195,10 @@ Rails.application.routes.draw do
 
   scope module: 'tax_tribs' do
     get '/health', to: 'status#index'
+    get '/health', to: 'status#index'
     get '/health/liveness', to: 'status#liveness'
     get '/health/readiness', to: 'status#readiness'
+    get '/health/glimr', to: 'status#glimr'
   end
 
   root to: 'home#index'
