@@ -12,6 +12,30 @@ RSpec.describe TaxTribs::StatusController do
     }.to_json
   end
 
+
+  let(:glimr_status) do
+    {
+      glimr_status: 'ok'
+    }.to_json
+  end
+
+  describe '#glimr' do
+    before do
+      stub_request(:post, /glimravailable/).
+        to_return(body: { glimrAvailable: 'yes' }.to_json)
+    end
+
+    specify do
+      get :glimr
+      expect(response.status).to eq(200)
+    end
+
+    it 'returns json' do
+      get :glimr
+      expect(response.body).to eq(glimr_status)
+    end
+  end
+
   # This is very-happy-path to ensure the controller responds.  The bulk of the
   # status is tested in spec/services/status_spec.rb.
   describe '#index' do
