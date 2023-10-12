@@ -60,16 +60,20 @@ RSpec.describe Steps::Details::LetterUploadForm do
 
     context 'when a document has been provided' do
       context 'and it is not valid' do
-        let(:supporting_letter_document) { fixture_file_upload('files/image.jpg', 'application/zip') }
+        let(:supporting_letter_document) { fixture_file_upload('image.jpg', 'application/zip') }
 
         it 'should retrieve the errors from the uploader' do
-          expect(subject.errors).to receive(:add).with(:supporting_letter_document, :content_type).and_call_original
+          expect(subject.errors).to receive(:add).and_call_original do |attr, error_object|
+            expect(attr).to eq(:supporting_letter_document)
+            expect(error_object).to be_an_instance_of(ActiveModel::Error)
+            expect(error_object.attribute).to eq(:content_type)
+          end
           expect(subject).to_not be_valid
         end
       end
 
       context 'and it is valid' do
-        let(:supporting_letter_document) { fixture_file_upload('files/image.jpg', 'image/jpeg')  }
+        let(:supporting_letter_document) { fixture_file_upload('image.jpg', 'image/jpeg')  }
 
         context 'document upload successful' do
           it 'uploads the file' do

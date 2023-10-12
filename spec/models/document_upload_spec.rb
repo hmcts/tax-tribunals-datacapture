@@ -3,7 +3,7 @@ require 'spec_helper'
 include ActionDispatch::TestProcess
 
 RSpec.describe DocumentUpload do
-  let(:file_path) { 'files/image.jpg' }
+  let(:file_path) { 'image.jpg' }
   let(:content_type) { 'image/jpeg' }
   let(:file) { fixture_file_upload(file_path, content_type) }
   let(:document_key) { 'doc_key' }

@@ -94,7 +94,7 @@ class NotifyMailer < GovukNotifyRails::Mailer
 
     set_personalisation(
       appeal_or_application: tribunal_case.appeal_or_application,
-      application_details: application_details
+      application_details:
     )
 
     mail(to: recipient_email)
@@ -130,7 +130,7 @@ class NotifyMailer < GovukNotifyRails::Mailer
   end
 
   def glimr_batch_complete(email, status)
-    set_template(ENV.fetch('NOTIFY_GLIMR_GENERATION_COMPLETE_ID'))
+    set_template(ENV.fetch('NOTIFY_GLIMR_GENERATION_COMPLETE_TEMPLATE_ID'))
     set_personalisation(
       successes: status.total - status.failures,
       total: status.total
@@ -140,7 +140,7 @@ class NotifyMailer < GovukNotifyRails::Mailer
 
   def statistics_report(title, data)
     set_template(ENV.fetch('NOTIFY_STATISTICS_REPORT_TEMPLATE_ID'))
-    set_personalisation(title: title, data: data)
+    set_personalisation(title:, data:)
     mail(to: ENV.fetch('STATISTICS_REPORT_EMAIL_ADDRESS'))
   end
 

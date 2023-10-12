@@ -6,7 +6,7 @@ class Rack::Attack
   # Blocklists & Throttles are skipped by default unless
   # the DISABLE_RACK_ATTACK_SAFELISTS is used.
 
-  unless ENV['DISABLE_RACK_ATTACK_SAFELISTS']
+  unless ENV['DISABLE_RACK_ATTACK_SAFELISTS'] == 'true'
     Rack::Attack.safelist('allow from localhost') do |req|
       ('127.0.0.1' == req.ip || '::1' == req.ip)
     end
