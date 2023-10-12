@@ -12,6 +12,30 @@ RSpec.describe TaxTribs::StatusController do
     }.to_json
   end
 
+
+  let(:glimr_status) do
+    {
+      glimr_status: 'ok'
+    }.to_json
+  end
+
+  describe '#glimr' do
+    before do
+      stub_request(:post, /glimravailable/).
+        to_return(body: { glimrAvailable: 'yes' }.to_json)
+    end
+
+    specify do
+      get :glimr
+      expect(response.status).to eq(200)
+    end
+
+    it 'returns json' do
+      get :glimr
+      expect(response.body).to eq(glimr_status)
+    end
+  end
+
   # This is very-happy-path to ensure the controller responds.  The bulk of the
   # status is tested in spec/services/status_spec.rb.
   describe '#index' do
@@ -20,7 +44,7 @@ RSpec.describe TaxTribs::StatusController do
       # GlimrApiClient does not work here for some reason that isn't clear.
       stub_request(:post, /glimravailable/).
         to_return(body: { glimrAvailable: 'yes' }.to_json)
-      stub_request(:get, /status/).
+      stub_request(:get, /health/).
         to_return(status: 200, body: { service_status: 'ok' }.to_json)
       expect(ActiveRecord::Base).to receive(:connection).and_return(double)
       allow_any_instance_of(TaxTribs::Status).to receive(:version).and_return('ABC123')

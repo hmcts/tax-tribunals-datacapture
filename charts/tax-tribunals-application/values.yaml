@@ -111,6 +111,10 @@ base:
           alias: AZURE_STORAGE_CONTAINER
         - name: virus-scanner-enabled
           alias: VIRUS_SCANNER_ENABLED
+        - name: glimr-authorization-key
+          alias: GLIMR_AUTHORIZATION_KEY
+        - name: glimr-api-client-mock
+          alias: GLIMR_API_CLIENT_MOCK
 
 redis:
   enabled: false
@@ -231,6 +235,8 @@ sidekiq:
           alias: AZURE_STORAGE_CONTAINER
         - name: virus-scanner-enabled
           alias: VIRUS_SCANNER_ENABLED
+        - name: app-insights-instrumentation-key
+          alias: APP_INSIGHTS_INSTRUMENTATION_KEY
 job:
   image: "hmctspublic.azurecr.io/tax-tribunals/application"
   useWorkloadIdentity: true
@@ -241,7 +247,6 @@ job:
     jobKind: CronJob
   schedule: "0 3 * * *"
   concurrencyPolicy: Forbid
-  failedJobsHistoryLimit: 1
   startingDeadlineSeconds: 300
   ttlSecondsAfterFinished: 216000 # 60 hours
   backoffLimit: 0
