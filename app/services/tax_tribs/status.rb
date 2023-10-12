@@ -6,6 +6,10 @@ module TaxTribs
       new.check
     end
 
+    def self.check_glimr
+      new.check_glimr
+    end
+
     def check
       {
         service_status:,
@@ -14,6 +18,12 @@ module TaxTribs
           glimr_status:,
           database_status:
         }
+      }
+    end
+
+    def check_glimr
+      {
+        glimr_status:,
       }
     end
 
