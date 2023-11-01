@@ -330,6 +330,7 @@ RSpec.describe NotifyMailer, type: :mailer do
           personalisation: {
             appeal_or_application: :appeal,
             submission_date_and_time: '1 January 2017 12:00hrs',
+            case_reference:
           },
         })
       NotifyMailer.new.application_details_text(tribunal_case, :taxpayer, "text content")
