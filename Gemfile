@@ -8,7 +8,7 @@ gem 'bootsnap',                        '~> 1.16', require: false
 gem 'devise'
 gem "valid_email2",                    '3.7.0'
 gem 'glimr-api-client', github: 'ministryofjustice/glimr-api-client', tag: 'v0.4.1'
-gem 'govuk_design_system_formbuilder', '~> 2.5'
+gem 'govuk_design_system_formbuilder', '~> 4'
 gem 'govuk_notify_rails',              '~> 2.1'
 gem 'jquery-rails',                    '4.6.0'
 gem 'nokogiri'
@@ -33,7 +33,7 @@ gem 'rest-client',                     '2.1.0'
 # Admin
 gem 'sidekiq',                         '6.4.1'
 gem 'sidekiq-batch',                   '0.1.9'                   
-gem 'sidekiq_alive',                   '2.3.0'
+gem 'sidekiq_alive',                   '2.3.1'
 
 # PDF generation
 gem "select2-rails",                   '4.0.13'
