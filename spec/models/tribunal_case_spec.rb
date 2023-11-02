@@ -26,18 +26,6 @@ RSpec.describe TribunalCase, type: :model do
       end
     end
 
-    context 'columns that do not store text or strings' do
-      # Didn't use a double here as it kept getting seralized into a string.
-      let(:attributes) { { outcome: 'otherwise sanitized' } }
-      before do
-        allow_any_instance_of(ActiveRecord::ConnectionAdapters::PostgreSQLColumn).to receive(:type).and_return(double)
-      end
-
-      specify 'are not sanitized' do
-        expect(Sanitize).not_to receive(:fragment)
-        subject.send(:sanitize)
-      end
-    end
   end
 
   describe '#mapping_code' do

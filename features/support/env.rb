@@ -37,6 +37,18 @@ Dir[File.dirname(__FILE__) + '/page_objects/**/*.rb'].each { |f| require f }
 #
 # ActionController::Base.allow_rescue = false
 
+Capybara.register_driver :selenium do |app|
+  capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
+    chromeOptions: { args: %w(headless disable-gpu) }
+  )
+
+  Capybara::Selenium::Driver.new app,
+    browser: :chrome,
+    desired_capabilities: capabilities
+end
+
+Capybara.javascript_driver = :selenium
+
 Capybara.raise_server_errors = false
 
 ENV['NO_PROXY'] = ENV['no_proxy'] = '127.0.0.1'

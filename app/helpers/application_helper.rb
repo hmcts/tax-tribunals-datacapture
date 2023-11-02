@@ -26,7 +26,8 @@ module ApplicationHelper
   def govuk_error_summary(form_object = @form_object)
     return unless form_object.try(:errors).present?
 
-    form_object.errors.messages.delete_if { |_, v| v.blank? }
+    error_messages = form_object.errors.messages.dup
+    error_messages.delete_if { |_, v| v.blank? }
 
     fields_for(form_object, form_object) do |f|
       f.govuk_error_summary t('errors.error_summary.heading')
@@ -35,11 +36,11 @@ module ApplicationHelper
 
   def translate_for_user_type(key, params={})
     suffix = '_html' if key.end_with?('_html')
-    translate_with_appeal_or_application("#{key}.as_#{current_tribunal_case.user_type}#{suffix}", params)
+    translate_with_appeal_or_application("#{key}.as_#{current_tribunal_case.user_type}#{suffix}", **params)
   end
 
   def translate_with_appeal_or_application(key, params={})
-    translate(key, params.merge(appeal_or_application_params))
+    translate(key, **params.merge(appeal_or_application_params))
   end
 
   def escape_govuk_notify(row)
@@ -55,13 +56,13 @@ module ApplicationHelper
     appeal_or_application = translate("generic.appeal_or_application.#{current_tribunal_case.appeal_or_application}")
 
     {
-      appeal_or_application: appeal_or_application,
+      appeal_or_application:,
       appeal_or_application_capitalised: appeal_or_application.upcase_first
     }
   end
 
   def analytics_tracking_id
-    ENV['GTM_TRACKING_ID'] if Cookie::SettingForm.new(request: request).accepted?
+    ENV['GTM_TRACKING_ID'] if Cookie::SettingForm.new(request:).accepted?
   end
 
   def login_or_portfolio_path
@@ -95,14 +96,15 @@ module ApplicationHelper
   end
 
   def address_lookup(record:, entity: , &block)
-    if address_lookup_access_token && \
-       !(show_details = address_lookup_details_filled?(record, entity))
+    show_details = address_lookup_details_filled?(record, entity)
+
+    if address_lookup_access_token
       content_for(:form, &block)
       render(
         partial: 'steps/shared/address_lookup',
         locals: {
           access_token: address_lookup_access_token,
-          show_details: show_details
+          show_details:
         }
       )
     else
@@ -127,6 +129,6 @@ module ApplicationHelper
   end
 
   def show_cookie_banner?
-    !Cookie::SettingForm.new(request: request).preference_set?
+    !Cookie::SettingForm.new(request:).preference_set?
   end
 end

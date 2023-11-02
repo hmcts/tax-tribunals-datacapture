@@ -1,4 +1,4 @@
-require 'glimr_api_client'
+require_relative '../glimr_direct_api_client'
 
 module TaxTribs
   class Status
@@ -6,14 +6,24 @@ module TaxTribs
       new.check
     end
 
+    def self.check_glimr
+      new.check_glimr
+    end
+
     def check
       {
-        service_status: service_status,
-        version: version,
+        service_status:,
+        version:,
         dependencies: {
-          glimr_status: glimr_status,
-          database_status: database_status
+          glimr_status:,
+          database_status:
         }
+      }
+    end
+
+    def check_glimr
+      {
+        glimr_status:,
       }
     end
 
@@ -37,11 +47,10 @@ module TaxTribs
 
     def glimr_status
       @glimr_status ||=
-        begin
-          if GlimrApiClient::Available.call.available?
-            'ok'
-          end
-        rescue GlimrApiClient::Unavailable
+        begin (ENV.fetch('GLIMR_API_CLIENT_MOCK', nil) == 'true' ||
+          GlimrDirectApiClient::Available.call.available?)
+              'ok'
+        rescue GlimrDirectApiClient::Unavailable
           'failed'
         rescue NoMethodError
           'failed'
@@ -50,7 +59,7 @@ module TaxTribs
 
     def service_status
       if database_status.eql?('ok') &&
-          glimr_status.eql?('ok')
+        glimr_status.eql?('ok')
         'ok'
       else
         'failed'

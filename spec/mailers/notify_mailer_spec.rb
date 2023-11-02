@@ -60,7 +60,7 @@ RSpec.describe NotifyMailer, type: :mailer do
   before do
     allow(ENV).to receive(:fetch).with('NOTIFY_STATISTICS_REPORT_TEMPLATE_ID').and_return('statistics-report')
     allow(ENV).to receive(:fetch).with('NOTIFY_REPORT_PROBLEM_TEMPLATE_ID').and_return('report-problem-template')
-    allow(ENV).to receive(:fetch).with('NOTIFY_GLIMR_GENERATION_COMPLETE_ID').and_return('glimr-generation-template')
+    allow(ENV).to receive(:fetch).with('NOTIFY_GLIMR_GENERATION_COMPLETE_TEMPLATE_ID').and_return('glimr-generation-template')
     allow(ENV).to receive(:fetch).with('GOVUK_NOTIFY_API_KEY').and_return('dev_test-7bdad799-cfd7-4b9c-aafd-5d3162595af8-9e8cfc38-73f5-4164-b2f5-d5a9aa25bcdb')
     stub_const('GOVUK_NOTIFY_TEMPLATES', govuk_notify_templates)
   end
