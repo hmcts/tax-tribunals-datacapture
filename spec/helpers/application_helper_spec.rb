@@ -78,7 +78,7 @@ RSpec.describe ApplicationHelper, type: :helper do
 
       it 'returns the summary' do
         expect(helper.govuk_error_summary(form_object)).to eq(
-          '<div class="govuk-error-summary" data-module="govuk-error-summary"><div role="alert"><h2 class="govuk-error-summary__title">There is a problem</h2><div class="govuk-error-summary__body"><ul class="govuk-list govuk-error-summary__list"><li><a data-turbo="false" href="#base-form-base-field-error">Please enter an answer</a></li></ul></div></div></div>'
+          '<div class="govuk-error-summary" tabindex=\"-1\" role=\"alert\" data-module="govuk-error-summary"><div role="alert"><h2 class="govuk-error-summary__title">There is a problem</h2><div class="govuk-error-summary__body"><ul class="govuk-list govuk-error-summary__list"><li><a data-turbo="false" href="#base-form-base-field-error">Please enter an answer</a></li></ul></div></div></div>'
         )
       end
     end
