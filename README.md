@@ -9,6 +9,9 @@ Ruby on Rails Web application for making an appeal to the Tax Tribunal.
 
 This is using your local Ruby-ready environment and a PostgreSQL server that you can set up.
 
+You may need to install chromedriver
+brew install chromedriver
+
 Set up environment variables `cp .env.example .env`.
 
 You will need to instal the GovUK FrontEnd package

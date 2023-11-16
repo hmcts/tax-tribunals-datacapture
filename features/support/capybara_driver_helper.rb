@@ -13,9 +13,9 @@ Capybara.register_driver :apparition do |app|
   Capybara::Apparition::Driver.new(app, js_errors: false)
 end
 
-
 Capybara.register_driver :headless do |app|
-  chrome_options = Selenium::WebDriver::Chrome::Options.new(args: ['headless', 'disable-gpu', 'window-size=1366,768'])
+  chrome_options = Selenium::WebDriver::Chrome::Options.new(args: ['--headless=new', 'disable-gpu', 'window-size=1366,768'])
+  chrome_options.binary = ENV['DRIVER_LOCATION'] if ENV.key?('DRIVER_LOCATION')
   Capybara::Selenium::Driver.new(app, browser: :chrome, options: chrome_options)
 end
 
