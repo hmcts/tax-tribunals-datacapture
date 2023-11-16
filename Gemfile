@@ -15,7 +15,7 @@ gem 'nokogiri'
 gem 'pg'                              
 gem 'pry-rails'
 gem 'puma',                            '~> 5'
-gem 'rack-attack',                     '~> 5.4.2'
+gem 'rack-attack',                     '~> 6.7.0'
 gem 'rails',                           '~> 6.1.7.6'
 gem 'responders',                      '3.1.1'
 gem 'sanitize'
@@ -100,5 +100,5 @@ group :test do
   gem 'simplecov-rcov', '0.3.3'
   gem 'site_prism', '3.7.3'
   gem 'webmock', '3.19.1', require: false
-  gem 'rspec-sidekiq', '3.1.0'
+  gem 'rspec-sidekiq', '4.1.0'
 end
