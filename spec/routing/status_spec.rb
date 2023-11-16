@@ -14,13 +14,19 @@ RSpec.describe 'external dependencies routes', type: :routing do
   end
 
 
-
-  describe 'status' do
+  describe 'health checks' do
     specify do
-      expect(get: '/status.json').to route_to(
+      expect(get: '/health').to route_to(
                                        controller: 'tax_tribs/status',
-                                       action: 'index',
-                                       format: 'json'
+                                       action: 'index'
+                                     )
+      expect(get: '/health/liveness').to route_to(
+                                       controller: 'tax_tribs/status',
+                                       action: 'liveness'
+                                     )
+      expect(get: '/health/readiness').to route_to(
+                                       controller: 'tax_tribs/status',
+                                       action: 'readiness'
                                      )
     end
   end

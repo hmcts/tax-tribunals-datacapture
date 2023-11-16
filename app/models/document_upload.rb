@@ -86,7 +86,7 @@ class DocumentUpload
 
   # Used by Rails responders when responding with JSON.
   def to_hash
-    {name: file_name, encoded_name: encoded_file_name, collection_ref: collection_ref}
+    {name: file_name, encoded_name: encoded_file_name, collection_ref:}
   end
 
   private

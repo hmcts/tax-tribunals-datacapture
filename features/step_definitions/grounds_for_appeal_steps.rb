@@ -35,7 +35,7 @@ When(/^I then upload a valid file type$/) do
   grounds_for_appeal_page.attach_file(identifier, filename)
   continue_or_save_continue
   end
-  end
+end
 
 When("I select 'File upload requirements'") do
   grounds_for_appeal_page.file_upload_requirements
