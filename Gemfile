@@ -8,14 +8,14 @@ gem 'bootsnap',                        '~> 1.16', require: false
 gem 'devise'
 gem "valid_email2",                    '3.7.0'
 gem 'glimr-api-client', github: 'ministryofjustice/glimr-api-client', tag: 'v0.4.1'
-gem 'govuk_design_system_formbuilder', '~> 2.5'
+gem 'govuk_design_system_formbuilder', '~> 4'
 gem 'govuk_notify_rails',              '~> 2.1'
 gem 'jquery-rails',                    '4.6.0'
 gem 'nokogiri'
 gem 'pg'                              
 gem 'pry-rails'
 gem 'puma',                            '~> 5'
-gem 'rack-attack',                     '~> 5.4.2'
+gem 'rack-attack',                     '~> 6.7.0'
 gem 'rails',                           '~> 6.1.7.6'
 gem 'responders',                      '3.1.1'
 gem 'sanitize'
@@ -31,9 +31,9 @@ gem 'sprockets',                       '3.7.2'
 gem 'rest-client',                     '2.1.0'
 
 # Admin
-gem 'sidekiq',                         '6.4.1'
+gem 'sidekiq',                         '6.5.12'
 gem 'sidekiq-batch',                   '0.1.9'                   
-gem 'sidekiq_alive',                   '2.3.0'
+gem 'sidekiq_alive',                   '2.3.1'
 
 # PDF generation
 gem "select2-rails",                   '4.0.13'
@@ -70,13 +70,13 @@ end
 group :development, :test do
   gem 'byebug', '11.1.3', platform: :mri
   gem 'dotenv-rails'
-  gem 'faker',                         '3.2.1'
+  gem 'faker',                         '3.2.2'
   gem 'launchy',                       '2.5.2'
   gem 'mutant-rspec',                  '0.11.24'
   gem 'bundler-audit'
   gem 'pry-byebug'
-  gem 'timecop', '0.9.7'
-  gem 'rspec-rails', '5.1.2'
+  gem 'timecop', '0.9.8'
+  gem 'rspec-rails', '6.0.3'
   gem 'rubocop', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rspec', require: false
@@ -100,5 +100,5 @@ group :test do
   gem 'simplecov-rcov', '0.3.3'
   gem 'site_prism', '3.7.3'
   gem 'webmock', '3.19.1', require: false
-  gem 'rspec-sidekiq', '3.1.0'
+  gem 'rspec-sidekiq', '4.1.0'
 end
