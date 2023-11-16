@@ -59,12 +59,12 @@ end
 
 ### Custom Logs
 
-# Log throttled requests
-ActiveSupport::Notifications.subscribe('rack.attack') do |name, start, finish, request_id, req|
-  if req.env["rack.attack.match_type"] == :throttle
-    Rails.logger.info "[Rack::Attack][Blocked] " <<
-                      "ip: #{req.ip}, " <<
-                      "path: #{req.path}"
-  end
-end
-# :nocov:
+# # Log throttled requests
+# ActiveSupport::Notifications.subscribe('rack.attack') do |name, start, finish, request_id, payload|
+#   if payload[:request].env["rack.attack.match_type"] == :throttle
+#     Rails.logger.info "[Rack::Attack][Blocked] " <<
+#                       "ip: #{req.ip}, " <<
+#                       "path: #{req.path}"
+#   end
+# end
+# # :nocov:
