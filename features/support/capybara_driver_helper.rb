@@ -23,9 +23,13 @@ Capybara.register_driver :chrome do |app|
   Capybara::Selenium::Driver.new(app, browser: :chrome)
 end
 
-# Capybara::Screenshot.register_driver(:chrome) do |driver, path|
-#   driver.browser.save_screenshot(path)
-# end
+Capybara::Screenshot.register_driver(:chrome) do |driver, path|
+  driver.browser.save_screenshot(path)
+end
+
+Capybara::Screenshot.register_driver(:headless) do |driver, path|
+  driver.browser.save_screenshot(path)
+end
 
 Capybara.register_driver :firefox do |app|
   options = Selenium::WebDriver::Firefox::Options.new

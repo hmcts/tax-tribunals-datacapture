@@ -8,7 +8,7 @@ class AppealCaseTypePage < BasePage
     element :capital_gains_option, '.govuk-label', text: I18n.t('en.check_answers.case_type.answers.capital_gains_tax')
     element :other_option, '.govuk-label', text: I18n.t('check_answers.case_type.answers.other_tax')
     section :error, '.govuk-error-summary' do
-      element :error_heading, '#error-summary-title', text: I18n.t('errors.error_summary.heading')
+      element :error_heading, '.govuk-error-summary__title', text: I18n.t('errors.error_summary.heading')
       element :error_link, 'a', text: I18n.t('activemodel.errors.models.steps/appeal/case_type_form.attributes.case_type.inclusion')
     end
   end
