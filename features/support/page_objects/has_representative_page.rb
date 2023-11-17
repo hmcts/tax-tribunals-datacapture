@@ -7,7 +7,7 @@ class HasRepresentativePage < BasePage
     element :what_is_a_representative, 'span', text: I18n.t('steps.shared.representative_explanation.heading')
     element :dropdown_content, 'p', text: "A representative can be a:"
     section :error, '.govuk-error-summary' do
-      element :error_heading, '#error-summary-title', text: I18n.t('errors.error_summary.heading')
+      element :error_heading, '.govuk-error-summary__title', text: I18n.t('errors.error_summary.heading')
     end
   end
 

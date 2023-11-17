@@ -10,7 +10,7 @@ class SendTaxpayerCopyPage < BasePage
     element :both_option, 'label', text: I18n.t('dictionary.CONTACT_PREFERENCES.both')
     element :text_option, 'label', text: I18n.t('dictionary.CONTACT_PREFERENCES.text')
     section :error, '.govuk-error-summary' do
-      element :error_heading, '#error-summary-title', text: I18n.t('errors.error_summary.heading')
+      element :error_heading, '.govuk-error-summary__title', text: I18n.t('errors.error_summary.heading')
       element :not_matching_error_message, 'a', text: I18n.t('activemodel.errors.models.steps/details/send_application_details_form.attributes.email_address.different_taxpayer')
     end
   end

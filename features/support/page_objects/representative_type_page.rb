@@ -7,7 +7,7 @@ class RepresentativeTypePage < BasePage
     element :company, 'label', text: I18n.t('steps.details.representative_type.edit.company')
     element :other, 'label', text: I18n.t('steps.details.representative_type.edit.other')
     section :error, '.govuk-error-summary' do
-      element :error_heading, '#error-summary-title', text: I18n.t('errors.error_summary.heading')
+      element :error_heading, '.govuk-error-summary__title', text: I18n.t('errors.error_summary.heading')
     end
   end
 

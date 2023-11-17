@@ -8,7 +8,7 @@ class LatenessReasonPage < BasePage
     element :file_upload_requirements_dropdown, 'span', text: I18n.t('shared.file_upload.header')
     element :file_requirements_dropdown_content, 'p', text: "You can’t upload executable (.exe), zip or other archive files due to virus risks."
     section :error, '.govuk-error-summary' do
-      element :error_heading, '#error-summary-title', text: I18n.t('errors.error_summary.heading')
+      element :error_heading, '.govuk-error-summary__title', text: I18n.t('errors.error_summary.heading')
     end
   end
 

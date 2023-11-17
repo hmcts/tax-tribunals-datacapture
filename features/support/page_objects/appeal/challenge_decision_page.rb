@@ -11,7 +11,7 @@ class ChallengeDecisionPage < BasePage
     element :border_force, 'li', text: 'options when UK Border Force (UKBF) seizes your things'
     element :challenge_NCA, 'li', text: 'how to challenge a National Crime Agency (NCA) decision'
     section :error,'.govuk-error-summary' do
-      element :error_heading, '#error-summary-title', text: I18n.t('errors.error_summary.heading')
+      element :error_heading, '.govuk-error-summary__title', text: I18n.t('errors.error_summary.heading')
     end
   end
 

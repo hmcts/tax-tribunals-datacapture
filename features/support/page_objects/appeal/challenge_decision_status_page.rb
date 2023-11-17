@@ -10,7 +10,7 @@ class ChallengeDecisionStatusPage < BasePage
     element :review, 'label', text: I18n.t('dictionary.CHALLENGE_STATUS.not_required')
     element :appeal_late_rejection, 'label', text: I18n.t('dictionary.CHALLENGE_STATUS.appeal_late_rejection')
     section :error,'.govuk-error-summary' do
-    element :error_heading, '#error-summary-title', text: I18n.t('errors.error_summary.heading')
+    element :error_heading, '.govuk-error-summary__title', text: I18n.t('errors.error_summary.heading')
   end
   end
 

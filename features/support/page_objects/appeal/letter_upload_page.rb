@@ -7,7 +7,7 @@ class LetterUploadPage < BasePage
     element :trouble_upload_checkbox, 'label', text: I18n.t('helpers.label.steps_details_letter_upload_form.having_problems_uploading_options.having_problems_uploading')
     element :textarea, '.govuk-textarea'
     section :error, '.govuk-error-summary' do
-      element :error_heading, '#error-summary-title', text: I18n.t('errors.error_summary.heading')
+      element :error_heading, '.govuk-error-summary__title', text: I18n.t('errors.error_summary.heading')
     end
   end
 

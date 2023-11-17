@@ -7,8 +7,8 @@ class GroundsForAppealPage < BasePage
     element :file_information, 'p', text: "You can’t upload executable (.exe), zip or other archive files due to virus risks."
     element :textarea, '.govuk-textarea'
     section :error_summary, '.govuk-error-summary' do
-      element :error_heading, '#error-summary-title', text: I18n.t('errors.error_summary.heading')
-      element :virus_error_heading, '#error-summary-title', text: I18n.t('errors.messages.virus_detected')
+      element :error_heading, '.govuk-error-summary__title', text: I18n.t('errors.error_summary.heading')
+      element :virus_error_heading, '.govuk-error-summary__title', text: I18n.t('errors.messages.virus_detected')
     end
   end
 
