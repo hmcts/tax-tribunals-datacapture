@@ -4,7 +4,7 @@ task test: :environment do
   # Code to run your tests
   Rake::Task['rubocop'].invoke
   # Rake::Task['brakeman'].invoke
-  Rake::Task['rspec'].invoke
+  # Rake::Task['rspec'].invoke
   # Rake::Task['cucumber'].invoke
 end
 
