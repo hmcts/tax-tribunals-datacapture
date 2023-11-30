@@ -39,6 +39,6 @@ class Admin::CaseDocumentsController < AdminController
 
   def set_case
     @tribunal_case = TribunalCase.find_by_files_collection_ref params[:id]
-    return unless @tribunal_case
+    nil unless @tribunal_case
   end
 end
