@@ -2,13 +2,15 @@ class Admin::CaseDocumentsController < AdminController
   before_action :set_case
 
   def show
+    return unless @tribunal_case
+
     files = Uploader.list_files(
       collection_ref: @tribunal_case.files_collection_ref
     )
 
     @files ||= files
-                 .map(&:name)
-                 .map do |filepath|
+                .map(&:name)
+                .map do |filepath|
       filepath = filepath.gsub(' ', '%20')
       Uploader::File.new(filepath)
     end
