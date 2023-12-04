@@ -5,7 +5,6 @@ module Steps::Hardship
     def edit; end
 
     def update
-      current_tribunal_case.destroy
       redirect_to CONTACT_HMRC_URL
     end
   end
