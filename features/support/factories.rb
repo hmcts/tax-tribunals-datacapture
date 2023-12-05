@@ -83,11 +83,7 @@ FactoryBot.define do
     trait :no_support do
       need_support { NeedSupport::NO }
     end
-
-
   end
-
-
 
   factory :closure_case, class: "TribunalCase" do
     user_id { '2c510a62-4ac8-4fad-acfd-d2b50b1c14f0' }

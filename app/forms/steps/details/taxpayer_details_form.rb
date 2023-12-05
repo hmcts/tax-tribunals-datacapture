@@ -16,6 +16,7 @@ module Steps::Details
     validate :special_chars_in_mail if :started_by_taxpayer_or_present?
     validate :email_too_long if :started_by_taxpayer_or_present?
     validates :taxpayer_contact_email, presence: true, 'valid_email_2/email': true, if: :extra_email_validation?
+    validate :valid_phone_number
     # rubocop:enable Lint/LiteralAsCondition
 
     private
@@ -43,6 +44,15 @@ module Steps::Details
       end
     end
 
+    def valid_phone_number
+      return if taxpayer_contact_phone.blank?
+
+      phone_number = taxpayer_contact_phone.gsub(/[-() ]/, '')
+      if phone_number =~ /\D/ || taxpayer_contact_phone =~ /[*!&\/;]/
+        errors.add :taxpayer_contact_phone, I18n.t('errors.messages.phone.invalid_characters')
+      end
+    end
+
     def started_by_taxpayer?
       raise 'No TribunalCase given' unless tribunal_case
 
@@ -53,12 +63,12 @@ module Steps::Details
       raise 'No TribunalCase given' unless tribunal_case
 
       tribunal_case.update({
-        taxpayer_contact_address:  taxpayer_contact_address,
-        taxpayer_contact_postcode: taxpayer_contact_postcode,
-        taxpayer_contact_city:     taxpayer_contact_city,
-        taxpayer_contact_country:  taxpayer_contact_country,
-        taxpayer_contact_email:    taxpayer_contact_email,
-        taxpayer_contact_phone:    taxpayer_contact_phone
+        taxpayer_contact_address:,
+        taxpayer_contact_postcode:,
+        taxpayer_contact_city:,
+        taxpayer_contact_country:,
+        taxpayer_contact_email:,
+        taxpayer_contact_phone:
       }.merge(additional_attributes))
     end
   end

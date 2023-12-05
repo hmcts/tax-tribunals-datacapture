@@ -92,14 +92,14 @@ class SessionsController < ApplicationController
       representative_contact_address: Faker::Address.street_address,
       representative_contact_city: Faker::Address.city,
       representative_contact_country: Faker::Address.country,
-      grounds_for_appeal: Faker::Lorem.paragraph(2),
+      grounds_for_appeal: Faker::Lorem.paragraphs(number: 2),
       outcome: Faker::ChuckNorris.fact,
       need_support: NeedSupport::YES,
       language_interpreter: true,
       language_interpreter_details: Faker::Lorem.word,
       hearing_loop: true,
       other_support: true,
-      other_support_details: Faker::Lorem.paragraph(1),
+      other_support_details: Faker::Lorem.paragraphs(number: 1),
       user_type: UserType::TAXPAYER
     }
   end

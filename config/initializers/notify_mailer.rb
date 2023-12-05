@@ -21,4 +21,4 @@ GOVUK_NOTIFY_TEMPLATES = {
     first_reminder: ENV.fetch('NOTIFY_CASE_FIRST_REMINDER_CY_TEMPLATE_ID'),
     last_reminder: ENV.fetch('NOTIFY_CASE_LAST_REMINDER_CY_TEMPLATE_ID')
   }
-}
+}.freeze

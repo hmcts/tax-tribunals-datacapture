@@ -4,10 +4,10 @@ include ActionDispatch::TestProcess
 
 RSpec.describe Steps::Details::LetterUploadForm do
   let(:arguments) { {
-    tribunal_case: tribunal_case,
-    supporting_letter_document: supporting_letter_document,
-    having_problems_uploading: having_problems_uploading,
-    having_problems_uploading_explanation: having_problems_uploading_explanation
+    tribunal_case:,
+    supporting_letter_document:,
+    having_problems_uploading:,
+    having_problems_uploading_explanation:
   } }
 
   let(:tribunal_case) { instance_double(TribunalCase, files_collection_ref: 'ABC123') }
@@ -60,26 +60,30 @@ RSpec.describe Steps::Details::LetterUploadForm do
 
     context 'when a document has been provided' do
       context 'and it is not valid' do
-        let(:supporting_letter_document) { fixture_file_upload('files/image.jpg', 'application/zip') }
+        let(:supporting_letter_document) { fixture_file_upload('image.jpg', 'application/zip') }
 
         it 'should retrieve the errors from the uploader' do
-          expect(subject.errors).to receive(:add).with(:supporting_letter_document, :content_type).and_call_original
+          expect(subject.errors).to receive(:add).and_call_original do |attr, error_object|
+            expect(attr).to eq(:supporting_letter_document)
+            expect(error_object).to be_an_instance_of(ActiveModel::Error)
+            expect(error_object.attribute).to eq(:content_type)
+          end
           expect(subject).to_not be_valid
         end
       end
 
       context 'and it is valid' do
-        let(:supporting_letter_document) { fixture_file_upload('files/image.jpg', 'image/jpeg')  }
+        let(:supporting_letter_document) { fixture_file_upload('image.jpg', 'image/jpeg')  }
 
         context 'document upload successful' do
           it 'uploads the file' do
-            expect(Uploader).to receive(:add_file).
-              with(hash_including(document_key: :supporting_letter)).
-              and_return(double(name: '123/foo/bar.png'))
+            expect(Uploader).to receive(:add_file)
+              .with(hash_including(document_key: :supporting_letter))
+              .and_return(double(name: '123/foo/bar.png'))
 
             expect(tribunal_case).to receive(:update).with(
-              having_problems_uploading: having_problems_uploading,
-              having_problems_uploading_explanation: having_problems_uploading_explanation
+              having_problems_uploading:,
+              having_problems_uploading_explanation:
             ).and_return(true)
 
             expect(subject.save).to be(true)

@@ -4,7 +4,7 @@ RSpec.describe TaxTribs::HardshipDecisionTree do
   let(:tribunal_case) { double('TribunalCase') }
   let(:step_params)   { double('Step') }
   let(:next_step)     { nil }
-  subject { described_class.new(tribunal_case: tribunal_case, step_params: step_params, next_step: next_step) }
+  subject { described_class.new(tribunal_case:, step_params:, next_step:) }
 
   describe '#destination' do
     context 'when `next_step` is present' do
@@ -22,7 +22,7 @@ RSpec.describe TaxTribs::HardshipDecisionTree do
 
     context 'when the step is `disputed_tax_paid`' do
       let(:step_params)   { { disputed_tax_paid: 'anything' } }
-      let(:tribunal_case) { instance_double(TribunalCase, disputed_tax_paid: disputed_tax_paid) }
+      let(:tribunal_case) { instance_double(TribunalCase, disputed_tax_paid:) }
 
       context 'and the disputed tax has been paid' do
         let(:disputed_tax_paid) { DisputedTaxPaid::YES }
@@ -44,9 +44,9 @@ RSpec.describe TaxTribs::HardshipDecisionTree do
       let(:tribunal_case) do
         instance_double(
           TribunalCase,
-          case_type: case_type,
-          dispute_type: dispute_type,
-          hardship_review_requested: hardship_review_requested
+          case_type:,
+          dispute_type:,
+          hardship_review_requested:
         )
       end
 
@@ -69,11 +69,11 @@ RSpec.describe TaxTribs::HardshipDecisionTree do
           it { is_expected.to have_destination('/steps/hardship/hardship_contact_hmrc', :edit) }
         end
       end
-   end
+    end
 
     context 'when the step is `hardship_review_status`' do
       let(:step_params) { { hardship_review_status: 'anything' } }
-      let(:tribunal_case) { instance_double(TribunalCase, hardship_review_status: hardship_review_status) }
+      let(:tribunal_case) { instance_double(TribunalCase, hardship_review_status:) }
 
       context 'and a hardship has been granted 'do
         let(:hardship_review_status) { HardshipReviewStatus::GRANTED }

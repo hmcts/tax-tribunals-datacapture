@@ -33,4 +33,4 @@ Rails.application.configure do
   config.assets.css_compressor = false
 end
 
-Rails.application.routes.default_url_options[:locale]= I18n.default_locale
+Rails.application.routes.default_url_options[:locale] = I18n.default_locale

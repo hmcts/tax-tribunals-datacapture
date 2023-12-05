@@ -630,7 +630,7 @@ en:
             closure_hmrc_reference:
               blank: Please enter the HMRC reference number
             closure_years_under_enquiry:
-              blank: Please enter the years under enquiry
+              blank: Enter the years under enquiry (0 to 20)
         steps/closure/support_documents_form:
           attributes:
             having_problems_uploading_explanation:
@@ -1525,6 +1525,8 @@ en:
       email:
         special_characters: "Enter an email address in the correct format, like name@example.com. An email address cannot contain *()!&/;"
         too_long: "Email is too long (maximum is 256 characters)"
+      phone:
+        invalid_characters: "Enter a phone number in the correct format, like 07700 900 982. A phone number cannot contain *!&/;"
       name:
         too_long: "Name is too long (maximum is 256 characters)"
     error_summary:

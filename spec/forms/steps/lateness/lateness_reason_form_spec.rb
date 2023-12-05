@@ -2,11 +2,12 @@ require 'spec_helper'
 
 RSpec.describe Steps::Lateness::LatenessReasonForm do
   let(:arguments) { {
-    tribunal_case: tribunal_case,
+    tribunal_case:,
     lateness_reason: text_attribute_value,
     lateness_reason_document: document_attribute_value,
   } }
-  let(:tribunal_case) { instance_double(TribunalCase, lateness_reason: text_attribute_value, in_time: in_time, files_collection_ref: '12345') }
+  let(:tribunal_case) {
+ instance_double(TribunalCase, lateness_reason: text_attribute_value, in_time:, files_collection_ref: '12345') }
   let(:text_attribute_value) { nil }
   let(:document_attribute_value) { nil }
   let(:in_time) { nil }

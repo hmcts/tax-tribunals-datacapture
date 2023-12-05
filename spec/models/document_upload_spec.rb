@@ -3,12 +3,12 @@ require 'spec_helper'
 include ActionDispatch::TestProcess
 
 RSpec.describe DocumentUpload do
-  let(:file_path) { 'files/image.jpg' }
+  let(:file_path) { 'image.jpg' }
   let(:content_type) { 'image/jpeg' }
   let(:file) { fixture_file_upload(file_path, content_type) }
   let(:document_key) { 'doc_key' }
 
-  subject { described_class.new(file, collection_ref: '123', document_key: document_key) }
+  subject { described_class.new(file, collection_ref: '123', document_key:) }
 
   before do
     allow(Uploader).to receive(:list_files).and_return([])
@@ -17,7 +17,7 @@ RSpec.describe DocumentUpload do
   context 'for a tempfile' do
     let(:file) { Tempfile.new }
 
-    subject { described_class.new(file, document_key: document_key, content_type: 'image/jpeg', filename: 'image.jpg') }
+    subject { described_class.new(file, document_key:, content_type: 'image/jpeg', filename: 'image.jpg') }
 
     context '#file_name' do
       it 'should have a file name' do
@@ -72,7 +72,7 @@ RSpec.describe DocumentUpload do
 
   context '#collection_ref' do
     it 'should have a collection_ref if provided' do
-      instance = described_class.new(file, document_key: document_key, collection_ref: '12345')
+      instance = described_class.new(file, document_key:, collection_ref: '12345')
       expect(instance.collection_ref).to eq('12345')
     end
   end
@@ -119,7 +119,7 @@ RSpec.describe DocumentUpload do
 
       it 'should change the name' do
         subject.valid?
-        expect(subject.file_name).to eq ('invalid * name.txt')
+        expect(subject.file_name).to eq('invalid * name.txt')
       end
     end
 
@@ -144,14 +144,14 @@ RSpec.describe DocumentUpload do
     context 'existing `image.jpg`, uploading `image.jpg`' do
       let(:new_filename) { 'image.jpg' }
       let(:uploaded_files) { [double(name: '123/foo/image.jpg',
-        properties: { last_modified: 'Wed, 13 Apr 2022 11:03:21 +0000'})] }
+                                     properties: { last_modified: 'Wed, 13 Apr 2022 11:03:21 +0000'})] }
       it { expect(subject.file_name).to eq('image(1).jpg') }
     end
 
     context 'existing `image(1).jpg`, uploading `image(1).jpg`' do
       let(:new_filename) { 'image(1).jpg' }
       let(:uploaded_files) { [double(name: 'foo/123/image(1).jpg',
-        properties: { last_modified: 'Wed, 13 Apr 2022 11:03:21 +0000'})] }
+                                     properties: { last_modified: 'Wed, 13 Apr 2022 11:03:21 +0000'})] }
       it { expect(subject.file_name).to eq('image(1)(1).jpg') }
     end
 
@@ -159,9 +159,10 @@ RSpec.describe DocumentUpload do
       let(:new_filename) { 'image.jpg' }
       let(:uploaded_files) { [
         double(name: 'foo/123/image.jpg',
-        properties: { last_modified: 'Wed, 13 Apr 2022 11:03:21 +0000'}),
+               properties: { last_modified: 'Wed, 13 Apr 2022 11:03:21 +0000'}),
         double(name: 'foo/123/image(1).jpg',
-        properties: { last_modified: 'Wed, 13 Apr 2022 11:03:21 +0000'})] }
+               properties: { last_modified: 'Wed, 13 Apr 2022 11:03:21 +0000'})
+      ] }
       it { expect(subject.file_name).to eq('image(2).jpg') }
     end
 
@@ -170,11 +171,11 @@ RSpec.describe DocumentUpload do
       let(:uploaded_files) {
         [
           double(name: 'foo/123/image.jpg',
-        properties: { last_modified: 'Wed, 13 Apr 2022 11:03:21 +0000'}),
+                 properties: { last_modified: 'Wed, 13 Apr 2022 11:03:21 +0000'}),
           double(name: 'foo/123/image(1).jpg',
-        properties: { last_modified: 'Wed, 13 Apr 2022 11:03:21 +0000'}),
+                 properties: { last_modified: 'Wed, 13 Apr 2022 11:03:21 +0000'}),
           double(name: 'foo/123/image(2).jpg',
-        properties: { last_modified: 'Wed, 13 Apr 2022 11:03:21 +0000'})
+                 properties: { last_modified: 'Wed, 13 Apr 2022 11:03:21 +0000'})
         ]
       }
       it { expect(subject.file_name).to eq('image(3).jpg') }
@@ -186,21 +187,21 @@ RSpec.describe DocumentUpload do
       context 'existing `image`, uploading `image`' do
         let(:new_filename) { 'image' }
         let(:uploaded_files) { [double(name: 'foo/123/image',
-        properties: { last_modified: 'Wed, 13 Apr 2022 11:03:21 +0000'})] }
+                                       properties: { last_modified: 'Wed, 13 Apr 2022 11:03:21 +0000'})] }
         it { expect(subject.file_name).to eq('image(1)') }
       end
 
       context 'existing `image.`, uploading `image.`' do
         let(:new_filename) { 'image.' }
         let(:uploaded_files) { [double(name: 'foo/123/image.',
-        properties: { last_modified: 'Wed, 13 Apr 2022 11:03:21 +0000'})] }
+                                       properties: { last_modified: 'Wed, 13 Apr 2022 11:03:21 +0000'})] }
         it { expect(subject.file_name).to eq('image.(1).') }
       end
 
       context 'existing `.image`, uploading `.image`' do
         let(:new_filename) { '.image' }
         let(:uploaded_files) { [double(name: 'foo/123/.image',
-        properties: { last_modified: 'Wed, 13 Apr 2022 11:03:21 +0000'})] }
+                                       properties: { last_modified: 'Wed, 13 Apr 2022 11:03:21 +0000'})] }
         it { expect(subject.file_name).to eq('.image(1)') }
       end
     end
@@ -218,9 +219,9 @@ RSpec.describe DocumentUpload do
         subject { described_class.new(file, document_key: 'foo') }
 
         it 'should upload the document with that key' do
-          expect(Uploader).to receive(:add_file).
-            with(hash_including(document_key: 'foo')).
-            and_return(double(name: '123/foo/bar.png'))
+          expect(Uploader).to receive(:add_file)
+            .with(hash_including(document_key: 'foo'))
+            .and_return(double(name: '123/foo/bar.png'))
 
           subject.upload!(collection_ref: '123')
           expect(subject.errors?).to eq(false)
@@ -231,8 +232,8 @@ RSpec.describe DocumentUpload do
         subject { described_class.new(file, document_key: 'foo') }
 
         it 'should upload the document with that key' do
-          expect(Uploader).to receive(:add_file).with(hash_including(document_key: 'foo')).
-            and_return(double('Uploader', name: 'new_file_name.jpg'))
+          expect(Uploader).to receive(:add_file).with(hash_including(document_key: 'foo'))
+            .and_return(double('Uploader', name: 'new_file_name.jpg'))
 
           subject.upload!(collection_ref: '123')
           expect(subject.file_name).to eq 'new_file_name.jpg'
@@ -243,8 +244,8 @@ RSpec.describe DocumentUpload do
         subject { described_class.new(file) }
 
         it 'should use file name from response' do
-          expect(Uploader).to receive(:add_file).with(hash_including(document_key: 'bar')).
-            and_return(double('uploader', name: ''))
+          expect(Uploader).to receive(:add_file).with(hash_including(document_key: 'bar'))
+            .and_return(double('uploader', name: ''))
 
           subject.upload!(collection_ref: '123', document_key: 'bar')
           expect(subject.errors?).to eq(false)

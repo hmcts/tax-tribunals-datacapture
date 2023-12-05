@@ -4,7 +4,7 @@ include ActionDispatch::TestProcess
 
 RSpec.describe Steps::Hardship::HardshipReasonForm do
   let(:arguments) { {
-    tribunal_case: tribunal_case,
+    tribunal_case:,
     hardship_reason: text_attribute_value,
     hardship_reason_document: document_attribute_value
   } }

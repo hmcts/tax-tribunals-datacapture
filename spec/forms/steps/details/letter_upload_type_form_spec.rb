@@ -2,10 +2,10 @@ require 'spec_helper'
 
 RSpec.describe Steps::Details::LetterUploadTypeForm do
   let(:arguments) { {
-    tribunal_case: tribunal_case,
-    letter_upload_type: letter_upload_type
+    tribunal_case:,
+    letter_upload_type:
   } }
-  let(:tribunal_case) { instance_double(TribunalCase, letter_upload_type: letter_upload_type) }
+  let(:tribunal_case) { instance_double(TribunalCase, letter_upload_type:) }
   let(:letter_upload_type) { nil }
 
   subject { described_class.new(arguments) }

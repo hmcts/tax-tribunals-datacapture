@@ -2,16 +2,16 @@ require 'rails_helper'
 
 RSpec.describe TaxTribs::Status do
   let(:glimr_available) {
-    instance_double(GlimrApiClient::Available, available?: true)
+    instance_double(GlimrDirectApiClient::Available, available?: true)
   }
 
   let(:status) do
     {
-      service_status: service_status,
+      service_status:,
       version: commit_id,
       dependencies: {
-        glimr_status: glimr_status,
-        database_status: database_status
+        glimr_status:,
+        database_status:
       }
     }
   end
@@ -23,7 +23,7 @@ RSpec.describe TaxTribs::Status do
   let(:database_status) { 'ok' }
 
   before do
-    allow(GlimrApiClient::Available).to receive(:call).and_return(glimr_available)
+    allow(GlimrDirectApiClient::Available).to receive(:call).and_return(glimr_available)
     allow(ActiveRecord::Base).to receive(:connection).and_return(double)
 
     allow_any_instance_of(described_class).to receive(:`).with('git rev-parse HEAD').and_return('ABC123')
@@ -63,13 +63,13 @@ RSpec.describe TaxTribs::Status do
       let(:glimr_status) { 'failed' }
 
       before do
-        allow(GlimrApiClient::Available).to receive(:call).and_raise(GlimrApiClient::Unavailable)
+        allow(GlimrDirectApiClient::Available).to receive(:call).and_raise(GlimrDirectApiClient::Unavailable)
       end
 
       specify { expect(described_class.check).to eq(status) }
       context 'Glimr client returns nil' do
         before do
-          allow(GlimrApiClient::Available).to receive(:call).and_return(nil)
+          allow(GlimrDirectApiClient::Available).to receive(:call).and_return(nil)
         end
 
         specify { expect(described_class.check).to eq(status) }
@@ -94,4 +94,35 @@ RSpec.describe TaxTribs::Status do
       end
     end
   end
+
+  describe '#check_glimr' do
+    let(:check_glimr_res) { subject.check_glimr }
+
+    context 'when GLIMR is available' do
+      it 'returns ok for glimr_status' do
+        expect(check_glimr_res[:glimr_status]).to eql('ok')
+      end
+    end
+
+    context 'when GLIMR is unavailable' do
+      before do
+        allow(GlimrDirectApiClient::Available).to receive(:call).and_raise(GlimrDirectApiClient::Unavailable)
+      end
+
+      it 'returns failed for glimr_status' do
+        expect(check_glimr_res[:glimr_status]).to eql('failed')
+      end
+    end
+
+    context 'when GLIMR client returns nil' do
+      before do
+        allow(GlimrDirectApiClient::Available).to receive(:call).and_return(nil)
+      end
+
+      it 'returns failed for glimr_status' do
+        expect(check_glimr_res[:glimr_status]).to eql('failed')
+      end
+    end
+  end
+
 end

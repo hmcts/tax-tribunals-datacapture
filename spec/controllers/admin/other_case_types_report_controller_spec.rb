@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Admin::OtherCaseTypesReportController, type: :controller do
-
   before do
     allow(ENV).to receive(:fetch).with('ADMIN_USERNAME').and_return('admin')
     allow(ENV).to receive(:fetch).with('ADMIN_PASSWORD').and_return(
@@ -10,5 +9,4 @@ RSpec.describe Admin::OtherCaseTypesReportController, type: :controller do
   end
 
   it_behaves_like 'a password-protected admin controller', :index
-
 end

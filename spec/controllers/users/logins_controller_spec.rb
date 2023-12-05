@@ -26,7 +26,7 @@ RSpec.describe Users::LoginsController do
     end
 
     context 'when the authentication was successful' do
-      let(:tribunal_case) { instance_double(TribunalCase, user: user) }
+      let(:tribunal_case) { instance_double(TribunalCase, user:) }
 
       before do
         expect(warden).to receive(:authenticate).and_return(user)
@@ -92,7 +92,6 @@ RSpec.describe Users::LoginsController do
 
   describe '#restart_account_creation' do
     context 'when logged in' do
-
       let(:user) { User.new(email: 'foo@bar.com') }
 
       it 'renders the expected page' do

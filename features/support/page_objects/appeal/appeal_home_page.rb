@@ -1,5 +1,5 @@
 class AppealPage < BasePage
-  set_url '/' + ENV['TEST_LOCALE'] + '/appeal'
+  set_url "/#{ENV.fetch('TEST_LOCALE', nil)}/appeal"
 
   section :content, '#main-content' do
     element :header, 'h2', text: I18n.t('appeal_home.index.heading')

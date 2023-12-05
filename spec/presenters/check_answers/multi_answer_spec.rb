@@ -7,7 +7,7 @@ module CheckAnswers
     let(:change_path) { nil }
 
 
-    subject { described_class.new(question, value, change_path: change_path) }
+    subject { described_class.new(question, value, change_path:) }
 
     describe '#show?' do
       context 'when no value is given' do

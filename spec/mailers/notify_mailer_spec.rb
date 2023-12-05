@@ -5,12 +5,12 @@ RSpec.describe NotifyMailer, type: :mailer do
   let(:tribunal_case_attributes) {
     {
       id: '4a362e1c-48eb-40e3-9458-a31ead3f30a4',
-      intent: intent,
-      language: language,
-      user_type: user_type,
-      taxpayer_type: taxpayer_type,
-      representative_type: representative_type,
-      case_reference: case_reference,
+      intent:,
+      language:,
+      user_type:,
+      taxpayer_type:,
+      representative_type:,
+      case_reference:,
       taxpayer_contact_email: 'taxpayer@example.com',
       taxpayer_individual_first_name: 'John',
       taxpayer_individual_last_name: 'Harrison'
@@ -60,7 +60,7 @@ RSpec.describe NotifyMailer, type: :mailer do
   before do
     allow(ENV).to receive(:fetch).with('NOTIFY_STATISTICS_REPORT_TEMPLATE_ID').and_return('statistics-report')
     allow(ENV).to receive(:fetch).with('NOTIFY_REPORT_PROBLEM_TEMPLATE_ID').and_return('report-problem-template')
-    allow(ENV).to receive(:fetch).with('NOTIFY_GLIMR_GENERATION_COMPLETE_ID').and_return('glimr-generation-template')
+    allow(ENV).to receive(:fetch).with('NOTIFY_GLIMR_GENERATION_COMPLETE_TEMPLATE_ID').and_return('glimr-generation-template')
     allow(ENV).to receive(:fetch).with('GOVUK_NOTIFY_API_KEY').and_return('dev_test-7bdad799-cfd7-4b9c-aafd-5d3162595af8-9e8cfc38-73f5-4164-b2f5-d5a9aa25bcdb')
     stub_const('GOVUK_NOTIFY_TEMPLATES', govuk_notify_templates)
   end
@@ -322,14 +322,15 @@ RSpec.describe NotifyMailer, type: :mailer do
         .with(:taxpayer_contact_phone)
         .and_return('07777777777')
 
-      expect_any_instance_of(Notifications::Client).to receive(:send_sms).
-        with({
+      expect_any_instance_of(Notifications::Client).to receive(:send_sms)
+        .with({
           phone_number: '07777777777',
           template_id: 'NOTIFY_SEND_APPLICATION_DETAIL_TEXT_TEMPLATE_ID',
           reference: case_reference,
           personalisation: {
             appeal_or_application: :appeal,
             submission_date_and_time: '1 January 2017 12:00hrs',
+            case_reference:
           },
         })
       NotifyMailer.new.application_details_text(tribunal_case, :taxpayer, "text content")

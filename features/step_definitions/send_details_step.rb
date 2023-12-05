@@ -9,11 +9,11 @@ When("I submit yes and submit blank email field") do
 end
 
 When("I submit an email that doesn't match on the send representative copy page") do
-  send_representative_copy_page.submit_email_and_a_invalid_email
+  send_representative_copy_page.submit_invalid_email
 end
 
 When("I submit an email that does match on the send representative copy page") do
-  send_representative_copy_page.submit_email_and_a_valid_email
+  send_representative_copy_page.submit_valid_email
 end
 
 Then("I should see not matching email error") do
@@ -47,6 +47,58 @@ Then("I am on the has representative page") do
 end
 
 Given(/^Given I navigate to the send taxpayer copy page as the taxpayer$/) do
-    navigate_to_send_taxpayer_copy_page
-    expect(send_taxpayer_copy_page.content).to have_header
-  end
+  navigate_to_send_taxpayer_copy_page
+  expect(send_taxpayer_copy_page.content).to have_header
+end
+
+And(/^I submit a valid email on the send taxpayer copy page$/) do
+  expect(send_taxpayer_copy_page.content).to have_header
+  send_taxpayer_copy_page.submit_email_and_valid_email
+end
+
+When(/^I submit an invalid email on the send taxpayer copy page$/) do
+  expect(send_taxpayer_copy_page.content).to have_header
+  send_taxpayer_copy_page.submit_email_and_invalid_email
+end
+
+Then(/^I will see a non matching email error$/) do
+  expect(send_taxpayer_copy_page.content.error).to have_error_heading
+end
+
+When(/^I select no email or text$/) do
+  send_taxpayer_copy_page.submit_no_contact
+end
+
+And(/^I submit that I do not have a representative$/) do
+  expect(has_representative_page.content).to have_header
+  submit_no
+end
+
+And(/^I select both email and text message and fill in an email$/) do
+  send_taxpayer_copy_page.submit_email_only
+  send_representative_copy_page.submit_email_only
+end
+
+Then(/^I am shown a blank phone error$/) do
+  expect(send_taxpayer_copy_page.content.error).to have_error_heading
+  expect(send_representative_copy_page.content.error).to have_error_heading
+end
+
+And(/^I am on the send taxpayer copy page$/) do
+  expect(send_taxpayer_copy_page.content).to have_header
+end
+
+And(/^I select text message and try and proceed with a blank number$/) do
+  send_taxpayer_copy_page.blank_phone_option
+  send_representative_copy_page.blank_phone_option
+end
+
+And(/^I select both email and text message and fill in an email and a non matching phone number$/) do
+  send_taxpayer_copy_page.submit_non_matching_phone
+  send_representative_copy_page.submit_non_matching_phone
+end
+
+And(/^I select text message and fill in an email and a non matching phone number$/) do
+  send_taxpayer_copy_page.submit_non_matching_phone_text
+  send_representative_copy_page.submit_non_matching_phone_text
+end

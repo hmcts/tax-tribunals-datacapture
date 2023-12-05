@@ -1,5 +1,5 @@
 class HomePage < BasePage
-  set_url '/' + ENV['TEST_LOCALE'] + '/'
+  set_url "/#{ENV.fetch('TEST_LOCALE', nil)}/"
 
   section :content, '#main-content' do
     element :header, 'h1', text: I18n.t('home.index.heading')

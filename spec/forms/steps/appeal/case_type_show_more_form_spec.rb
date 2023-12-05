@@ -2,9 +2,9 @@ require 'spec_helper'
 
 RSpec.describe Steps::Appeal::CaseTypeShowMoreForm do
   let(:arguments) { {
-    tribunal_case: tribunal_case,
-    case_type: case_type,
-    case_type_other_value: case_type_other_value
+    tribunal_case:,
+    case_type:,
+    case_type_other_value:
   } }
   let(:tribunal_case) { instance_double(TribunalCase, case_type: nil, case_type_other_value: nil) }
   let(:case_type) { nil }

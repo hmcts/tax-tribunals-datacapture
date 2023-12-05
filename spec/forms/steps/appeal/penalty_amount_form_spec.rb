@@ -2,9 +2,9 @@ require 'spec_helper'
 
 RSpec.describe Steps::Appeal::PenaltyAmountForm do
   let(:arguments) { {
-    tribunal_case: tribunal_case,
-    penalty_level: penalty_level,
-    penalty_amount: penalty_amount
+    tribunal_case:,
+    penalty_level:,
+    penalty_amount:
   } }
   let(:tribunal_case) { instance_double(TribunalCase, penalty_level: nil, penalty_amount: nil) }
   let(:penalty_level)  { nil }
@@ -86,15 +86,15 @@ RSpec.describe Steps::Appeal::PenaltyAmountForm do
             expect(subject.save).to be(false)
           end
         end
-        
+
         context 'when penalty amount supplied is in valid range' do
           let(:penalty_amount) {'10000'}
 
           it 'saves the record' do
             expect(tribunal_case).to receive(:update).with(
-                                       penalty_level: PenaltyLevel::PENALTY_LEVEL_2,
-                                       penalty_amount: '10000'
-                                     ).and_return(true)
+              penalty_level: PenaltyLevel::PENALTY_LEVEL_2,
+              penalty_amount: '10000'
+            ).and_return(true)
             expect(subject.save).to be(true)
           end
         end

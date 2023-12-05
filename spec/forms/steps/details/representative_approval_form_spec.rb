@@ -2,8 +2,8 @@ require 'spec_helper'
 
 RSpec.describe Steps::Details::RepresentativeApprovalForm do
   let(:arguments) { {
-    tribunal_case: tribunal_case,
-    representative_approval_document: representative_approval_document
+    tribunal_case:,
+    representative_approval_document:
   } }
   let(:tribunal_case) { instance_double(TribunalCase, files_collection_ref: 'ABC123') }
   let(:representative_approval_document) { nil }
@@ -34,22 +34,27 @@ RSpec.describe Steps::Details::RepresentativeApprovalForm do
 
     context 'when a document has been provided' do
       context 'and it is not valid' do
-        let(:representative_approval_document) { fixture_file_upload('files/image.jpg', 'application/zip') }
+        let(:representative_approval_document) { fixture_file_upload('image.jpg', 'application/zip') }
 
         it 'should retrieve the errors from the uploader' do
-          expect(subject.errors).to receive(:add).with(:representative_approval_document, :content_type).and_call_original
+          expect(subject.errors).to receive(:add).and_call_original do |attr, error_object|
+            expect(attr).to eq(:representative_approval_document)
+            expect(error_object).to be_an_instance_of(ActiveModel::Error)
+            expect(error_object.attribute).to eq(:content_type)
+          end
+
           expect(subject).to_not be_valid
         end
       end
 
       context 'and it is valid' do
-        let(:representative_approval_document) { fixture_file_upload('files/image.jpg', 'image/jpeg')  }
+        let(:representative_approval_document) { fixture_file_upload('image.jpg', 'image/jpeg')  }
 
         context 'document upload successful' do
           it 'uploads the file' do
-            expect(Uploader).to receive(:add_file).
-              with(hash_including(document_key: :representative_approval)).
-              and_return(double(name: '123/foo/bar.png'))
+            expect(Uploader).to receive(:add_file)
+              .with(hash_including(document_key: :representative_approval))
+              .and_return(double(name: '123/foo/bar.png'))
             expect(subject.save).to be(true)
           end
         end

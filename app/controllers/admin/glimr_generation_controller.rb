@@ -1,4 +1,4 @@
-require 'glimr_api_client'
+require_relative '../../services/glimr_direct_api_client'
 
 class Admin::GlimrGenerationController < AdminController
   def new; end
@@ -25,7 +25,7 @@ class Admin::GlimrGenerationController < AdminController
   end
 
   def jurisdiction_id
-    GlimrApiClient::RegisterNewCase::TRIBUNAL_JURISDICTION_ID
+    GlimrDirectApiClient::RegisterNewCase::TRIBUNAL_JURISDICTION_ID
   end
 
   def generator_params
@@ -39,7 +39,7 @@ class Admin::GlimrGenerationController < AdminController
   end
 
   def queue_creation(num)
-    delay = 20.seconds
+    delay = 25.seconds
     batch = Sidekiq::Batch.new
     batch.description = "Glimr batch @ #{Time.now}, n = #{num}"
     batch.on(:complete, Admin::GenerateGlimrRecordsComplete, to: params[:email])
