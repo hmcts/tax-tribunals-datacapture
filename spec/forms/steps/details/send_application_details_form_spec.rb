@@ -4,7 +4,7 @@ RSpec.describe Steps::Details::SendApplicationDetailsForm do
   let(:user_type) { UserType::TAXPAYER }
   let(:tribunal_case) do
     TribunalCase.new(
-      user_type: user_type,
+      user_type:,
       taxpayer_contact_email: 'taxpayer@email.com',
       taxpayer_contact_phone: '07777777777',
       representative_contact_email: 'representative@email.com',
@@ -45,6 +45,28 @@ RSpec.describe Steps::Details::SendApplicationDetailsForm do
           .with({ "send_#{entity}_copy".to_sym => SendApplicationDetails.new(:both)})
         subject.send(:persist!)
       end
+
+      context 'with no pre-existing phone number' do
+        let(:tribunal_case) do
+          TribunalCase.new(
+            user_type:,
+            taxpayer_contact_email: 'taxpayer@email.com',
+            taxpayer_contact_phone: '',
+            representative_contact_email: 'representative@email.com',
+            representative_contact_phone: '',
+          )
+        end
+
+        it 'saves the phone number when send_text_copy?
+&& saved_phone_number.blank? is text' do
+          expect(tribunal_case).to receive(:update)
+            .with({
+                    "send_#{entity}_copy".to_sym => SendApplicationDetails.new(:both),
+              "#{entity}_contact_phone".to_sym => '07777777777'
+                  })
+          subject.send(:persist!)
+        end
+      end
     end
 
     describe 'validations' do
@@ -69,12 +91,6 @@ RSpec.describe Steps::Details::SendApplicationDetailsForm do
           specify { expect(subject.errors.details[:email_address]).to eq([{error: "different_#{entity}".to_sym}])}
         end
 
-        context 'when send_application_details value is text and phone_number doesnt match' do
-          let(:attributes) { {send_application_details: 'text', phone_number: '0111'} }
-          specify { expect(subject).not_to be_valid }
-          specify { expect(subject.errors.details[:phone_number]).to eq([{error: "different_#{entity}".to_sym}])}
-        end
-
         context 'when send_application_detail value is both and both match' do
           specify { expect(subject).to be_valid }
         end
@@ -82,7 +98,7 @@ RSpec.describe Steps::Details::SendApplicationDetailsForm do
         context 'when send_application_detail value is email email must be provided' do
           let(:tribunal_case) do
             TribunalCase.new(
-              user_type: user_type,
+              user_type:,
               taxpayer_contact_email: nil,
               representative_contact_email: nil
             )
@@ -96,7 +112,7 @@ RSpec.describe Steps::Details::SendApplicationDetailsForm do
         context 'when send_application_detail value is text, phone number must be provided' do
           let(:tribunal_case) do
             TribunalCase.new(
-              user_type: user_type,
+              user_type:,
               taxpayer_contact_email: nil,
               representative_contact_email: nil
             )
@@ -107,6 +123,24 @@ RSpec.describe Steps::Details::SendApplicationDetailsForm do
           specify { expect(subject.errors.details[:phone_number]).to eq([{error: :blank}]) }
         end
       end
+    end
+  end
+
+  describe 'validations for phone_number match' do
+    let(:attributes) { {send_application_details: 'text', phone_number: '0111'} }
+    before { subject.valid? }
+
+    context 'when send_application_details value is text, phone_number doesnt match and is taxpayer' do
+      let(:user_type) { UserType::TAXPAYER }
+
+      specify { expect(subject).not_to be_valid }
+      specify { expect(subject.errors.details[:phone_number]).to eq([{error: "different_#{user_type}".to_sym}])}
+    end
+
+    context 'when send_application_details value is text, phone_number doesnt match and is representative' do
+      let(:user_type) { UserType::REPRESENTATIVE }
+      specify { expect(subject).not_to be_valid }
+      specify { expect(subject.errors.details[:phone_number]).to eq([{error: "different_#{user_type}".to_sym}])}
     end
   end
 end

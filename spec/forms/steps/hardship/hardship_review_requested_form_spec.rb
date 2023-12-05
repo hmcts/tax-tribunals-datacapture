@@ -2,8 +2,8 @@ require 'spec_helper'
 
 RSpec.describe Steps::Hardship::HardshipReviewRequestedForm do
   let(:arguments) { {
-    tribunal_case: tribunal_case,
-    hardship_review_requested: hardship_review_requested
+    tribunal_case:,
+    hardship_review_requested:
   } }
   let(:tribunal_case) { instance_double(TribunalCase, hardship_review_requested: nil) }
   let(:hardship_review_requested) { nil }

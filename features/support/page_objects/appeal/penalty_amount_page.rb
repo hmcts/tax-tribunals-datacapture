@@ -1,5 +1,5 @@
 class PenaltyAmountPage < BasePage
-  set_url '/' + ENV['TEST_LOCALE'] + '/steps/appeal/penalty_amount'
+  set_url "/#{ENV.fetch('TEST_LOCALE', nil)}/steps/appeal/penalty_amount"
 
   section :content, '#main-content' do
     element :header, 'h1', text: I18n.t('steps.appeal.penalty_amount.edit.heading')
@@ -9,11 +9,14 @@ class PenaltyAmountPage < BasePage
     section :error_summary, '.govuk-error-summary__body' do
       element :enter_penalty_error, 'a', text: I18n.t('dictionary.blank_penalty_amount')
       element :amount_too_small_error, 'a', text: I18n.t(
-'activemodel.errors.models.steps/appeal/penalty_amount_form.attributes.penalty_amount.too_small')
+        'activemodel.errors.models.steps/appeal/penalty_amount_form.attributes.penalty_amount.too_small'
+      )
       element :amount_too_large_error, 'a', text: I18n.t(
-'activemodel.errors.models.steps/appeal/penalty_amount_form.attributes.penalty_amount.too_large')
+        'activemodel.errors.models.steps/appeal/penalty_amount_form.attributes.penalty_amount.too_large'
+      )
       element :select_option_error, 'a', text: I18n.t(
-'activemodel.errors.models.steps/appeal/penalty_amount_form.attributes.penalty_level.inclusion')
+        'activemodel.errors.models.steps/appeal/penalty_amount_form.attributes.penalty_level.inclusion'
+      )
     end
   end
 

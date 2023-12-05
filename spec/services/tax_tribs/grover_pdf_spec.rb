@@ -5,7 +5,6 @@ RSpec.describe TaxTribs::GroverPdf do
     TribunalCase.create(case_reference: 'TC/2016/12345')
   }
 
-
   context 'for Appeal PDFs' do
     let(:controller_name) { AppealCasesController.name }
     subject { described_class.new(tribunal_case, 'ABC', controller_name) }
@@ -25,8 +24,8 @@ RSpec.describe TaxTribs::GroverPdf do
         expect(Grover).to receive(:new).and_raise(StandardError)
       end
       it 'should mark the tribunal case as attempted' do
-        described_class.
-          new(tribunal_case, 'ABC', controller_name, test_early_exit: true)
+        described_class
+          .new(tribunal_case, 'ABC', controller_name, test_early_exit: true)
           .generate
         expect(tribunal_case.pdf_generation_status).to eq(
           'APPEAL_ATTEMPT'
@@ -45,7 +44,6 @@ RSpec.describe TaxTribs::GroverPdf do
         )
       end
     end
-
   end
 
   context 'for Closure PDFs' do
@@ -85,7 +83,5 @@ RSpec.describe TaxTribs::GroverPdf do
         )
       end
     end
-
   end
-
 end

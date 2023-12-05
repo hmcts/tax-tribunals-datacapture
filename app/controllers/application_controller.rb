@@ -45,9 +45,9 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def switch_locale(&action)
+  def switch_locale(&)
     locale = params[:locale] || I18n.default_locale
-    I18n.with_locale(locale, &action)
+    I18n.with_locale(locale, &)
   end
 
   def reset_tribunal_case_session
@@ -55,7 +55,7 @@ class ApplicationController < ActionController::Base
   end
 
   def initialize_tribunal_case(attributes = {})
-    TribunalCase.create(attributes).tap do |tribunal_case|
+    TribunalCase.create(**attributes).tap do |tribunal_case|
       session[:tribunal_case_id] = tribunal_case.id
     end
   end

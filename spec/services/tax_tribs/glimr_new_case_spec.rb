@@ -9,7 +9,7 @@ RSpec.describe TaxTribs::GlimrNewCase do
   let(:case_attributes) do
     {
       case_type: CaseType::INCOME_TAX,
-      taxpayer_type: taxpayer_type,
+      taxpayer_type:,
       taxpayer_individual_first_name: 'Filomena',
       taxpayer_individual_last_name: 'Keebler',
       taxpayer_contact_address: taxpayer_address,
@@ -21,7 +21,7 @@ RSpec.describe TaxTribs::GlimrNewCase do
       taxpayer_organisation_name: 'Company Name',
       taxpayer_organisation_fao: 'Destany Fritsch',
       files_collection_ref: 'd29210a8-f2fe-4d6f-ac96-ea4f9fd66687',
-      has_representative: has_representative
+      has_representative:
     }
   end
 
@@ -36,7 +36,7 @@ RSpec.describe TaxTribs::GlimrNewCase do
   describe '#call' do
     let(:glimr_response_double) {
       instance_double(
-        GlimrApiClient::RegisterNewCase,
+        GlimrDirectApiClient::RegisterNewCase,
         response_body: {
           tribunalCaseNumber: 'TC/12345',
           confirmationCode: 'ABCDEF'
@@ -63,7 +63,7 @@ RSpec.describe TaxTribs::GlimrNewCase do
 
     before do
       allow(tribunal_case).to receive(:documents_url).and_return('http://downloader.com/d29210a8-f2fe-4d6f-ac96-ea4f9fd66687')
-      expect(GlimrApiClient::RegisterNewCase).to receive(:call).
+      expect(GlimrDirectApiClient::RegisterNewCase).to receive(:call).
           with(glimr_params).and_return(glimr_response_double)
     end
 
@@ -81,7 +81,7 @@ RSpec.describe TaxTribs::GlimrNewCase do
       context 'when tribunalCaseNumber or confirmationCode are not returned' do
         let(:glimr_response_double) {
           instance_double(
-            GlimrApiClient::RegisterNewCase,
+            GlimrDirectApiClient::RegisterNewCase,
             response_body: {}
           )
         }
@@ -155,7 +155,7 @@ RSpec.describe TaxTribs::GlimrNewCase do
       let(:case_attributes) do
         super().merge({
           has_representative: HasRepresentative::YES,
-          representative_type: representative_type,
+          representative_type:,
           representative_individual_first_name: 'Kraig',
           representative_individual_last_name: 'Walsh',
           representative_organisation_name: 'Cartwright-Rau',
@@ -229,7 +229,7 @@ RSpec.describe TaxTribs::GlimrNewCase do
     # to Sentry and logging it, and also sending an email to the tribunal telling them there was a problem.
     context 'Any kind of error StandardError' do
       before do
-        allow(GlimrApiClient::RegisterNewCase).to receive(:call).and_raise(StandardError)
+        allow(GlimrDirectApiClient::RegisterNewCase).to receive(:call).and_raise(StandardError)
       end
 
       it 'is trapped' do

@@ -1,5 +1,5 @@
 class InTimePage < BasePage
-  set_url '/' + ENV['TEST_LOCALE'] + '/steps/lateness/in_time'
+  set_url "/#{ENV.fetch('TEST_LOCALE', nil)}/steps/lateness/in_time"
 
   section :content, '#main-content' do
     element :header, 'h1', text: I18n.t('steps.lateness.in_time.edit.heading')
@@ -17,7 +17,6 @@ class InTimePage < BasePage
   end
 
   def submit_no
-
     content.no_option.click
     continue_or_save_continue
   end

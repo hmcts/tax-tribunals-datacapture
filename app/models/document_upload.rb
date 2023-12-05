@@ -86,7 +86,7 @@ class DocumentUpload
 
   # Used by Rails responders when responding with JSON.
   def to_hash
-    {name: file_name, encoded_name: encoded_file_name, collection_ref: collection_ref}
+    {name: file_name, encoded_name: encoded_file_name, collection_ref:}
   end
 
   private
@@ -100,7 +100,7 @@ class DocumentUpload
 
   # returns array of documents
   def uploaded_documents
-    @uploaded_documents ||= Document.for_collection(collection_ref, document_key: document_key)
+    @uploaded_documents ||= Document.for_collection(collection_ref, document_key:)
   end
 
   def unique_filename(suffix:)
@@ -163,7 +163,7 @@ class DocumentUpload
     @file_name = file_name.unicode_normalize(:nfkc)
     @file_name = @file_name.gsub(Regexp.union(WelshCharacters::MAPPING_TO_ASCII.keys), WelshCharacters::MAPPING_TO_ASCII)
     unless @file_name.ascii_only?
-      @file_name = @file_name.encode(Encoding.find('ASCII'), encoding_options)
+      @file_name = @file_name.encode(Encoding.find('ASCII'), **encoding_options)
     end
     @file_name.ascii_only?
   end

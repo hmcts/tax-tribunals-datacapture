@@ -2,9 +2,9 @@ require 'spec_helper'
 
 RSpec.describe Steps::Appeal::PenaltyAndTaxAmountsForm do
   let(:arguments) { {
-    tribunal_case: tribunal_case,
-    penalty_amount: penalty_amount,
-    tax_amount: tax_amount
+    tribunal_case:,
+    penalty_amount:,
+    tax_amount:
   } }
   let(:tribunal_case)  { instance_double(TribunalCase, penalty_amount: nil, tax_amount: nil) }
   let(:penalty_amount) { '1' }
@@ -69,9 +69,9 @@ RSpec.describe Steps::Appeal::PenaltyAndTaxAmountsForm do
 
       it 'returns true' do
         expect(tribunal_case).to receive(:update).with(
-                                   tax_amount: 'unknown',
-                                   penalty_amount: '1'
-                                 ).and_return(true)
+          tax_amount: 'unknown',
+          penalty_amount: '1'
+        ).and_return(true)
 
         expect(subject.save).to be(true)
       end
@@ -82,9 +82,9 @@ RSpec.describe Steps::Appeal::PenaltyAndTaxAmountsForm do
 
       it 'returns true' do
         expect(tribunal_case).to receive(:update).with(
-                                   penalty_amount: 'unknown',
-                                   tax_amount: '2'
-                                 ).and_return(true)
+          penalty_amount: 'unknown',
+          tax_amount: '2'
+        ).and_return(true)
 
         expect(subject.save).to be(true)
       end

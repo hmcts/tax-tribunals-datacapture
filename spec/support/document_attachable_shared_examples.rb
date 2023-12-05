@@ -36,7 +36,7 @@ RSpec.shared_examples 'common scenarios for a document attachable step form' do
 
     context 'when providing an attached document' do
       let(:text_attribute_value) { nil }
-      let(:document_attribute_value) { fixture_file_upload('files/image.jpg', 'image/jpeg') }
+      let(:document_attribute_value) { fixture_file_upload('image.jpg', 'image/jpeg') }
 
       context 'document upload successful' do
         it 'saves the record' do
@@ -44,9 +44,9 @@ RSpec.shared_examples 'common scenarios for a document attachable step form' do
               attribute_name => nil
           ).and_return(true)
 
-          expect(Uploader).to receive(:add_file).
-            with(hash_including(document_key: attribute_name)).
-            and_return(double(name: '123/foo/bar.png'))
+          expect(Uploader).to receive(:add_file)
+            .with(hash_including(document_key: attribute_name))
+            .and_return(double(name: '123/foo/bar.png'))
 
           expect(subject.save).to be(true)
         end
@@ -63,7 +63,7 @@ RSpec.shared_examples 'common scenarios for a document attachable step form' do
 
     context 'when providing appeal text and document' do
       let(:text_attribute_value) { 'I disagree with HMRC.' }
-      let(:document_attribute_value) { fixture_file_upload('files/image.jpg', 'image/jpeg') }
+      let(:document_attribute_value) { fixture_file_upload('image.jpg', 'image/jpeg') }
       let(:upload_response) { double(code: 200, body: {}, error?: false) }
 
       it 'saves the record' do
@@ -71,8 +71,8 @@ RSpec.shared_examples 'common scenarios for a document attachable step form' do
             attribute_name => 'I disagree with HMRC.'
         ).and_return(true)
 
-        expect(Uploader).to receive(:add_file).
-          and_return(double(name: '123/foo/bar.png'))
+        expect(Uploader).to receive(:add_file)
+          .and_return(double(name: '123/foo/bar.png'))
 
         expect(subject.save).to be(true)
       end
@@ -105,10 +105,15 @@ RSpec.shared_examples 'a document attachable step form' do |options|
     end
 
     context 'when document is not valid' do
-      let(:document_attribute_value) { fixture_file_upload('files/image.jpg', 'application/zip') }
+      let(:document_attribute_value) { fixture_file_upload('image.jpg', 'application/zip') }
 
       it 'should retrieve the errors from the uploader' do
-        expect(subject.errors).to receive(:add).with(document_attribute_name, :content_type).and_call_original
+        expect(subject.errors).to receive(:add).and_call_original do |attr, error_object|
+          expect(attr).to eq(document_attribute_name)
+          expect(error_object).to be_an_instance_of(ActiveModel::Error)
+          expect(error_object.attribute).to eq(:content_type)
+        end
+
         expect(subject).to_not be_valid
       end
     end

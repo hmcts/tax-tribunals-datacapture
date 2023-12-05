@@ -6,9 +6,9 @@ When("I press continue with nothing entered") do
   RSpec::Mocks.with_temporary_scope do
     allow(Uploader).to receive(:list_files).and_return([])
     allow(Uploader).to receive(:add_file).and_return(double(name: '123/foo/bar.png'))
-  continue_or_save_continue
+    continue_or_save_continue
   end
-  end
+end
 
 Then("I should see the empty page error") do
   expect(grounds_for_appeal_page.content.error_summary).to have_error_heading
@@ -18,9 +18,9 @@ When("I submit a response with text entered") do
   RSpec::Mocks.with_temporary_scope do
     allow(Uploader).to receive(:list_files).and_return([])
     allow(Uploader).to receive(:add_file).and_return(double(name: '123/foo/bar.png'))
-  grounds_for_appeal_page.valid_submission
+    grounds_for_appeal_page.valid_submission
   end
-  end
+end
 
 Then("I can navigate to the details-pathway eu exit page") do
   expect(eu_exit_page('details').content).to have_header
@@ -30,12 +30,12 @@ When(/^I then upload a valid file type$/) do
   RSpec::Mocks.with_temporary_scope do
     allow(Uploader).to receive(:list_files).and_return([])
     allow(Uploader).to receive(:add_file).and_return(double(name: '123/foo/bar.png'))
-  identifier  = 'steps-details-grounds-for-appeal-form-grounds-for-appeal-document-field'
-  filename    = 'features/support/sample_file/to_upload.jpg'
-  grounds_for_appeal_page.attach_file(identifier, filename)
-  continue_or_save_continue
+    identifier  = 'steps-details-grounds-for-appeal-form-grounds-for-appeal-document-field'
+    filename    = 'features/support/sample_file/to_upload.jpg'
+    grounds_for_appeal_page.attach_file(identifier, filename)
+    continue_or_save_continue
   end
-  end
+end
 
 When("I select 'File upload requirements'") do
   grounds_for_appeal_page.file_upload_requirements
@@ -64,13 +64,12 @@ When("I complete a blank then valid submission") do
 end
 
 Then("I am on the need support page") do
-    expect(need_support_page.content).to have_header
+  expect(need_support_page.content).to have_header
 end
 
 When("I submit no support needed") do
   submit_no
 end
-
 
 When("I submit yes") do
   submit_yes

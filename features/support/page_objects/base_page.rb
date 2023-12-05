@@ -1,17 +1,16 @@
 class BasePage < SitePrism::Page
-
   section :cookie, '.govuk-cookie-banner' do
     element :header, 'h2', text: I18n.t('cookies.banner.heading')
-    element :accept_button, "input[value='"+ I18n.t('cookies.banner.button.accept') +"']"
-    element :reject_button, "input[value='"+ I18n.t('cookies.banner.button.reject') +"']"
+    element :accept_button, "input[value='#{I18n.t('cookies.banner.button.accept')}']"
+    element :reject_button, "input[value='#{I18n.t('cookies.banner.button.reject')}']"
   end
 
   section :content, '#main-content' do
-    element :continue_button, "input[value='"+ I18n.t('helpers.submit.create') +"']"
-    element :save_continue_button, "input[value='"+ I18n.t('helpers.submit.save_and_continue') +"']"
+    element :continue_button, "input[value='#{I18n.t('helpers.submit.create')}']"
+    element :save_continue_button, "input[value='#{I18n.t('helpers.submit.save_and_continue')}']"
     element :continue_or_save_continue, "input[type='submit']"
-    element :save_button, "input[value='"+ I18n.t('helpers.submit.create_account') +"']"
-    element :submit_button, "input[value='"+ I18n.t('check_answers.footer.submit_and_continue') +"']"
+    element :save_button, "input[value='#{I18n.t('helpers.submit.create_account')}']"
+    element :submit_button, "input[value='#{I18n.t('check_answers.footer.submit_and_continue')}']"
     element :individual, 'label', text: I18n.t('steps.details.representative_type.edit.individual')
     element :company, 'label', text: I18n.t('steps.details.representative_type.edit.company')
     element :other, 'label', text: I18n.t('steps.details.representative_type.edit.other')

@@ -2,8 +2,8 @@ require 'spec_helper'
 
 RSpec.describe Steps::Lateness::InTimeForm do
   let(:arguments) { {
-    tribunal_case: tribunal_case,
-    in_time:       in_time
+    tribunal_case:,
+    in_time:
   } }
   let(:tribunal_case) { instance_double(TribunalCase, in_time: nil) }
   let(:in_time)       { nil }

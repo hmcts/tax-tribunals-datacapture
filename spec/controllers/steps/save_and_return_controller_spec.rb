@@ -19,9 +19,9 @@ RSpec.describe Steps::SaveAndReturnController do
     end
 
     context 'go to save for later form' do
-      let(:params) { { save_and_return_save_form: { :save_or_return => 'save_for_later' }}}
+      let(:params) { { save_and_return_save_form: { save_or_return: 'save_for_later' }}}
       let!(:existing_case) { TribunalCase.create }
-      subject { local_put :update, session: { tribunal_case_id: existing_case.id }, params: params }
+      subject { local_put :update, session: { tribunal_case_id: existing_case.id }, params: }
 
       it { expect(subject).to redirect_to(new_user_registration_path) }
     end

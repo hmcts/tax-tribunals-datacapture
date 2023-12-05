@@ -1,5 +1,5 @@
 class SaveAppealPage < BasePage
-  set_url '/'+ ENV['TEST_LOCALE'] +'/users/sign_up'
+  set_url "/#{ENV.fetch('TEST_LOCALE', nil)}/users/sign_up"
 
   section :content, '#main-content' do
     element :appeal_header, 'h1', text: I18n.t('users.registrations.new.heading_test_fixed_as_appeal')

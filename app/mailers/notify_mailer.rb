@@ -94,13 +94,14 @@ class NotifyMailer < GovukNotifyRails::Mailer
 
     set_personalisation(
       appeal_or_application: tribunal_case.appeal_or_application,
-      application_details: application_details
+      application_details:
     )
 
     mail(to: recipient_email)
   end
 
   def application_details_text(tribunal_case, entity, _application_details)
+    mail_presenter = CaseMailPresenter.new(tribunal_case)
     recipient_number = tribunal_case.send("#{entity}_contact_phone".to_sym)
 
     client.send_sms(
@@ -108,7 +109,8 @@ class NotifyMailer < GovukNotifyRails::Mailer
       reference: tribunal_case.case_reference || '',
       personalisation: {
         appeal_or_application: tribunal_case.appeal_or_application,
-        submission_date_and_time: Time.now.strftime('%e %B %Y %H:%Mhrs').strip
+        submission_date_and_time: Time.now.strftime('%e %B %Y %H:%Mhrs').strip,
+        case_reference: mail_presenter.case_reference
       },
       template_id: template(tribunal_case.language, :application_details_text)
     )
@@ -130,7 +132,7 @@ class NotifyMailer < GovukNotifyRails::Mailer
   end
 
   def glimr_batch_complete(email, status)
-    set_template(ENV.fetch('NOTIFY_GLIMR_GENERATION_COMPLETE_ID'))
+    set_template(ENV.fetch('NOTIFY_GLIMR_GENERATION_COMPLETE_TEMPLATE_ID'))
     set_personalisation(
       successes: status.total - status.failures,
       total: status.total
@@ -140,7 +142,7 @@ class NotifyMailer < GovukNotifyRails::Mailer
 
   def statistics_report(title, data)
     set_template(ENV.fetch('NOTIFY_STATISTICS_REPORT_TEMPLATE_ID'))
-    set_personalisation(title: title, data: data)
+    set_personalisation(title:, data:)
     mail(to: ENV.fetch('STATISTICS_REPORT_EMAIL_ADDRESS'))
   end
 

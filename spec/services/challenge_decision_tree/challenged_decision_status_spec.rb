@@ -7,12 +7,12 @@ RSpec.describe ChallengeDecisionTree, '#destination' do
   let(:tribunal_case) {
     instance_double(
       TribunalCase,
-      challenged_decision_status: challenged_decision_status,
-      case_type: case_type
+      challenged_decision_status:,
+      case_type:
     )
   }
 
-  subject { described_class.new(tribunal_case: tribunal_case, step_params: step_params, next_step: next_step) }
+  subject { described_class.new(tribunal_case:, step_params:, next_step:) }
 
   context 'when the step is `challenged_decision_status`' do
     context 'and the status is a late appeal/review' do

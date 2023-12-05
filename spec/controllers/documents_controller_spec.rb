@@ -14,9 +14,11 @@ RSpec.describe DocumentsController, type: :controller do
       case_status: nil
     )
   }
-  let(:file) { fixture_file_upload('files/image.jpg', 'image/jpeg') }
+  let(:file) { fixture_file_upload('image.jpg', 'image/jpeg') }
 
-  let(:document_upload) { instance_double(DocumentUpload, upload!: {}, valid?: true, errors?: false, to_hash: {name: 'image.jpg', encoded_name: "aW1hZ2UuanBn\n", collection_ref: '12345'}) }
+  let(:document_upload) {
+ instance_double(DocumentUpload, upload!: {}, valid?: true, errors?: false,
+to_hash: {name: 'image.jpg', encoded_name: "aW1hZ2UuanBn\n", collection_ref: '12345'}) }
 
   before do
     allow(subject).to receive(:current_tribunal_case).and_return(current_tribunal_case)
@@ -30,11 +32,13 @@ RSpec.describe DocumentsController, type: :controller do
     let(:format) { :html }
 
     before do
-      local_post :create, params: {document: file, document_key: 'foo'}, format: format
+      local_post :create, params: {document: file, document_key: 'foo'}, format:
     end
 
     context 'document is valid' do
-      let(:document_upload) { instance_double(DocumentUpload, upload!: {}, valid?: true, errors?: false, to_hash: {name: 'image.jpg', encoded_name: "aW1hZ2UuanBn\n", collection_ref: '12345'}) }
+      let(:document_upload) {
+ instance_double(DocumentUpload, upload!: {}, valid?: true, errors?: false,
+to_hash: {name: 'image.jpg', encoded_name: "aW1hZ2UuanBn\n", collection_ref: '12345'}) }
 
       context 'HTML format' do
         it 'should create the document and redirect back to the step' do
@@ -75,7 +79,8 @@ RSpec.describe DocumentsController, type: :controller do
     end
 
     context 'document is not valid' do
-      let(:document_upload) { instance_double(DocumentUpload, upload!: {}, valid?: false, errors?: true, errors: ["You're doing it wrong"]) }
+      let(:document_upload) {
+ instance_double(DocumentUpload, upload!: {}, valid?: false, errors?: true, errors: ["You're doing it wrong"]) }
 
       context 'HTML format' do
         it 'should create the document and redirect back to the step' do
@@ -106,19 +111,20 @@ RSpec.describe DocumentsController, type: :controller do
       } }
 
       before do
-        expect(Uploader).to receive(:delete_file).with(collection_ref: collection_ref, document_key: 'supporting_documents', filename: 'another').and_return({})
+        expect(Uploader).to receive(:delete_file).with(collection_ref:, document_key: 'supporting_documents',
+                                                       filename: 'another').and_return({})
       end
 
       context 'HTML format' do
         it 'should delete the file and redirect to the step' do
-          local_delete :destroy, params: params
+          local_delete(:destroy, params:)
           expect(subject).to redirect_to('step/to/redirect')
         end
       end
 
       context 'JSON format' do
         it 'should respond with an empty body and success status code' do
-          local_delete :destroy, params: params, format: :json
+          local_delete :destroy, params:, format: :json
           expect(response.status).to eq(204)
           expect(response.body).to eq('')
         end

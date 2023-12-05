@@ -6,7 +6,7 @@ class Rack::Attack
   # Blocklists & Throttles are skipped by default unless
   # the DISABLE_RACK_ATTACK_SAFELISTS is used.
 
-  unless ENV['DISABLE_RACK_ATTACK_SAFELISTS']
+  unless ENV['DISABLE_RACK_ATTACK_SAFELISTS'] == 'true'
     Rack::Attack.safelist('allow from localhost') do |req|
       ('127.0.0.1' == req.ip || '::1' == req.ip)
     end
@@ -23,9 +23,7 @@ class Rack::Attack
   # e.g. "john@example.com,@suspicious-domain.com"
 
   # Filter out non email or domain names
-  spammers = ENV.fetch('RACK_ATTACK_BLOCKLIST_EMAILS', '').split(/,\s*/).select do
-    |email| email.match? /@[A-Z0-9.-]+\.[A-Z]{2,4}/i
-  end
+  spammers = ENV.fetch('RACK_ATTACK_BLOCKLIST_EMAILS', '').split(/,\s*/).grep(/@[A-Z0-9.-]+\.[A-Z]{2,4}/i)
   spammer_regexp = Regexp.union(spammers)
 
   blocklist("block emails") do |req|
@@ -53,18 +51,15 @@ end
 ### Custom responses
 
 # Return a custom message for throttled requests
-Rack::Attack.throttled_response = lambda do |request|
+Rack::Attack.throttled_responder = lambda do |request|
   [ 429, {}, ["We have received too many requests from your IP address. Please try again later.\n"]]
 end
 
 ### Custom Logs
 
 # Log throttled requests
-ActiveSupport::Notifications.subscribe('rack.attack') do |name, start, finish, request_id, req|
-  if req.env["rack.attack.match_type"] == :throttle
-    Rails.logger.info "[Rack::Attack][Blocked] " <<
-                      "ip: #{req.ip}, " <<
-                      "path: #{req.path}"
-  end
+ActiveSupport::Notifications.subscribe('throttle.rack_attack') do |name, start, finish, request_id, payload|
+  req = payload[:request]
+  Rails.logger.info "[Rack::Attack][Throttle] #{req.ip} #{req.request_method} #{req.fullpath} #{payload[:match_type]}"
 end
 # :nocov:

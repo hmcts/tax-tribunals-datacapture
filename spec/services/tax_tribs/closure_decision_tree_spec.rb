@@ -1,12 +1,12 @@
 require 'spec_helper'
 
 RSpec.describe TaxTribs::ClosureDecisionTree do
-  let(:tribunal_case) { double('TribunalCase', user_id: user_id) }
+  let(:tribunal_case) { double('TribunalCase', user_id:) }
   let(:step_params) { double('Step') }
   let(:next_step) { nil }
   let(:user_id) { nil }
 
-  subject { described_class.new(tribunal_case: tribunal_case, step_params: step_params, next_step: next_step) }
+  subject { described_class.new(tribunal_case:, step_params:, next_step:) }
 
   describe '#destination' do
     context 'when `next_step` is present' do

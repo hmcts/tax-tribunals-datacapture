@@ -1,4 +1,4 @@
-require 'glimr_api_client'
+require_relative '../glimr_direct_api_client'
 
 module TaxTribs
   class GlimrNewCase
@@ -10,7 +10,7 @@ module TaxTribs
     end
 
     def call
-      GlimrApiClient::RegisterNewCase.call(params).tap { |api|
+      GlimrDirectApiClient::RegisterNewCase.call(params).tap { |api|
         @case_reference = api.response_body.fetch(:tribunalCaseNumber)
         @confirmation_code = api.response_body.fetch(:confirmationCode)
       }
@@ -78,7 +78,7 @@ module TaxTribs
     private
 
     def jurisdiction_id
-      GlimrApiClient::RegisterNewCase::TRIBUNAL_JURISDICTION_ID
+      GlimrDirectApiClient::RegisterNewCase::TRIBUNAL_JURISDICTION_ID
     end
 
     # contactStreetX are indexed 1 to 4, so if there are more lines than available
