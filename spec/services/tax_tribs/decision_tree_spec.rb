@@ -4,12 +4,12 @@ RSpec.describe TaxTribs::DecisionTree do
   let(:tribunal_case) { instance_double(TribunalCase) }
   let(:step_params) { { one: 'first', two: 'second' } }
 
-  subject { described_class.new(tribunal_case: tribunal_case, step_params: step_params) }
+  subject { described_class.new(tribunal_case:, step_params:) }
 
   describe '#new' do
     subject {
       described_class.new(
-        tribunal_case: tribunal_case,
+        tribunal_case:,
         as: 'lateness',
         next_step: 'checking'
       )
@@ -31,7 +31,7 @@ RSpec.describe TaxTribs::DecisionTree do
   # I don't like these, but they are the simplest way to achieve mutant kills.
   describe '.step_name' do
     context '.as is set' do
-      subject { described_class.new(tribunal_case: tribunal_case, as: 'another_step') }
+      subject { described_class.new(tribunal_case:, as: 'another_step') }
 
       it 'takes that value' do
         expect(subject.send(:step_name)).to eq('another_step')

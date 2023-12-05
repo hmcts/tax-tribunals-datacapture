@@ -2,8 +2,8 @@ require 'spec_helper'
 
 RSpec.describe Steps::Closure::CaseTypeForm do
   let(:arguments) { {
-    tribunal_case: tribunal_case,
-    closure_case_type: closure_case_type
+    tribunal_case:,
+    closure_case_type:
   } }
   let(:tribunal_case) { instance_double(TribunalCase, closure_case_type: nil) }
   let(:closure_case_type) { nil }

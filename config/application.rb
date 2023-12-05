@@ -31,13 +31,12 @@ module TaxTribunalsDatacapture
     if Dir.exist?("/mnt/secrets/tax-tribunals")
       Dir["/mnt/secrets/tax-tribunals/*"].each do |filepath|
         name = filepath.split('/')[-1]
-        value = File.open(filepath).read
+        value = File.read(filepath)
         ENV[name] ||= value
         ENV[name] = value if ENV[name].eql? 'replace_this_at_build_time'
       end
     end
     # :nocov:
-
 
     config.load_defaults 6.0
 
@@ -63,9 +62,9 @@ module TaxTribunalsDatacapture
 
     config.action_mailer.default_url_options = { host: ENV.fetch('EXTERNAL_URL') }
 
-    config.x.address_lookup.endpoint = ENV['ADDRESS_LOOKUP_ENDPOINT']
-    config.x.address_lookup.api_key = ENV['ADDRESS_LOOKUP_API_KEY']
-    config.x.address_lookup.api_secret = ENV['ADDRESS_LOOKUP_API_SECRET']
+    config.x.address_lookup.endpoint = ENV.fetch('ADDRESS_LOOKUP_ENDPOINT', nil)
+    config.x.address_lookup.api_key = ENV.fetch('ADDRESS_LOOKUP_API_KEY', nil)
+    config.x.address_lookup.api_secret = ENV.fetch('ADDRESS_LOOKUP_API_SECRET', nil)
 
     if ENV['APP_INSIGHTS_INSTRUMENTATION_KEY']
       config.middleware.use ApplicationInsights::Rack::TrackRequest, ENV['APP_INSIGHTS_INSTRUMENTATION_KEY']

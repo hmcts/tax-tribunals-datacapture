@@ -1,4 +1,3 @@
-
 Given("I visit the in time page") do
   navigate_to_the_in_time_page
 end
@@ -19,8 +18,8 @@ When("I select that i am not in time") do
   RSpec::Mocks.with_temporary_scope do
     allow(Uploader).to receive(:list_files).and_return([])
     allow(Uploader).to receive(:add_file).and_return(double(name: '123/foo/bar.png'))
-  in_time_page.submit_no
-    end
+    in_time_page.submit_no
+  end
 end
 
 Then("I am taken to the lateness reason page") do
@@ -49,9 +48,9 @@ end
 When("I select that I am not sure") do
   RSpec::Mocks.with_temporary_scope do
     stub_uploader
-  in_time_page.submit_not_sure
+    in_time_page.submit_not_sure
   end
-  end
+end
 
 Then("I am taken to the reasons page") do
   expect(lateness_reason_page.content).to have_not_sure_header

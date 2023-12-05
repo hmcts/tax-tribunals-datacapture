@@ -2,16 +2,16 @@ require 'spec_helper'
 
 RSpec.describe Steps::Closure::EnquiryDetailsForm do
   let(:arguments) { {
-    tribunal_case: tribunal_case,
-    closure_hmrc_reference: closure_hmrc_reference,
-    closure_hmrc_officer: closure_hmrc_officer,
-    closure_years_under_enquiry: closure_years_under_enquiry
+    tribunal_case:,
+    closure_hmrc_reference:,
+    closure_hmrc_officer:,
+    closure_years_under_enquiry:
   } }
 
   let(:tribunal_case) { instance_double(TribunalCase,
-                                        closure_hmrc_reference: closure_hmrc_reference,
-                                        closure_hmrc_officer: closure_hmrc_officer,
-                                        closure_years_under_enquiry: closure_years_under_enquiry) }
+                                        closure_hmrc_reference:,
+                                        closure_hmrc_officer:,
+                                        closure_years_under_enquiry:) }
   let(:closure_hmrc_reference) { nil }
   let(:closure_hmrc_officer) { nil }
   let(:closure_years_under_enquiry) { nil }

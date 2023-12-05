@@ -15,7 +15,7 @@ RSpec.describe Users::PasswordsController do
   describe '#create' do
     def do_post
       local_post :create, params: {'user' => {
-        email: email
+        email:
       }}
     end
 
@@ -24,8 +24,8 @@ RSpec.describe Users::PasswordsController do
       let(:sent_at) { "2020-01-28 13:28:34 UTC" }
 
       before do
-        @user = User.create(email: email, password: 'Vr3lE(F@4p',
-          reset_password_sent_at: sent_at, reset_password_token: 'foo')
+        @user = User.create(email:, password: 'Vr3lE(F@4p',
+                            reset_password_sent_at: sent_at, reset_password_token: 'foo')
       end
 
       context 'when receives multiple resets within a second' do

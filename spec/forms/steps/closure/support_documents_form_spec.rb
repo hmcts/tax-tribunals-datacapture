@@ -2,12 +2,12 @@ require 'spec_helper'
 
 RSpec.describe Steps::Closure::SupportDocumentsForm do
   let(:arguments) { {
-    tribunal_case: tribunal_case,
-    having_problems_uploading: having_problems_uploading,
-    having_problems_uploading_explanation: having_problems_uploading_explanation
+    tribunal_case:,
+    having_problems_uploading:,
+    having_problems_uploading_explanation:
   } }
 
-  let(:tribunal_case) { instance_double(TribunalCase, documents: documents) }
+  let(:tribunal_case) { instance_double(TribunalCase, documents:) }
 
   let(:having_problems_uploading) { false }
   let(:having_problems_uploading_explanation) { nil }
@@ -58,8 +58,8 @@ RSpec.describe Steps::Closure::SupportDocumentsForm do
     context 'when valid' do
       it 'saves the record' do
         expect(tribunal_case).to receive(:update).with(
-          having_problems_uploading: having_problems_uploading,
-          having_problems_uploading_explanation: having_problems_uploading_explanation
+          having_problems_uploading:,
+          having_problems_uploading_explanation:
         ).and_return(true)
         expect(subject.save).to be(true)
       end

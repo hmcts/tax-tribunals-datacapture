@@ -1,12 +1,15 @@
 class RepresentativeDetailsPage < BasePage
-  set_url '/' + ENV['TEST_LOCALE'] + '/steps/details/representative_details'
+  set_url "/#{ENV.fetch('TEST_LOCALE', nil)}/steps/details/representative_details"
 
   section :content, '#main-content' do
     element :header, 'h1', text: I18n.t('steps.details.representative_details.edit.heading')
-    element :individual_rep,  'govuk-label', text: I18n.t('helpers.label.steps_details_representative_individual_details_form.representative_individual_first_name')
+    element :individual_rep,  'govuk-label',
+            text: I18n.t('helpers.label.steps_details_representative_individual_details_form.representative_individual_first_name')
     element :input_label, '.govuk-label'
-    element :individual_rep,  'govuk-label', text: I18n.t('helpers.label.steps_details_representative_individual_details_form.representative_individual_first_name')
-    element :company_rep,  'govuk-label', text: I18n.t('helpers.label.steps_details_representative_company_details_form.representative_organisation_name')
+    element :individual_rep,  'govuk-label',
+            text: I18n.t('helpers.label.steps_details_representative_individual_details_form.representative_individual_first_name')
+    element :company_rep,  'govuk-label',
+            text: I18n.t('helpers.label.steps_details_representative_company_details_form.representative_organisation_name')
     element :first_name_input, "input[name='steps_details_representative_individual_details_form[representative_individual_first_name]']"
     element :last_name_input, "input[name='steps_details_representative_individual_details_form[representative_individual_last_name]']"
     element :address_input, "textarea[name='steps_details_representative_individual_details_form[representative_contact_address]']"
@@ -17,7 +20,6 @@ class RepresentativeDetailsPage < BasePage
     element :phone_input, "input[name='steps_details_representative_individual_details_form[representative_contact_phone]']"
     element :input_error, '.govuk-error-message'
   end
-
 
   def individual_label
     expect(representative_details_page.content).to have_header
