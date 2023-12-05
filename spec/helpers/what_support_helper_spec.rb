@@ -1,0 +1,303 @@
+require 'rails_helper'
+
+RSpec.describe WhatSupportHelper, type: :helper do
+
+  let(:what_support_helper) { WhatSupportHelper.new(locale_key: nil) }
+
+  describe '#languages' do
+    it 'returns an array of languages' do
+      languages = helper.languages
+      expect(languages).to be_an(Array)
+      expect(languages).not_to be_empty
+    end
+  end
+
+  describe '#sign_languages' do
+    it 'returns an array of sign languages' do
+      sign_languages = helper.sign_languages
+      expect(sign_languages).to be_an(Array)
+      expect(sign_languages).not_to be_empty
+    end
+  end
+
+  describe '#lang_options' do
+    context 'if it is for languages' do
+      let(:language_method) {:languages}
+
+      it 'should send a request for all languages and return an array' do
+        expect(helper.lang_options(language_method)).to be_an(Array)
+        expect(helper.lang_options(language_method).count).to eq(226)
+        expect(helper.lang_options(language_method)[0]).to eq("")
+        expect(helper.lang_options(language_method)[1]).to eq('Acholi')
+
+      end
+    end
+
+    context 'if it is for sign languages' do
+      let(:language_method) {:sign_languages}
+
+      it 'should send a request for all languages and return an array' do
+        expect(helper.lang_options(language_method)).to be_an(Array)
+        expect(helper.lang_options(language_method).count).to eq(13)
+        expect(helper.lang_options(language_method)[0]).to eq("")
+        expect(helper.lang_options(language_method)[1]).to eq('American Sign Language (ASL)')
+
+      end
+    end
+  end
+
+  describe '#locale_key' do
+    let(:lang_list) {[
+      'Acholi',
+      'Afrikaans',
+      'Akan',
+      'Albanian',
+      'Algerian',
+      'Amharic',
+      'Arabic',
+      'Arabic (Middle Eastern)',
+      'Arabic (North African)',
+      'Armenian',
+      'Ashanti',
+      'Assyrian',
+      'Ateso',
+      'Azari',
+      'Azerbajani (aka Nth Azari)',
+      'Bajan (West Indian)',
+      'Bajuni',
+      'Baluchi',
+      'Bambara',
+      'Banjuni',
+      'Bardini',
+      'Bassa',
+      'Belorussian',
+      'Benba (Bemba)',
+      'Bengali',
+      'Bengali (Sylheti)',
+      'Benin/Edo',
+      'Berber',
+      'Bharuchi',
+      'Bhutanese',
+      'Bihari',
+      'Bilin',
+      'Bravanese',
+      'Brong',
+      'Bulgarian',
+      'Burmese',
+      'Cambellpuri',
+      'Cantonese',
+      'Cebuano',
+      'Chechen',
+      'Chichewa',
+      'Chittagonain',
+      'Creole (English)',
+      'Creole (French)',
+      'Creole (Portuguese)',
+      'Creole (Spanish)',
+      'Czech',
+      'Danish',
+      'Dari',
+      'Dinka',
+      'Dioula',
+      'Douala',
+      'Dutch',
+      'Edo/Benin',
+      'Efik',
+      'Emakhuna',
+      'Estonian',
+      'Ewe',
+      'Ewondo',
+      'Fanti',
+      'Farsi',
+      'Feili',
+      'Fijian',
+      'Flemish',
+      'French',
+      'French (Arabic)',
+      'French(African)',
+      'Fula',
+      'Ga',
+      'Gallacian',
+      'Georgian',
+      'German',
+      'Gorani',
+      'Greek',
+      'Gujarati',
+      'Gurage',
+      'Guran',
+      'Hakka',
+      'Hausa',
+      'Hebrew',
+      'Hendko',
+      'Herero',
+      'Hindi',
+      'Hindko',
+      'Hokkien',
+      'Hungarian',
+      'Ibibio',
+      'Igbo (Also Known As Ibo)',
+      'Ilocano',
+      'Indonesian',
+      'Ishan',
+      'Isoko',
+      'Italian',
+      'Jamaican',
+      'Japanese',
+      'Javanese',
+      'Kachi',
+      'Karaninka',
+      'Kashmiri',
+      'Khalanga',
+      'Khmer',
+      'Khymer Khymer',
+      'Kibajuni,Kibanjuni,Bajuni,Ban',
+      'Kibanjuni',
+      'Kichagga',
+      'Kikongo',
+      'Kikuyu',
+      'Kinyarwandan',
+      'Kirundi',
+      'Kisakata',
+      'Kiswahili',
+      'Konkani',
+      'Korean',
+      'Krio (Sierra Leone)',
+      'Kru',
+      'Kurdish (Bardini)',
+      'Kurdish (Kurmanji)',
+      'Kurdish (Sorani)',
+      'Kutchi',
+      'Kyrgyz',
+      'Lango',
+      'Latvian',
+      'Lingala',
+      'Lithuanian',
+      'Luba (Tshiluba)',
+      'Lugandan',
+      'Lugisa',
+      'Lunyankole',
+      'Luo',
+      'Luo (Kenyan)',
+      'Luo (Ugandan[Acholi District])',
+      'Luo (Ugandan[Lango District])',
+      'Lusoga',
+      'Lutoro',
+      'Macedonian',
+      'Maghreb',
+      'Malay',
+      'Malayalam',
+      'Maldivian',
+      'Malinke',
+      'Maltese',
+      'Mandarin',
+      'Mandinka',
+      'Marathi',
+      'Mende',
+      'Mina',
+      'Mirpuri',
+      'Moldovan',
+      'Mongolian',
+      'Monokutuba',
+      'Navsari',
+      'Ndebele',
+      'Nepali',
+      'Ngwa',
+      'Norwegian',
+      'Nzima',
+      'Oromo',
+      'Pahari',
+      'Pampangan',
+      'Pangasinan',
+      'Pathwari',
+      'Patois',
+      'Pidgin English',
+      'Polish',
+      'Portuguese',
+      'Pothohari',
+      'Punjabi',
+      'Punjabi (Indian)',
+      'Punjabi (Pakistani)',
+      'Pushtu (Also Known As Pashto)',
+      'Putonghue',
+      'Roma',
+      'Romanian',
+      'Romany',
+      'Rukiga',
+      'Runyoro',
+      'Russian',
+      'Rutoro',
+      'Sarahuleh',
+      'Saraiki (Seraiki)',
+      'Sarpo',
+      'Senegal (French) Olof Dialect',
+      'Senegal (Wolof)',
+      'Serbo‑Croatian',
+      'Setswana',
+      'Shina',
+      'Shona',
+      'Sindhi',
+      'Sinhalese',
+      'Slovak',
+      'Slovenian',
+      'Somali',
+      'Spanish',
+      'Susu',
+      'Swahili',
+      'Swedish',
+      'Sylheti',
+      'Tagalog',
+      'Taiwanese',
+      'Tamil',
+      'Telugu',
+      'Temne',
+      'Thai',
+      'Tibetan',
+      'Tigre',
+      'Tigrinya',
+      'Toura',
+      'Training',
+      'Turkish',
+      'Turkmen',
+      'Twi',
+      'Uighur',
+      'Ukrainian',
+      'Urdu',
+      'Urohobo',
+      'Uzbek',
+      'Vietnamese',
+      'Visayan',
+      'Welsh',
+      'Wolof',
+      'Xhosa',
+      'Yoruba',
+      'Zaghawa',
+      'Zaza',
+      'Zulu'
+    ]}
+    let(:sign_list) {
+      ['American Sign Language (ASL)',
+      'British Sign Language (BSL)',
+      'Hands on signing',
+      'International Sign (IS)',
+      'Lipspeaker',
+      'Makaton',
+      'Deafblind manual alphabet',
+      'Notetaker',
+      'Deaf Relay',
+      'Speech Supported English (SSE)',
+      'Visual frame signing',
+      'Palantypist / Speech to text'
+    ]}
+    it 'returns a lowercase and underscored string for languages' do
+      lang_list.each do |language|
+      expect(helper.locale_key(language)).to eq(language.downcase.tr('/(), ', '_'))
+      end
+    end
+
+    it 'returns a lowercase and underscored string for sign languages' do
+      sign_list.each do |language|
+        expect(helper.locale_key(language)).to eq(language.downcase.tr('/(), ', '_'))
+      end
+    end
+  end
+end

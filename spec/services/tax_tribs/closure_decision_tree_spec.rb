@@ -46,6 +46,18 @@ RSpec.describe TaxTribs::ClosureDecisionTree do
       end
     end
 
+    context 'when the step is `save_and_return`' do
+      let(:step_params) { { save_and_return: 'anything' } }
+
+      it { is_expected.to have_destination(:select_language, :edit) }
+    end
+
+    context 'when the step is `language`' do
+      let(:step_params) { { language: 'anything' } }
+
+      it { is_expected.to have_destination('/steps/details/user_type', :edit) }
+    end
+
     context 'when the step is `enquiry_details`' do
       let(:step_params) { { enquiry_details: 'anything' } }
 

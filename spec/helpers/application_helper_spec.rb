@@ -117,6 +117,46 @@ RSpec.describe ApplicationHelper, type: :helper do
     end
   end
 
+  describe '#escape_govuk_notify' do
+    context 'when row.question is in fields_with_rendering_issues' do
+      let(:row) { OpenStruct.new(question: :closure_years_under_enquiry, value: 'spaceless.value') }
+
+      it 'escapes the value' do
+        expect(helper.escape_govuk_notify(row)).to eq('spaceless .value')
+      end
+    end
+
+    context 'when row.question is not in fields_with_rendering_issues' do
+      let(:row) { OpenStruct.new(question: :not_closure_years_under_enquiry, value: 'another.value') }
+
+      it 'does not escape the value' do
+        expect(helper.escape_govuk_notify(row)).to eq('another.value')
+      end
+    end
+  end
+
+  describe '#govuk_help_page_path' do
+    context 'when the locale is :en' do
+      before do
+        I18n.locale = :en
+      end
+
+      it 'returns the English help page URL' do
+        expect(helper.govuk_help_page_path).to eq('https://www.gov.uk/help')
+      end
+    end
+
+    context 'when the locale is :cy' do
+      before do
+        I18n.locale = :cy
+      end
+
+      it 'returns the Welsh help page URL' do
+        expect(helper.govuk_help_page_path).to eq('https://www.gov.uk/cymraeg')
+      end
+    end
+  end
+
   describe '#analytics_tracking_id' do
     context 'when accepted analytics cookies' do
       before do
@@ -132,6 +172,28 @@ RSpec.describe ApplicationHelper, type: :helper do
       it 'retrieves the environment variable' do
         expect(ENV).not_to receive(:[]).with('GTM_TRACKING_ID')
         helper.analytics_tracking_id
+      end
+    end
+  end
+
+  describe '#show_cookie_banner?' do
+    context 'when preference is set' do
+      before do
+        allow_any_instance_of(Cookie::SettingForm).to receive(:preference_set?).and_return(true)
+      end
+
+      it 'returns' do
+        expect(helper.show_cookie_banner?).to be(false)
+      end
+    end
+
+    context 'when preference is not set' do
+      before do
+        allow_any_instance_of(Cookie::SettingForm).to receive(:preference_set?).and_return(false)
+      end
+
+      it 'returns' do
+        expect(helper.show_cookie_banner?).to be(true)
       end
     end
   end

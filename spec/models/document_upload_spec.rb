@@ -132,6 +132,17 @@ RSpec.describe DocumentUpload do
         expect(subject.valid?).to eq(true)
       end
     end
+
+    context 'when an ArgumentError is raised' do
+      before do
+        allow(subject).to receive(:valid_characters?).and_raise(ArgumentError)
+      end
+
+      it 'adds the :invalid_characters error' do
+        expect(subject).to receive(:add_error).with(:invalid_characters).and_call_original
+        expect(subject.valid?).to eq(false)
+      end
+    end
   end
 
   context '#file_name' do
