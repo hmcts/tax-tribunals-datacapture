@@ -51,18 +51,15 @@ end
 ### Custom responses
 
 # Return a custom message for throttled requests
-Rack::Attack.throttled_response = lambda do |request|
+Rack::Attack.throttled_responder = lambda do |request|
   [ 429, {}, ["We have received too many requests from your IP address. Please try again later.\n"]]
 end
 
 ### Custom Logs
 
 # Log throttled requests
-ActiveSupport::Notifications.subscribe('rack.attack') do |name, start, finish, request_id, req|
-  if req.env["rack.attack.match_type"] == :throttle
-    Rails.logger.info "[Rack::Attack][Blocked] " <<
-                      "ip: #{req.ip}, " <<
-                      "path: #{req.path}"
-  end
+ActiveSupport::Notifications.subscribe('throttle.rack_attack') do |name, start, finish, request_id, payload|
+  req = payload[:request]
+  Rails.logger.info "[Rack::Attack][Throttle] #{req.ip} #{req.request_method} #{req.fullpath} #{payload[:match_type]}"
 end
 # :nocov:
