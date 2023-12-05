@@ -1,6 +1,6 @@
 # :nocov:
 Sentry.init do |config|
-  config.dsn = ENV['SENTRY_DSN']
+  config.dsn = ENV.fetch('SENTRY_DSN', nil)
   config.breadcrumbs_logger = [:sentry_logger, :active_support_logger]
   config.environment = 'production'
   config.enabled_environments = ['production']

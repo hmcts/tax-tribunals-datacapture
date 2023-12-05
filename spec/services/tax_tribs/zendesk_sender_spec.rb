@@ -4,7 +4,7 @@ RSpec.describe TaxTribs::ZendeskSender do
   let(:form_object) {
     double(
       subject: 'Feedback', rating: 5, comment: 'very nice service',
-      email: email, referrer: '/whatever', user_agent: 'Safari'
+      email:, referrer: '/whatever', user_agent: 'Safari'
     )
   }
 

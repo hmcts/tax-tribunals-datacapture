@@ -16,7 +16,7 @@ end
 
 When("I select yes") do
   submit_yes
-  end
+end
 
 Then("I am taken to the challenge decision status page") do
   expect(challenge_decision_status_page.content).to have_header
@@ -25,9 +25,9 @@ end
 When("I select no") do
   RSpec::Mocks.with_temporary_scope do
     stub_uploader
-  submit_no
+    submit_no
   end
-  end
+end
 
 Then("I am taken to the must appeal decision status page") do
   expect(page).to have_text 'You must appeal the original decision to HMRC'
@@ -85,7 +85,7 @@ Then("I should be on the dispute type page") do
   expect(dispute_type_page.content).to have_header
 end
 
-When(/^I select waiting for more than fourty five days$/) do |arg|
+When(/^I select waiting for more than fourty five days$/) do |_arg|
   challenge_decision_status_page.more_than_fourtyfive
 end
 

@@ -2,8 +2,8 @@ require 'spec_helper'
 
 RSpec.describe Steps::Shared::EuExitForm do
   let(:arguments) { {
-      tribunal_case: tribunal_case,
-      eu_exit: eu_exit
+    tribunal_case:,
+      eu_exit:
   } }
   let(:tribunal_case) { instance_double(TribunalCase, eu_exit: nil) }
   let(:eu_exit) { nil }
@@ -11,7 +11,6 @@ RSpec.describe Steps::Shared::EuExitForm do
   subject { described_class.new(arguments) }
 
   describe '#save' do
-
     it { should_not validate_presence_of(:eu_exit) }
 
     context 'when no tribunal_case is associated with the form' do
@@ -51,8 +50,8 @@ RSpec.describe Steps::Shared::EuExitForm do
 
       it 'saves the record' do
         expect(tribunal_case).to receive(:update).with(
-            eu_exit: true
-            ).and_return(true)
+          eu_exit: true
+        ).and_return(true)
         expect(subject.save).to be(true)
       end
     end

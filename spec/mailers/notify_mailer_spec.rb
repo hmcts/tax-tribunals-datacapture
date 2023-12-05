@@ -5,12 +5,12 @@ RSpec.describe NotifyMailer, type: :mailer do
   let(:tribunal_case_attributes) {
     {
       id: '4a362e1c-48eb-40e3-9458-a31ead3f30a4',
-      intent: intent,
-      language: language,
-      user_type: user_type,
-      taxpayer_type: taxpayer_type,
-      representative_type: representative_type,
-      case_reference: case_reference,
+      intent:,
+      language:,
+      user_type:,
+      taxpayer_type:,
+      representative_type:,
+      case_reference:,
       taxpayer_contact_email: 'taxpayer@example.com',
       taxpayer_individual_first_name: 'John',
       taxpayer_individual_last_name: 'Harrison'
@@ -322,8 +322,8 @@ RSpec.describe NotifyMailer, type: :mailer do
         .with(:taxpayer_contact_phone)
         .and_return('07777777777')
 
-      expect_any_instance_of(Notifications::Client).to receive(:send_sms).
-        with({
+      expect_any_instance_of(Notifications::Client).to receive(:send_sms)
+        .with({
           phone_number: '07777777777',
           template_id: 'NOTIFY_SEND_APPLICATION_DETAIL_TEXT_TEMPLATE_ID',
           reference: case_reference,

@@ -20,7 +20,7 @@ environment ENV.fetch("RAILS_ENV") { "development" }
 # That causes `bundle exec puma` to throw "Errno::ENOENT" exceptions
 # when the pids directory is missing, so this makes sure it's always there.
 pids_dir = "tmp/pids"
-Dir.mkdir(pids_dir) unless File.exist?(pids_dir)
+FileUtils.mkdir_p(pids_dir)
 
 # Specifies the `pidfile` that Puma will use.
 pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }

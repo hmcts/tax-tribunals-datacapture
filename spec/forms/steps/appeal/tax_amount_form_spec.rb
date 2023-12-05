@@ -2,8 +2,8 @@ require 'spec_helper'
 
 RSpec.describe Steps::Appeal::TaxAmountForm do
   let(:arguments) { {
-    tribunal_case: tribunal_case,
-    tax_amount: tax_amount
+    tribunal_case:,
+    tax_amount:
   } }
   let(:tribunal_case) { instance_double(TribunalCase, tax_amount: nil) }
   let(:tax_amount) { '12345' }

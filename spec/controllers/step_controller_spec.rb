@@ -19,7 +19,7 @@ RSpec.describe DummyStepController, type: :controller do
   end
 
   describe 'navigation stack' do
-    let!(:tribunal_case) { TribunalCase.create(navigation_stack: navigation_stack) }
+    let!(:tribunal_case) { TribunalCase.create(navigation_stack:) }
 
     before do
       local_get :show, session: { tribunal_case_id: tribunal_case.id }
@@ -52,7 +52,7 @@ RSpec.describe DummyStepController, type: :controller do
   end
 
   describe '#previous_step_path' do
-    let!(:tribunal_case) { TribunalCase.create(navigation_stack: navigation_stack) }
+    let!(:tribunal_case) { TribunalCase.create(navigation_stack:) }
 
     before do
       local_get :show, session: { tribunal_case_id: tribunal_case.id }

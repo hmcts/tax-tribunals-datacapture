@@ -2,10 +2,10 @@ require 'spec_helper'
 
 RSpec.describe Steps::Hardship::DisputedTaxPaidForm do
   let(:arguments) { {
-    tribunal_case: tribunal_case,
-    disputed_tax_paid: disputed_tax_paid
+    tribunal_case:,
+    disputed_tax_paid:
   } }
-  let(:tribunal_case) { instance_double(TribunalCase, disputed_tax_paid: nil, dispute_type: dispute_type) }
+  let(:tribunal_case) { instance_double(TribunalCase, disputed_tax_paid: nil, dispute_type:) }
   let(:dispute_type) { nil }
   let(:disputed_tax_paid) { nil }
 

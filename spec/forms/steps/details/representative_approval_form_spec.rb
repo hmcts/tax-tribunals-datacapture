@@ -2,8 +2,8 @@ require 'spec_helper'
 
 RSpec.describe Steps::Details::RepresentativeApprovalForm do
   let(:arguments) { {
-    tribunal_case: tribunal_case,
-    representative_approval_document: representative_approval_document
+    tribunal_case:,
+    representative_approval_document:
   } }
   let(:tribunal_case) { instance_double(TribunalCase, files_collection_ref: 'ABC123') }
   let(:representative_approval_document) { nil }
@@ -52,9 +52,9 @@ RSpec.describe Steps::Details::RepresentativeApprovalForm do
 
         context 'document upload successful' do
           it 'uploads the file' do
-            expect(Uploader).to receive(:add_file).
-              with(hash_including(document_key: :representative_approval)).
-              and_return(double(name: '123/foo/bar.png'))
+            expect(Uploader).to receive(:add_file)
+              .with(hash_including(document_key: :representative_approval))
+              .and_return(double(name: '123/foo/bar.png'))
             expect(subject.save).to be(true)
           end
         end

@@ -4,7 +4,6 @@ RSpec.describe Admin::GenerateGlimrRecordJob, type: :job do
   let(:payload) { { record1: 'something', record2: 'something' } }
 
   describe '#perform' do
-
     before do
       allow(GlimrDirectApiClient::RegisterNewCase).to receive(:call).and_return(double(response_body: response))
     end
@@ -15,7 +14,6 @@ RSpec.describe Admin::GenerateGlimrRecordJob, type: :job do
       it 'raises a GlimrError' do
         expect { Admin::GenerateGlimrRecordJob.new.perform(payload) }.to raise_error(GlimrError, "No response provided")
       end
-
     end
 
     context 'when GlimrDirectApiClient::RegisterNewCase.call succeeds' do
@@ -24,7 +22,6 @@ RSpec.describe Admin::GenerateGlimrRecordJob, type: :job do
       it 'raises no error' do
         expect { Admin::GenerateGlimrRecordJob.new.perform(payload) }.not_to raise_error
       end
-
     end
   end
 end

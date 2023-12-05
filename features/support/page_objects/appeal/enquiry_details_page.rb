@@ -1,5 +1,5 @@
 class EnquiryDetailsPage < BasePage
-  set_url '/' + ENV['TEST_LOCALE'] + '/steps/closure/enquiry_details'
+  set_url "/#{ENV.fetch('TEST_LOCALE', nil)}/steps/closure/enquiry_details"
 
   section :content, '#main-content' do
     element :header, 'h1', text: I18n.t('steps.closure.enquiry_details.edit.heading')
@@ -7,8 +7,10 @@ class EnquiryDetailsPage < BasePage
     element :years_input, "input[name='steps_closure_enquiry_details_form[closure_years_under_enquiry]']"
     element :tax_officer_input, "input[name='steps_closure_enquiry_details_form[closure_hmrc_officer]']"
     section :error_summary, '.govuk-error-summary__body' do
-      element :reference_number_error, 'a', text: I18n.t('activemodel.errors.models.steps/closure/enquiry_details_form.attributes.closure_hmrc_reference.blank')
-      element :years_error, 'a', text: I18n.t('activemodel.errors.models.steps/closure/enquiry_details_form.attributes.closure_years_under_enquiry.blank')
+      element :reference_number_error, 'a',
+              text: I18n.t('activemodel.errors.models.steps/closure/enquiry_details_form.attributes.closure_hmrc_reference.blank')
+      element :years_error, 'a',
+              text: I18n.t('activemodel.errors.models.steps/closure/enquiry_details_form.attributes.closure_years_under_enquiry.blank')
     end
   end
 

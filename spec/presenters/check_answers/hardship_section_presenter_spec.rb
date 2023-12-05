@@ -3,7 +3,7 @@ require 'spec_helper'
 module CheckAnswers
   describe HardshipSectionPresenter do
     subject { described_class.new(tribunal_case) }
-    let(:tribunal_case) { TribunalCase.new(disputed_tax_paid: disputed_tax_paid) }
+    let(:tribunal_case) { TribunalCase.new(disputed_tax_paid:) }
     let(:disputed_tax_paid) { nil }
 
     let(:answer) { instance_double(Answer, show?: true) }

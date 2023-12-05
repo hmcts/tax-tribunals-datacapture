@@ -6,11 +6,11 @@ RSpec.describe CaseMailPresenter do
   let(:tribunal_case) { TribunalCase.new(tribunal_case_attributes) }
   let(:tribunal_case_attributes) {
     {
-      intent: intent,
-      user_type: user_type,
-      taxpayer_type: taxpayer_type,
-      representative_type: representative_type,
-      case_reference: case_reference,
+      intent:,
+      user_type:,
+      taxpayer_type:,
+      representative_type:,
+      case_reference:,
       taxpayer_contact_email: 'taxpayer@example.com',
       taxpayer_individual_first_name: 'John',
       taxpayer_individual_last_name: 'Harrison',
