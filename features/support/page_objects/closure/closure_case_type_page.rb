@@ -1,5 +1,5 @@
 class ClosureCaseTypePage < BasePage
-  set_url '/' + ENV['TEST_LOCALE'] + '/steps/closure/case_type'
+  set_url "/#{ENV.fetch('TEST_LOCALE', nil)}/steps/closure/case_type"
 
   section :content, '#main-content' do
     element :header, 'h1', text: I18n.t('check_answers.closure_case_type.question')

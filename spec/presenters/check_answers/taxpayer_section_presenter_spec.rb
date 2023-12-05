@@ -3,7 +3,7 @@ require 'spec_helper'
 module CheckAnswers
   describe TaxpayerSectionPresenter do
     subject { described_class.new(tribunal_case) }
-    let(:tribunal_case) { TribunalCase.new(has_representative: has_representative) }
+    let(:tribunal_case) { TribunalCase.new(has_representative:) }
     let(:has_representative) { HasRepresentative::NO }
 
     let(:answer) { instance_double(Answer, show?: true) }

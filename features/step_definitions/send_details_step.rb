@@ -47,9 +47,9 @@ Then("I am on the has representative page") do
 end
 
 Given(/^Given I navigate to the send taxpayer copy page as the taxpayer$/) do
-    navigate_to_send_taxpayer_copy_page
-    expect(send_taxpayer_copy_page.content).to have_header
-  end
+  navigate_to_send_taxpayer_copy_page
+  expect(send_taxpayer_copy_page.content).to have_header
+end
 
 And(/^I submit a valid email on the send taxpayer copy page$/) do
   expect(send_taxpayer_copy_page.content).to have_header

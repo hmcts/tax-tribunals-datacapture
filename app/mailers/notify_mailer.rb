@@ -101,6 +101,7 @@ class NotifyMailer < GovukNotifyRails::Mailer
   end
 
   def application_details_text(tribunal_case, entity, _application_details)
+    mail_presenter = CaseMailPresenter.new(tribunal_case)
     recipient_number = tribunal_case.send("#{entity}_contact_phone".to_sym)
 
     client.send_sms(
@@ -108,7 +109,8 @@ class NotifyMailer < GovukNotifyRails::Mailer
       reference: tribunal_case.case_reference || '',
       personalisation: {
         appeal_or_application: tribunal_case.appeal_or_application,
-        submission_date_and_time: Time.now.strftime('%e %B %Y %H:%Mhrs').strip
+        submission_date_and_time: Time.now.strftime('%e %B %Y %H:%Mhrs').strip,
+        case_reference: mail_presenter.case_reference
       },
       template_id: template(tribunal_case.language, :application_details_text)
     )

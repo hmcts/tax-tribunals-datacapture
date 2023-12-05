@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.shared_examples 'a password-protected admin controller' do |method|
-
   context 'correct credentials' do
     before do
       request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Basic.encode_credentials('admin', 'test')

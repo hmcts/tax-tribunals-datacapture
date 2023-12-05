@@ -3,7 +3,7 @@ require 'spec_helper'
 module CheckAnswers
   describe AppealSectionPresenter do
     subject { described_class.new(tribunal_case) }
-    let(:tribunal_case) { TribunalCase.new(case_type: case_type, dispute_type: dispute_type) }
+    let(:tribunal_case) { TribunalCase.new(case_type:, dispute_type:) }
     let(:case_type) { CaseType.new(:something) }
     let(:dispute_type) { CaseType.new(:something) }
 
@@ -66,7 +66,7 @@ module CheckAnswers
       context 'when the penalty amount is not blank' do
         let(:dispute_type) { DisputeType::PENALTY }
         let(:tribunal_case) {
-          TribunalCase.new(case_type: case_type, dispute_type: dispute_type, penalty_amount: '1234')
+          TribunalCase.new(case_type:, dispute_type:, penalty_amount: '1234')
         }
 
         it 'has the correct rows' do

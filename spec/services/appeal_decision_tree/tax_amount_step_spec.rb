@@ -2,11 +2,11 @@ require 'spec_helper'
 
 RSpec.describe AppealDecisionTree, '#destination' do
   let(:next_step)     { nil }
-  subject { described_class.new(tribunal_case: tribunal_case, step_params: step_params, next_step: next_step) }
+  subject { described_class.new(tribunal_case:, step_params:, next_step:) }
 
   context 'when the step is `tax_amount`' do
     let(:step_params) { { tax_amount: 'anything' } }
-    let(:tribunal_case) { instance_double(TribunalCase, case_type: case_type, dispute_type: dispute_type) }
+    let(:tribunal_case) { instance_double(TribunalCase, case_type:, dispute_type:) }
 
     context 'and the case type should ask hardship and the dispute_type should ask hardship' do
       let(:case_type)    { CaseType.new(:anything, ask_hardship: true) }
