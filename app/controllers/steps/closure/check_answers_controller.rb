@@ -8,7 +8,7 @@ module Steps::Closure
       respond_to do |format|
         format.html
         format.pdf {
-          summary = render_to_string "show.pdf.erb"
+          summary = render_to_string template: "steps/closure/check_answers/show", formats: [:pdf], handlers: [:erb]
           render_pdf summary, filename: @presenter.pdf_filename
         }
       end
