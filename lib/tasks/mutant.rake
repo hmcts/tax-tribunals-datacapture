@@ -24,5 +24,5 @@ private
 
 def classes_to_mutate
   Rails.application.eager_load!
-  Array(ARGV[1]).presence || ApplicationRecord.descendants.map(&:name) + ['TaxTribs*']
+  Array(ARGV[1]).presence || (ApplicationRecord.descendants.map(&:name) + ['TaxTribs*'])
 end

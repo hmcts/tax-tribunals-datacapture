@@ -10,11 +10,9 @@ class DummyClass
   def request_body
     { parameter: 'parameter' }
   end
-
 end
 
 RSpec.describe GlimrDirectApiClient::Api do
-
   let(:subject) { DummyClass.new }
 
   describe '#post' do
@@ -22,18 +20,19 @@ RSpec.describe GlimrDirectApiClient::Api do
 
     before do
       # stub ENV
-      allow(ENV).to receive(:fetch).with('GLIMR_API_URL').
-        and_return('https://glimr-api.taxtribunals.dsd.io/Live_API/api/tdsapi')
+      allow(ENV).to receive(:fetch).with('GLIMR_API_URL')
+        .and_return('https://glimr-api.taxtribunals.dsd.io/Live_API/api/tdsapi')
       allow(ENV).to receive(:fetch).with('GLIMR_AUTHORIZATION_KEY', '').and_return('key')
       allow(ENV).to receive(:fetch).with('GLIMR_REGISTER_NEW_CASE_TIMEOUT_SECONDS', 32).and_return('32')
+      allow(ENV).to receive(:fetch).with('GLIMR_API_DEBUG', '').and_return('false')
       stub_request(:post, /endpoint$/)
         .to_return(status: 200, body: body.to_json)
     end
 
     it 'sends request_body as JSON' do
-      expect(subject).to receive(:make_request).
-        with("https://glimr-api.taxtribunals.dsd.io/Live_API/api/tdsapi/endpoint",
-        { parameter: 'parameter' }.to_json)
+      expect(subject).to receive(:make_request)
+        .with("https://glimr-api.taxtribunals.dsd.io/Live_API/api/tdsapi/endpoint",
+              { parameter: 'parameter' }.to_json)
       subject.post
     end
 
@@ -48,7 +47,7 @@ RSpec.describe GlimrDirectApiClient::Api do
       end
 
       it 'raises Unavailable "timed out"' do
-        expect{ subject.post }.to raise_error(GlimrDirectApiClient::Unavailable, 'timed out')
+        expect { subject.post }.to raise_error(GlimrDirectApiClient::Unavailable, 'timed out')
       end
     end
   end
@@ -66,13 +65,14 @@ RSpec.describe GlimrDirectApiClient::Api do
       allow(ENV).to receive(:fetch).with('GLIMR_API_URL').and_return('https://glimr-api-emulator.herokuapp.com/Live_API/api/tdsapi/')
       allow(ENV).to receive(:fetch).with('GLIMR_AUTHORIZATION_KEY', '').and_return('key')
       allow(ENV).to receive(:fetch).with('GLIMR_REGISTER_NEW_CASE_TIMEOUT_SECONDS', 32).and_return('32')
+      allow(ENV).to receive(:fetch).with('GLIMR_API_DEBUG', '').and_return('false')
       stub_request(:post, /endpoint$/)
         .to_return(status: 200, body: {response: 'response'}.to_json)
     end
 
     it 'sends the correct headers' do
       headers = { 'Content-Type' => 'application/json', 'Accept' => 'application/json', 'Authorization' => 'apikey key' }
-      expect(RestClient::Request).to receive(:execute).with(hash_including(headers: headers)).and_call_original
+      expect(RestClient::Request).to receive(:execute).with(hash_including(headers:)).and_call_original
       subject.post
     end
   end

@@ -37,8 +37,9 @@ RSpec.describe Steps::Details::RepresentativeIndividualDetailsForm do
     subject { described_class.new(
       tribunal_case: instance_double(TribunalCase, started_by_representative?: false),
       representative_contact_email: 'test@example.com',
-      representative_individual_first_name: 'a'*300,
-      representative_individual_last_name: 'a'*10) }
+      representative_individual_first_name: 'a' * 300,
+      representative_individual_last_name: 'a' * 10
+    ) }
 
     it 'length must be less than 256' do
       expect(subject).not_to be_valid
@@ -50,8 +51,9 @@ RSpec.describe Steps::Details::RepresentativeIndividualDetailsForm do
     subject { described_class.new(
       tribunal_case: instance_double(TribunalCase, started_by_representative?: false),
       representative_contact_email: 'test@example.com',
-      representative_individual_first_name: 'a'*10,
-      representative_individual_last_name: 'a'*300) }
+      representative_individual_first_name: 'a' * 10,
+      representative_individual_last_name: 'a' * 300
+    ) }
 
     it 'length must be less than 256' do
       expect(subject).not_to be_valid
@@ -68,7 +70,7 @@ RSpec.describe Steps::Details::RepresentativeIndividualDetailsForm do
   end
 
   context 'when the case is started by a representative' do
-    subject { described_class.new(tribunal_case: tribunal_case) }
+    subject { described_class.new(tribunal_case:) }
 
     describe '#representative_contact_email' do
       let(:tribunal_case) { instance_double(TribunalCase, started_by_representative?: true) }
@@ -77,7 +79,7 @@ RSpec.describe Steps::Details::RepresentativeIndividualDetailsForm do
   end
 
   context 'when the case is not started by a representative' do
-    subject { described_class.new(tribunal_case: tribunal_case) }
+    subject { described_class.new(tribunal_case:) }
 
     describe '#representative_contact_email' do
       let(:tribunal_case) { instance_double(TribunalCase, started_by_representative?: false) }

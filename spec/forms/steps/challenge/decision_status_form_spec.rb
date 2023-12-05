@@ -2,10 +2,10 @@ require 'spec_helper'
 
 RSpec.describe Steps::Challenge::DecisionStatusForm do
   let(:arguments) { {
-    tribunal_case: tribunal_case,
-    challenged_decision_status: challenged_decision_status
+    tribunal_case:,
+    challenged_decision_status:
   } }
-  let(:tribunal_case) { instance_double(TribunalCase, case_type: case_type, challenged_decision_status: nil) }
+  let(:tribunal_case) { instance_double(TribunalCase, case_type:, challenged_decision_status: nil) }
   let(:challenged_decision_status) { nil }
   let(:case_type) { CaseType::CORPORATION_TAX }
 
@@ -135,7 +135,7 @@ RSpec.describe Steps::Challenge::DecisionStatusForm do
       let(:tribunal_case) {
         instance_double(
           TribunalCase,
-          case_type: case_type,
+          case_type:,
           challenged_decision_status: ChallengedDecisionStatus::PENDING
         )
       }

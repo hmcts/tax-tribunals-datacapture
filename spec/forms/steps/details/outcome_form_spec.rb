@@ -2,8 +2,8 @@ require 'spec_helper'
 
 RSpec.describe Steps::Details::OutcomeForm do
   let(:arguments) { {
-    tribunal_case: tribunal_case,
-    outcome: outcome
+    tribunal_case:,
+    outcome:
   } }
   let(:tribunal_case) { instance_double(TribunalCase, outcome: nil) }
   let(:outcome) { nil }

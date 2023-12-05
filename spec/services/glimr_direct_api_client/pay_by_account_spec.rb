@@ -14,7 +14,8 @@ RSpec.describe GlimrDirectApiClient::PayByAccount do
   end
 
   context 'validating parameters' do
-    let(:valid_params) { { feeLiabilityId: '7', pbaAccountNumber: 'something', pbaConfirmationCode: 'something', pbaTransactionReference: 'something' } }
+    let(:valid_params) {
+ { feeLiabilityId: '7', pbaAccountNumber: 'something', pbaConfirmationCode: 'something', pbaTransactionReference: 'something' } }
 
     it 'raises an error when no parameters are supplied' do
       expect { described_class.call }.to raise_error(ArgumentError)
@@ -54,7 +55,7 @@ RSpec.describe GlimrDirectApiClient::PayByAccount do
 
     context 'when pbaTransactionReference is too long' do
       let(:params) { { feeLiabilityId: '7', pbaAccountNumber: 'something', pbaConfirmationCode: 'something',
-                       pbaTransactionReference: "#{(0...241).map { ('a') }.join}" } }
+                       pbaTransactionReference: (0...241).map { 'a' }.join.to_s } }
 
       it 'raises an error' do
         expect { described_class.call(params) }.to raise_error(GlimrDirectApiClient::RequestError, '[:pbaTransactionReferenceTooLong]')
@@ -65,19 +66,22 @@ RSpec.describe GlimrDirectApiClient::PayByAccount do
       allow(ENV).to receive(:fetch).with('GLIMR_API_URL').and_return('https://glimr-api-emulator.herokuapp.com/Live_API/api/tdsapi/')
       allow(ENV).to receive(:fetch).with('GLIMR_AUTHORIZATION_KEY', '').and_return('key')
       allow(ENV).to receive(:fetch).with('GLIMR_REGISTER_NEW_CASE_TIMEOUT_SECONDS', 32).and_return('32')
+      allow(ENV).to receive(:fetch).with('GLIMR_API_DEBUG', '').and_return('false')
       stub_request(:post, /glimr/).to_return(status: 200, body: {response: 'response'}.to_json)
       expect { described_class.call(valid_params) }.not_to raise_error
     end
   end
 
   describe '#re_raise_error' do
-    let(:params) { { feeLiabilityId: '7', pbaAccountNumber: 'something', pbaConfirmationCode: 'something', pbaTransactionReference: 'something' } }
+    let(:params) {
+ { feeLiabilityId: '7', pbaAccountNumber: 'something', pbaConfirmationCode: 'something', pbaTransactionReference: 'something' } }
     let(:body) { { message: '' } }
 
     before do
       allow(ENV).to receive(:fetch).with('GLIMR_API_URL').and_return('https://glimr-api-emulator.herokuapp.com/Live_API/api/tdsapi/')
       allow(ENV).to receive(:fetch).with('GLIMR_AUTHORIZATION_KEY', '').and_return('key')
       allow(ENV).to receive(:fetch).with('GLIMR_REGISTER_NEW_CASE_TIMEOUT_SECONDS', 32).and_return('32')
+      allow(ENV).to receive(:fetch).with('GLIMR_API_DEBUG', '').and_return('false')
       stub_request(:post, /glimr/).to_return(status: 200, body: body.to_json)
     end
 

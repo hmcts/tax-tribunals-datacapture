@@ -29,5 +29,4 @@ RSpec.describe Steps::SelectLanguageController, type: :controller do
       it { expect(subject.send(:decision_tree_class)).to eq(TaxTribs::ClosureDecisionTree) }
     end
   end
-
 end

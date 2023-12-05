@@ -1,5 +1,5 @@
 class CheckAnswersResumePage < BasePage
-  set_url '/' + ENV['TEST_LOCALE'] + '/steps/details/check_answers/resume'
+  set_url "/#{ENV.fetch('TEST_LOCALE', nil)}/steps/details/check_answers/resume"
 
   section :content, '#main-content' do
     element :header, 'h1', text: I18n.t('dictionary.CYA_CONFIRMATION.check_answers.resume.heading_appeal')

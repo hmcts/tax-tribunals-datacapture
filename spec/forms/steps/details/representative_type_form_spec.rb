@@ -2,8 +2,8 @@ require 'spec_helper'
 
 RSpec.describe Steps::Details::RepresentativeTypeForm do
   let(:arguments) { {
-    tribunal_case: tribunal_case,
-    representative_type: representative_type
+    tribunal_case:,
+    representative_type:
   } }
   let(:tribunal_case) { instance_double(TribunalCase, representative_type: nil) }
   let(:representative_type) { nil }

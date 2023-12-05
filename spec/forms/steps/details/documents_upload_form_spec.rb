@@ -2,9 +2,9 @@ require 'spec_helper'
 
 RSpec.describe Steps::Details::DocumentsUploadForm do
   let(:arguments) { {
-    tribunal_case: tribunal_case,
-    having_problems_uploading: having_problems_uploading,
-    having_problems_uploading_explanation: having_problems_uploading_explanation
+    tribunal_case:,
+    having_problems_uploading:,
+    having_problems_uploading_explanation:
   } }
 
   let(:tribunal_case) { instance_double(TribunalCase) }
@@ -74,8 +74,8 @@ RSpec.describe Steps::Details::DocumentsUploadForm do
 
           it 'saves the record' do
             expect(tribunal_case).to receive(:update).with(
-              having_problems_uploading: having_problems_uploading,
-              having_problems_uploading_explanation: having_problems_uploading_explanation
+              having_problems_uploading:,
+              having_problems_uploading_explanation:
             ).and_return(true)
             expect(subject.save).to be(true)
           end
@@ -87,7 +87,7 @@ RSpec.describe Steps::Details::DocumentsUploadForm do
 
           it 'saves the record and disregards having_problems_uploading_explanation' do
             expect(tribunal_case).to receive(:update).with(
-              having_problems_uploading: having_problems_uploading,
+              having_problems_uploading:,
               having_problems_uploading_explanation: nil
             ).and_return(true)
             expect(subject.save).to be(true)

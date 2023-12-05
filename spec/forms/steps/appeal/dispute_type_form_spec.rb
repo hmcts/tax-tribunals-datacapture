@@ -2,14 +2,14 @@ require 'spec_helper'
 
 RSpec.describe Steps::Appeal::DisputeTypeForm do
   let(:arguments) { {
-    tribunal_case: tribunal_case,
-    dispute_type: dispute_type,
-    dispute_type_other_value: dispute_type_other_value,
+    tribunal_case:,
+    dispute_type:,
+    dispute_type_other_value:,
   } }
   let(:tribunal_case) {
     instance_double(
       TribunalCase,
-      case_type:  case_type,
+      case_type:,
       dispute_type: nil
     )
   }

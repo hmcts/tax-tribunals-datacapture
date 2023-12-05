@@ -12,7 +12,7 @@ gem 'govuk_design_system_formbuilder', '~> 4'
 gem 'govuk_notify_rails',              '~> 2.1'
 gem 'jquery-rails',                    '4.6.0'
 gem 'nokogiri'
-gem 'pg'                              
+gem 'pg'
 gem 'pry-rails'
 gem 'puma',                            '~> 5'
 gem 'rack-attack',                     '~> 6.7.0'
@@ -32,7 +32,7 @@ gem 'rest-client',                     '2.1.0'
 
 # Admin
 gem 'sidekiq',                         '6.5.12'
-gem 'sidekiq-batch',                   '0.1.9'                   
+gem 'sidekiq-batch',                   '0.1.9'
 gem 'sidekiq_alive',                   '2.3.1'
 
 # PDF generation

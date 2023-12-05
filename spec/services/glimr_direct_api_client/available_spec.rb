@@ -14,8 +14,8 @@ RSpec.describe GlimrDirectApiClient::Available do
   describe '#available?' do
     context 'when the service is available' do
       before do
-       stub_request(:post, /glimravailable$/).
-         to_return(status: 200, body: '{"glimrAvailable": "yes"}')
+        stub_request(:post, /glimravailable$/)
+          .to_return(status: 200, body: '{"glimrAvailable": "yes"}')
       end
 
       it 'the call reports availability status' do
@@ -25,13 +25,13 @@ RSpec.describe GlimrDirectApiClient::Available do
 
     context 'when the service responds that it is not available' do
       before do
-       stub_request(:post, /glimravailable$/).
-         to_return(status: 200, body: '{"glimrAvailable": "no"}')
+        stub_request(:post, /glimravailable$/)
+          .to_return(status: 200, body: '{"glimrAvailable": "no"}')
       end
 
       it 'the call raises an error' do
-        expect{ subject.available? }.
-          to raise_exception(GlimrDirectApiClient::Unavailable)
+        expect { subject.available? }
+          .to raise_exception(GlimrDirectApiClient::Unavailable)
       end
     end
 
@@ -41,8 +41,8 @@ RSpec.describe GlimrDirectApiClient::Available do
       end
 
       it 'the call raises an error' do
-        expect{ subject.available? }.
-          to raise_exception(GlimrDirectApiClient::Unavailable)
+        expect { subject.available? }
+          .to raise_exception(GlimrDirectApiClient::Unavailable)
       end
     end
   end
