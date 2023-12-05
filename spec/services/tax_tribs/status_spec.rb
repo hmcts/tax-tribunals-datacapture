@@ -7,11 +7,11 @@ RSpec.describe TaxTribs::Status do
 
   let(:status) do
     {
-      service_status: service_status,
+      service_status:,
       version: commit_id,
       dependencies: {
-        glimr_status: glimr_status,
-        database_status: database_status
+        glimr_status:,
+        database_status:
       }
     }
   end
@@ -124,7 +124,5 @@ RSpec.describe TaxTribs::Status do
       end
     end
   end
-
-
 
 end

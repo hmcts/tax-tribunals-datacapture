@@ -7,10 +7,10 @@ RSpec.describe BackupNoa, type: :model do
   let(:data) { 'some data in the file' }
   let(:backup) do
     double(
-      collection_ref: collection_ref,
-      folder: folder,
-      filename: filename,
-      data: data,
+      collection_ref:,
+      folder:,
+      filename:,
+      data:,
       attempts: nil
     )
   end
@@ -31,21 +31,21 @@ RSpec.describe BackupNoa, type: :model do
   describe '.keep_noa' do
     subject do
       BackupNoa.keep_noa(
-        collection_ref: collection_ref,
-        folder: folder,
-        filename: filename,
-        data: data
+        collection_ref:,
+        folder:,
+        filename:,
+        data:
       )
     end
 
     context 'when it is a noa' do
       it 'saves backup' do
         expect(BackupNoa).to receive(:create).with(
-                               collection_ref: collection_ref,
-                               folder: folder,
-                               filename: filename,
-                               data: data
-                             )
+          collection_ref:,
+          folder:,
+          filename:,
+          data:
+        )
         subject
       end
     end
@@ -65,11 +65,11 @@ RSpec.describe BackupNoa, type: :model do
 
     it 'invokes Uploader service' do
       expect(Uploader).to receive(:add_file).with(
-                            collection_ref: collection_ref,
-                            document_key: folder,
-                            filename: filename,
-                            data: data
-                          )
+        collection_ref:,
+        document_key: folder,
+        filename:,
+        data:
+      )
       subject
     end
 

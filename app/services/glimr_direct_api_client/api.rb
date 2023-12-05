@@ -12,7 +12,7 @@ module GlimrDirectApiClient
     # this sensitive user data from the live service.
     def post
       @response_body = make_request("#{api_url}#{endpoint}", request_body.to_json)
-      puts "GLIMR POST: #{endpoint} - #{request_body.to_json}" if ENV.key?('GLIMR_API_DEBUG')
+      puts "GLIMR POST: #{endpoint} - #{request_body.to_json}" if ENV.fetch('GLIMR_API_DEBUG', '') == 'true'
     end
 
     def timeout
@@ -50,7 +50,7 @@ module GlimrDirectApiClient
 
     def make_request(endpoint, body)
       response = client(endpoint, body)
-      puts "GLIMR RESPONSE: #{response.body}" if ENV.key?('GLIMR_API_DEBUG')
+      puts "GLIMR RESPONSE: #{response.body}" if ENV.fetch('GLIMR_API_DEBUG', '') == 'true'
       parse_response(response.body)
     rescue RestClient::RequestTimeout
       re_raise_error(message: 'timed out')

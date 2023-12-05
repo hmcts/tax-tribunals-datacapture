@@ -1,5 +1,5 @@
 class HasRepresentativePage < BasePage
-  set_url '/' + ENV['TEST_LOCALE'] + '/steps/details/has_representative'
+  set_url "/#{ENV.fetch('TEST_LOCALE', nil)}/steps/details/has_representative"
 
   section :content, '#main-content' do
     element :header, 'h1', text: I18n.t('steps.details.has_representative.edit.heading')
@@ -11,9 +11,8 @@ class HasRepresentativePage < BasePage
     end
   end
 
-def representative_dropdown
-  content.what_is_a_representative.click
-end
-
+  def representative_dropdown
+    content.what_is_a_representative.click
+  end
 end
 

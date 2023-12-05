@@ -2,8 +2,8 @@ require 'spec_helper'
 
 RSpec.describe Steps::Details::UserTypeForm do
   let(:arguments) { {
-    tribunal_case: tribunal_case,
-    user_type: user_type
+    tribunal_case:,
+    user_type:
   } }
   let(:tribunal_case) { instance_double(TribunalCase, user_type: nil) }
   let(:user_type) { nil }

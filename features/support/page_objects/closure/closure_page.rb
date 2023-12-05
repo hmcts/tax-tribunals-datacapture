@@ -1,5 +1,5 @@
 class ClosurePage < BasePage
-  set_url '/' + ENV['TEST_LOCALE'] + '/closure'
+  set_url "/#{ENV.fetch('TEST_LOCALE', nil)}/closure"
 
   section :content, '#main-content' do
     element :header, 'h1', text: I18n.t('closure_home.index.heading')

@@ -3,7 +3,7 @@ require 'spec_helper'
 module CheckAnswers
   describe DetailsSectionPresenter do
     subject { described_class.new(tribunal_case) }
-    let(:tribunal_case) { TribunalCase.new(letter_upload_type: letter_upload_type, need_support: NeedSupport::NO.to_s) }
+    let(:tribunal_case) { TribunalCase.new(letter_upload_type:, need_support: NeedSupport::NO.to_s) }
     let(:letter_upload_type) { nil }
 
     let(:documents_submitted_answer) { instance_double(DocumentsSubmittedAnswer, show?: true) }
@@ -44,7 +44,7 @@ module CheckAnswers
 
         context 'with hearing support' do
           let(:tribunal_case) do
-            TribunalCase.new(letter_upload_type: letter_upload_type, need_support: NeedSupport::YES.to_s, disabled_access: true)
+            TribunalCase.new(letter_upload_type:, need_support: NeedSupport::YES.to_s, disabled_access: true)
           end
 
           it 'has the correct rows' do

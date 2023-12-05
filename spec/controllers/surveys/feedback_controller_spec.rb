@@ -15,7 +15,7 @@ RSpec.describe Surveys::FeedbackController, type: :controller do
       request.env['HTTP_USER_AGENT'] = 'Safari'
 
       expect(Surveys::FeedbackForm).to receive(:new).with(
-        rating: rating,
+        rating:,
         comment: 'my feedback here',
         referrer: '/my/step',
         user_agent: 'Safari'
@@ -29,7 +29,7 @@ RSpec.describe Surveys::FeedbackController, type: :controller do
       it 'redirects to thanks page' do
         local_post :create, params: {surveys_feedback_form: {
           referrer: '/my/step',
-          rating: rating,
+          rating:,
           comment: 'my feedback here'
         }}
 
@@ -44,7 +44,7 @@ RSpec.describe Surveys::FeedbackController, type: :controller do
       it 're-renders the form' do
         local_post :create, params: {surveys_feedback_form: {
           referrer: '/my/step',
-          rating: rating,
+          rating:,
           comment: 'my feedback here'
         }}
 

@@ -23,9 +23,7 @@ class Rack::Attack
   # e.g. "john@example.com,@suspicious-domain.com"
 
   # Filter out non email or domain names
-  spammers = ENV.fetch('RACK_ATTACK_BLOCKLIST_EMAILS', '').split(/,\s*/).select do
-    |email| email.match? /@[A-Z0-9.-]+\.[A-Z]{2,4}/i
-  end
+  spammers = ENV.fetch('RACK_ATTACK_BLOCKLIST_EMAILS', '').split(/,\s*/).grep(/@[A-Z0-9.-]+\.[A-Z]{2,4}/i)
   spammer_regexp = Regexp.union(spammers)
 
   blocklist("block emails") do |req|

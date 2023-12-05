@@ -1,5 +1,5 @@
 class DisputeTypePage < BasePage
-  set_url '/' + ENV['TEST_LOCALE'] + '/steps/appeal/dispute_type'
+  set_url "/#{ENV.fetch('TEST_LOCALE', nil)}/steps/appeal/dispute_type"
 
   section :content, '#main-content' do
     element :header, 'h1', text: I18n.t('steps.appeal.dispute_type.edit.heading')
@@ -10,7 +10,8 @@ class DisputeTypePage < BasePage
     element :notice_of_requirement_option, 'label', text: I18n.t('check_answers.dispute_type.answers.security_notice')
     element :registration_option, 'label', text: I18n.t('check_answers.dispute_type.answers.registration')
     element :paye_option, 'label', text: I18n.t('.check_answers.dispute_type.answers.paye_coding_notice')
-    element :nota_option, 'label', text: I18n.t('helpers.label.steps_details_representative_professional_status_form.representative_professional_status_options.other_html')
+    element :nota_option, 'label',
+            text: I18n.t('helpers.label.steps_details_representative_professional_status_form.representative_professional_status_options.other_html')
     element :nota_option_textbox, "input[name='steps_appeal_dispute_type_form[dispute_type_other_value]']"
     element :enter_answer_error, 'a', text: I18n.t('errors.messages.blank')
     section :error, '.govuk-error-summary' do

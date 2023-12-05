@@ -34,7 +34,7 @@ module Steps::Shared
     end
 
     def attributes_map
-      attribute_set.map {|attr| [attr.name, coerce_value(attr)] }.to_h
+      attribute_set.to_h {|attr| [attr.name, coerce_value(attr)] }
     end
 
     def coerce_value(attr)

@@ -1,11 +1,11 @@
 class LoginPage < BasePage
-  set_url '/' + ENV['TEST_LOCALE'] + '/users/login'
+  set_url "/#{ENV.fetch('TEST_LOCALE', nil)}/users/login"
 
   section :content, '#main-content' do
     element :header, 'h1', text: I18n.t('helpers.submit.sign_in')
     element :email_input, '#user-signin-email-field'
     element :password_input, '#user-signin-password-field'
-    element :sign_in_button, "input[value='" + I18n.t('helpers.submit.sign_in') + "']"
+    element :sign_in_button, "input[value='#{I18n.t('helpers.submit.sign_in')}']"
     section :error_summary, '.govuk-error-summary' do
       element :invalid_error, 'a', text: I18n.t('activemodel.errors.models.user/signin.attributes.base.invalid')
       element :blank_email_error, 'a', text: I18n.t('activemodel.errors.models.user/signin.attributes.email.blank')

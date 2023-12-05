@@ -2,10 +2,10 @@ require 'spec_helper'
 
 RSpec.describe Surveys::FeedbackForm do
   let(:arguments) { {
-    comment: comment,
-    email: email,
-    name: name,
-    assistance_level: assistance_level
+    comment:,
+    email:,
+    name:,
+    assistance_level:
   } }
 
   subject { described_class.new(arguments) }

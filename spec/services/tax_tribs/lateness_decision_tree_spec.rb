@@ -4,7 +4,7 @@ RSpec.describe TaxTribs::LatenessDecisionTree do
   let(:tribunal_case) { double('TribunalCase') }
   let(:step_params)   { double('Step') }
   let(:next_step)     { nil }
-  subject { described_class.new(tribunal_case: tribunal_case, step_params: step_params, next_step: next_step) }
+  subject { described_class.new(tribunal_case:, step_params:, next_step:) }
 
   describe '#destination' do
     context 'when `next_step` is present' do

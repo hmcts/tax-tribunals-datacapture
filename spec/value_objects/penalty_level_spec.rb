@@ -6,7 +6,8 @@ RSpec.describe PenaltyLevel do
   describe '.names' do
     it 'returns names of the penalty levels' do
       expect(described_class.names).to match_array(
-        %w(penalty_level_1 penalty_level_2 penalty_level_3))
+        %w[penalty_level_1 penalty_level_2 penalty_level_3]
+      )
     end
   end
 
@@ -27,10 +28,10 @@ RSpec.describe PenaltyLevel do
       expect(described_class.upper_bound('INVALID_INPUT')).to be_nil
     end
     it 'returns the lower bound for a given level (as string)' do
-      expect(described_class.upper_bound('penalty_level_2')).to eq 20000
+      expect(described_class.upper_bound('penalty_level_2')).to eq 20_000
     end
     it 'returns the lower bound for a given level (as sym)' do
-      expect(described_class.upper_bound(:penalty_level_2)).to eq 20000
+      expect(described_class.upper_bound(:penalty_level_2)).to eq 20_000
     end
   end
 end

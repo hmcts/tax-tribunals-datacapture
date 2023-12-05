@@ -9,7 +9,7 @@ RSpec.describe TaxTribs::GlimrNewCase do
   let(:case_attributes) do
     {
       case_type: CaseType::INCOME_TAX,
-      taxpayer_type: taxpayer_type,
+      taxpayer_type:,
       taxpayer_individual_first_name: 'Filomena',
       taxpayer_individual_last_name: 'Keebler',
       taxpayer_contact_address: taxpayer_address,
@@ -21,7 +21,7 @@ RSpec.describe TaxTribs::GlimrNewCase do
       taxpayer_organisation_name: 'Company Name',
       taxpayer_organisation_fao: 'Destany Fritsch',
       files_collection_ref: 'd29210a8-f2fe-4d6f-ac96-ea4f9fd66687',
-      has_representative: has_representative
+      has_representative:
     }
   end
 
@@ -155,7 +155,7 @@ RSpec.describe TaxTribs::GlimrNewCase do
       let(:case_attributes) do
         super().merge({
           has_representative: HasRepresentative::YES,
-          representative_type: representative_type,
+          representative_type:,
           representative_individual_first_name: 'Kraig',
           representative_individual_last_name: 'Walsh',
           representative_organisation_name: 'Cartwright-Rau',

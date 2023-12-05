@@ -25,7 +25,6 @@ Rails.application.config.assets.precompile += ['govuk-frontend/govuk/assets/font
 Rails.application.config.assets.precompile += ['govuk-frontend/govuk/assets/fonts/light-94a07e06a1-v2.woff2']
 Rails.application.config.assets.precompile += ['govuk-frontend/govuk/assets/fonts/light-f591b13f7d-v2.woff']
 
-
 Rails.application.config.assets.configure do |env|
   env.context_class.class_eval do
     include JsAssetsHelper
