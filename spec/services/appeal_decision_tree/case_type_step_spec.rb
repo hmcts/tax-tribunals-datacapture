@@ -1,7 +1,8 @@
 require 'spec_helper'
 
 RSpec.describe AppealDecisionTree, '#destination' do
-  let(:tribunal_case)     { instance_double(TribunalCase, case_type: case_type, user_id: user_id, navigation_stack: navigation_stack, language: language) }
+  let(:tribunal_case)     {
+ instance_double(TribunalCase, case_type:, user_id:, navigation_stack:, language:) }
   let(:step_params)       { {case_type: 'anything'} }
   let(:next_step)         { nil }
   let(:case_type)         { nil }
@@ -11,7 +12,7 @@ RSpec.describe AppealDecisionTree, '#destination' do
   let(:language)          { 'en' }
 
 
-  subject { described_class.new(tribunal_case: tribunal_case, step_params: step_params, next_step: next_step, as: as) }
+  subject { described_class.new(tribunal_case:, step_params:, next_step:, as:) }
 
   context 'for a `show more` option' do
     let(:step_params) { {case_type: '_show_more'} }

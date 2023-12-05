@@ -47,7 +47,7 @@ RSpec.describe Steps::Details::EuExitController, type: :controller do
       end
 
       context 'when the form saves successfully' do
-        let(:expected_params) { { 'steps_shared_eu_exit_form' => { 'eu_exit': 'true' } } }
+        let(:expected_params) { { 'steps_shared_eu_exit_form' => { eu_exit: 'true' } } }
 
         it 'redirects to the outcome page' do
           allow(form_object).to receive(:save).and_return true
@@ -58,7 +58,7 @@ RSpec.describe Steps::Details::EuExitController, type: :controller do
       end
 
       context 'when no option is selected and the form is submitted' do
-        let(:expected_params) { { 'steps_shared_eu_exit_form' => { 'eu_exit': nil } } }
+        let(:expected_params) { { 'steps_shared_eu_exit_form' => { eu_exit: nil } } }
 
         it 'redirects to the outcome page' do
           allow(form_object).to receive(:save).and_return true

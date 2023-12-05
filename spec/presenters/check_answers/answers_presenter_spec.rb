@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe CheckAnswers::AnswersPresenter do
-  let(:tribunal_case) { instance_double(TribunalCase, case_reference: case_reference) }
+  let(:tribunal_case) { instance_double(TribunalCase, case_reference:) }
   subject { described_class.new(tribunal_case) }
 
   describe '#case_reference' do

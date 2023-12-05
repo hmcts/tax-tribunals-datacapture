@@ -1,5 +1,5 @@
 class TaxpayerTypePage < BasePage
-  set_url '/' + ENV['TEST_LOCALE'] + '/steps/details/taxpayer_type'
+  set_url "/#{ENV.fetch('TEST_LOCALE', nil)}/steps/details/taxpayer_type"
 
   section :content, '#main-content' do
     element :closure_header, 'h1', text: I18n.t('steps.details.taxpayer_type.edit.heading.application_test')

@@ -7,7 +7,7 @@ module CheckAnswers
     let(:file) { nil }
     let(:change_path) { nil }
 
-    subject { described_class.new(question, value, file, change_path: change_path) }
+    subject { described_class.new(question, value, file, change_path:) }
 
     describe '#show?' do
       context 'when no value or file is given' do

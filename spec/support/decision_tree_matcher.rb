@@ -2,7 +2,7 @@ require 'rspec/expectations'
 
 RSpec::Matchers.define :have_destination do |controller, action|
   match do |decision_tree|
-    decision_tree.destination == { controller: controller, action: action }
+    decision_tree.destination == { controller:, action: }
   end
 
   failure_message do |decision_tree|

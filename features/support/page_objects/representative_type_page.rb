@@ -1,5 +1,5 @@
 class RepresentativeTypePage < BasePage
-  set_url '/' + ENV['TEST_LOCALE'] + '/steps/details/representative_type'
+  set_url "/#{ENV.fetch('TEST_LOCALE', nil)}/steps/details/representative_type"
 
   section :content, '#main-content' do
     element :header, 'h1', text: I18n.t('helpers.fieldset.steps_details_representative_type_form.representative_type_html')
@@ -25,5 +25,4 @@ class RepresentativeTypePage < BasePage
     content.other.click
     continue_or_save_continue
   end
-
 end

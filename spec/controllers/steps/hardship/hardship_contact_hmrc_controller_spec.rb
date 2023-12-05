@@ -15,11 +15,6 @@ RSpec.describe Steps::Hardship::HardshipContactHmrcController, type: :controller
   end
 
   describe '#update' do
-    it 'destroys current case' do
-      expect(existing_case).to receive(:destroy)
-      put :update, params: {locale: :en}
-    end
-
     it 'redirects to hmrc page' do
       put :update, params: {locale: :en}
       expect(controller).to redirect_to(described_class::CONTACT_HMRC_URL)

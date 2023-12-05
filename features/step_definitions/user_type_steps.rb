@@ -20,7 +20,6 @@ When("I submit that I am not the tax payer making the application") do
   end
 end
 
-
 Then("I see the representative professional page") do
   expect(representative_professional_page.content).to have_representatives_header
 end

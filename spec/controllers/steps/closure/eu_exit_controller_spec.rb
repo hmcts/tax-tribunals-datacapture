@@ -47,25 +47,23 @@ RSpec.describe Steps::Closure::EuExitController, type: :controller do
       end
 
       context 'when the form saves successfully' do
-        let(:expected_params) { { 'steps_shared_eu_exit_form' => { 'eu_exit': 'true' } } }
+        let(:expected_params) { { 'steps_shared_eu_exit_form' => { eu_exit: 'true' } } }
 
         it 'redirects to the support document page' do
           allow(form_object).to receive(:save).and_return true
           local_put :update, params: expected_params, session: { tribunal_case_id: existing_case.id }
           expect(response).to redirect_to(edit_steps_closure_need_support_path)
         end
-
       end
 
       context 'when no option is selected and the form is submitted' do
-        let(:expected_params) { { 'steps_shared_eu_exit_form' => { 'eu_exit': nil } } }
+        let(:expected_params) { { 'steps_shared_eu_exit_form' => { eu_exit: nil } } }
 
         it 'redirects to the support document page' do
           allow(form_object).to receive(:save).and_return true
           local_put :update, params: expected_params, session: { tribunal_case_id: existing_case.id }
           expect(response).to redirect_to(edit_steps_closure_need_support_path)
         end
-
       end
     end
   end

@@ -7,7 +7,7 @@ module CheckAnswers
     let(:raw) { nil }
     let(:change_path) { nil }
 
-    subject { described_class.new(question, value, raw: raw, change_path: change_path) }
+    subject { described_class.new(question, value, raw:, change_path:) }
 
     describe '#show?' do
       it 'returns true' do

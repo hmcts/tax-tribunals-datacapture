@@ -2,15 +2,15 @@ require 'spec_helper'
 
 RSpec.describe Steps::Shared::WhatSupportForm do
   let(:arguments) { {
-    tribunal_case: tribunal_case,
-    language_interpreter: language_interpreter,
-    language_interpreter_details: language_interpreter_details,
-    sign_language_interpreter: sign_language_interpreter,
-    sign_language_interpreter_details: sign_language_interpreter_details,
+    tribunal_case:,
+    language_interpreter:,
+    language_interpreter_details:,
+    sign_language_interpreter:,
+    sign_language_interpreter_details:,
     hearing_loop: nil,
-    disabled_access: disabled_access,
-    other_support: other_support,
-    other_support_details: other_support_details,
+    disabled_access:,
+    other_support:,
+    other_support_details:,
   } }
 
   let(:tribunal_case) { instance_double(TribunalCase) }
@@ -59,7 +59,7 @@ RSpec.describe Steps::Shared::WhatSupportForm do
       context 'when no answers are checked' do
         it 'should display the what support validation message' do
           subject.valid?
-          subject.errors[:what_support].should include("Select what support you need at the hearing")
+          expect(subject.errors[:what_support]).to include("Select what support you need at the hearing")
         end
       end
 

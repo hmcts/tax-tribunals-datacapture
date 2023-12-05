@@ -142,7 +142,6 @@ Rails.application.routes.draw do
       end
     end
 
-
     delete '/session', to: 'sessions#destroy', as: 'session'
 
     scope 'uploader/:document_key' do
@@ -185,10 +184,12 @@ Rails.application.routes.draw do
     Sidekiq::Web.use Rack::Auth::Basic do |username, password|
       ActiveSupport::SecurityUtils.secure_compare(
         username,
-        ENV["ADMIN_USERNAME"]) &
+        ENV.fetch("ADMIN_USERNAME", nil)
+      ) &
         ActiveSupport::SecurityUtils.secure_compare(
           Digest::SHA256.hexdigest(password),
-          ENV["ADMIN_PASSWORD"])
+          ENV.fetch("ADMIN_PASSWORD", nil)
+        )
     end
     mount Sidekiq::Web => "/sidekiq"
   end

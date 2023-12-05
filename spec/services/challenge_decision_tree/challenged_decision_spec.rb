@@ -4,11 +4,11 @@ RSpec.describe ChallengeDecisionTree, '#destination' do
   let(:step_params)   { double('Step') }
   let(:next_step)     { nil }
   let(:step_params)   { {challenged_decision: 'anything'} }
-  let(:tribunal_case) { instance_double(TribunalCase, case_type: case_type, challenged_decision: challenged_decision) }
+  let(:tribunal_case) { instance_double(TribunalCase, case_type:, challenged_decision:) }
 
   let(:challenged_decision) { nil }
 
-  subject { described_class.new(tribunal_case: tribunal_case, step_params: step_params, next_step: next_step) }
+  subject { described_class.new(tribunal_case:, step_params:, next_step:) }
 
   context 'for a direct tax' do
     let(:case_type) { CaseType.new(:dummy, direct_tax: true) }

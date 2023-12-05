@@ -39,7 +39,7 @@ class Admin::GlimrGenerationController < AdminController
   end
 
   def queue_creation(num)
-    delay = 20.seconds
+    delay = 25.seconds
     batch = Sidekiq::Batch.new
     batch.description = "Glimr batch @ #{Time.now}, n = #{num}"
     batch.on(:complete, Admin::GenerateGlimrRecordsComplete, to: params[:email])

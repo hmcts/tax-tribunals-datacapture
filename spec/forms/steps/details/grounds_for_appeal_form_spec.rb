@@ -4,7 +4,7 @@ include ActionDispatch::TestProcess
 
 RSpec.describe Steps::Details::GroundsForAppealForm do
   let(:arguments) { {
-    tribunal_case: tribunal_case,
+    tribunal_case:,
     grounds_for_appeal: text_attribute_value,
     grounds_for_appeal_document: document_attribute_value,
   } }

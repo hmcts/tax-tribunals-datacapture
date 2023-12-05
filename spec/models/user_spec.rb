@@ -51,7 +51,8 @@ RSpec.describe User, type: :model do
 
 
     context 'invalid' do
-      list = ["testcom", "test@", "test@test", '*test@test.com','(test@test.com',')test@test.com','!test@test.com','&test@test.com','/test@test.com',';test@test.com']
+      list = ["testcom", "test@", "test@test", '*test@test.com','(test@test.com',')test@test.com','!test@test.com','&test@test.com',
+              '/test@test.com',';test@test.com']
 
       list.each do |email|
         it "#{email}" do
@@ -93,7 +94,7 @@ RSpec.describe User, type: :model do
   end
 
   describe 'password' do
-    let(:user) { User.new(password: password) }
+    let(:user) { User.new(password:) }
     before do
       user.valid?
     end
@@ -108,12 +109,14 @@ RSpec.describe User, type: :model do
     I18n.available_locales.each do |locale|
       context "with #{locale.upcase} language" do
         context "must be 8 characters long" do
-          let(:password) { 'a'*7 }
+          let(:password) { 'a' * 7 }
 
           it 'so does not accept short passwords' do
             expect(user.errors[:password]).to include(
               I18n.t(
-'activerecord.errors.models.user.attributes.password.too_short'))
+                'activerecord.errors.models.user.attributes.password.too_short'
+              )
+            )
           end
         end
 
@@ -126,11 +129,12 @@ RSpec.describe User, type: :model do
         end
 
         context "does not accept common passwords" do
-          %w"airborne elephant snowball 55555555".each do |pass|
+          %w[airborne elephant snowball 55555555].each do |pass|
             let(:password) { pass }
             it "such as #{pass}" do
               expect(user.errors[:password]).to include(
-                I18n.t('errors.messages.password.password_strength'))
+                I18n.t('errors.messages.password.password_strength')
+              )
             end
           end
         end
@@ -141,7 +145,8 @@ RSpec.describe User, type: :model do
             user.email = 'test@example.com'
             user.valid?
             expect(user.errors[:password]).to include(
-              I18n.t('errors.messages.password.password_strength'))
+              I18n.t('errors.messages.password.password_strength')
+            )
           end
         end
       end
@@ -151,7 +156,7 @@ RSpec.describe User, type: :model do
   describe '::Signin class' do
     let(:email) { 'foo@bar.com' }
     let(:password) { 'XIY19@fdb' }
-    let(:user_signin) { User::Signin.new(email: email, password: password) }
+    let(:user_signin) { User::Signin.new(email:, password:) }
     before { user_signin.valid? }
 
     context 'validates email format' do

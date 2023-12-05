@@ -7,7 +7,7 @@ class Admin::GenerateGlimrRecordJob
   include Sidekiq::Job
 
   def perform(payload)
-    logger.info "Creating GLiMR Records with args #{payload.symbolize_keys}"
+    logger.info "Creating GLiMR Records with args #{payload.symbolize_keys}" if Rails.env.production?
     res = GlimrDirectApiClient::RegisterNewCase.call(payload.symbolize_keys)
     logger.info res.response_body
 
