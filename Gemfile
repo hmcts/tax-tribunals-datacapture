@@ -86,8 +86,7 @@ group :test do
   gem 'apparition', '0.6.0'
   gem 'capybara', '3.35.3'
   gem 'capybara-screenshot' , '1.0.25'
-  gem 'chromedriver-helper', '~> 2.1'
-  gem 'cucumber-rails', '~> 1.5', require: false
+  gem 'cucumber-rails', require: false
   gem 'database_cleaner-active_record'
   gem 'geckodriver-helper', '~> 0.23.0'
   gem 'factory_bot_rails', '6.1.0'
@@ -95,11 +94,10 @@ group :test do
   gem 'poltergeist', '~> 1.18', '>= 1.18.1'
   gem 'rails-controller-testing', '1.0.5'
   gem 'rspec_junit_formatter', '~> 0.4.1'
-  gem 'selenium-webdriver', '~> 3.142'
+  gem 'selenium-webdriver', '~> 4.4'
   gem 'simplecov', '0.21.2', require: false
   gem 'simplecov-rcov', '0.2.3'
   gem 'site_prism', '3.7.1'
-  gem 'webdrivers', '~> 4.4'
   gem 'webmock', '3.12.2', require: false
   gem 'rspec-sidekiq', '3.1.0'
 end
