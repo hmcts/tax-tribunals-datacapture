@@ -634,8 +634,8 @@ DEPENDENCIES
   sassc-rails (~> 2.1.2)
   select2-rails (= 4.0.13)
   selenium-webdriver
-  sentry-rails (~> 5.8)
-  sentry-ruby (~> 5.8)
+  sentry-rails
+  sentry-ruby
   sidekiq (= 6.5.12)
   sidekiq-batch (= 0.1.9)
   sidekiq_alive (= 2.3.1)
