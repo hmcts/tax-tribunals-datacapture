@@ -76,7 +76,7 @@ group :development, :test do
   gem 'bundler-audit'
   gem 'pry-byebug'
   gem 'timecop', '0.9.8'
-  gem 'rspec-rails', '6.0.3'
+  gem 'rspec-rails', '6.1.0'
   gem 'rubocop', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rspec', require: false
