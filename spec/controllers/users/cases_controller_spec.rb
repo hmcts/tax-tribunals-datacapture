@@ -133,7 +133,7 @@ RSpec.describe Users::CasesController, type: :controller do
     end
 
     context 'when user is logged in' do
-      let!(:tribunal_case) { TribunalCase.create(intent: intent, case_type: case_type, closure_case_type: closure_case_type) }
+      let!(:tribunal_case) { TribunalCase.create(intent:, case_type:, closure_case_type:) }
 
       let(:intent) { nil }
       let(:case_type) { nil }

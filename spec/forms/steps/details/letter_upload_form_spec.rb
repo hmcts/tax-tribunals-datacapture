@@ -4,10 +4,10 @@ include ActionDispatch::TestProcess
 
 RSpec.describe Steps::Details::LetterUploadForm do
   let(:arguments) { {
-    tribunal_case: tribunal_case,
-    supporting_letter_document: supporting_letter_document,
-    having_problems_uploading: having_problems_uploading,
-    having_problems_uploading_explanation: having_problems_uploading_explanation
+    tribunal_case:,
+    supporting_letter_document:,
+    having_problems_uploading:,
+    having_problems_uploading_explanation:
   } }
 
   let(:tribunal_case) { instance_double(TribunalCase, files_collection_ref: 'ABC123') }
@@ -77,13 +77,13 @@ RSpec.describe Steps::Details::LetterUploadForm do
 
         context 'document upload successful' do
           it 'uploads the file' do
-            expect(Uploader).to receive(:add_file).
-              with(hash_including(document_key: :supporting_letter)).
-              and_return(double(name: '123/foo/bar.png'))
+            expect(Uploader).to receive(:add_file)
+              .with(hash_including(document_key: :supporting_letter))
+              .and_return(double(name: '123/foo/bar.png'))
 
             expect(tribunal_case).to receive(:update).with(
-              having_problems_uploading: having_problems_uploading,
-              having_problems_uploading_explanation: having_problems_uploading_explanation
+              having_problems_uploading:,
+              having_problems_uploading_explanation:
             ).and_return(true)
 
             expect(subject.save).to be(true)

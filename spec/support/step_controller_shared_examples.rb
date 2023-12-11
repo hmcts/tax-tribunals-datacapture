@@ -93,7 +93,7 @@ RSpec.shared_examples 'a starting point step controller' do |options|
 
       it 'initialize the case with the appropriate intent' do
         expect(TribunalCase).to receive(:create).with(
-          intent: intent
+          intent:
         ).at_least(:once).and_return(double.as_null_object)
 
         local_get :edit

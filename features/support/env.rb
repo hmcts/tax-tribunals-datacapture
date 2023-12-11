@@ -11,7 +11,7 @@ require 'cucumber/rails'
 require 'rest-client'
 require 'selenium-webdriver'
 ENV['TEST_LOCALE'] = "en" if ENV['TEST_LOCALE'] != "cy"
-require_relative './page_objects/base_page'
+require_relative 'page_objects/base_page'
 
 Dir[File.dirname(__FILE__) + '/page_objects/**/*.rb'].each { |f| require f }
 
@@ -39,12 +39,12 @@ Dir[File.dirname(__FILE__) + '/page_objects/**/*.rb'].each { |f| require f }
 
 Capybara.register_driver :selenium do |app|
   capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
-    chromeOptions: { args: %w(headless disable-gpu) }
+    chromeOptions: { args: %w[headless disable-gpu] }
   )
 
   Capybara::Selenium::Driver.new app,
-    browser: :chrome,
-    desired_capabilities: capabilities
+                                 browser: :chrome,
+                                 desired_capabilities: capabilities
 end
 
 Capybara.javascript_driver = :selenium

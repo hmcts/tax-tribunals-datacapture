@@ -1,11 +1,11 @@
 Given("I navigate to the has representative page") do
-navigate_to_representative_page
+  navigate_to_representative_page
 end
 
 When("I select nothing") do
   RSpec::Mocks.with_temporary_scope do
     stub_uploader
-  continue_or_save_continue
+    continue_or_save_continue
   end
 end
 
@@ -33,13 +33,12 @@ Then("I am taken to the representative type page") do
   expect(representative_type_page.content).to have_header
 end
 
-
 Then("I am shown the no representative selection error") do
   expect(representative_type_page.content.error).to have_error_heading
 end
 
 When("I select that the representative is an individual") do
-representative_type_page.submit_individual
+  representative_type_page.submit_individual
 end
 
 Then(/^I am taken to the representative details \(individual\) page$/) do
@@ -51,12 +50,11 @@ Then("I will see the pages error messages") do
 end
 
 When("I fill in the details and progress to the representative copy page") do
-representative_details_page.submit_representative_details_with_email
-#(ERROR NEED TO SEE IF ERROR MESSAGE IS REQ _ TO UPDATE)
-#expect(representative_details_page.content).to have_input_error
-#representative_details_page.add_email_and_submit
-expect(send_representative_copy_page.content).to have_header
-
+  representative_details_page.submit_representative_details_with_email
+  # (ERROR NEED TO SEE IF ERROR MESSAGE IS REQ _ TO UPDATE)
+  # expect(representative_details_page.content).to have_input_error
+  # representative_details_page.add_email_and_submit
+  expect(send_representative_copy_page.content).to have_header
 end
 
 When("I select nothing and see the error messages") do
@@ -91,7 +89,6 @@ Then("I will see the information provided") do
   expect(has_representative_page.content).to have_dropdown_content
 end
 
-
 When("I advance to the representative professional status page") do
   submit_yes
   expect(representative_professional_page.content).to have_individuals_header
@@ -100,8 +97,8 @@ end
 And("I select that the representative is a tax agent") do
   RSpec::Mocks.with_temporary_scope do
     stub_uploader
-  representative_professional_page.submit_tax_agent
-end
+    representative_professional_page.submit_tax_agent
+  end
 end
 
 Then("I am taken to the authorise representative page") do
@@ -131,30 +128,30 @@ end
 When("I navigate to the authorise representative page") do
   RSpec::Mocks.with_temporary_scope do
     stub_uploader
-  submit_yes
-  expect(representative_professional_page.content).to have_individuals_header
-  representative_professional_page.submit_tax_agent
-  expect(representative_approval_page.content).to have_header
+    submit_yes
+    expect(representative_professional_page.content).to have_individuals_header
+    representative_professional_page.submit_tax_agent
+    expect(representative_approval_page.content).to have_header
   end
-  end
+end
 
 And("I upload a file and continue to the representative type page") do
   RSpec::Mocks.with_temporary_scope do
     stub_uploader
-  identifier  = 'steps-details-representative-approval-form-representative-approval-document-field'
-  filename    = 'features/support/sample_file/to_upload.jpg'
-  representative_approval_page.attach_file(identifier, filename)
-  continue_or_save_continue
-    end
+    identifier  = 'steps-details-representative-approval-form-representative-approval-document-field'
+    filename    = 'features/support/sample_file/to_upload.jpg'
+    representative_approval_page.attach_file(identifier, filename)
+    continue_or_save_continue
+  end
 end
 
 And("submit that my representation is other") do
   RSpec::Mocks.with_temporary_scope do
     stub_uploader
-  expect(representative_type_page.content).to have_header
-  representative_type_page.submit_other
-end
+    expect(representative_type_page.content).to have_header
+    representative_type_page.submit_other
   end
+end
 
 Then(/^I am taken to the representative details page \(other\)$/) do
   expect(representative_details_page.content).to have_header

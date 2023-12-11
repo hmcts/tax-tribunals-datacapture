@@ -1,12 +1,13 @@
 class SendRepresentativeCopyPage < BasePage
-  set_url '/' + ENV['TEST_LOCALE'] + '/steps/details/send_representative_copy'
+  set_url "/#{ENV.fetch('TEST_LOCALE', nil)}/steps/details/send_representative_copy"
 
   section :content, '#main-content' do
     element :header, 'h1', text: I18n.t('check_answers.send_representative_copy.question')
     element :email_option, 'label', text: I18n.t('dictionary.CONTACT_PREFERENCES.email')
     element :email_field, "input[name='steps_details_send_application_details_form[email_address]']"
     element :phone_field, "input[name='steps_details_send_application_details_form[phone_number]']"
-    element :not_matching_error_message, 'a', text: I18n.t('activemodel.errors.models.steps/details/send_application_details_form.attributes.email_address.different_representative')
+    element :not_matching_error_message, 'a',
+            text: I18n.t('activemodel.errors.models.steps/details/send_application_details_form.attributes.email_address.different_representative')
     element :both_option, 'label', text: I18n.t('dictionary.CONTACT_PREFERENCES.both')
     element :text_option, 'label', text: I18n.t('dictionary.CONTACT_PREFERENCES.text')
     section :error, '.govuk-error-summary' do

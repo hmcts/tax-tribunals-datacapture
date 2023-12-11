@@ -6,11 +6,11 @@ RSpec.describe PortfolioCasePresenter do
   let(:tribunal_case) { instance_double(TribunalCase, tribunal_case_attributes) }
   let(:tribunal_case_attributes) {
     {
-      taxpayer_type: taxpayer_type,
+      taxpayer_type:,
       taxpayer_individual_first_name: 'John',
       taxpayer_individual_last_name: 'Harrison',
       taxpayer_organisation_fao: 'TP Org Fao',
-      created_at: created_at
+      created_at:
     }
   }
   let(:taxpayer_type) { nil }

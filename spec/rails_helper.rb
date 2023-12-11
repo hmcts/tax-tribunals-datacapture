@@ -6,14 +6,14 @@ require 'rspec/rails'
 require_relative '../spec/support/view_spec_helpers'
 require_relative '../spec/helpers/authentication_helpers_spec'
 require './spec/support/email_validation_helpers'
-require_relative '../spec/support/integration.rb'
+require_relative '../spec/support/integration'
 
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec::Expectations.configuration.on_potential_false_positives = :nothing
 
 RSpec.configure do |config|
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  config.fixture_path = "#{Rails.root}/spec/fixtures"
 
   config.use_transactional_fixtures = true
 

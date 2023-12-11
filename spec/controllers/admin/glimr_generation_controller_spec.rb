@@ -7,10 +7,10 @@ RSpec.describe Admin::GlimrGenerationController, type: :controller do
       '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08'
     )
     allow(ENV).to receive(:fetch).with('GLIMR_API_URL',
-      'https://glimr-api.taxtribunals.dsd.io/Live_API/api/tdsapi').and_return(
-      'http://glimr'
-    )
-    allow(ENV).to receive(:fetch).with('GLIMR_REGISTER_NEW_CASE_TIMEOUT_SECONDS', 32).and_return(32)    
+                                       'https://glimr-api.taxtribunals.dsd.io/Live_API/api/tdsapi').and_return(
+                                         'http://glimr'
+                                       )
+    allow(ENV).to receive(:fetch).with('GLIMR_REGISTER_NEW_CASE_TIMEOUT_SECONDS', 32).and_return(32)
   end
 
   describe '#new' do

@@ -6,6 +6,10 @@ RSpec.describe GlimrDirectApiClient::RegisterNewCase do
   let(:rest_client) { double.as_null_object }
   let(:api) { described_class.new(params) }
 
+  before do
+    allow(ENV).to receive(:fetch).with('GLIMR_API_DEBUG', '').and_return('false')
+  end
+
   describe '#endpoint' do
     specify {
       # Quick-n-dirty mutant kill.
@@ -40,6 +44,7 @@ RSpec.describe GlimrDirectApiClient::RegisterNewCase do
       expect(ENV).to receive(:fetch).with('GLIMR_API_URL').and_return('https://glimr-api-emulator.herokuapp.com/Live_API/api/tdsapi/')
       expect(ENV).to receive(:fetch).with('GLIMR_AUTHORIZATION_KEY', '').and_return('key')
       expect(ENV).to receive(:fetch).with('GLIMR_REGISTER_NEW_CASE_TIMEOUT_SECONDS', 32).and_return('32')
+      allow(ENV).to receive(:fetch).with('GLIMR_API_DEBUG', '').and_return('false')
       stub_request(:post, /glimr/).to_return(status: 200, body: {response: 'response'}.to_json)
       expect { described_class.call(valid_params) }.not_to raise_error
     end
@@ -53,6 +58,7 @@ RSpec.describe GlimrDirectApiClient::RegisterNewCase do
       expect(ENV).to receive(:fetch).with('GLIMR_API_URL').and_return('https://glimr-api-emulator.herokuapp.com/Live_API/api/tdsapi/')
       expect(ENV).to receive(:fetch).with('GLIMR_AUTHORIZATION_KEY', '').and_return('key')
       expect(ENV).to receive(:fetch).with('GLIMR_REGISTER_NEW_CASE_TIMEOUT_SECONDS', 32).and_return('32')
+      allow(ENV).to receive(:fetch).with('GLIMR_API_DEBUG', '').and_return('false')
       stub_request(:post, /glimr/).to_return(status: 200, body: body.to_json)
     end
 

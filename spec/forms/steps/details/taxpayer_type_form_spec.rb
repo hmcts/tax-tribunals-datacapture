@@ -2,8 +2,8 @@ require 'spec_helper'
 
 RSpec.describe Steps::Details::TaxpayerTypeForm do
   let(:arguments) { {
-    tribunal_case: tribunal_case,
-    taxpayer_type: taxpayer_type
+    tribunal_case:,
+    taxpayer_type:
   } }
   let(:tribunal_case) { instance_double(TribunalCase, taxpayer_type: nil) }
   let(:taxpayer_type) { nil }
