@@ -6,7 +6,7 @@ class SelectLanguagePage < BasePage
     element :english_only_checkbox, 'label', text: I18n.t('dictionary.SUPPORTED_LANGUAGES.english')
     element :english_welsh_checkbox, 'label', text: I18n.t('dictionary.SUPPORTED_LANGUAGES.english_welsh')
     section :error, '.govuk-error-summary' do
-      element :error_heading, '#error-summary-title', text: I18n.t('errors.error_summary.heading')
+      element :error_heading, '.govuk-error-summary__title', text: I18n.t('errors.error_summary.heading')
     end
   end
 
