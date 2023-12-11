@@ -6,7 +6,7 @@ module CheckAnswers
     let(:documents) { [] }
     let(:change_path) { nil }
 
-    subject { described_class.new(question, documents, change_path: change_path) }
+    subject { described_class.new(question, documents, change_path:) }
 
     describe '#to_partial_path' do
       it 'returns the correct partial path' do

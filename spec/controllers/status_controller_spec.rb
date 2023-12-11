@@ -12,7 +12,6 @@ RSpec.describe TaxTribs::StatusController do
     }.to_json
   end
 
-
   let(:glimr_status) do
     {
       glimr_status: 'ok'
@@ -49,7 +48,7 @@ RSpec.describe TaxTribs::StatusController do
       expect(ActiveRecord::Base).to receive(:connection).and_return(double)
       allow_any_instance_of(TaxTribs::Status).to receive(:version).and_return('ABC123')
     end
-    
+
     specify do
       get :index
       expect(response.status).to eq(200)

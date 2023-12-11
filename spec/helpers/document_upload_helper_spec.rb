@@ -20,7 +20,7 @@ RSpec.describe DocumentUploadHelper do
         expect(helper).to receive(:render).with(
           partial: 'steps/shared/document_upload/document_upload_field',
           locals: {
-            form:       form,
+            form:,
             field_name: :some_step_document,
             label_text: 'A file',
             paragraph_text: 'Some text'

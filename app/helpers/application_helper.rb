@@ -1,6 +1,6 @@
 module ApplicationHelper
   # Render a form_for tag pointing to the update action of the current controller
-  def step_form(record, options = {}, &block)
+  def step_form(record, options = {}, &)
     opts = {
       url: { controller: controller.controller_path, action: :update },
       method: :put
@@ -13,7 +13,7 @@ module ApplicationHelper
       { class: old_value.values | new_value.values }
     end
 
-    form_for record, opts, &block
+    form_for(record, opts, &)
   end
 
   # Render a back link pointing to the user's previous step
@@ -62,7 +62,7 @@ module ApplicationHelper
   end
 
   def analytics_tracking_id
-    ENV['GTM_TRACKING_ID'] if Cookie::SettingForm.new(request:).accepted?
+    ENV.fetch('GTM_TRACKING_ID', nil) if Cookie::SettingForm.new(request:).accepted?
   end
 
   def login_or_portfolio_path

@@ -44,9 +44,9 @@ RSpec.shared_examples 'common scenarios for a document attachable step form' do
               attribute_name => nil
           ).and_return(true)
 
-          expect(Uploader).to receive(:add_file).
-            with(hash_including(document_key: attribute_name)).
-            and_return(double(name: '123/foo/bar.png'))
+          expect(Uploader).to receive(:add_file)
+            .with(hash_including(document_key: attribute_name))
+            .and_return(double(name: '123/foo/bar.png'))
 
           expect(subject.save).to be(true)
         end
@@ -71,8 +71,8 @@ RSpec.shared_examples 'common scenarios for a document attachable step form' do
             attribute_name => 'I disagree with HMRC.'
         ).and_return(true)
 
-        expect(Uploader).to receive(:add_file).
-          and_return(double(name: '123/foo/bar.png'))
+        expect(Uploader).to receive(:add_file)
+          .and_return(double(name: '123/foo/bar.png'))
 
         expect(subject.save).to be(true)
       end
@@ -113,7 +113,7 @@ RSpec.shared_examples 'a document attachable step form' do |options|
           expect(error_object).to be_an_instance_of(ActiveModel::Error)
           expect(error_object.attribute).to eq(:content_type)
         end
-        
+
         expect(subject).to_not be_valid
       end
     end

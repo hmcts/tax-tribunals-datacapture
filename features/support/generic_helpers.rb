@@ -183,7 +183,7 @@ def save_return_page
 end
 
 def select_language_page
-  @select_language ||= SelectLanguagePage.new
+  @select_language_page ||= SelectLanguagePage.new
 end
 
 def save_confirmation_page

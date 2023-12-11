@@ -25,7 +25,6 @@ RSpec.describe TribunalCase, type: :model do
         subject.send(:sanitize)
       end
     end
-
   end
 
   describe '#mapping_code' do
@@ -78,7 +77,7 @@ RSpec.describe TribunalCase, type: :model do
 
   describe '#taxpayer_is_organisation?' do
     let(:taxpayer_type) { OpenStruct.new(organisation?: true, value: :anything) }
-    let(:attributes) { { taxpayer_type: taxpayer_type } }
+    let(:attributes) { { taxpayer_type: } }
 
     it 'queries the taxpayer_type' do
       expect(subject.taxpayer_is_organisation?).to eq(true)
@@ -87,7 +86,7 @@ RSpec.describe TribunalCase, type: :model do
 
   describe '#representative_is_organisation?' do
     let(:representative_type) { OpenStruct.new(organisation?: true, value: :anything) }
-    let(:attributes) { { representative_type: representative_type } }
+    let(:attributes) { { representative_type: } }
 
     it 'queries the representative_type' do
       expect(subject.representative_is_organisation?).to eq(true)
@@ -133,7 +132,7 @@ RSpec.describe TribunalCase, type: :model do
   describe '#appeal_or_application' do
     context 'Intent::CLOSE_ENQUIRY' do
       let(:intent) { Intent.new(:close_enquiry) }
-      let(:attributes) { { intent: intent } }
+      let(:attributes) { { intent: } }
 
       specify 'returns :application' do
         expect(subject.appeal_or_application).to eq(:application)
@@ -142,7 +141,7 @@ RSpec.describe TribunalCase, type: :model do
 
     context 'Intent::TAX_APPEAL and no case type' do
       let(:intent) { Intent.new(:tax_appeal) }
-      let(:attributes) { { intent: intent } }
+      let(:attributes) { { intent: } }
 
       specify do
         expect(subject.appeal_or_application).to eq(:appeal)
@@ -159,7 +158,7 @@ RSpec.describe TribunalCase, type: :model do
 
     context 'delegates to CaseType' do
       let(:case_type) { CaseType.new(:foo, appeal_or_application: :bar) }
-      let(:attributes) { { case_type: case_type } }
+      let(:attributes) { { case_type: } }
 
       specify do
         expect(subject.appeal_or_application).to eq(:bar)

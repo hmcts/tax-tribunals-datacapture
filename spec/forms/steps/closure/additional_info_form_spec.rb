@@ -2,7 +2,7 @@ require 'spec_helper'
 
 RSpec.describe Steps::Closure::AdditionalInfoForm do
   let(:arguments) { {
-    tribunal_case: tribunal_case,
+    tribunal_case:,
     closure_additional_info: text_attribute_value,
     closure_additional_info_document: document_attribute_value,
   } }

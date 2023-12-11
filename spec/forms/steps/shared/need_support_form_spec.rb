@@ -2,8 +2,8 @@ require 'spec_helper'
 
 RSpec.describe Steps::Shared::NeedSupportForm do
   let(:arguments) { {
-    tribunal_case: tribunal_case,
-    need_support: need_support
+    tribunal_case:,
+    need_support:
   } }
   let(:tribunal_case) { instance_double(TribunalCase, need_support: nil) }
   let(:need_support) { nil }
