@@ -1,3 +1,5 @@
+require 'rspec/mocks'
+
 include RSpec::Mocks::ExampleMethods
 def closure
   [
@@ -183,7 +185,7 @@ def go_to_login_page
 end
 
 def create_user
-  @user = FactoryBot.create(:user)
+  @user = FactoryBot.create(:user, id: '2c510a62-4ac8-4fad-acfd-d2b50b1c14f0')
 end
 
 def login
