@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe TaxTribs::CaseCreator, focus: true do
+RSpec.describe TaxTribs::CaseCreator do
   let!(:tribunal_case) { TribunalCase.create }
   let(:current_time) { Time.zone.now }
 
