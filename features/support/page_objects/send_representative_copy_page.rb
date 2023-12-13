@@ -11,7 +11,7 @@ class SendRepresentativeCopyPage < BasePage
     element :both_option, 'label', text: I18n.t('dictionary.CONTACT_PREFERENCES.both')
     element :text_option, 'label', text: I18n.t('dictionary.CONTACT_PREFERENCES.text')
     section :error, '.govuk-error-summary' do
-      element :error_heading, '#error-summary-title', text: I18n.t('errors.error_summary.heading')
+      element :error_heading, '.govuk-error-summary__title', text: I18n.t('errors.error_summary.heading')
     end
   end
 

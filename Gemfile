@@ -20,8 +20,8 @@ gem 'rails',                           '~> 6.1.7.6'
 gem 'responders',                      '3.1.1'
 gem 'sanitize'
 gem 'sassc-rails',                     '~> 2.1.2'
-gem 'sentry-ruby',                     '~> 5.8'
-gem 'sentry-rails',                    '~> 5.8'
+gem 'sentry-ruby'
+gem 'sentry-rails'
 gem 'strong_password',                 '~> 0.0.8'
 gem 'uglifier',                        '4.2.0'
 gem 'virtus',                          '1.0.5'
@@ -76,7 +76,7 @@ group :development, :test do
   gem 'bundler-audit'
   gem 'pry-byebug'
   gem 'timecop', '0.9.8'
-  gem 'rspec-rails', '6.0.3'
+  gem 'rspec-rails'
   gem 'rubocop', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rspec', require: false
@@ -86,7 +86,7 @@ group :test do
   gem 'brakeman'
   gem 'apparition', '0.6.0'
   gem 'capybara'
-  gem 'cucumber-rails', '~> 2.0', require: false
+  gem 'cucumber-rails', '~> 3.0', require: false
   gem 'capybara-screenshot'
   gem 'database_cleaner-active_record'
   gem 'geckodriver-helper', '~> 0.24.0'
