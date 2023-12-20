@@ -9,7 +9,7 @@ class RepresentativeProfessionalPage < BasePage
     element :tax_agent_option, 'label',
             text: I18n.t('helpers.label.steps_details_representative_professional_status_form.representative_professional_status_options.tax_agent_html')
     section :error, '.govuk-error-summary' do
-      element :error_heading, '#error-summary-title', text: I18n.t('errors.error_summary.heading')
+      element :error_heading, '.govuk-error-summary__title', text: I18n.t('errors.error_summary.heading')
     end
   end
 

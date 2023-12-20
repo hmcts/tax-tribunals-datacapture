@@ -8,7 +8,7 @@ class AppealCaseTypeShowMorePage < BasePage
             text: I18n.t('helpers.label.steps_details_representative_professional_status_form.representative_professional_status_options.other_html')
     element :none_of_above_answer_box, '#steps-appeal-case-type-show-more-form-case-type-other-value-field'
     section :error, '.govuk-error-summary' do
-      element :answer_error_heading, '#error-summary-title', text: I18n.t('errors.error_summary.heading')
+      element :answer_error_heading, '.govuk-error-summary__title', text: I18n.t('errors.error_summary.heading')
       element :answer_error_link, 'a', text: I18n.t('errors.messages.blank')
     end
   end

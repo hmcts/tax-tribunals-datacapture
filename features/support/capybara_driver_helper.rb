@@ -13,7 +13,6 @@ Capybara.register_driver :apparition do |app|
   Capybara::Apparition::Driver.new(app, js_errors: false)
 end
 
-
 Capybara.register_driver :headless do |app|
   chrome_options = Selenium::WebDriver::Chrome::Options.new(args: ['headless', 'disable-gpu', 'window-size=1366,768'])
   Capybara::Selenium::Driver.new(app, browser: :chrome, options: chrome_options)
@@ -23,9 +22,9 @@ Capybara.register_driver :chrome do |app|
   Capybara::Selenium::Driver.new(app, browser: :chrome)
 end
 
-# Capybara::Screenshot.register_driver(:chrome) do |driver, path|
-#   driver.browser.save_screenshot(path)
-# end
+Capybara::Screenshot.register_driver(:chrome) do |driver, path|
+  driver.browser.save_screenshot(path)
+end
 
 Capybara.register_driver :firefox do |app|
   options = Selenium::WebDriver::Firefox::Options.new
