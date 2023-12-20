@@ -139,9 +139,6 @@ appeal_or_application_capitalised: 'Wibble').and_return('Yay!')
   end
 
   describe 'capture missing translations' do
-    before do
-      ActionView::Base.raise_on_missing_translations = true
-    end
 
     it 'should not raise an exception, and capture in Sentry the missing translation' do
       expect(Sentry).to receive(:capture_exception).with(an_instance_of(I18n::MissingTranslationData))
