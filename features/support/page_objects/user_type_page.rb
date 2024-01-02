@@ -1,5 +1,5 @@
 class UserTypePage < BasePage
-  set_url '/' + ENV['TEST_LOCALE'] + '/steps/details/user_type'
+  set_url "/#{ENV.fetch('TEST_LOCALE', nil)}/steps/details/user_type"
 
   section :content, '#main-content' do
     element :closure_header, 'h1', text: I18n.t('helpers.fieldset.steps_details_user_type_form.user_type_application')
@@ -7,7 +7,7 @@ class UserTypePage < BasePage
     element :representative_information_dropdown, 'span', text: I18n.t('steps.shared.representative_explanation.heading')
     element :representative_dropdown_content, 'p', text: "A representative can be a:"
     section :error, '.govuk-error-summary' do
-      element :error_heading, '#error-summary-title', text: I18n.t('errors.error_summary.heading')
+      element :error_heading, '.govuk-error-summary__title', text: I18n.t('errors.error_summary.heading')
     end
   end
 

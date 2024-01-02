@@ -15,23 +15,23 @@ RSpec.shared_examples 'a validated phone number' do |params|
 
   fields = default_fields + additional_fields + optional_fields
 
-  let(:fields_with_dummy_values) { fields.map {|k|
-      if k =~ /email/
-        [k, 'foo@email.com']
-      elsif k =~ /phone/
-        [k, '07772622355']
-      else
-        [k, 'dummy_value']
-      end
-  }.to_h }
-  let(:arguments) { fields_with_dummy_values.merge({ tribunal_case: tribunal_case }) }
+  let(:fields_with_dummy_values) { fields.to_h {|k|
+    if k =~ /email/
+      [k, 'foo@email.com']
+    elsif k =~ /phone/
+      [k, '07772622355']
+    else
+      [k, 'dummy_value']
+    end
+  } }
+  let(:arguments) { fields_with_dummy_values.merge({ tribunal_case: }) }
   let(:tribunal_case) { instance_double(TribunalCase).as_null_object }
 
   subject { described_class.new(arguments) }
 
   describe '#save' do
     context 'when the phone number is valid' do
-      let(:fields_with_dummy_values) { super().merge(:"#{entity_type}_contact_phone" => '(123) 456-7890') }
+      let(:fields_with_dummy_values) { super().merge("#{entity_type}_contact_phone": '(123) 456-7890') }
 
       it 'saves the record' do
         expect(tribunal_case).to receive(:update).with(fields_with_dummy_values).and_return(true)
@@ -40,7 +40,7 @@ RSpec.shared_examples 'a validated phone number' do |params|
     end
 
     context 'when the phone number contains invalid characters' do
-      let(:fields_with_dummy_values) { super().merge(:"#{entity_type}_contact_phone" => '123*!&/;') }
+      let(:fields_with_dummy_values) { super().merge("#{entity_type}_contact_phone": '123*!&/;') }
       before { allow(tribunal_case).to receive(:update).with(fields_with_dummy_values).and_return(true) }
 
       it 'does not save the record' do

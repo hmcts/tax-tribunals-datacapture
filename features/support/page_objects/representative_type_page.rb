@@ -1,5 +1,5 @@
 class RepresentativeTypePage < BasePage
-  set_url '/' + ENV['TEST_LOCALE'] + '/steps/details/representative_type'
+  set_url "/#{ENV.fetch('TEST_LOCALE', nil)}/steps/details/representative_type"
 
   section :content, '#main-content' do
     element :header, 'h1', text: I18n.t('helpers.fieldset.steps_details_representative_type_form.representative_type_html')
@@ -7,7 +7,7 @@ class RepresentativeTypePage < BasePage
     element :company, 'label', text: I18n.t('steps.details.representative_type.edit.company')
     element :other, 'label', text: I18n.t('steps.details.representative_type.edit.other')
     section :error, '.govuk-error-summary' do
-      element :error_heading, '#error-summary-title', text: I18n.t('errors.error_summary.heading')
+      element :error_heading, '.govuk-error-summary__title', text: I18n.t('errors.error_summary.heading')
     end
   end
 
@@ -25,5 +25,4 @@ class RepresentativeTypePage < BasePage
     content.other.click
     continue_or_save_continue
   end
-
 end

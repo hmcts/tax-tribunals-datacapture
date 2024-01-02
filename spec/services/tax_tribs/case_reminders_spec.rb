@@ -4,7 +4,7 @@ RSpec.describe TaxTribs::CaseReminders do
   let(:rule_set) { instance_double(TaxTribs::ReminderRuleSet, email_template_id: 'test-template', status_transition_to: 'another-status') }
   let(:tribunal_case) { instance_double(TribunalCase) }
 
-  subject { described_class.new(rule_set: rule_set) }
+  subject { described_class.new(rule_set:) }
 
   describe '#run' do
     let(:mailer_double) { double.as_null_object }

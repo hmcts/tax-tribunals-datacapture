@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 RSpec.describe Cookie::SettingForm do
-  subject { Cookie::SettingForm.new(cookie_setting: value, request: request, response: response) }
+  subject { Cookie::SettingForm.new(cookie_setting: value, request:, response:) }
   let(:value) { 'yes' }
   let(:request) { nil }
   let(:response) { nil }
@@ -16,7 +16,7 @@ RSpec.describe Cookie::SettingForm do
 
   describe '.choices' do
     it 'returns the relevant choices' do
-      expect(described_class.choices).to eq(%w(yes no))
+      expect(described_class.choices).to eq(%w[yes no])
     end
   end
 
@@ -90,13 +90,13 @@ RSpec.describe Cookie::SettingForm do
     it 'updates cookie preference' do
       expect(response).to receive(:delete_cookie).with(Cookie::SettingForm::COOKIE_NAME, {})
       expect(response).to receive(:set_cookie).with(
-                            Cookie::SettingForm::COOKIE_NAME,
-                            {
-                              value: value,
-                              path: '/',
-                              expires: 1.year.from_now
-                            }
-                          )
+        Cookie::SettingForm::COOKIE_NAME,
+        {
+          value:,
+          path: '/',
+          expires: 1.year.from_now
+        }
+      )
       expect(subject.save).to be true
     end
   end

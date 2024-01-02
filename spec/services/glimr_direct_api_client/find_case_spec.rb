@@ -39,7 +39,7 @@ RSpec.describe GlimrDirectApiClient::FindCase do
     paid_fee.merge(caseTitle: 'Second Paid Title')
   }
 
-  let(:fees) { [ unpaid_fee_20 ] }
+  let(:fees) { [unpaid_fee_20] }
 
   let(:response) {
     {
@@ -56,6 +56,7 @@ RSpec.describe GlimrDirectApiClient::FindCase do
     allow(ENV).to receive(:fetch).with('GLIMR_API_URL').and_return('https://glimr-api-emulator.herokuapp.com/Live_API/api/tdsapi/')
     allow(ENV).to receive(:fetch).with('GLIMR_AUTHORIZATION_KEY', '').and_return('key')
     allow(ENV).to receive(:fetch).with('GLIMR_REGISTER_NEW_CASE_TIMEOUT_SECONDS', 32).and_return('32')
+    allow(ENV).to receive(:fetch).with('GLIMR_API_DEBUG', '').and_return('false')
     stub_request(:post, /glimr/).to_return(status: 200, body: response.to_json)
   end
 
@@ -91,7 +92,6 @@ RSpec.describe GlimrDirectApiClient::FindCase do
   end
 
   describe '#request_body' do
-
     it 'raises an error when no parameters are supplied' do
       expect { described_class.find }.to raise_error(ArgumentError)
     end
@@ -112,17 +112,16 @@ RSpec.describe GlimrDirectApiClient::FindCase do
     end
 
     context 'when there is one unpaid fee liability' do
-      let(:fees) { [ unpaid_fee_20 ] }
+      let(:fees) { [unpaid_fee_20] }
 
       it 'gets the case title from the fee liability' do
         resp = described_class.find(tax_tribunal_reference, confirmation_code)
         expect(resp.title).to eq(title1)
       end
-
     end
 
     context 'when there are two unpaid fee liabilities' do
-      let(:fees) { [ unpaid_fee_20, unpaid_fee_50 ] }
+      let(:fees) { [unpaid_fee_20, unpaid_fee_50] }
 
       it 'gets the case title from the first fee liability' do
         resp = described_class.find(tax_tribunal_reference, confirmation_code)
@@ -131,7 +130,7 @@ RSpec.describe GlimrDirectApiClient::FindCase do
     end
 
     context 'when there is one paid and one unpaid fee liabilities' do
-      let(:fees) { [ paid_fee, unpaid_fee_20 ] }
+      let(:fees) { [paid_fee, unpaid_fee_20] }
 
       it 'gets the case title from the first unpaid fee liability' do
         resp = described_class.find(tax_tribunal_reference, confirmation_code)
@@ -140,7 +139,7 @@ RSpec.describe GlimrDirectApiClient::FindCase do
     end
 
     context 'when there are two paid fee liabilities' do
-      let(:fees) { [ paid_fee, paid_fee2 ] }
+      let(:fees) { [paid_fee, paid_fee2] }
 
       it 'gets the case title from the paid fee liability' do
         resp = described_class.find(tax_tribunal_reference, confirmation_code)
@@ -153,7 +152,7 @@ RSpec.describe GlimrDirectApiClient::FindCase do
     subject { described_class.find(tax_tribunal_reference, confirmation_code) }
 
     context 'when there are paid and unpaid fee liabilities' do
-      let(:fees) { [ unpaid_fee_20, unpaid_fee_50, paid_fee ] }
+      let(:fees) { [unpaid_fee_20, unpaid_fee_50, paid_fee] }
 
       it 'returns the unpaid liabilities' do
         expect(subject.fees.map(&:amount)).to eq([1, 5000])

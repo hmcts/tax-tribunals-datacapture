@@ -59,7 +59,7 @@ Then(/^I am shown an invalid email error$/) do
   expect(taxpayer_details_page.content.input_field[6].input_error.text).to have_text(I18n.t('dictionary.invalid_email'))
 end
 
-When(/^I re\-submit a valid email$/) do
+When(/^I re-submit a valid email$/) do
   taxpayer_details_page.resubmit_valid_email
 end
 

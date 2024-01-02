@@ -1,10 +1,10 @@
 require 'webmock/rspec'
 require 'simplecov'
 require "simplecov_json_formatter"
+require "factory_bot_rails"
 
 ENV['RAILS_ENV'] ||= 'test'
 
-require 'simplecov'
 SimpleCov.minimum_coverage 98
 SimpleCov.formatter = SimpleCov::Formatter::JSONFormatter
 # SimpleCov conflicts with mutant. This lets us turn it off, when necessary.

@@ -78,7 +78,7 @@ RSpec.describe ApplicationHelper, type: :helper do
 
       it 'returns the summary' do
         expect(helper.govuk_error_summary(form_object)).to eq(
-          '<div class="govuk-error-summary" tabindex="-1" role="alert" data-module="govuk-error-summary" aria-labelledby="error-summary-title"><h2 id="error-summary-title" class="govuk-error-summary__title">There is a problem</h2><div class="govuk-error-summary__body"><ul class="govuk-list govuk-error-summary__list"><li><a data-turbolinks="false" href="#base-form-base-field-error">Please enter an answer</a></li></ul></div></div>'
+          '<div class="govuk-error-summary" data-module="govuk-error-summary"><div role="alert"><h2 class="govuk-error-summary__title">There is a problem</h2><div class="govuk-error-summary__body"><ul class="govuk-list govuk-error-summary__list"><li><a data-turbo="false" href="#base-form-base-field-error">Please enter an answer</a></li></ul></div></div></div>'
         )
       end
     end
@@ -86,7 +86,7 @@ RSpec.describe ApplicationHelper, type: :helper do
 
   describe '#translate_for_user_type' do
     let(:user_type) { UserType.new(:humanoid) }
-    let(:tribunal_case) { instance_double(TribunalCase, user_type: user_type) }
+    let(:tribunal_case) { instance_double(TribunalCase, user_type:) }
 
     before do
       expect(helper).to receive(:current_tribunal_case).and_return(tribunal_case)
@@ -99,7 +99,8 @@ RSpec.describe ApplicationHelper, type: :helper do
     end
 
     it 'also appends _html to the user type keys when the key ends in _html' do
-      expect(helper).to receive(:translate_with_appeal_or_application).with('.foobar_html.as_humanoid_html', random_param: 'Ja').and_return('<blink>Foo!</blink>')
+      expect(helper).to receive(:translate_with_appeal_or_application).with('.foobar_html.as_humanoid_html',
+                                                                            random_param: 'Ja').and_return('<blink>Foo!</blink>')
 
       expect(helper.translate_for_user_type('.foobar_html', random_param: 'Ja')).to eq('<blink>Foo!</blink>')
     end
@@ -111,7 +112,8 @@ RSpec.describe ApplicationHelper, type: :helper do
     it 'adds appeal_or_application to params and calls the original implementation' do
       expect(helper).to receive(:current_tribunal_case).and_return(tribunal_case)
       expect(helper).to receive(:translate).with('generic.appeal_or_application.whatever').and_return('wibble')
-      expect(helper).to receive(:translate).with('.foobar', random_param: 'something', appeal_or_application: 'wibble', appeal_or_application_capitalised: 'Wibble').and_return('Yay!')
+      expect(helper).to receive(:translate).with('.foobar', random_param: 'something', appeal_or_application: 'wibble',
+appeal_or_application_capitalised: 'Wibble').and_return('Yay!')
 
       expect(helper.translate_with_appeal_or_application('.foobar', random_param: 'something')).to eq('Yay!')
     end
@@ -123,14 +125,14 @@ RSpec.describe ApplicationHelper, type: :helper do
         allow_any_instance_of(Cookie::SettingForm).to receive(:accepted?).and_return(true)
       end
       it 'retrieves the environment variable' do
-        expect(ENV).to receive(:[]).with('GTM_TRACKING_ID')
+        expect(ENV).to receive(:fetch).with('GTM_TRACKING_ID',nil)
         helper.analytics_tracking_id
       end
     end
 
     context 'when rejected analytics cookies' do
       it 'retrieves the environment variable' do
-        expect(ENV).not_to receive(:[]).with('GTM_TRACKING_ID')
+        expect(ENV).not_to receive(:fetch).with('GTM_TRACKING_ID',nil)
         helper.analytics_tracking_id
       end
     end
@@ -239,7 +241,7 @@ RSpec.describe ApplicationHelper, type: :helper do
 
     it 'behaves like a passthrough method when no access_token' do
       expect(helper).not_to receive(:render)
-      helper.address_lookup(record: record, entity: :representative, &form_block)
+      helper.address_lookup(record:, entity: :representative, &form_block)
     end
 
     it 'inserts address lookup partial when access_token present' do
@@ -253,7 +255,7 @@ RSpec.describe ApplicationHelper, type: :helper do
           show_details: false
         }
       )
-      helper.address_lookup(record: record, entity: :taxpayer, &form_block)
+      helper.address_lookup(record:, entity: :taxpayer, &form_block)
     end
   end
 

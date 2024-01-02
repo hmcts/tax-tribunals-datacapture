@@ -2,8 +2,8 @@ require 'spec_helper'
 
 RSpec.describe Steps::Details::RepresentativeProfessionalStatusForm do
   let(:arguments) { {
-    tribunal_case: tribunal_case,
-    representative_professional_status: representative_professional_status
+    tribunal_case:,
+    representative_professional_status:
   } }
   let(:tribunal_case) { instance_double(TribunalCase, representative_professional_status: nil) }
   let(:representative_professional_status) { nil }

@@ -1,5 +1,5 @@
 class InTimePage < BasePage
-  set_url '/' + ENV['TEST_LOCALE'] + '/steps/lateness/in_time'
+  set_url "/#{ENV.fetch('TEST_LOCALE', nil)}/steps/lateness/in_time"
 
   section :content, '#main-content' do
     element :header, 'h1', text: I18n.t('steps.lateness.in_time.edit.heading')
@@ -7,7 +7,7 @@ class InTimePage < BasePage
     element :no_option, 'label', text: I18n.t('helpers.label.steps_lateness_in_time_form.in_time_options.no')
     element :not_sure_option, 'label', text: I18n.t('helpers.label.steps_lateness_in_time_form.in_time_options.unsure')
     section :error, '.govuk-error-summary' do
-      element :error_heading, '#error-summary-title', text: I18n.t('errors.error_summary.heading')
+      element :error_heading, '.govuk-error-summary__title', text: I18n.t('errors.error_summary.heading')
     end
   end
 

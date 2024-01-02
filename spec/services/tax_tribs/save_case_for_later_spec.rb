@@ -25,7 +25,7 @@ RSpec.describe TaxTribs::SaveCaseForLater do
     end
 
     context 'for a tribunal case already saved before (belongs to a user)' do
-      let(:tribunal_case) { instance_double(TribunalCase, user: user, update: true) }
+      let(:tribunal_case) { instance_double(TribunalCase, user:, update: true) }
 
       it 'returns true' do
         expect(subject.save).to eq(true)
@@ -60,7 +60,7 @@ RSpec.describe TaxTribs::SaveCaseForLater do
       end
 
       it 'links the tribunal case to the user' do
-        expect(tribunal_case).to receive(:update).with(user: user)
+        expect(tribunal_case).to receive(:update).with(user:)
         subject.save
       end
 

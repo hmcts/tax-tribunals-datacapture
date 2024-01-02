@@ -1,3 +1,5 @@
+require 'rspec/mocks'
+
 include RSpec::Mocks::ExampleMethods
 def closure
   [
@@ -183,7 +185,7 @@ def go_to_login_page
 end
 
 def create_user
-  @user = FactoryBot.create(:user)
+  @user = FactoryBot.create(:user, id: '2c510a62-4ac8-4fad-acfd-d2b50b1c14f0')
 end
 
 def login
@@ -326,7 +328,7 @@ def navigate_to_representative_page
 end
 
 def navigate_to_grounds_for_appeal_page
-RSpec::Mocks.with_temporary_scope do
+  RSpec::Mocks.with_temporary_scope do
     create_user
     FactoryBot.create(:appeal_case, :income_tax_case, :yes_review, :received_letter, :penalty, :penalty_100_or_less,
                       :yes_in_time, :taxpayer_user_type, :individual_taxpayer_type, :valid_taxpayer_details, :no_email, :has_representative_no)
@@ -395,6 +397,6 @@ def go_to_accessibility_page
   base_page.footer.accessibility_link.click
 end
 
-def go_to_contact_hmrc_page                 
+def go_to_contact_hmrc_page
   contact_hmrc_page.load_page
 end

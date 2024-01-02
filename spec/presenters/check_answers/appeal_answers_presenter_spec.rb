@@ -3,7 +3,7 @@ require 'spec_helper'
 module CheckAnswers
   describe AppealAnswersPresenter do
     let(:tribunal_case) { instance_double(TribunalCase) }
-    subject { described_class.new(tribunal_case, format: format) }
+    subject { described_class.new(tribunal_case, format:) }
 
     describe '#sections' do
       let(:taxpayer_section_presenter) { double(TaxpayerSectionPresenter, show?: true) }

@@ -1,5 +1,5 @@
 class ChallengeDecisionStatusPage < BasePage
-  set_url '/' + ENV['TEST_LOCALE'] + '/steps/challenge/decision_status'
+  set_url "/#{ENV.fetch('TEST_LOCALE', nil)}/steps/challenge/decision_status"
 
   section :content, '#main-content' do
     element :header, 'h1', text: I18n.t('steps.challenge.decision_status.edit.heading')
@@ -9,9 +9,9 @@ class ChallengeDecisionStatusPage < BasePage
     element :direct, 'label', text: I18n.t('dictionary.CHALLENGE_STATUS.appealing_directly')
     element :review, 'label', text: I18n.t('dictionary.CHALLENGE_STATUS.not_required')
     element :appeal_late_rejection, 'label', text: I18n.t('dictionary.CHALLENGE_STATUS.appeal_late_rejection')
-    section :error,'.govuk-error-summary' do
-    element :error_heading, '#error-summary-title', text: I18n.t('errors.error_summary.heading')
-  end
+    section :error, '.govuk-error-summary' do
+      element :error_heading, '.govuk-error-summary__title', text: I18n.t('errors.error_summary.heading')
+    end
   end
 
   def direct
@@ -29,22 +29,22 @@ class ChallengeDecisionStatusPage < BasePage
     continue_or_save_continue
   end
 
-def submit_review_conclusion_letter
-  content.review_conclusion_letter.click
-  continue_or_save_continue
-end
+  def submit_review_conclusion_letter
+    content.review_conclusion_letter.click
+    continue_or_save_continue
+  end
 
-def submit_less_than_fourty_five_days
-  content.less_than_fourty_five.click
-  continue_or_save_continue
-end
+  def submit_less_than_fourty_five_days
+    content.less_than_fourty_five.click
+    continue_or_save_continue
+  end
 
-def late_appeal
-  content.appeal_late_rejection.click
-  continue_or_save_continue
-end
+  def late_appeal
+    content.appeal_late_rejection.click
+    continue_or_save_continue
+  end
 
-def submit_review_letter
+  def submit_review_letter
     content.review_conclusion_letter.click
     continue_or_save_continue
   end

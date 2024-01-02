@@ -2,10 +2,10 @@ require 'spec_helper'
 
 RSpec.describe Steps::Challenge::DecisionForm do
   let(:arguments) { {
-    tribunal_case:      tribunal_case,
-    challenged_decision: challenged_decision
+    tribunal_case:,
+    challenged_decision:
   } }
-  let(:tribunal_case) { instance_double(TribunalCase, case_type: case_type, challenged_decision: nil) }
+  let(:tribunal_case) { instance_double(TribunalCase, case_type:, challenged_decision: nil) }
   let(:case_type) { nil }
   let(:challenged_decision) { nil }
 
