@@ -127,7 +127,7 @@ RSpec.describe NotifyMailer, type: :mailer do
     it 'has the right keys' do
       expect(mail.govuk_notify_personalisation).to eq({
         appeal_or_application: :appeal,
-        draft_expire_in_days: 14,
+        draft_expire_in_days: 120,
         show_deadline_warning: 'yes',
         resume_case_link: "https://tax.justice.uk/#{I18n.locale}/users/cases/4a362e1c-48eb-40e3-9458-a31ead3f30a4/resume",
         resume_case_cy_link: "https://tax.justice.uk/cy/users/cases/4a362e1c-48eb-40e3-9458-a31ead3f30a4/resume"
