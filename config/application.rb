@@ -1,4 +1,5 @@
 require_relative 'boot'
+require_relative '../app/middleware/strict_transport_security_middleware'
 
 require "rails"
 require "active_model/railtie"
@@ -57,7 +58,7 @@ module TaxTribunalsDatacapture
     config.x.session.expires_in_minutes = ENV.fetch('SESSION_EXPIRES_IN_MINUTES', 30).to_i
     config.x.session.warning_when_remaining = ENV.fetch('SESSION_WARNING_WHEN_REMAINING', 5).to_i
 
-    config.x.cases.expire_in_days = ENV.fetch('EXPIRE_AFTER', 14).to_i
+    config.x.cases.expire_in_days = ENV.fetch('EXPIRE_AFTER', 120).to_i
     config.x.users.expire_in_days = ENV.fetch('USERS_EXPIRE_AFTER', 30).to_i
 
     config.action_mailer.default_url_options = { host: ENV.fetch('EXTERNAL_URL') }
@@ -69,6 +70,8 @@ module TaxTribunalsDatacapture
     if ENV['APP_INSIGHTS_INSTRUMENTATION_KEY']
       config.middleware.use ApplicationInsights::Rack::TrackRequest, ENV['APP_INSIGHTS_INSTRUMENTATION_KEY']
     end
+
+    config.middleware.use StrictTransportSecurityMiddleware
 
     config.maintenance_enabled = ENV.fetch('MAINTENANCE_ENABLED', 'false').downcase == 'true'
     config.maintenance_allowed_ips = ENV.fetch('MAINTENANCE_ALLOWED_IPS', '').split(',').map(&:strip)

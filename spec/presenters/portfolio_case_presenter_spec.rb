@@ -23,28 +23,28 @@ RSpec.describe PortfolioCasePresenter do
   describe '#expires_in' do
     context 'case created today' do
       let(:created_at) { DateTime.now }
-      it { expect(subject.expires_in).to eq('14 days') }
+      it { expect(subject.expires_in).to eq('120 days') }
     end
 
     context 'case created 7 days ago' do
-      let(:created_at) { 7.days.ago }
+      let(:created_at) { 113.days.ago }
       it { expect(subject.expires_in).to eq('7 days') }
     end
 
-    context 'case created 13 days ago' do
-      let(:created_at) { 13.days.ago }
+    context 'case created 119 days ago' do
+      let(:created_at) { 119.days.ago }
       it { expect(subject.expires_in).to eq('1 day') }
     end
 
-    context 'case created 14 days ago' do
-      let(:created_at) { 14.days.ago }
+    context 'case created 120 days ago' do
+      let(:created_at) { 120.days.ago }
       it { expect(subject.expires_in).to eq('Today') }
     end
 
     # This is to ensure even if we don't purge the case on time for whatever reason,
     # the user will not see weird data (better to continue saying 'Today').
-    context 'case created 15 days ago' do
-      let(:created_at) { 15.days.ago }
+    context 'case created 121 days ago' do
+      let(:created_at) { 121.days.ago }
       it { expect(subject.expires_in).to eq('Today') }
     end
   end
@@ -60,13 +60,13 @@ RSpec.describe PortfolioCasePresenter do
       it { expect(subject.expires_in_class).to eq('') }
     end
 
-    context 'case created 9 days ago' do
-      let(:created_at) { 9.days.ago }
+    context 'case created 116 days ago' do
+      let(:created_at) { 116.days.ago }
       it { expect(subject.expires_in_class).to eq('expires-soon') }
     end
 
-    context 'case created 14 days ago' do
-      let(:created_at) { 14.days.ago }
+    context 'case created 120 days ago' do
+      let(:created_at) { 120.days.ago }
       it { expect(subject.expires_in_class).to eq('expires-today') }
     end
   end
