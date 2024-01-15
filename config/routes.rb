@@ -1,4 +1,5 @@
 require 'sidekiq/web'
+require 'admin/admin_constraint'
 
 class ActionDispatch::Routing::Mapper
   def edit_step(name)
@@ -182,7 +183,10 @@ Rails.application.routes.draw do
     resources :case_documents, only: [:show]
     get 'documents/*path', to: 'case_documents#tc'
 
-    mount Sidekiq::Web => "/sidekiq"
+    mount Sidekiq::Web => "/sidekiq", constraints: Admin::AdminConstraint
+    get '*path', to: redirect('en/users/login'), constraints: lambda { |request|
+      !Admin::AdminConstraint.matches?(request)
+    }
   end
 
   scope module: 'tax_tribs' do

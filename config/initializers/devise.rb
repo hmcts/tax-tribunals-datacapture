@@ -128,7 +128,7 @@ Devise.setup do |config|
   config.last_attempt_warning = true
 
   config.warden do |manager|
-    manager.failure_app = AuthenticationFailureHandler
+    manager.failure_app = Admin::AuthenticationFailureHandler
   end
 
 end

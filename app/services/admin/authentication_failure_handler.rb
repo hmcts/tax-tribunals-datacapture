@@ -1,4 +1,4 @@
-class AuthenticationFailureHandler < Devise::FailureApp
+class Admin::AuthenticationFailureHandler < Devise::FailureApp
   protected
 
   def redirect_url
