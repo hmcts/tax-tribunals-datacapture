@@ -126,4 +126,9 @@ Devise.setup do |config|
 
   # Warn on the last attempt before the account is locked.
   config.last_attempt_warning = true
+
+  config.warden do |manager|
+    manager.failure_app = AuthenticationFailureHandler
+  end
+
 end
