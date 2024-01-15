@@ -33,10 +33,6 @@ base:
           alias: UPLOAD_PROBLEMS_REPORT_AUTH_USER
         - name: upload-problems-report-auth-digest
           alias: UPLOAD_PROBLEMS_REPORT_AUTH_DIGEST
-        - name: admin-username
-          alias: ADMIN_USERNAME
-        - name: admin-password
-          alias: ADMIN_PASSWORD
         - name: govuk-notify-api-key
           alias: GOVUK_NOTIFY_API_KEY
         - name: notify-case-confirmation-template-id
@@ -157,10 +153,6 @@ sidekiq:
           alias: UPLOAD_PROBLEMS_REPORT_AUTH_USER
         - name: upload-problems-report-auth-digest
           alias: UPLOAD_PROBLEMS_REPORT_AUTH_DIGEST
-        - name: admin-username
-          alias: ADMIN_USERNAME
-        - name: admin-password
-          alias: ADMIN_PASSWORD
         - name: govuk-notify-api-key
           alias: GOVUK_NOTIFY_API_KEY
         - name: notify-case-confirmation-template-id
@@ -280,10 +272,6 @@ job:
           alias: UPLOAD_PROBLEMS_REPORT_AUTH_USER
         - name: upload-problems-report-auth-digest
           alias: UPLOAD_PROBLEMS_REPORT_AUTH_DIGEST
-        - name: admin-username
-          alias: ADMIN_USERNAME
-        - name: admin-password
-          alias: ADMIN_PASSWORD
         - name: govuk-notify-api-key
           alias: GOVUK_NOTIFY_API_KEY
         - name: notify-case-confirmation-template-id

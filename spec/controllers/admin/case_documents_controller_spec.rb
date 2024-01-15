@@ -8,10 +8,6 @@ RSpec.describe Admin::CaseDocumentsController, type: :controller do
   let(:filepath_2) { 'deb757fc-f06d-4233-b260-11edcb7416f3/grounds_for_appeal/IAYP4244-Edit2.jpg' }
 
   before do
-    allow(ENV).to receive(:fetch).with('ADMIN_USERNAME').and_return('admin')
-    allow(ENV).to receive(:fetch).with('ADMIN_PASSWORD').and_return(
-      '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08'
-    )
     allow(ENV).to receive(:fetch).with('AZURE_STORAGE_ACCOUNT').and_return('123')
     allow(ENV).to receive(:fetch).with('AZURE_STORAGE_KEY').and_return('123')
     allow(ENV).to receive(:fetch).with('AZURE_STORAGE_CONTAINER').and_return('123')
@@ -34,8 +30,9 @@ RSpec.describe Admin::CaseDocumentsController, type: :controller do
 
   describe '#show' do
     context 'correct credentials' do
+      let(:user) { FactoryBot.create(:user, admin: true) }
       before do
-        request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Basic.encode_credentials('admin', 'test')
+        sign_in user
       end
 
       it 'returns http success' do
@@ -54,20 +51,21 @@ RSpec.describe Admin::CaseDocumentsController, type: :controller do
     end
 
     context 'missing credentials' do
-      it 'requires basic auth' do
+      it 'requires sign in' do
         local_get(:show, params:)
-        expect(response).to have_http_status(:unauthorized)
+        expect(response).to redirect_to(new_user_session_path(locale: I18n.locale))
       end
     end
 
     context 'wrong credentials' do
+      let(:user) { FactoryBot.create(:user) }
       before do
-        request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Basic.encode_credentials('admin', 'whatever')
+        sign_in user
       end
 
       it 'returns http unauthorized' do
         local_get(:show, params:)
-        expect(response).to have_http_status(:unauthorized)
+        expect(response).to redirect_to(new_user_session_path(locale: I18n.locale))
       end
     end
   end
