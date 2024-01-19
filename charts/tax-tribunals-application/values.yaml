@@ -1,5 +1,8 @@
 base:
   applicationPort: 8000
+  readinessPath: /health
+  livenessPath: /health
+  startupPath: /health
   image: "hmctspublic.azurecr.io/tax-tribunals/application"
   ingressHost: tax-tribunals-datacapture.{{ .Values.global.environment }}.platform.hmcts.net
   useWorkloadIdentity: true
