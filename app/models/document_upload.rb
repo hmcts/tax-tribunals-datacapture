@@ -54,8 +54,6 @@ class DocumentUpload
       data: file_data
     )
     @file_name = response.name.split('/')[-1]
-  rescue Uploader::InfectedFileError
-    add_error(:virus_detected)
   rescue Uploader::UploaderError => e
     # For generic upload errors (other than infected), we want to keep track of what happened
     Sentry.capture_exception(e)

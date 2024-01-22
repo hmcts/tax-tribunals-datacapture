@@ -11,7 +11,6 @@ RSpec.describe Uploader::AddFile do
     allow(ENV).to receive(:fetch).with('AZURE_STORAGE_CONTAINER').and_return(container)
     allow(ENV).to receive(:fetch).with('AZURE_STORAGE_DO_NOT_SCAN').and_return('test')
     allow(ENV).to receive(:fetch).with('VIRUS_SCANNER_ENABLED', '').and_return('true')
-    allow(Clamby).to receive(:safe?).and_return(true)
     allow_any_instance_of(described_class).to receive(:sleep).and_return(nil)
   end
 
@@ -56,26 +55,6 @@ RSpec.describe Uploader::AddFile do
         allow(Rails).to receive_message_chain(:logger, :warn)
 
         expect { subject }.to raise_error(Uploader::UploaderError)
-      end
-    end
-  end
-
-  describe '.scan_file' do
-    context 'with a virus' do
-      before do
-        expect(Clamby).to receive(:safe?).and_return(false)
-      end
-      it 'detects viruses' do
-        expect { subject }.to raise_error
-      end
-    end
-
-    context 'without a virus' do
-      before do
-        expect(Clamby).to receive(:safe?).and_return(true)
-      end
-      it 'allow non-virus files to pass' do
-        expect { subject }.not_to raise_error(Uploader::InfectedFileError)
       end
     end
   end
