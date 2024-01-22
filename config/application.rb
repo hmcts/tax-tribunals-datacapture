@@ -1,5 +1,5 @@
 require_relative 'boot'
-require_relative '../app/middleware/strict_transport_security_middleware'
+# require_relative '../app/middleware/strict_transport_security_middleware' # TEMP REMOVAL - 22 Jan
 
 require "rails"
 require "active_model/railtie"
@@ -71,7 +71,7 @@ module TaxTribunalsDatacapture
       config.middleware.use ApplicationInsights::Rack::TrackRequest, ENV['APP_INSIGHTS_INSTRUMENTATION_KEY']
     end
 
-    config.middleware.use StrictTransportSecurityMiddleware
+    # config.middleware.use StrictTransportSecurityMiddleware # TEMP REMOVAL - 22 Jan
 
     config.maintenance_enabled = ENV.fetch('MAINTENANCE_ENABLED', 'false').downcase == 'true'
     config.maintenance_allowed_ips = ENV.fetch('MAINTENANCE_ALLOWED_IPS', '').split(',').map(&:strip)
