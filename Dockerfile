@@ -73,16 +73,7 @@ RUN apk --no-cache add --virtual build-deps \
   freetype \
   harfbuzz \
   ca-certificates \
-  ttf-freefont \
-  clamav \
-  clamav-daemon
-
-RUN freshclam
-RUN mkdir -p var/run/clamav && \
- chmod -R 777 /var/run/clamav && \
- mkdir -p var/log/clamav && \
- chmod -R 777 /var/log/clamav && \
- mkdir -p var/lib/clamav
+  ttf-freefont
 
 # Tell Puppeteer to skip installing Chrome. We'll be using the installed package.
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
@@ -94,8 +85,6 @@ RUN chmod +x /usr/local/bin/*
 # add non-root user and group with alpine first available uid, 1000
 RUN addgroup -g 1000 -S appgroup && \
     adduser -u 1000 -S appuser -G appgroup
-
-RUN chown -R appuser:appgroup /var/lib/clamav /var/log/clamav /var/run/clamav /etc/clamav
 
 ENV PUMA_PORT 8000
 EXPOSE $PUMA_PORT

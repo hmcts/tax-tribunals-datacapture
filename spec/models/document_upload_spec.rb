@@ -263,15 +263,6 @@ RSpec.describe DocumentUpload do
           expect(subject.errors?).to eq(true)
         end
       end
-
-      context 'virus detected error' do
-        it 'should upload the document' do
-          expect(Uploader).to receive(:add_file).and_raise(Uploader::InfectedFileError)
-          expect(subject).to receive(:add_error).with(:virus_detected).and_call_original
-          subject.upload!(collection_ref: '123')
-          expect(subject.errors?).to eq(true)
-        end
-      end
     end
   end
 end
