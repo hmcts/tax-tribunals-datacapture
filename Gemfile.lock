@@ -136,7 +136,7 @@ GEM
     combine_pdf (1.0.24)
       matrix
       ruby-rc4 (>= 0.1.5)
-    concurrent-ruby (1.2.2)
+    concurrent-ruby (1.2.3)
     connection_pool (2.4.1)
     crack (0.4.5)
       rexml
@@ -200,7 +200,7 @@ GEM
     factory_bot_rails (6.4.3)
       factory_bot (~> 6.4)
       railties (>= 5.0.0)
-    faker (3.2.2)
+    faker (3.2.3)
       i18n (>= 1.8.11, < 2)
     faraday (1.10.3)
       faraday-em_http (~> 1.0)
@@ -587,7 +587,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   factory_bot_rails
-  faker (= 3.2.2)
+  faker (= 3.2.3)
   geckodriver-helper (~> 0.24.0)
   glimr-api-client!
   govuk_design_system_formbuilder (~> 4)
