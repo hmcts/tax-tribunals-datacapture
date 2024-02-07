@@ -11,7 +11,7 @@ gem 'glimr-api-client', github: 'ministryofjustice/glimr-api-client', tag: 'v0.4
 gem 'govuk_design_system_formbuilder', '~> 4'
 gem 'govuk_notify_rails',              '~> 2.1'
 gem 'jquery-rails',                    '4.6.0'
-gem 'nokogiri'
+gem 'nokogiri', '>= 1.16.2'
 gem 'pg'
 gem 'pry-rails'
 gem 'puma',                            '6.4.2'
