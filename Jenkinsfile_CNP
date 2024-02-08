@@ -55,8 +55,6 @@ withPipeline(type, product, component) {
     env.ADDRESS_LOOKUP_API_KEY = 'replace_this_at_build_time'
     env.ADDRESS_LOOKUP_API_SECRET = 'replace_this_at_build_time'
 
-    enableDbMigration("tax-tribunals-cft")
-
     before('build') {
         yarnBuilder.runYarn("--mutex network install --f``rozen-lockfile")
     }
