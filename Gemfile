@@ -16,7 +16,7 @@ gem 'pg'
 gem 'pry-rails'
 gem 'puma',                            '6.4.2'
 gem 'rack-attack',                     '~> 6.7.0'
-gem 'rails',                           '~> 6.1.7.6'
+gem 'rails',                           '~> 7.1.2'
 gem 'responders',                      '3.1.1'
 gem 'sanitize'
 gem 'sassc-rails',                     '~> 2.1.2'
@@ -28,6 +28,7 @@ gem 'virtus',                          '1.0.5'
 gem 'zendesk_api',                     '~> 1.28'
 gem 'application_insights',            '~> 0.5.6'
 gem 'sprockets',                       '3.7.2'
+gem "sprockets-rails"
 gem 'rest-client',                     '2.1.0'
 
 # Admin

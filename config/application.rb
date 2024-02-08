@@ -40,6 +40,11 @@ module TaxTribunalsDatacapture
     # :nocov:
 
     config.load_defaults 6.0
+    config.autoloader = :zeitwerk
+    config.autoload_lib(ignore: %w(assets))
+    Rails.autoloaders.each do |autoloader|
+      autoloader.ignore(Rails.root.join('lib/generators'))
+    end
 
     config.middleware.use Rack::Attack
 
@@ -76,5 +81,6 @@ module TaxTribunalsDatacapture
     config.maintenance_enabled = ENV.fetch('MAINTENANCE_ENABLED', 'false').downcase == 'true'
     config.maintenance_allowed_ips = ENV.fetch('MAINTENANCE_ALLOWED_IPS', '').split(',').map(&:strip)
     config.maintenance_end = ENV.fetch('MAINTENANCE_END', nil)
+    config.generators.system_tests = nil
   end
 end
