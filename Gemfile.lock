@@ -319,9 +319,9 @@ GEM
       net-protocol
     netrc (0.11.0)
     nio4r (2.7.0)
-    nokogiri (1.15.5-x86_64-darwin)
+    nokogiri (1.16.2-x86_64-darwin)
       racc (~> 1.4)
-    nokogiri (1.15.5-x86_64-linux)
+    nokogiri (1.16.2-x86_64-linux)
       racc (~> 1.4)
     notifications-ruby-client (5.4.0)
       jwt (>= 1.5, < 3)
@@ -603,7 +603,7 @@ DEPENDENCIES
   mimemagic (~> 0.4.0)
   mutant-license (= 0.1.1.2.1739399027284447558325915053311580324856.4)!
   mutant-rspec (= 0.11.26)
-  nokogiri
+  nokogiri (>= 1.16.2)
   pg
   phantomjs (= 2.1.1.0)
   poltergeist (~> 1.18, >= 1.18.1)
