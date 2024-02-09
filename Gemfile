@@ -69,7 +69,7 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'faker',                         '3.2.3'
   gem 'launchy',                       '2.5.2'
-  gem 'mutant-rspec',                  '0.11.26'
+  gem 'mutant-rspec',                  '0.11.27'
   gem 'bundler-audit'
   gem 'pry-byebug'
   gem 'timecop', '0.9.8'
