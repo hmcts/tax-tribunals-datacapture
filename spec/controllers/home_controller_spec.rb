@@ -11,24 +11,24 @@ RSpec.describe HomeController do
       local_get :index
 
       name, time, link = assigns[:link_sections][0]
+      expect(name).to eq(:guidance)
+      expect(time).to eq(0)
+      expect(link).to eq("/#{I18n.locale}/guidance")
+
+      name, time, link = assigns[:link_sections][1]
       expect(name).to eq(:appeal)
       expect(time).to eq(30)
       expect(link).to eq("/#{I18n.locale}/appeal")
 
-      name, time, link = assigns[:link_sections][1]
+      name, time, link = assigns[:link_sections][2]
       expect(name).to eq(:close)
       expect(time).to eq(15)
       expect(link).to eq("/#{I18n.locale}/closure")
 
-      name, time, link = assigns[:link_sections][2]
+      name, time, link = assigns[:link_sections][3]
       expect(name).to eq(:home_login)
       expect(time).to eq(0)
       expect(link).to eq("/#{I18n.locale}/users/login")
-
-      name, time, link = assigns[:link_sections][3]
-      expect(name).to eq(:guidance)
-      expect(time).to eq(0)
-      expect(link).to eq("/#{I18n.locale}/guidance")
     end
 
     context 'when user is logged in' do
@@ -41,7 +41,7 @@ RSpec.describe HomeController do
       it 'the link to login points to the cases portfolio' do
         local_get :index
 
-        name, time, link = assigns[:link_sections][2]
+        name, time, link = assigns[:link_sections][3]
         expect(name).to eq(:home_login)
         expect(time).to eq(0)
         expect(link).to eq("/#{I18n.locale}/users/cases")
