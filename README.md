@@ -1,5 +1,5 @@
 # Tax Tribunals Data Capture
-       
+        
 [![Build
 Status](https://travis-ci.org/ministryofjustice/tax-tribunals-datacapture.svg?branch=master)](https://travis-ci.org/ministryofjustice/tax-tribunals-datacapture)
 
@@ -21,14 +21,6 @@ And then precompile the assets
 Create the database with `rake db:setup db:migrate`
 
 Then run `rails server`
-
-### Setting up ClamAV locally
-
-Set ENV["VIRUS_SCANNER_ENABLED"] = true
-
-or follow this guide here: https://www.driftingruby.com/episodes/antivirus-uploads-with-clamby
-
-Then run `freshclam && clamd`
 
  
 ## Mutation testing performance issues and resolution
