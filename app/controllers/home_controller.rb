@@ -55,10 +55,10 @@ class HomeController < ApplicationController
   # Use '0' minutes to hide the time to complete paragraph
   def link_sections
     [
+      [:guidance, 0, guidance_path(locale: I18n.locale)],
       [:appeal, 30, appeal_path(locale: I18n.locale)],
       [:close, 15, closure_path(locale: I18n.locale)],
-      [:home_login, 0, helpers.login_or_portfolio_path],
-      [:guidance, 0, guidance_path(locale: I18n.locale)]
+      [:home_login, 0, helpers.login_or_portfolio_path]
     ]
   end
 end
