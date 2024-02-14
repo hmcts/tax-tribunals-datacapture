@@ -241,4 +241,14 @@ RSpec.describe TribunalCase, type: :model do
       it { expect(subject).not_to be_tax_appeal }
     end
   end
+
+  describe "#submitted" do
+    let!(:submitted_case) { TribunalCase.create!(case_status: CaseStatus::SUBMITTED) }
+    let!(:other_case) { TribunalCase.create!(case_status: CaseStatus::SUBMIT_IN_PROGRESS) }
+
+    it "returns cases with a SUBMITTED status" do
+      expect(TribunalCase.submitted).to include(submitted_case)
+      expect(TribunalCase.submitted).not_to include(other_case)
+    end
+  end
 end
