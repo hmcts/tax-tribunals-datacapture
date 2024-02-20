@@ -1,18 +1,14 @@
 class AdminController < ApplicationController
-  before_action :authenticate
+  before_action :authenticate_user!
+  before_action :check_admin
 
-  protected
+  private
 
-  def authenticate
-    authenticate_or_request_with_http_basic do |user, password|
-      credentials[user] == Digest::SHA256.hexdigest(password)
-    end
-  end
+  def check_admin
+    return if current_user.admin?
 
-  # We are reusing the same credentials we originally created for the upload problems report.
-  # If in the future a different set of credentials were to be preferred, just implement
-  # this method in each of the subclasses.
-  def credentials
-    { ENV.fetch('ADMIN_USERNAME') => ENV.fetch('ADMIN_PASSWORD') }
+    sign_out(current_user)
+    flash[:alert] = "You are not authorized to view this page."
+    redirect_to(new_user_session_path(locale: I18n.locale))
   end
 end

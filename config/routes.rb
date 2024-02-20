@@ -1,4 +1,5 @@
 require 'sidekiq/web'
+require 'admin/admin_constraint'
 
 class ActionDispatch::Routing::Mapper
   def edit_step(name)
@@ -181,17 +182,11 @@ Rails.application.routes.draw do
     resources :glimr_generation, only: [:new, :create]
     resources :case_documents, only: [:show]
     get 'documents/*path', to: 'case_documents#tc'
-    Sidekiq::Web.use Rack::Auth::Basic do |username, password|
-      ActiveSupport::SecurityUtils.secure_compare(
-        username,
-        ENV.fetch("ADMIN_USERNAME", nil)
-      ) &
-        ActiveSupport::SecurityUtils.secure_compare(
-          Digest::SHA256.hexdigest(password),
-          ENV.fetch("ADMIN_PASSWORD", nil)
-        )
-    end
-    mount Sidekiq::Web => "/sidekiq"
+
+    mount Sidekiq::Web => "/sidekiq", constraints: Admin::AdminConstraint
+    get '*path', to: redirect('en/users/login'), constraints: lambda { |request|
+      !Admin::AdminConstraint.matches?(request)
+    }
   end
 
   scope module: 'tax_tribs' do
