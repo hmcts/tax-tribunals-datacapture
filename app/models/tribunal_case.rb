@@ -3,6 +3,7 @@ class TribunalCase < ApplicationRecord
 
   belongs_to :user, optional: true
 
+  scope :submitted, -> { where(case_status: CaseStatus::SUBMITTED) }
   scope :not_submitted, -> { where(case_status: nil).or(where.not(case_status: CaseStatus::SUBMITTED)) }
   scope :with_owner,    -> { where.not(user: nil) }
   scope :with_upload_problems, -> { where(having_problems_uploading: true) }

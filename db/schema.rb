@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_01_02_121259) do
+ActiveRecord::Schema.define(version: 2024_02_14_124738) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -105,7 +105,7 @@ ActiveRecord::Schema.define(version: 2024_01_02_121259) do
     t.boolean "taxpayer_feedback_consent", default: false
     t.boolean "representative_feedback_consent", default: false
     t.datetime "submitted_at"
-    t.string "test_column"
+    t.string "another_test_column"
     t.index ["case_reference"], name: "index_tribunal_cases_on_case_reference", unique: true
     t.index ["user_id"], name: "index_tribunal_cases_on_user_id"
   end
@@ -123,6 +123,7 @@ ActiveRecord::Schema.define(version: 2024_01_02_121259) do
     t.integer "failed_attempts", default: 0, null: false
     t.datetime "locked_at"
     t.string "session_token"
+    t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
