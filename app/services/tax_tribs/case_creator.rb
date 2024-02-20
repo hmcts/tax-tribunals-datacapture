@@ -18,7 +18,7 @@ module TaxTribs
       # we want to mark the tribunal case as `submitted`
       tribunal_case.update(
         case_reference:,
-        # submitted_at: Time.zone.now,
+        submitted_at: Time.zone.now,
         case_status: CaseStatus::SUBMITTED
       )
     end
