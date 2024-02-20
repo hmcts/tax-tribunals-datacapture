@@ -1,5 +1,7 @@
 'use strict';
 
+Dropzone.autoDiscover = false;
+
 moj.Modules.docUpload = {
   form_id: 'dz_doc_upload',
   uploaded_files: '.uploaded-files',
@@ -13,8 +15,6 @@ moj.Modules.docUpload = {
         dzOptions,
         isLowIE = $('html').hasClass('lte-ie9'),
         maxFilesize;
-
-    Dropzone.autoDiscover = false;
 
     self.$form = $('#' + self.form_id);
     self.$fileList = $(self.uploaded_files);
