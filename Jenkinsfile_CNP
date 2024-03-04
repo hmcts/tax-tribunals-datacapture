@@ -17,6 +17,8 @@ withPipeline(type, product, component) {
     env.EXTERNAL_URL = 'mocked_in_tests'
     env.GOVUK_NOTIFY_API_KEY = 'mocked_in_tests'
     env.GLIMR_API_URL = 'replace_this_at_build_time'
+    env.GLIMR_DIRECT_API_URL = 'replace_this_at_build_time'
+    env.GLIMR_DIRECT_ENABLED = 'replace_this_at_build_time'
     env.EXTERNAL_URL = 'replace_this_at_build_time'
     env.PAYMENT_ENDPOINT = 'replace_this_at_build_time'
     env.TAX_TRIBUNALS_DOWNLOADER_URL = 'replace_this_at_build_time'

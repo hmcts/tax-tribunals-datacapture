@@ -22,6 +22,10 @@ RSpec.describe GlimrDirectApiClient::Api do
       # stub ENV
       allow(ENV).to receive(:fetch).with('GLIMR_API_URL')
         .and_return('https://glimr-api.taxtribunals.dsd.io/Live_API/api/tdsapi')
+      allow(ENV).to receive(:fetch).with('GLIMR_DIRECT_API_URL')
+        .and_return('https://glimr-api.taxtribunals.dsd.io/Live_API/api/tdsapi2')
+      allow(ENV).to receive(:fetch).with('GLIMR_DIRECT_ENABLED', 'false')
+        .and_return('true')
       allow(ENV).to receive(:fetch).with('GLIMR_AUTHORIZATION_KEY', '').and_return('key')
       allow(ENV).to receive(:fetch).with('GLIMR_REGISTER_NEW_CASE_TIMEOUT_SECONDS', 32).and_return('32')
       allow(ENV).to receive(:fetch).with('GLIMR_API_DEBUG', '').and_return('false')
@@ -31,7 +35,7 @@ RSpec.describe GlimrDirectApiClient::Api do
 
     it 'sends request_body as JSON' do
       expect(subject).to receive(:make_request)
-        .with("https://glimr-api.taxtribunals.dsd.io/Live_API/api/tdsapi/endpoint",
+        .with("https://glimr-api.taxtribunals.dsd.io/Live_API/api/tdsapi2/endpoint",
               { parameter: 'parameter' }.to_json)
       subject.post
     end
@@ -54,8 +58,10 @@ RSpec.describe GlimrDirectApiClient::Api do
 
   describe 'configuration' do
     it 'fetches the glimr api endpoint from ENV, sets default if not available' do
+      allow(ENV).to receive(:fetch).with('GLIMR_DIRECT_ENABLED', 'false')
+        .and_return('true')
       expect(ENV).to receive(:fetch)
-        .with('GLIMR_API_URL')
+        .with('GLIMR_DIRECT_API_URL')
       subject.send(:api_url)
     end
   end
@@ -63,6 +69,9 @@ RSpec.describe GlimrDirectApiClient::Api do
   describe 'REST client' do
     before do
       allow(ENV).to receive(:fetch).with('GLIMR_API_URL').and_return('https://glimr-api-emulator.herokuapp.com/Live_API/api/tdsapi/')
+      allow(ENV).to receive(:fetch).with('GLIMR_DIRECT_API_URL').and_return('https://glimr-api-emulator.herokuapp.com/Live_API/api/tdsapi/')
+      allow(ENV).to receive(:fetch).with('GLIMR_DIRECT_ENABLED', 'false')
+        .and_return('true')
       allow(ENV).to receive(:fetch).with('GLIMR_AUTHORIZATION_KEY', '').and_return('key')
       allow(ENV).to receive(:fetch).with('GLIMR_REGISTER_NEW_CASE_TIMEOUT_SECONDS', 32).and_return('32')
       allow(ENV).to receive(:fetch).with('GLIMR_API_DEBUG', '').and_return('false')

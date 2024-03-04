@@ -41,7 +41,10 @@ RSpec.describe GlimrDirectApiClient::RegisterNewCase do
     end
 
     it 'does not raise an error when required parameters are provided' do
-      expect(ENV).to receive(:fetch).with('GLIMR_API_URL').and_return('https://glimr-api-emulator.herokuapp.com/Live_API/api/tdsapi/')
+      expect(ENV).to receive(:fetch).with('GLIMR_DIRECT_API_URL')
+        .and_return('https://glimr-api.taxtribunals.dsd.io/Live_API/api/tdsapi')
+      allow(ENV).to receive(:fetch).with('GLIMR_DIRECT_ENABLED', 'false')
+        .and_return('true')
       expect(ENV).to receive(:fetch).with('GLIMR_AUTHORIZATION_KEY', '').and_return('key')
       expect(ENV).to receive(:fetch).with('GLIMR_REGISTER_NEW_CASE_TIMEOUT_SECONDS', 32).and_return('32')
       allow(ENV).to receive(:fetch).with('GLIMR_API_DEBUG', '').and_return('false')
@@ -55,7 +58,10 @@ RSpec.describe GlimrDirectApiClient::RegisterNewCase do
     let(:body) { { message: '' } }
 
     before do
-      expect(ENV).to receive(:fetch).with('GLIMR_API_URL').and_return('https://glimr-api-emulator.herokuapp.com/Live_API/api/tdsapi/')
+      expect(ENV).to receive(:fetch).with('GLIMR_DIRECT_API_URL')
+        .and_return('https://glimr-api.taxtribunals.dsd.io/Live_API/api/tdsapi')
+      allow(ENV).to receive(:fetch).with('GLIMR_DIRECT_ENABLED', 'false')
+        .and_return('true')
       expect(ENV).to receive(:fetch).with('GLIMR_AUTHORIZATION_KEY', '').and_return('key')
       expect(ENV).to receive(:fetch).with('GLIMR_REGISTER_NEW_CASE_TIMEOUT_SECONDS', 32).and_return('32')
       allow(ENV).to receive(:fetch).with('GLIMR_API_DEBUG', '').and_return('false')

@@ -15,6 +15,8 @@ ENV APP_BUILD_TAG ${APP_BUILD_TAG}
 # Application specific variables
 
 ENV GLIMR_API_URL                replace_this_at_build_time
+ENV GLIMR_DIRECT_API_URL         replace_this_at_build_time
+ENV GLIMR_DIRECT_ENABLED         replace_this_at_build_time
 ENV EXTERNAL_URL                 replace_this_at_build_time
 ENV PAYMENT_ENDPOINT             replace_this_at_build_time
 ENV TAX_TRIBUNALS_DOWNLOADER_URL replace_this_at_build_time
