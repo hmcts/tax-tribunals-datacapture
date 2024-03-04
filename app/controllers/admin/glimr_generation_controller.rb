@@ -25,7 +25,7 @@ class Admin::GlimrGenerationController < AdminController
   end
 
   def jurisdiction_id
-    Glimr::RegisterNewCase::TRIBUNAL_JURISDICTION_ID
+    GlimrDirectApiClient::RegisterNewCase::TRIBUNAL_JURISDICTION_ID
   end
 
   def generator_params
