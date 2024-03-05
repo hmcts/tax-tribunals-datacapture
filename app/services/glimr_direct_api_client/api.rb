@@ -45,7 +45,7 @@ module GlimrDirectApiClient
     # that uses the dotenv gem, then it will always fall through to the default
     # unless dotenv is included and required before this gem is loaded.
     def api_url
-      ENV.fetch('GLIMR_API_URL')
+      ENV.fetch('GLIMR_DIRECT_ENABLED', 'false') == 'true' ? ENV.fetch('GLIMR_DIRECT_API_URL') : ENV.fetch('GLIMR_API_URL')
     end
 
     def make_request(endpoint, body)
@@ -60,6 +60,10 @@ module GlimrDirectApiClient
       end
     end
 
+    def api_key
+      ENV.fetch('GLIMR_AUTHORIZATION_KEY', '')
+    end
+
     def client(uri, body)
       RestClient::Request.execute(
         method: :post,
@@ -68,7 +72,7 @@ module GlimrDirectApiClient
         headers: {
           'Content-Type' => 'application/json',
           'Accept' => 'application/json',
-          'Authorization' => "apikey #{ENV.fetch('GLIMR_AUTHORIZATION_KEY', '')}"
+          'Authorization' => "apikey #{api_key}"
         },
         timeout:
       )
