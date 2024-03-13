@@ -46,6 +46,8 @@ class TribunalCase < ApplicationRecord
   # third-party APIs.
   before_save :sanitize
 
+  self.implicit_order_column = "created_at"
+
   def self.purge!(date)
     where(['created_at < ?', date]).delete_all
   end
