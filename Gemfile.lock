@@ -232,7 +232,7 @@ GEM
       archive-zip (~> 0.7)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    govuk_design_system_formbuilder (4.1.1)
+    govuk_design_system_formbuilder (5.2.0)
       actionview (>= 6.1)
       activemodel (>= 6.1)
       activesupport (>= 6.1)
@@ -250,7 +250,7 @@ GEM
     http-accept (1.7.0)
     http-cookie (1.0.5)
       domain_name (~> 0.5)
-    i18n (1.14.1)
+    i18n (1.14.4)
       concurrent-ruby (~> 1.0)
     i18n-debug (1.2.0)
       i18n (< 2)
@@ -293,7 +293,7 @@ GEM
       nokogiri (~> 1)
       rake
     mini_mime (1.1.5)
-    minitest (5.20.0)
+    minitest (5.22.3)
     msgpack (1.7.2)
     multi_test (1.1.0)
     multipart-post (2.3.0)
@@ -319,9 +319,9 @@ GEM
       net-protocol
     netrc (0.11.0)
     nio4r (2.7.0)
-    nokogiri (1.16.2-x86_64-darwin)
+    nokogiri (1.16.3-x86_64-darwin)
       racc (~> 1.4)
-    nokogiri (1.16.2-x86_64-linux)
+    nokogiri (1.16.3-x86_64-linux)
       racc (~> 1.4)
     notifications-ruby-client (5.4.0)
       jwt (>= 1.5, < 3)
@@ -590,7 +590,7 @@ DEPENDENCIES
   faker (= 3.2.3)
   geckodriver-helper (~> 0.24.0)
   glimr-api-client!
-  govuk_design_system_formbuilder (~> 4)
+  govuk_design_system_formbuilder (~> 5)
   govuk_notify_rails (~> 2.1)
   grover
   hashdiff (>= 0.4.0, = 1.0.1)
