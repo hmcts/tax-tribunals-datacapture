@@ -1,6 +1,6 @@
 // GOV.UK Frontend
-$govuk-assets-path: '/assets/govuk-frontend/govuk/assets/';
-@import "govuk-frontend/govuk/all";
+$govuk-assets-path: '/assets/govuk-frontend/dist/govuk/assets/';
+@import "govuk-frontend/dist/govuk/all";
 
 @import 'local/address_lookup';
 @import 'local/banners';
