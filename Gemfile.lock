@@ -101,7 +101,6 @@ GEM
       faraday_middleware (~> 1.0, >= 1.0.0.rc1)
       net-http-persistent (~> 4.0)
       nokogiri (~> 1, >= 1.10.8)
-    base64 (0.1.1)
     bcrypt (3.1.20)
     better_errors (2.10.1)
       erubi (>= 1.0.0)
@@ -233,7 +232,7 @@ GEM
       archive-zip (~> 0.7)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    govuk_design_system_formbuilder (5.3.0)
+    govuk_design_system_formbuilder (5.3.1)
       actionview (>= 6.1)
       activemodel (>= 6.1)
       activesupport (>= 6.1)
@@ -590,7 +589,7 @@ DEPENDENCIES
   faker (= 3.2.3)
   geckodriver-helper (~> 0.24.0)
   glimr-api-client!
-  govuk_design_system_formbuilder (= 5.3.0)
+  govuk_design_system_formbuilder (= 5.3.1)
   govuk_notify_rails (~> 2.1)
   grover
   hashdiff (>= 0.4.0, = 1.0.1)
