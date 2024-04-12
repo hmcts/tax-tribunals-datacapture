@@ -27,7 +27,7 @@ gem 'uglifier',                        '4.2.0'
 gem 'virtus',                          '2.0.0'
 gem 'zendesk_api',                     '~> 1.28'
 gem 'application_insights',            '~> 0.5.6'
-gem 'sprockets',                       '3.7.3'
+gem 'sprockets',                       '4.2.1'
 gem 'rest-client',                     '2.1.0'
 
 # Admin
