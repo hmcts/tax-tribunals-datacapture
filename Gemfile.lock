@@ -234,7 +234,7 @@ GEM
       archive-zip (~> 0.7)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    govuk_design_system_formbuilder (4.1.1)
+    govuk_design_system_formbuilder (5.3.0)
       actionview (>= 6.1)
       activemodel (>= 6.1)
       activesupport (>= 6.1)
@@ -593,7 +593,7 @@ DEPENDENCIES
   faker (= 3.2.3)
   geckodriver-helper (~> 0.24.0)
   glimr-api-client!
-  govuk_design_system_formbuilder (~> 4)
+  govuk_design_system_formbuilder (= 5.3.0)
   govuk_notify_rails (~> 2.1)
   grover
   hashdiff (>= 0.4.0, = 1.0.1)
