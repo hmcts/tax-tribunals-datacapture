@@ -738,7 +738,8 @@ cy:
       signed_out: "Wedi allgofnodi'n llwyddiannus. "
   document_upload:
     errors:
-      content_type: "Mae %{file_name} mewn fformat ni allwn dderbyn. Gallwch lwytho ffeiliau JPG, PNG, GIF, PDF, Word neu Excel"
+      content_type: "Mae %{file_name} mewn fformat ni allwn dderbyn. Gallwch lwytho ffeiliau MS Word, 
+      MS Excel, PDF, JPG, GIF, PNG, TXT neu RTF"
       file_size: "Mae %{file_name} yn rhy fawr. Bydd angen ichi ailgyflwyno fersiwn sy'n llai na %{max_size} megabeit (MB)"
       invalid_characters: "Mae %{file_name} yn cynnwys nodau annilys. Peidiwch â defnyddio nodau fel £ neu ¬ yn enw'r ffeil"
       response_error: "Ni lwyddwyd i lwytho %{file_name}. Rhowch gynnig arall arni."

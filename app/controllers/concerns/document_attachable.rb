@@ -45,8 +45,8 @@ module DocumentAttachable
   end
 
   def retrieve_document_errors
-    document.errors.each do |error|
-      errors.add(document_attribute, error)
+    document.errors.errors.each do |error|
+      errors.add(document_attribute, error.message)
     end
   end
 end
