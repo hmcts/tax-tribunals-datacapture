@@ -200,7 +200,7 @@ GEM
     factory_bot_rails (6.4.3)
       factory_bot (~> 6.4)
       railties (>= 5.0.0)
-    faker (3.2.3)
+    faker (3.3.1)
       i18n (>= 1.8.11, < 2)
     faraday (1.10.3)
       faraday-em_http (~> 1.0)
@@ -586,7 +586,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   factory_bot_rails
-  faker (= 3.2.3)
+  faker (= 3.3.1)
   geckodriver-helper (~> 0.24.0)
   glimr-api-client!
   govuk_design_system_formbuilder (= 5.3.1)
