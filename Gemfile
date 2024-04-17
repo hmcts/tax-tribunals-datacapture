@@ -97,5 +97,5 @@ group :test do
   gem 'simplecov-rcov', '0.3.7'
   gem 'site_prism', '4.0.3'
   gem 'webmock', '3.19.1', require: false
-  gem 'rspec-sidekiq', '4.1.0'
+  gem 'rspec-sidekiq', '4.2.0'
 end
