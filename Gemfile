@@ -33,7 +33,7 @@ gem 'rest-client',                     '2.1.0'
 # Admin
 gem 'sidekiq',                         '6.5.12'
 gem 'sidekiq-batch',                   '0.1.9'
-gem 'sidekiq_alive',                   '2.3.1'
+gem 'sidekiq_alive',                   '2.4.0'
 
 # PDF generation
 gem "select2-rails",                   '4.0.13'
