@@ -59,7 +59,7 @@ group :development do
   gem 'listen'
   gem 'hashdiff', '>= 0.4.0',          '1.0.1'
   gem 'web-console',                   '4.2.1'
-  gem 'spring',                        '4.1.3'
+  gem 'spring',                        '4.2.0'
   gem 'spring-commands-rspec',         '1.0.4'
   gem "spring-commands-cucumber",      '1.0.1'
 end
