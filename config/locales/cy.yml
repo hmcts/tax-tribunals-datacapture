@@ -871,8 +871,9 @@ cy:
           <<: *SUPPORTED_LANGUAGES
       save_or_return_save_form:
         save_or_return_options:
-            save_for_later: "Creu cyfrif (dewisol)"
-            return_to_saved_appeal: "Dychwelyd at apêl neu gais sydd wedi'i gadw (dewisol)"
+            save_for_later: "Creu cyfrif"
+            return_to_saved_appeal: "Dychwelyd at apêl neu gais sydd wedi'i gadw"
+            continue_with_new_appeal: "Parhau gydag apêl newydd"
       generic_representative_contact_labels:
         <<: *REP_ADDRESS
       generic_taxpayer_contact_labels:

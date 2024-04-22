@@ -13,7 +13,7 @@ module Steps
       when 'return_to_saved_appeal'
         session[:return_to_saved_appeal] = true
         redirect_to helpers.login_or_portfolio_path
-      else
+      when 'continue_with_new_appeal'
         redirect_to destination
       end
     end
