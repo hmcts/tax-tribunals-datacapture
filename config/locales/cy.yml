@@ -1304,7 +1304,8 @@ cy:
           <li>Os caiff nodau annilys eu defnyddio mewn enw ffeil, bydd y system yn ceisio tynnu'r rhain, gan olygu bydd enw’r ffeil a uwchlwythwyd yn newid ar y pwynt uwchlwytho. Gall problemau godi wrth geisio dod o hyd i’r ffeil wedi i chi ei huwchlwytho</li>
         </ul>
       file_too_big: " mae'n rhy fawr. Bydd angen ichi ailgyflwyno fersiwn sy'n llai na XXX megabeit (MB)."
-      file_wrong_format: " mae mewn fformat ni allwn dderbyn. Gallwch lwytho ffeiliau JPG, PNG, GIF, PDF, Word neu Excel."
+      file_wrong_format: "Mae %{file_name} mewn fformat ni allwn dderbyn. Gallwch lwytho ffeiliau MS Word, 
+      MS Excel, PDF, JPG, GIF, PNG, TXT neu RTF"
       footer: "Ni allwch lwytho ffeiliau gweithredu (.exe), ffeiliau zip neu ffeiliau archif eraill oherwydd y risg o firws. "
       header: "Gofynion llwytho ffeil"
       no_uploaded_files: "Nid oes ffeiliau wedi cael eu llwytho"
