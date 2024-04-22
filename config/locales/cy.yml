@@ -738,8 +738,8 @@ cy:
       signed_out: "Wedi allgofnodi'n llwyddiannus. "
   document_upload:
     errors:
-      content_type: "Mae %{file_name} mewn fformat ni allwn dderbyn. Gallwch lwytho ffeiliau MS Word, 
-      MS Excel, PDF, JPG, GIF, PNG, TXT neu RTF"
+      content_type: "Mae %{file_name} mewn fformat nad ydym yn ei derbyn. Gallwch lwytho ffeiliau MS Word, 
+      MS Excel, PDF, JPG, GIF, PNG, TXT neu RTF."
       file_size: "Mae %{file_name} yn rhy fawr. Bydd angen ichi ailgyflwyno fersiwn sy'n llai na %{max_size} megabeit (MB)"
       invalid_characters: "Mae %{file_name} yn cynnwys nodau annilys. Peidiwch â defnyddio nodau fel £ neu ¬ yn enw'r ffeil"
       response_error: "Ni lwyddwyd i lwytho %{file_name}. Rhowch gynnig arall arni."
@@ -764,7 +764,7 @@ cy:
       save_or_print_pdf: "Cadw neu argraffu manylion eich achos"
       <<: *START_FINISH
     error_summary:
-      heading: "Mae yna broblem"
+      heading: "Mae problem wedi codi"
       text: ""
     format: "%{message}"
     invalid_session:
@@ -1304,8 +1304,8 @@ cy:
           <li>Os caiff nodau annilys eu defnyddio mewn enw ffeil, bydd y system yn ceisio tynnu'r rhain, gan olygu bydd enw’r ffeil a uwchlwythwyd yn newid ar y pwynt uwchlwytho. Gall problemau godi wrth geisio dod o hyd i’r ffeil wedi i chi ei huwchlwytho</li>
         </ul>
       file_too_big: " mae'n rhy fawr. Bydd angen ichi ailgyflwyno fersiwn sy'n llai na XXX megabeit (MB)."
-      file_wrong_format: "Mae %{file_name} mewn fformat ni allwn dderbyn. Gallwch lwytho ffeiliau MS Word, 
-      MS Excel, PDF, JPG, GIF, PNG, TXT neu RTF"
+      file_wrong_format: "Mae %{file_name} mewn fformat nad ydym yn ei derbyn. Gallwch lwytho ffeiliau MS Word, 
+      MS Excel, PDF, JPG, GIF, PNG, TXT neu RTF."
       footer: "Ni allwch lwytho ffeiliau gweithredu (.exe), ffeiliau zip neu ffeiliau archif eraill oherwydd y risg o firws. "
       header: "Gofynion llwytho ffeil"
       no_uploaded_files: "Nid oes ffeiliau wedi cael eu llwytho"
