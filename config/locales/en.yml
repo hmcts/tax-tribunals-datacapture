@@ -1597,8 +1597,8 @@ en:
     errors:
       file_size: "%{file_name} is too big. You will need to resubmit a smaller version,
         less than %{max_size} megabytes (MB)"
-      content_type: "%{file_name} is in a format we don't accept. You can upload JPG,
-        PNG, GIF, PDF, Word or Excel files"
+      content_type: "%{file_name} is in a format we don't accept. You can upload MS Word, 
+      MS Excel, PDF, JPG, GIF, PNG, TXT or RTF files."
       invalid_characters: "%{file_name} contains invalid characters. Please do not use
         characters like £ or ¬ in the file name"
       virus_detected: "%{file_name} has a virus. You will need to resubmit a virus
