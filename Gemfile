@@ -29,6 +29,7 @@ gem 'zendesk_api',                     '~> 1.28'
 gem 'application_insights',            '~> 0.5.6'
 gem 'sprockets',                       '4.2.1'
 gem 'rest-client',                     '2.1.0'
+gem 'bigdecimal',                      '3.0.0'
 
 # Admin
 gem 'sidekiq',                         '6.5.12'

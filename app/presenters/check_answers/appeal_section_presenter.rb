@@ -13,11 +13,16 @@ module CheckAnswers
                    change_path: edit_steps_challenge_decision_status_path),
         dispute_type_answer,
         penalty_level_or_amount_answer,
-        Answer.new(:tax_amount, tribunal_case.tax_amount, raw: true)
+        tax_amount_answer
       ].select(&:show?)
     end
 
     private
+
+    def tax_amount_answer
+      amount = tribunal_case.tax_amount && "£#{tribunal_case.tax_amount}"
+      Answer.new(:tax_amount, amount, raw: true)
+    end
 
     def case_type_answer
       if tribunal_case.case_type == CaseType::OTHER
