@@ -61,7 +61,7 @@ module TaxTribunalsDatacapture
     config.x.cases.expire_in_days = ENV.fetch('EXPIRE_AFTER', 120).to_i
     config.x.users.expire_in_days = ENV.fetch('USERS_EXPIRE_AFTER', 30).to_i
 
-    config.action_mailer.default_url_options = { host: ENV.fetch('EXTERNAL_URL') }
+    config.action_mailer.default_url_options = { host: ENV.fetch('EXTERNAL_URL', 'localhost:3000') }
 
     config.x.address_lookup.endpoint = ENV.fetch('ADDRESS_LOOKUP_ENDPOINT', nil)
     config.x.address_lookup.api_key = ENV.fetch('ADDRESS_LOOKUP_API_KEY', nil)
