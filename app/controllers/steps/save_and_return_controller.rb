@@ -1,5 +1,7 @@
 module Steps
   class SaveAndReturnController < StepController
+    skip_before_action :check_tribunal_case_presence
+    skip_before_action :check_tribunal_case_status
 
     def edit
       @form_object = SaveAndReturn::SaveForm.new
@@ -14,13 +16,15 @@ module Steps
         session[:return_to_saved_appeal] = true
         redirect_to helpers.login_or_portfolio_path
       when 'continue_with_new_appeal'
-        redirect_to destination
+        redirect_to edit_steps_appeal_case_type_path
+      else
+        update_and_advance(SaveAndReturn::SaveForm)
       end
     end
 
     private
 
-    def permitted_params
+    def permitted_params(form_class={})
       return {} if params[:save_and_return_save_form].nil? || params[:save_and_return_save_form][:save_or_return].nil?
       params[:save_and_return_save_form][:save_or_return]
     end

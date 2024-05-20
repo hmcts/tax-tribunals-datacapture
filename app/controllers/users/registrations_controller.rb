@@ -1,7 +1,7 @@
 module Users
   class RegistrationsController < Devise::RegistrationsController
     # We are allowing to create new accounts only as part of saving a case in progress
-    before_action :check_tribunal_case_presence, only: [:new, :create, :save_confirmation]
+    # before_action :check_tribunal_case_presence, only: [:new, :create, :save_confirmation]
 
     def save_confirmation
       @email_address = current_tribunal_case.user.email

@@ -131,6 +131,10 @@ cy:
   activemodel:
     errors:
       models:
+        save_and_return/save_form:
+          attributes:
+            save_or_return:
+              inclusion: Dewiswch o'r rhestr o opsiynau
         steps/appeal/case_type_form:
           attributes:
             case_type:
@@ -1706,7 +1710,7 @@ cy:
           upload_explanation_html: "Bydd eich dogfen yn cael ei llwytho pan fyddwch yn clicio ‘Parhau'."
     save_and_return:
       edit:
-        heading: "Ydych chi eisiau gallu cadw a dychwelyd at yr apêl hon?"
+        heading: "Ydych chi eisiau gallu cadw a dychwelyd at eich apêl?"
         lead_text: "Bydd creu cyfrif yn eich galluogi i gadw apêl sydd heb ei chwblhau a dychwelyd ati yn hwyrach ymlaen. "
         lead_text_2: "Os ydych chi'n dewis peidio â chreu cyfrif ac nad ydych yn cyflwyno eich apêl, yna byddwch yn colli unrhyw wybodaeth yr ydych wedi'i rhoi a bydd rhaid i chi ddechrau eto. "
         page_title: "Ydych chi eisiau gallu cadw a dychwelyd at yr apêl hon?"
