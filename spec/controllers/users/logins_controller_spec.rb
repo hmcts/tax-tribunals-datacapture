@@ -16,7 +16,9 @@ RSpec.describe Users::LoginsController do
   end
 
   describe '#create' do
+    let(:tribunal_case) { double('TribunalCase', case_type?: true) }
     let(:user) { User.new(email: 'foo@bar.com') }
+    let(:case_type) { nil }
 
     def do_post
       local_post :create, params: { 'user' => {
@@ -32,9 +34,9 @@ RSpec.describe Users::LoginsController do
         expect(warden).to receive(:authenticate).and_return(user)
       end
 
-      it 'signs the user in and redirects to the confirmation page' do
+      it 'signs the user in and takes to case type page' do
         do_post
-        expect(response).to redirect_to(users_login_save_confirmation_path)
+        expect(response).to redirect_to(users_cases_path)
       end
 
       context 'when the case already belongs to the user (we do not send an email)' do

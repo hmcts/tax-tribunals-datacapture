@@ -6,7 +6,7 @@ class AppealDecisionTree < TaxTribs::DecisionTree
     when :save_and_return
       case_type_or_save_step
     when :case_type, :case_type_show_more
-      select_language_path
+      after_case_type_step
     when :language
       after_case_type_step
     when :dispute_type

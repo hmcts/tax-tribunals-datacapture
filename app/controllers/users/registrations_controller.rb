@@ -4,7 +4,7 @@ module Users
     # before_action :check_tribunal_case_presence, only: [:new, :create, :save_confirmation]
 
     def save_confirmation
-      @email_address = current_tribunal_case.user.email
+      @email_address = current_tribunal_case.user.email if current_user
     end
 
     def update_confirmation
@@ -14,8 +14,9 @@ module Users
 
     # We want, on purpose, to not sign in the user after registration, so not calling `super` here.
     def sign_up(_resource_name, user)
-      TaxTribs::SaveCaseForLater.new(current_tribunal_case, user).save
-      super if session[:save_for_later] == true
+      save_for_later = TaxTribs::SaveCaseForLater.new(current_tribunal_case, user)
+      save_for_later.save unless current_tribunal_case.case_type.blank?
+      super if session[:save_for_later] == true || session[:continue_with_new_appeal] == true
     end
 
     # Devise will not give an error when leaving blank the new password, it will just ignore the update,
@@ -27,7 +28,7 @@ module Users
     end
 
     def after_sign_up_path_for(_)
-      users_registration_save_confirmation_path
+      current_tribunal_case.case_type? ? users_registration_save_confirmation_path : edit_steps_appeal_case_type_path
     end
 
     def after_update_path_for(_)

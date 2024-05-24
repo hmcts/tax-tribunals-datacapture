@@ -11,16 +11,28 @@ RSpec.describe Steps::SaveAndReturnController do
   end
 
   describe 'update' do
-    context 'continue to normal step flow' do
-      let!(:existing_case) { TribunalCase.create }
-      subject { local_put :update, session: { tribunal_case_id: existing_case.id, next_step: edit_steps_challenge_decision_path } }
+    let!(:existing_case) { TribunalCase.create }
 
-      it { expect(subject).to redirect_to(edit_steps_challenge_decision_path) }
+    context 'return to saved appeal' do
+      let(:params) { { save_and_return_save_form: { save_or_return: 'return_to_saved_appeal' } } }
+      subject { local_put :update, session: { tribunal_case_id: existing_case.id }, params: }
+
+      before do
+        allow_any_instance_of(ApplicationHelper).to receive(:login_or_portfolio_path).and_return(users_cases_path)
+      end
+
+      it { expect(subject).to redirect_to(users_cases_path) }
+    end
+
+    context 'continue with new appeal' do
+      let(:params) { { save_and_return_save_form: { save_or_return: 'continue_with_new_appeal' } } }
+      subject { local_put :update, session: { tribunal_case_id: existing_case.id }, params: }
+
+      it { expect(subject).to redirect_to(edit_steps_appeal_case_type_path) }
     end
 
     context 'go to save for later form' do
       let(:params) { { save_and_return_save_form: { save_or_return: 'save_for_later' }}}
-      let!(:existing_case) { TribunalCase.create }
       subject { local_put :update, session: { tribunal_case_id: existing_case.id }, params: }
 
       it { expect(subject).to redirect_to(new_user_registration_path) }

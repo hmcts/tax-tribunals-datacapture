@@ -16,6 +16,7 @@ module Steps
         session[:return_to_saved_appeal] = true
         redirect_to helpers.login_or_portfolio_path
       when 'continue_with_new_appeal'
+        session[:continue_with_new_appeal] = true
         redirect_to edit_steps_appeal_case_type_path
       else
         update_and_advance(SaveAndReturn::SaveForm)
@@ -24,7 +25,7 @@ module Steps
 
     private
 
-    def permitted_params(form_class={})
+    def permitted_params(_form_class = {})
       return {} if params[:save_and_return_save_form].nil? || params[:save_and_return_save_form][:save_or_return].nil?
       params[:save_and_return_save_form][:save_or_return]
     end
