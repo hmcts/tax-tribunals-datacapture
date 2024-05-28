@@ -218,7 +218,7 @@ def navigate_to_closure_case_type_page
     create_user
     FactoryBot.create(:closure_case)
     stub_uploader_and_go_to_login_page
-    login
+    login_and_resume
     closure_case_type_page.load_page
   end
 end
@@ -228,7 +228,7 @@ def navigate_to_appeal_case_type_page
     create_user
     FactoryBot.create(:appeal_case)
     stub_uploader_and_go_to_login_page
-    login
+    login_and_resume
     appeal_case_type_page.load_page
   end
 
