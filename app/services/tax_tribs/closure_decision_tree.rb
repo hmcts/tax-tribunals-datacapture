@@ -4,9 +4,9 @@ class TaxTribs::ClosureDecisionTree < TaxTribs::DecisionTree
 
     case step_name.to_sym
     when :case_type
-      case_type_or_save_step
+      select_language_path
     when :save_and_return
-      edit(:select_language)
+      case_type_or_save_step
     when :language
       edit('/steps/details/user_type')
     when :enquiry_details

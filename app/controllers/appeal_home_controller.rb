@@ -1,5 +1,6 @@
 class AppealHomeController < ApplicationController
   include StartingPointStep
+
   def index
   end
 

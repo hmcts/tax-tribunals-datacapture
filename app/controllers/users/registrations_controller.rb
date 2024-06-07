@@ -12,10 +12,13 @@ module Users
 
     protected
 
-    # We want, on purpose, to not sign in the user after registration, so not calling `super` here.
     def sign_up(_resource_name, user)
       save_for_later = TaxTribs::SaveCaseForLater.new(current_tribunal_case, user)
-      save_for_later.save unless current_tribunal_case.case_type.blank?
+      if current_tribunal_case.intent.value == :tax_appeal
+        save_for_later.save unless current_tribunal_case.case_type.blank?
+      elsif current_tribunal_case.intent.value == :close_enquiry
+        save_for_later.save unless current_tribunal_case.closure_case_type.blank?
+      end
       super if session[:save_for_later] == true || session[:continue_with_new_appeal] == true
     end
 
@@ -28,7 +31,13 @@ module Users
     end
 
     def after_sign_up_path_for(_)
-      current_tribunal_case.case_type? ? users_registration_save_confirmation_path : edit_steps_appeal_case_type_path
+      if current_tribunal_case.intent.value == :tax_appeal
+        current_tribunal_case.case_type? ? users_registration_save_confirmation_path : edit_steps_appeal_case_type_path
+      elsif current_tribunal_case.intent.value == :close_enquiry
+        current_tribunal_case.closure_case_type? ? users_registration_save_confirmation_path : edit_steps_closure_case_type_path
+      else
+        users_registration_save_confirmation_path
+      end
     end
 
     def after_update_path_for(_)

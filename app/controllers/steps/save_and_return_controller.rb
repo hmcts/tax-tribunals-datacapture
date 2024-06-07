@@ -17,7 +17,11 @@ module Steps
         redirect_to helpers.login_or_portfolio_path
       when 'continue_with_new_appeal'
         session[:continue_with_new_appeal] = true
-        redirect_to edit_steps_appeal_case_type_path
+        if current_tribunal_case.intent.value == :tax_appeal
+          redirect_to edit_steps_appeal_case_type_path
+        elsif current_tribunal_case.intent.value == :close_enquiry
+          redirect_to edit_steps_closure_case_type_path
+        end
       else
         update_and_advance(SaveAndReturn::SaveForm)
       end

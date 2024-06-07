@@ -34,8 +34,10 @@ module Users
     def sign_in(_resource_name, user)
       super
       save_for_later = TaxTribs::SaveCaseForLater.new(current_tribunal_case, user)
-      if current_tribunal_case && current_tribunal_case.respond_to?(:case_type?) && current_tribunal_case.case_type?
-        save_for_later.save
+      if current_tribunal_case.intent.value == :tax_appeal
+        save_for_later.save if current_tribunal_case.respond_to?(:case_type?) || current_tribunal_case.case_type?
+      elsif current_tribunal_case.intent.value == :close_enquiry
+        save_for_later.save if current_tribunal_case.respond_to?(:closure_case_type?) || current_tribunal_case.closure_case_type?
       end
       session[:confirmation_email_address] = user.email if save_for_later.email_sent?
     end

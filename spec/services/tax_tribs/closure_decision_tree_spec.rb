@@ -22,13 +22,13 @@ RSpec.describe TaxTribs::ClosureDecisionTree do
         describe 'when the step_params key is a string' do
           let(:step_params) { { 'case_type' => 'anything' } }
 
-          it { is_expected.to have_destination('/steps/details/user_type', :edit) }
+          it { is_expected.to have_destination('/steps/select_language', :edit) }
         end
 
         describe 'when the step is `case_type`' do
           let(:step_params) { { case_type: 'anything' } }
 
-          it { is_expected.to have_destination('/steps/details/user_type', :edit) }
+          it { is_expected.to have_destination('/steps/select_language', :edit) }
         end
       end
 
@@ -36,7 +36,7 @@ RSpec.describe TaxTribs::ClosureDecisionTree do
         describe 'when the step_params key is a string' do
           let(:step_params) { { 'case_type' => 'anything' } }
 
-          it { is_expected.to have_destination('/steps/save_and_return', :edit) }
+          it { is_expected.to have_destination('/steps/select_language', :edit) }
 
           it 'next_step value is set' do
             subject.destination

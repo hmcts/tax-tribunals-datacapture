@@ -66,6 +66,7 @@ en:
     CASE_TYPE_QUESTION: &CASE_TYPE_QUESTION
       heading: What is your appeal about?
       lead_text: Choose the most relevant option based on the original notice or review conclusion letter.
+
     CHALLENGE_STATUS: &CHALLENGE_STATUS
       received: I have a review conclusion letter
       pending: I have been waiting less than 45 days for a review to finish
