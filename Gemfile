@@ -65,6 +65,7 @@ group :development do
 end
 
 group :development, :test do
+  gem 'actionpack',                    '6.1.7.8'
   gem 'byebug', '11.1.3', platform: :mri
   gem 'dotenv-rails'
   gem 'faker',                         '3.3.1'
