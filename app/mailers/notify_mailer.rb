@@ -151,7 +151,7 @@ class NotifyMailer < GovukNotifyRails::Mailer
     set_personalisation(
       name: data.name,
       email: data.email,
-      assistance_level: t("helpers.label.surveys_feedback_form.assistance_level.#{data.assistance_level}"),
+      assistance_level: t("helpers.label.surveys_feedback_form.assistance_level_options.#{data.assistance_level}"),
       comment: data.comment)
     mail(to: ENV.fetch('REPORT_PROBLEM_EMAIL_ADDRESS'))
   end
