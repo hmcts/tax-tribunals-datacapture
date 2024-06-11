@@ -41,7 +41,8 @@ change_path: edit_steps_appeal_dispute_type_path)
       if tribunal_case.penalty_amount.blank?
         Answer.new(:penalty_level, tribunal_case.penalty_level)
       else
-        Answer.new(:penalty_amount, tribunal_case.penalty_amount, raw: true)
+        penalty_amount_currency = "£ #{tribunal_case.penalty_amount}"
+        Answer.new(:penalty_amount, penalty_amount_currency, raw: true)
       end
     end
 
