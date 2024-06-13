@@ -34,6 +34,7 @@ class StepController < ApplicationController
         end
       rescue StandardError => e
         Rails.logger.error("Address Lookup Fetch Access Token error: #{e}")
+        Sentry.capture_exception(e)
         nil
       end
     end
