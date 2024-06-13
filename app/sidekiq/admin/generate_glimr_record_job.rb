@@ -11,7 +11,7 @@ class Admin::GenerateGlimrRecordJob
     res = GlimrDirectApiClient::RegisterNewCase.call(payload.symbolize_keys)
     logger.info res.response_body
 
-    Sentry.capture_exception(GlimrError) unless res.response_body
     raise GlimrError, "No response provided" unless res.response_body
+    Sentry.capture_exception(GlimrError) unless res.response_body
   end
 end
