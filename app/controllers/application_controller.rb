@@ -47,6 +47,8 @@ class ApplicationController < ActionController::Base
 
   def switch_locale(&)
     locale = params[:locale] || I18n.default_locale
+    locale = I18n.default_locale unless [:en, :cy].include?(locale.to_sym)
+
     I18n.with_locale(locale, &)
   end
 
