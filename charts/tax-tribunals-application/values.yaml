@@ -108,12 +108,12 @@ base:
           alias: MAINTENANCE_ENABLED
         - name: maintenance-allowed-ips
           alias: MAINTENANCE_ALLOWED_IPS
-        - name: azure-storage-account
-          alias: AZURE_STORAGE_ACCOUNT
         - name: azure-storage-key
           alias: AZURE_STORAGE_KEY
-        - name: azure-storage-container
-          alias: AZURE_STORAGE_CONTAINER
+        # - name: azure-storage-account
+        #   alias: AZURE_STORAGE_ACCOUNT
+        # - name: azure-storage-container
+        #   alias: AZURE_STORAGE_CONTAINER
         - name: glimr-authorization-key
           alias: GLIMR_AUTHORIZATION_KEY
         - name: glimr-api-client-mock
@@ -236,12 +236,12 @@ sidekiq:
           alias: MAINTENANCE_ENABLED
         - name: maintenance-allowed-ips
           alias: MAINTENANCE_ALLOWED_IPS
-        - name: azure-storage-account
-          alias: AZURE_STORAGE_ACCOUNT
+        # - name: azure-storage-account
+        #   alias: AZURE_STORAGE_ACCOUNT
         - name: azure-storage-key
           alias: AZURE_STORAGE_KEY
-        - name: azure-storage-container
-          alias: AZURE_STORAGE_CONTAINER
+        # - name: azure-storage-container
+        #   alias: AZURE_STORAGE_CONTAINER
         - name: app-insights-instrumentation-key
           alias: APP_INSIGHTS_INSTRUMENTATION_KEY
 job:
@@ -361,37 +361,9 @@ job:
           alias: MAINTENANCE_ENABLED
         - name: maintenance-allowed-ips
           alias: MAINTENANCE_ALLOWED_IPS
-        - name: azure-storage-account
-          alias: AZURE_STORAGE_ACCOUNT
+        # - name: azure-storage-account
+        #   alias: AZURE_STORAGE_ACCOUNT
+        # - name: azure-storage-container
+        #   alias: AZURE_STORAGE_CONTAINER
         - name: azure-storage-key
           alias: AZURE_STORAGE_KEY
-        - name: azure-storage-container
-          alias: AZURE_STORAGE_CONTAINER
-# wsproxy:
-#   applicationPort: 8080
-#   readinessPath: /status
-#   livenessPath: /status
-#   startupPath: /status
-#   replicaCount: 1
-#   image:
-#     repository: employmenttribunal.azurecr.io/tt-dss-a
-#     pullPolicy: Always
-#   nameOverride: ""
-#   fullnameOverride: ""
-#   service:
-#     type: ClusterIP
-#     port: 8080
-#   wsservice:
-#     type: ClusterIP
-#     port: 443
-#   ingress:
-#     enabled: false
-#     annotations:
-#       kubernetes.io/ingress.class: traefik-tt
-#     paths:
-#       - /
-#     tls: []
-#   resources:
-#   nodeSelector: {}
-#   tolerations: []
-#   affinity: {}
