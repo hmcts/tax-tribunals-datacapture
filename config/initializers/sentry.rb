@@ -1,4 +1,6 @@
 # :nocov:
+EXCLUDE_PATHS = ['/session/ping', '/session/ping.json', '/health', '/health.json'].freeze
+
 Sentry.init do |config|
   config.dsn = ENV.fetch('SENTRY_DSN', nil)
   config.breadcrumbs_logger = [:sentry_logger, :active_support_logger]
@@ -13,6 +15,11 @@ Sentry.init do |config|
  # Rails.application.config.filter_parameters.map(&:to_s) values
  # config.sanitize_fields = Rails.application.config.filter_parameters.map(&:to_s)
 
-  config.transport.ssl_verification = true
+  config.traces_sampler = lambda do |sampling_context|
+    transaction_context = sampling_context[:transaction_context]
+    transaction_name = transaction_context[:name]
+
+    transaction_name.in?(EXCLUDE_PATHS) ? 0.0 : 0.01
+  end
 end
 # :nocov:
