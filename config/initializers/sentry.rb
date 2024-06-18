@@ -15,6 +15,8 @@ Sentry.init do |config|
  # Rails.application.config.filter_parameters.map(&:to_s) values
  # config.sanitize_fields = Rails.application.config.filter_parameters.map(&:to_s)
 
+  config.transport.ssl_verification = true
+
   config.traces_sampler = lambda do |sampling_context|
     transaction_context = sampling_context[:transaction_context]
     transaction_name = transaction_context[:name]
