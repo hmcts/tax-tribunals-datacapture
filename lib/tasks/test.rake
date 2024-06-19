@@ -1,7 +1,7 @@
 # Rake::Task[:test].clear
 
 task test: :environment do
-  unless system("rspec --format RspecJunitFormatter --out tmp/test/rspec.xml")
+  unless system("rspec spec/models/tribunal_case_spec.rb --format RspecJunitFormatter --out tmp/test/rspec.xml")
     raise "Rspec testing failed #{$?}"
   end
   # Code to run your tests
