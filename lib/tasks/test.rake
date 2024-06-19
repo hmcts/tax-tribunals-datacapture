@@ -1,13 +1,10 @@
 # Rake::Task[:test].clear
 
 task test: :environment do
-  unless system("rspec spec/models/tribunal_case_spec.rb --format RspecJunitFormatter --out tmp/test/rspec.xml")
-    raise "Rspec testing failed #{$?}"
-  end
   # Code to run your tests
-  # Rake::Task['rubocop'].invoke
-  # Rake::Task['brakeman'].invoke
-  # Rake::Task['rspec'].invoke
+  Rake::Task['rubocop'].invoke
+  Rake::Task['brakeman'].invoke
+  Rake::Task['rspec'].invoke
   # Rake::Task['cucumber'].invoke
 end
 
