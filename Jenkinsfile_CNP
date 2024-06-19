@@ -59,6 +59,11 @@ withPipeline(type, product, component) {
 
     before('build') {
         yarnBuilder.runYarn("--mutex network install --f``rozen-lockfile")
+        sh script:"""#!/bin/bash -l
+            set +x
+            source /usr/local/rvm/scripts/rvm
+            rvm install ruby-3.3.0
+        """, label: 'Ruby version install'
     }
 
     before('test') {
