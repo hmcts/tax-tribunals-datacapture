@@ -15,7 +15,7 @@
 //= require dropzone
 //= require_tree .
 
-//= require govuk-frontend/govuk/all
+//= require govuk-frontend/dist/govuk/all.bundle
 //= require select2
 
 $(document).ready(function() {
