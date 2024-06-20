@@ -17,6 +17,11 @@ Bundler.require(*Rails.groups)
 
 module TaxTribunalsDatacapture
   class Application < Rails::Application
+
+    puts '##### applicaiton.rb start #####'
+    puts ENV['AZURE_STORAGE_CONTAINER']
+    puts ENV['AZURE_STORAGE_ACCOUNT']
+    puts '##### STOP #####'
     # *** Add environment variables ***
     #
     # In CFT, env vars are mounted to the filesystem.
