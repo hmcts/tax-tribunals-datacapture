@@ -1,42 +1,62 @@
-#!/bin/sh
+#!/bin/bash
 
-sed -i 's/LocalSocketGroup clamav/LocalSocketGroup appgroup/g' /etc/clamav/clamd.conf
-sed -i 's/User clamav/User root/g' /etc/clamav/clamd.conf
-clamd
-
-PHUSION_SERVICE="${PHUSION:-false}"
-case ${PHUSION_SERVICE} in
-true)
-      cd /home/app/
-      case ${DOCKER_STATE} in
-        migrate)
-          echo "Running migrate"
-          bundle exec rake db:migrate
-          ;;
-        create)
-          echo "Running create"
-          bundle exec rake db:create
-          bundle exec rake db:migrate
-          bundle exec rake db:seed
-          ;;
-      esac
-    echo "running as service"
-    bundle exec puma -p $PUMA_PORT
+case ${DOCKER_STATE} in
+migrate)
+    echo "Running migrate"
+    bundle exec rake db:migrate
     ;;
-*)
-      case ${DOCKER_STATE} in
-        migrate)
-          echo "Running migrate"
-          bundle exec rake db:migrate
-          ;;
-        create)
-          echo "Running create"
-          bundle exec rake db:create
-          bundle exec rake db:migrate
-          bundle exec rake db:seed
-          ;;
-      esac
-    echo "normal startup"
-    bundle exec puma -p $PUMA_PORT
+create)
+    echo "Running create"
+    bundle exec rake db:create
+    bundle exec rake db:migrate
+    bundle exec rake db:seed
     ;;
 esac
+
+bundle exec puma -p ${PUMA_PORT:-8080} -C ./config/puma.rb -e ${RAILS_ENV:-production}
+
+
+# #!/bin/sh
+
+# sed -i 's/LocalSocketGroup clamav/LocalSocketGroup appgroup/g' /etc/clamav/clamd.conf
+# sed -i 's/User clamav/User root/g' /etc/clamav/clamd.conf
+# clamd
+
+# PHUSION_SERVICE="${PHUSION:-false}"
+# case ${PHUSION_SERVICE} in
+# true)
+#       cd /home/app/
+#       case ${DOCKER_STATE} in
+#         migrate)
+#           echo "Running migrate"
+#           bundle exec rake db:migrate
+#           ;;
+#         create)
+#           echo "Running create"
+#           bundle exec rake db:create
+#           bundle exec rake db:migrate
+#           bundle exec rake db:seed
+#           ;;
+#       esac
+#     echo "running as service"
+#     bundle exec puma -p $PUMA_PORT
+#     ;;
+# *)
+#       case ${DOCKER_STATE} in
+#         migrate)
+#           echo "Running migrate"
+#           bundle exec rake db:migrate
+#           ;;
+#         create)
+#           echo "Running create"
+#           bundle exec rake db:create
+#           bundle exec rake db:migrate
+#           bundle exec rake db:seed
+#           ;;
+#       esac
+#     echo "normal startup"
+#     bundle exec puma -p $PUMA_PORT
+#     ;;
+# esac
+
+
