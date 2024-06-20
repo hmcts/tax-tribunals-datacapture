@@ -108,5 +108,4 @@ COPY . /home/app
 RUN yarn install --check-files
 
 CMD ["sh", "-c", "bundle exec rake assets:precompile RAILS_ENV=production SECRET_TOKEN=blah && \
-     bundle exec rake static_pages:generate RAILS_ENV=production SECRET_TOKEN=blah && \
      sh ./run.sh"]
