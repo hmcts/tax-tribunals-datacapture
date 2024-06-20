@@ -43,6 +43,9 @@ gem 'grover'
 gem 'azure-storage-blob', '~> 2'
 gem 'mimemagic', '~> 0.4.0'
 
+# Loading env via settings
+gem 'config'
+
 source 'https://oss:Q7U7p2q2XlpY45kwqjCpXLIPf122rjkR@gem.mutant.dev' do
   gem 'mutant-license',                '0.1.1.2.1739399027284447558325915053311580324856.4'
 end
@@ -59,9 +62,9 @@ group :development do
   gem 'listen'
   gem 'hashdiff', '>= 0.4.0',          '1.0.1'
   gem 'web-console',                   '4.2.1'
-  gem 'spring',                        '4.2.0'
-  gem 'spring-commands-rspec',         '1.0.4'
-  gem "spring-commands-cucumber",      '1.0.1'
+  # gem 'spring',                        '4.2.0'
+  # gem 'spring-commands-rspec',         '1.0.4'
+  # gem "spring-commands-cucumber",      '1.0.1'
 end
 
 group :development, :test do

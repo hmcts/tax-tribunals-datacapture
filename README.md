@@ -22,6 +22,9 @@ Create the database with `rake db:setup db:migrate`
 
 Then run `rails server`
 
+## Storage
+We are using Azure storage. The current cloud setup is not based on shared infra config (except Demo env).
+Ideally we migrate the data to keep things tidy.
  
 ## Mutation testing performance issues and resolution
 

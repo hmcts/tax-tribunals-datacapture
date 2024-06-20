@@ -1,0 +1,3 @@
+azure:
+  storage_account: <%= ENV['AZURE_STORAGE_ACCOUNT'] || '' %>
+  storage_container: <%= ENV['AZURE_STORAGE_CONTAINER'] || '' %>
