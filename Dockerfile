@@ -6,6 +6,7 @@ ARG APP_VERSION=unknown
 ARG APP_BUILD_DATE=unknown
 ARG APP_GIT_COMMIT=unknown
 ARG APP_BUILD_TAG=unknown
+ARG DEBIAN_FRONTEND=noninteractive
 
 # Setting up ping.json variables
 ENV APP_VERSION ${APP_VERSION}
@@ -96,41 +97,54 @@ ENV PUMA_PORT 8000
 EXPOSE $PUMA_PORT
 
 ## adding cron jobs
-ADD daily-export /etc/periodic/daily
+# ADD daily-export /etc/periodic/daily
 
-RUN chmod +x /etc/periodic/daily/*
+# RUN chmod +x /etc/periodic/daily/*
+
+
+# # Copy fonts and images (without digest) along with the digested ones,
+# # as there are some hardcoded references in the `govuk-frontend` files
+# # that will not be able to use the rails digest mechanism.
+# RUN cp node_modules/govuk-frontend/govuk/assets/fonts/*  public/assets/govuk-frontend/govuk/assets/fonts
+# RUN cp node_modules/govuk-frontend/govuk/assets/images/* public/assets/govuk-frontend/govuk/assets/images
+
+# ## Set up sidekiq
+# COPY --chown=appuser:appgroup sidekiq.sh /home/app/sidekiq.sh
+# RUN chmod +x /home/app/sidekiq.sh
+
 
 RUN mkdir -p /home/app
-RUN chown appuser:appgroup /home/app
-
-USER appuser
-
 WORKDIR /home/app
-COPY Gemfile* .ruby-version ./
 
-RUN gem install bundler -v 2.3.15 && \
-    bundle config set frozen 'true' && \
-    bundle config without test:development && \
-    bundle install
+COPY Gemfile /home/app
+COPY Gemfile.lock /home/app
+RUN gem install bundler -v 2.4.20
 
-COPY --chown=appuser:appgroup . .
+RUN bundle config set --local without 'test development'
+RUN bundle config set force_ruby_platform true
+RUN bundle install
 
+# running app as a servive
+ENV PHUSION true
+
+COPY . /home/app
 RUN yarn install --check-files
 
-RUN bundle exec rails assets:precompile RAILS_ENV=production SECRET_KEY_BASE=required_but_does_not_matter_for_assets
+CMD ["sh", "-c", "bundle exec rake assets:precompile RAILS_ENV=production SECRET_TOKEN=blah && \
+     bundle exec rake static_pages:generate RAILS_ENV=production SECRET_TOKEN=blah && \
+     sh ./run.sh"]
 
-# Copy fonts and images (without digest) along with the digested ones,
-# as there are some hardcoded references in the `govuk-frontend` files
-# that will not be able to use the rails digest mechanism.
-RUN cp node_modules/govuk-frontend/govuk/assets/fonts/*  public/assets/govuk-frontend/govuk/assets/fonts
-RUN cp node_modules/govuk-frontend/govuk/assets/images/* public/assets/govuk-frontend/govuk/assets/images
 
-## Set up sidekiq
-COPY --chown=appuser:appgroup sidekiq.sh /home/app/sidekiq.sh
-RUN chmod +x /home/app/sidekiq.sh
 
-# running app as a service
-ENV PHUSION true
-COPY --chown=appuser:appgroup run.sh /home/app/run
-RUN chmod +x /home/app/run
-CMD ["./run"]
+
+
+
+
+
+
+
+
+
+
+
+
