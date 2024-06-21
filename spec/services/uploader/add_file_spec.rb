@@ -4,12 +4,14 @@ RSpec.describe Uploader::AddFile do
   subject { described_class.new(**params).call }
 
   let(:container) { 'container' }
+  let(:storage_account_name) { 'test' }
 
   before do
     Settings.azure.storage_container = container
+    Settings.azure.storage_account_name = storage_account_name
     allow_any_instance_of(Azure::Storage::Blob::BlobService)
       .to receive(:create_block_blob).and_return('blob-confirmation')
-    allow(ENV).to receive(:fetch).with('AZURE_STORAGE_ACCOUNT').and_return('test')
+
     allow(ENV).to receive(:fetch).with('AZURE_STORAGE_KEY').and_return('alU+HyX8m8djx4QaCTN3p3QRkTJz+DRKl8+z2BEq+KrYAPm6XhQT/iPPs1WgIgylYS2nn+qDkbqcstHn0A7Xsw==')
     allow(ENV).to receive(:fetch).with('AZURE_STORAGE_DO_NOT_SCAN').and_return('test')
     allow(ENV).to receive(:fetch).with('VIRUS_SCANNER_ENABLED', '').and_return('true')
