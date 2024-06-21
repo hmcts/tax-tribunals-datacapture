@@ -3,12 +3,13 @@ require 'spec_helper'
 RSpec.describe Uploader do
   let(:container) { 'container' }
   let(:storage_account_name) { 'test' }
+  let(:storage_access_key) { 'alU+HyX8m8djx4QaCTN3p3QRkTJz+DRKl8+z2BEq+KrYAPm6XhQT/iPPs1WgIgylYS2nn+qDkbqcstHn0A7Xsw==' }
 
   before do
     Settings.azure.storage_container = container
     Settings.azure.storage_account_name = storage_account_name
 
-    allow(ENV).to receive(:fetch).with('AZURE_STORAGE_KEY').and_return('alU+HyX8m8djx4QaCTN3p3QRkTJz+DRKl8+z2BEq+KrYAPm6XhQT/iPPs1WgIgylYS2nn+qDkbqcstHn0A7Xsw==')
+    allow(ENV).to receive(:fetch).with('AZURE_STORAGE_KEY').and_return(storage_access_key)
     allow(ENV).to receive(:fetch).with('AZURE_STORAGE_DO_NOT_SCAN').and_return('test')
     allow_any_instance_of(Azure::Storage::Blob::BlobService)
       .to receive(:create_block_blob).and_return('blob-confirmation')
@@ -37,6 +38,30 @@ RSpec.describe Uploader do
 
       expect(described_class.add_file(**params)).to eq('result')
     end
+
+    context 'storage key loading' do
+      let(:client) { instance_double('Azure::Storage::Blob::BlobService', create_block_blob: true) }
+      before do
+        allow(Azure::Storage::Blob::BlobService).to receive(:create).and_return client
+      end
+
+      it 'demo key' do
+        Settings.environment.name = 'demo'
+        Settings.azure.new_storage_key = 'demo key'
+        described_class.add_file(**params)
+        credentials = { storage_access_key: 'demo key', storage_account_name: "test" }
+        expect(Azure::Storage::Blob::BlobService).to have_received(:create).with(credentials)
+      end
+
+      it 'old key' do
+        Settings.environment.name = 'not demo'
+        Settings.azure.new_storage_key = 'demo key'
+        described_class.add_file(**params)
+        credentials = { storage_access_key: storage_access_key, storage_account_name: "test" }
+        expect(Azure::Storage::Blob::BlobService).to have_received(:create).with(credentials)
+      end
+    end
+
 
     it 'raises Uploader::UploaderError if the contenttype is not recognised' do
       expect {
