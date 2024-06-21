@@ -4,8 +4,8 @@ class Admin::RestoreImagesJob
   def perform(name)
     puts "starting: #{name}"
     @client = Azure::Storage::Blob::BlobService.create(
-      storage_account_name: ENV.fetch('AZURE_STORAGE_ACCOUNT'),
-      storage_access_key: ENV.fetch('AZURE_STORAGE_KEY')
+      storage_account_name: Settings.azure.storage_account_name,
+      storage_access_key: storage_access_key
     )
 
     # Extract separate parts
@@ -33,6 +33,14 @@ class Admin::RestoreImagesJob
 
       raise UploadError, uploader.errors if uploader.errors?
       puts "finished: #{name}"
+    end
+  end
+
+  def storage_access_key
+    if Settings.environment.name == 'demo'
+      Settings.azure.new_storage_key
+    else
+      ENV.fetch('AZURE_STORAGE_KEY')
     end
   end
 end

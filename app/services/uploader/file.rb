@@ -10,7 +10,7 @@ class Uploader
     end
 
     def url
-      file_uri = @client.generate_uri("#{ENV.fetch('AZURE_STORAGE_CONTAINER')}/#{key}")
+      file_uri = @client.generate_uri("#{storage_container_name}/#{key}")
 
       signer.signed_uri(
         file_uri,
@@ -39,6 +39,10 @@ class Uploader
 
     def expires_at
       (Time.now + EXPIRES_IN).utc.iso8601
+    end
+
+    def storage_container_name
+      Settings.azure.storage_container
     end
   end
 end
