@@ -1,6 +1,6 @@
 azure:
-  storage_account_name: <%= ENV['NEW_AZURE_STORAGE_ACCOUNT'] || ENV['AZURE_STORAGE_ACCOUNT'] %>
-  storage_container: <%= ENV['NEW_AZURE_STORAGE_CONTAINER'] || ENV['AZURE_STORAGE_CONTAINER'] %>
+  storage_account_name: <%= ENV['NEW_AZURE_STORAGE_ACCOUNT'] || ENV.fetch('AZURE_STORAGE_ACCOUNT', '') %>
+  storage_container: <%= ENV['NEW_AZURE_STORAGE_CONTAINER'] || ENV.fetch('AZURE_STORAGE_CONTAINER', '') %>
   new_storage_key: <%= ENV['NEW_AZURE_STORAGE_KEY'] %>
 
 environment:
