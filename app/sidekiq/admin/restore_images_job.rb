@@ -1,8 +1,10 @@
+# TODO: I"m not sure this called from anywhere. Keeping it here for now.
+
 class Admin::RestoreImagesJob
   include Sidekiq::Job
+  class UploadError < StandardError; end
 
   def perform(name)
-    puts "starting: #{name}"
     @client = Azure::Storage::Blob::BlobService.create(
       storage_account_name: Settings.azure.storage_account_name,
       storage_access_key: storage_access_key
@@ -29,10 +31,8 @@ class Admin::RestoreImagesJob
       )
 
       uploader.upload! if uploader.valid?
-      # sleep(1)
 
       raise UploadError, uploader.errors if uploader.errors?
-      puts "finished: #{name}"
     end
   end
 
