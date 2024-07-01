@@ -78,7 +78,7 @@ RSpec.describe Admin::RestoreImagesJob, type: :job do
     it 'other envs setting' do
       allow(Settings.environment).to receive(:name).and_return('test')
       key = described_class.new.storage_access_key
-      expect(key).to eql('uvooxJ9DnBGw4E+Ebg0KVG5hCBcaLVE9gG9DQVGXLopDs6dG/ZrVrbN1RQM5DHu+8J24cbWY43JMrN5Ppo/fcQ==')
+      expect(key).to eql('azure_test_account_key')
     end
   end
 end
