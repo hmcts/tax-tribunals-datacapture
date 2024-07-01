@@ -46,16 +46,16 @@ RSpec.describe Uploader do
       end
 
       it 'demo key' do
-        Settings.environment.name = 'demo'
-        Settings.azure.new_storage_key = 'demo key'
+        allow(Settings.environment).to receive(:name).and_return 'demo'
+        allow(Settings.azure).to receive(:new_storage_key).and_return 'demo key'
         described_class.add_file(**params)
         credentials = { storage_access_key: 'demo key', storage_account_name: "test" }
         expect(Azure::Storage::Blob::BlobService).to have_received(:create).with(credentials)
       end
 
       it 'old key' do
-        Settings.environment.name = 'not demo'
-        Settings.azure.new_storage_key = 'demo key'
+        allow(Settings.environment).to receive(:name).and_return 'not demo'
+        allow(Settings.azure).to receive(:new_storage_key).and_return 'demo key'
         described_class.add_file(**params)
         credentials = { storage_access_key: storage_access_key, storage_account_name: "test" }
         expect(Azure::Storage::Blob::BlobService).to have_received(:create).with(credentials)
