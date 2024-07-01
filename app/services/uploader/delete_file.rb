@@ -41,6 +41,7 @@ class Uploader
             backtrace: err.backtrace
           })
       }
+      Sentry.capture_exception(err)
     end
   end
 end
