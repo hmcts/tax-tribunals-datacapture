@@ -8,7 +8,7 @@ class Uploader
 
     def call
       files = @client.list_blobs(
-        ENV.fetch('AZURE_STORAGE_CONTAINER'),
+        Settings.azure.storage_container,
         prefix:
       )
       log_files_empty if files.empty?

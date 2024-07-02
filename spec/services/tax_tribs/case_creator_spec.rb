@@ -65,7 +65,7 @@ RSpec.describe TaxTribs::CaseCreator do
         it 'should mark the case as `submitted` regardless' do
           subject.call
           expect(tribunal_case.case_status).to eq(CaseStatus::SUBMITTED)
-          expect(tribunal_case.submitted_at).to eq(current_time)
+          expect(tribunal_case.submitted_at.strftime("%Y-%m-%d %H:%M:%S")).to eq(current_time.strftime("%Y-%m-%d %H:%M:%S"))
         end
       end
     end

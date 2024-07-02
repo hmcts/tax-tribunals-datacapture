@@ -21,7 +21,7 @@ class Uploader
 
     def upload
       @client.create_block_blob(
-        ENV.fetch('AZURE_STORAGE_CONTAINER'),
+        Settings.azure.storage_container,
         blob_name,
         @data,
         { content_type: }

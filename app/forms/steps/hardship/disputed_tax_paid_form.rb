@@ -5,7 +5,7 @@ module Steps::Hardship
     def choices
       DisputedTaxPaid.values.map(&:to_s)
     end
-    validates_inclusion_of :disputed_tax_paid, in: proc { |record| record.choices }
+    validates_inclusion_of :disputed_tax_paid, in: proc(&:choices)
 
     private
 
