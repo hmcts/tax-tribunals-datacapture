@@ -1749,6 +1749,14 @@ cy:
         heading: "Beth yw cynrychiolydd a beth allant ei wneud?"
       send_application_details:
         <<: *SEND_CASE_DETAILS_COPY
+      what_support:
+        edit:
+          heading: "Cefnogaeth yn y gwrandawiad"
+          lead_text: "Dewiswch pa gefnogaeth y byddwch angen yn eich gwrandawiad. Dewiswch bob un sy'n berthnasol:"
+          page_title: "Pa fath o gefnogaeth?"
+          sign_language_interpreter_hint: "Nodwch pa fath o iaith arwyddion y byddwch angen. Er enghraifft, Iaith Arwyddion Prydain."
+          no_results: Ni ddarganfuwyd unrhyw ganlyniadau
+      <<: *CYA_CONFIRMATION
   surveys:
     feedback:
       new:
