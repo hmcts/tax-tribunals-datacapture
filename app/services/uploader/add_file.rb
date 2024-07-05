@@ -86,6 +86,7 @@ class Uploader
       Rails.logger.tagged('add_file') {
         Rails.logger.warn('Uploader::RequestError': {error: err.inspect, backtrace: err.backtrace})
       }
+      Sentry.capture_exception(err)
     end
   end
 end
