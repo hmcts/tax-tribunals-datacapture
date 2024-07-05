@@ -46,7 +46,7 @@ cy:
       review_late_rejection: "Roedd fy nghais yn hwyr. Rwy'n gwneud cais am ganiatâd i ofyn am adolygiad hwyr"
 
     SEND_CASE_DETAILS_COPY: &SEND_CASE_DETAILS_COPY
-      heading: "Dewiswch fanylion cyswllt dewisol y trethdalwr ar gyfer copi o fanylion yr achos"
+      heading: "Dewiswch fanylion cyswllt dewisol y %{entity} ar gyfer copi o fanylion yr achos"
       lead_text: "Os byddwch yn dewis e-bost a/neu neges testun, byddwn yn anfon copi o fanylion yr achos at y %{entity} pan fyddwch yn cyflwyno’r achos. Argymhellir eich bod yn cadw copi ar gyfer eich cofnodion."
       page_title: "Y ffordd orau i gyfathrebu"
       confirm_email_text: "I amddiffyn preifatrwydd, gofynnwn i chi gadarnhau'r cyfeiriad e-bost a roddoch yn flaenorol ar gyfer manylion y %{entity}."
