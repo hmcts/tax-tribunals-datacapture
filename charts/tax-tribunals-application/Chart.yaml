@@ -13,5 +13,5 @@ dependencies:
     alias: sidekiq
     repository: https://hmctspublic.azurecr.io/helm/v1/repo/
   - name: job
-    version: 2.1.1
+    version: 2.1.2
     repository: https://hmctspublic.azurecr.io/helm/v1/repo/

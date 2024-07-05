@@ -12,5 +12,6 @@ class Admin::GenerateGlimrRecordJob
     logger.info res.response_body
 
     raise GlimrError, "No response provided" unless res.response_body
+    Sentry.capture_exception(GlimrError) unless res.response_body
   end
 end
