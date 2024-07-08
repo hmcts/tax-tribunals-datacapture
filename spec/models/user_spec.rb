@@ -77,8 +77,8 @@ RSpec.describe User, type: :model do
     end
 
     context 'valid' do
-      it 'test@test.com' do
-        user.email = "test@test.com"
+      it 'test1@test.com' do
+        user.email = "test1@test.com"
         expect(user.valid?).to be true
       end
 

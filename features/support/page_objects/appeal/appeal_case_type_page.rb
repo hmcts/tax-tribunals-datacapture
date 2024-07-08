@@ -5,7 +5,7 @@ class AppealCaseTypePage < BasePage
     element :header, 'h1', text: I18n.t('dictionary.CASE_TYPE_QUESTION.heading')
     element :income_tax, 'label', text: I18n.t('check_answers.case_type.answers.income_tax')
     element :vat, 'label', text: I18n.t('check_answers.case_type.answers.vat')
-    element :capital_gains_option, '.govuk-label', text: I18n.t('en.check_answers.case_type.answers.capital_gains_tax')
+    element :capital_gains_option, '.govuk-label', text: I18n.t('check_answers.case_type.answers.capital_gains_tax')
     element :other_option, '.govuk-label', text: I18n.t('check_answers.case_type.answers.other_tax')
     section :error, '.govuk-error-summary' do
       element :error_heading, '.govuk-error-summary__title', text: I18n.t('errors.error_summary.heading')
