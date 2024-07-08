@@ -72,7 +72,7 @@ group :development, :test do
   gem 'byebug', '11.1.3', platform: :mri
   gem 'dotenv-rails'
   gem 'faker',                         '3.3.1'
-  gem 'launchy',                       '2.5.2'
+  gem 'launchy',                       '3.0.1'
   gem 'mutant-rspec',                  '0.11.34'
   gem 'bundler-audit'
   gem 'pry-byebug'
