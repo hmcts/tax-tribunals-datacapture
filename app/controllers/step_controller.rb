@@ -12,7 +12,6 @@ class StepController < ApplicationController
 
   private
 
-  # rubocop:disable Metrics/AbcSize
   def address_lookup_access_token
     Rails.cache.fetch('address_lookup', expires_in: 290) do
       uri = URI(Rails.configuration.x.address_lookup.endpoint)
@@ -40,7 +39,6 @@ class StepController < ApplicationController
       end
     end
   end
-  # rubocop:enable Metrics/AbcSize
 
   def update_and_advance(form_class, opts={})
     hash = permitted_params(form_class).to_h
@@ -70,9 +68,9 @@ class StepController < ApplicationController
   end
 
   def permitted_params(form_class)
-    params
-      .fetch(form_class.model_name.singular, {})
-      .permit(form_class.new.attributes.keys)
+    params.
+      fetch(form_class.model_name.singular, {}).
+      permit(form_class.new.attributes.keys)
   end
 
   def store_step_path_in_session

@@ -7,7 +7,7 @@ module Steps::Details
 
       respond_to do |format|
         format.html
-        format.pdf {
+        format.pdf do
           summary = render_to_string(
             template: "steps/details/check_answers/show",
             formats: [:pdf],
@@ -15,7 +15,7 @@ module Steps::Details
             layout: false
           )
           render_pdf summary, filename: @presenter.pdf_filename
-        }
+        end
       end
     end
 

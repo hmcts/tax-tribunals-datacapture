@@ -69,6 +69,7 @@ class SessionsController < ApplicationController
     }
   end
 
+  # rubocop:disable Metrics/MethodLength
   def fake_details_data
     {
       taxpayer_type: ContactableEntityType::INDIVIDUAL,
@@ -103,9 +104,10 @@ class SessionsController < ApplicationController
       user_type: UserType::TAXPAYER
     }
   end
+  # rubocop:enable Metrics/MethodLength
 
   def tribunal_case
-    @tribunal_case ||= TribunalCase.find_by_id(session[:tribunal_case_id]) || TribunalCase.create.tap do |tribunal_case|
+    @tribunal_case ||= TribunalCase.find_by(id: session[:tribunal_case_id]) || TribunalCase.create.tap do |tribunal_case|
       session[:tribunal_case_id] = tribunal_case.id
     end
   end

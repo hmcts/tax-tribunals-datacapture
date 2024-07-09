@@ -335,6 +335,13 @@ Naming/PredicateName:
 
 Performance/MethodObjectAsBlock:
   Enabled: false
+
+Rails/RequestReferer:
+  Enabled: false
+
+Rails/I18nLocaleTexts:
+  Enabled: false
+
 require:
   - rubocop-rails
   - rubocop-capybara

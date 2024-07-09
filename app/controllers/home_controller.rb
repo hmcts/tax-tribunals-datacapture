@@ -37,10 +37,10 @@ class HomeController < ApplicationController
   private
 
   def cookie_setting
-    params[:cookie_setting_form]
-      .permit(:cookie_setting)
-      .to_h
-      .fetch(:cookie_setting)
+    params[:cookie_setting_form].
+      permit(:cookie_setting).
+      to_h.
+      fetch(:cookie_setting)
   end
 
   def cookie_notification
