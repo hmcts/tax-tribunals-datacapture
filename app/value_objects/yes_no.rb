@@ -1,7 +1,7 @@
 class YesNo < ValueObject
   VALUES = [
     YES = new(:yes),
-    NO  = new(:no),
+    NO  = new(:no)
   ].freeze
 
   def self.values

@@ -31,7 +31,7 @@ module Steps::Shared
         hearing_loop: nil,
         disabled_access: nil,
         other_support: nil,
-        other_support_details: nil,
+        other_support_details: nil
       )
     end
   end

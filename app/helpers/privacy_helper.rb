@@ -4,7 +4,7 @@ module PrivacyHelper
             t('links.call_charges_link'),
       target: '_blank',
       title: t('privacy.call_charges_title'),
-      class: 'govuk-link'
+      class: 'govuk-link', rel: 'noopener'
     )
   end
 
@@ -13,7 +13,7 @@ module PrivacyHelper
             t('links.moj_charter_link'),
       target: '_blank',
       title: t('privacy.who_managing.personal_character'),
-      class: 'govuk-link'
+      class: 'govuk-link', rel: 'noopener'
     )
   end
 
@@ -22,7 +22,7 @@ module PrivacyHelper
       terms_page_path(locale: I18n.locale),
       target: '_blank',
       title: t('privacy.terms'),
-      class: 'govuk-link'
+      class: 'govuk-link', rel: 'noopener'
     )
   end
 
@@ -39,7 +39,7 @@ module PrivacyHelper
       "http://www.aboutcookies.org.uk/managing-cookies",
       target: '_blank',
       title: t('privacy.how_we_use.use_cookies_title'),
-      class: 'govuk-link'
+      class: 'govuk-link', rel: 'noopener'
     )
   end
 
@@ -64,7 +64,7 @@ module PrivacyHelper
       "https://policies.google.com/privacy?hl=en-GB",
       target: "_blank",
       title: t('privacy.how_we_share.google_privacy_title'),
-      class: 'govuk-link'
+      class: 'govuk-link', rel: "noopener"
     )
   end
 
@@ -78,7 +78,7 @@ module PrivacyHelper
       "https://www.gov.uk/government/publications/request-your-personal-data-from-moj",
       target: "_blank",
       title: t('privacy.how_to_access.access.subject_access_title'),
-      class: 'govuk-link'
+      class: 'govuk-link', rel: "noopener"
     )
   end
 
@@ -87,7 +87,7 @@ module PrivacyHelper
             t('links.moj_complaint_procedure'),
       target: "_blank",
       title: t('privacy.how_to_access.complaints.complaints_procedure_title'),
-      class: 'govuk-link'
+      class: 'govuk-link', rel: "noopener"
     )
   end
 
@@ -96,7 +96,7 @@ module PrivacyHelper
       "https://ico.org.uk/global/contact-us",
       target: "_blank",
       title: t('privacy.how_to_access.complaints.information_office_title'),
-      class: 'govuk-link'
+      class: 'govuk-link', rel: "noopener"
     )
   end
 
@@ -105,7 +105,7 @@ module PrivacyHelper
       'http://www.ico.org.uk',
       target: '_blank',
       title: t('privacy.how_to_access.complaints.information_office_title'),
-      class: 'govuk-link'
+      class: 'govuk-link', rel: 'noopener'
     )
   end
 
@@ -114,7 +114,7 @@ module PrivacyHelper
       cookies_page_path(locale: I18n.locale),
       target: '_blank',
       title: t('privacy.cookies.cookie_title'),
-      class: 'govuk-link'
+      class: 'govuk-link', rel: 'noopener'
     )
   end
 
@@ -123,7 +123,7 @@ module PrivacyHelper
             'https://www.notifications.service.gov.uk/',
             target: '_blank',
             title: t('privacy.how_we_use.govuk_notify'),
-            class: 'govuk-link'
+            class: 'govuk-link', rel: 'noopener'
     )
   end
 end
