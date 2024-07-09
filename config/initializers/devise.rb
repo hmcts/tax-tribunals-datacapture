@@ -126,4 +126,7 @@ Devise.setup do |config|
 
   # Warn on the last attempt before the account is locked.
   config.last_attempt_warning = true
+  # This is to remove deprecation error = DEPRECATION WARNING: Rails.application.secrets is deprecated in favor of Rails.application.credentials and will be removed in Rails 7.2
+  # current devise version 4.9.4
+  config.secret_key = Rails.application.secret_key_base
 end
