@@ -79,8 +79,11 @@ group :development, :test do
   gem 'timecop'
   gem 'rspec-rails'
   gem 'rubocop', require: false
-  gem 'rubocop-performance', require: false
-  gem 'rubocop-rspec', require: false
+  gem 'rubocop-performance'
+  gem 'rubocop-rspec_rails'
+  gem 'rubocop-rails'
+  gem 'rubocop-capybara'
+  gem 'rubocop-factory_bot'
 end
 
 group :test do

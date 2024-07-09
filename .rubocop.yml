@@ -1,7 +1,9 @@
 inherit_from: .rubocop_todo.yml
 
 AllCops:
-  TargetRubyVersion: 3.1
+  TargetRubyVersion: 3.3
+  NewCops: enable
+
   Exclude:
     - './*'
     - 'db/**/*'
@@ -13,79 +15,325 @@ AllCops:
     - 'spec/**/*'
     - 'vendor/**/*'
 
-####################################
-## Customization for this project ##
-####################################
 
-ClassLength:
+# Allow long lines in specs, as it's almost impossible to fit RSpec's
+# expectations into 120 characters.
+Layout/LineLength:
+  Max: 140
+  Exclude:
+    - 'spec/**/*'
+    - 'features/**/*'
+    - 'app/mailers/notify_mailer.rb'
+
+Metrics/ClassLength:
   Max: 130
   Exclude:
     - 'app/mailers/notify_mailer.rb'
 
-LineLength:
-  Max: 140
+# Allow expect {}.to blocks in specs
+# but not in the code
+Style/BlockDelimiters:
+  Enabled: true
   Exclude:
-    - 'app/mailers/notify_mailer.rb'
+    - 'spec/**/*'
 
-MethodLength:
-  Max: 35
+# Don't worry about long methods in specs.
+Metrics/MethodLength:
+  Exclude:
+    - 'spec/**/*'
+    - 'app/models/ability.rb'
+    - 'config/initializers/markdown_handler.rb'
 
-AbcSize:
-  Max: 35
+# No need to check for describe class param in support files.
+RSpec/DescribeClass:
+  Exclude:
+    - spec/support/**/*
+    - spec/views/**/*
 
-CyclomaticComplexity:
-  Max: 12
-
-Documentation:
+RSpec/SpecFilePathFormat:
   Enabled: false
 
-FrozenStringLiteralComment:
+RSpec/SpecFilePathSuffix:
   Enabled: false
 
-SymbolArray:
+
+# private/protected/public
+Layout/AccessModifierIndentation:
+  EnforcedStyle: indent
+
+# Just indent parameters by two spaces. It's less volatile if methods change,
+# and there's less busy work lining things up.
+Layout/ParameterAlignment:
+  EnforcedStyle: with_fixed_indentation
+
+Style/ClassAndModuleChildren:
+  EnforcedStyle: nested
+
+Style/CollectionMethods:
+  PreferredMethods:
+    collect: 'map'
+    collect!: 'map!'
+    each_with_object: 'inject'
+    inject: 'inject'
+    reduce: 'inject'
+    detect: 'find'
+    find_all: 'select'
+
+# Chain methods with trailing dots.
+Layout/DotPosition:
+  EnforcedStyle: trailing
+
+# No, we don't prefer each_with_object
+Style/EachWithObject:
   Enabled: false
 
-SpaceInsideHashLiteralBraces:
+# Prefer blank line after class/module start.
+Layout/EmptyLinesAroundClassBody:
   Enabled: false
 
-PredicateName:
+Layout/EmptyLinesAroundModuleBody:
   Enabled: false
 
-MultilineIfModifier:
+Layout/EmptyLinesAroundBlockBody:
   Enabled: false
 
-Layout/HashAlignment:
+Layout/EmptyLineAfterGuardClause:
   Enabled: false
 
-IfUnlessModifier:
+Layout/LeadingEmptyLines:
   Enabled: false
 
-StringLiterals:
-  Enabled: false
-
-TrailingCommaInArrayLiteral:
-  Enabled: false
-
-TrailingCommaInHashLiteral:
-  Enabled: false
-
-TrailingCommaInArguments:
-  Enabled: false
-
-MultilineMethodCallIndentation:
-  Enabled: false
-
-EmptyLineAfterGuardClause:
-  Enabled: false
-
-RescuedExceptionsVariableName:
+# We have a mixture at the moment, so don't enforce anything.
+Style/FormatString:
   Enabled: false
 
 Style/FrozenStringLiteralComment:
   Enabled: false
 
-Style/Documentation:
+# It's not really clearer to replace every if with a return if.
+Style/GuardClause:
   Enabled: false
 
-Style/HashSyntax:
+# Groups of three is not always the right thing for numeric literals
+Style/NumericLiterals:
   Enabled: false
+
+# Percent-formatting and hash interpolation both have their place. Don't
+# enforce any particular one.
+Style/StringLiterals:
+  Enabled: false
+
+# I'm happy with raise, thanks.
+Style/SignalException:
+  Enabled: false
+
+# Let us use foo? methods
+Style/TrivialAccessors:
+  AllowPredicates: true
+
+Style/DateTime:
+  Enabled: false
+
+# Prefer sensible naming to comments everywhere.
+Style/Documentation:
+  Description: Document classes and non-namespace modules.
+  Enabled: false
+
+# Would enforce do_y if x over if x / do y / end. As with GuardClause above,
+# this enforces code organisation that doesn't necesarily make things clearer.
+Style/IfUnlessModifier:
+  Enabled: false
+
+# Allow safe assignment in conditions.
+Lint/AssignmentInCondition:
+  AllowSafeAssignment: false
+
+Lint/Loop:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Max: 10
+
+RSpec/ExpectActual:
+  Exclude:
+    - 'spec/routing/**/*'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+    - 'features/**/*'
+    - 'config/**/*'
+    - 'lib/tasks/**/*'
+
+RSpec/ExampleLength:
+  Exclude:
+    - 'spec/**/*'
+
+Style/WordArray:
+  EnforcedStyle: brackets
+
+Style/SymbolArray:
+  EnforcedStyle: brackets
+
+Style/FormatStringToken:
+  EnforcedStyle: template
+
+Style/Encoding:
+  Enabled: false
+
+Naming/MemoizedInstanceVariableName:
+  Enabled: false
+
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - "spec/**/*"
+
+# After update to rubocop-rspec 1.30.1
+RSpec/ImplicitSubject:
+  Enabled: false
+
+RSpec/EmptyLineAfterFinalLet:
+  Enabled: false
+
+RSpec/ExpectChange:
+  Enabled: false
+
+RSpec/ContextWording:
+  Enabled: false
+
+RSpec/ScatteredLet:
+  Enabled: false
+
+RSpec/EmptyLineAfterExampleGroup:
+  Enabled: false
+
+RSpec/LeadingSubject:
+  Enabled: false
+
+RSpec/ExampleWording:
+  Enabled: false
+
+RSpec/MultipleSubjects:
+  Enabled: false
+
+RSpec/EmptyLineAfterHook:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+
+RSpec/EmptyLineAfterSubject:
+  Enabled: false
+
+FactoryBot/AttributeDefinedStatically:
+  Enabled: false
+
+RSpec/ReceiveCounts:
+  Enabled: false
+
+RSpec/PredicateMatcher:
+  Enabled: false
+
+RSpec/LetBeforeExamples:
+  Enabled: false
+
+RSpec/HooksBeforeExamples:
+  Enabled: false
+
+RSpec/Dialect:
+  Enabled: false
+
+RSpec/IndexedLet:
+  Enabled: false
+
+Capybara/CurrentPathExpectation:
+  Enabled: false
+
+Capybara/ClickLinkOrButtonStyle:
+  Enabled: false
+
+RSpec/ExpectInHook:
+  Enabled: false
+
+RSpec/OverwritingSetup:
+  Enabled: false
+
+RSpec/InstanceVariable:
+  Enabled: false
+
+FactoryBot/CreateList:
+  Enabled: false
+
+RSpecRails/HttpStatus:
+  Enabled: false
+
+RSpec/RepeatedExample:
+  Enabled: false
+
+RSpec/MatchArray:
+  Enabled: false
+
+Naming/VariableNumber:
+  Enabled: false
+
+Lint/MissingSuper:
+  Enabled: false
+
+Rails/FilePath:
+  Exclude:
+    - spec/routing/**/*
+
+# ---------------
+# HttpPositionalArguments is rails 5 only
+# https://github.com/bbatsov/rubocop/issues/3629
+# ---------------
+Rails/HttpPositionalArguments:
+  Enabled: false
+
+Rails/Delegate:
+  Exclude:
+    - 'features/**/*'
+
+Rails/ApplicationRecord:
+  Enabled: false
+
+Rails/InverseOf:
+  Enabled: false
+
+Rails/ActiveRecordAliases:
+  Enabled: false
+
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
+
+Rails/LexicallyScopedActionFilter:
+  Enabled: false
+
+Rails/UniqueValidationWithoutIndex:
+  Enabled: false
+
+Rails/ActionControllerFlashBeforeRender:
+  Enabled: false
+
+Style/SpecialGlobalVars:
+  Enabled: false
+
+Performance/StringIdentifierArgument:
+  Enabled: false
+
+Bundler/OrderedGems:
+  Enabled: false
+
+Rails/WhereRange:
+  Enabled: false
+
+require:
+  - rubocop-rails
+  - rubocop-capybara
+  - rubocop-factory_bot
+  - rubocop-rspec_rails
+  - rubocop-performance
+  - rubocop-rspec
