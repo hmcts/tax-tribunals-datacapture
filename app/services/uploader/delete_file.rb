@@ -14,33 +14,33 @@ class Uploader
         Settings.azure.storage_container,
         blob_name
       )
-    rescue KeyError => err # e.g. Env not found
-      raise KeyError, err
-    rescue StandardError => err
-      log_uploader_error(err)
-      raise Uploader::UploaderError, err
+    rescue KeyError => e # e.g. Env not found
+      raise KeyError, e
+    rescue StandardError => e
+      log_uploader_error(e)
+      raise Uploader::UploaderError, e
     end
 
     private
 
     def log_delete
-      Rails.logger.tagged('delete_file') {
+      Rails.logger.tagged('delete_file') do
         Rails.logger.info({
                             filename: @filename,
                             collection_ref: @collection_ref,
                             folder: @document_key.to_s
                           })
-      }
+      end
     end
 
     def log_uploader_error(err)
-      Rails.logger.tagged('delete_file') {
+      Rails.logger.tagged('delete_file') do
         Rails.logger.warn('Uploader::RequestError':
           {
             error: err.inspect,
             backtrace: err.backtrace
           })
-      }
+      end
       Sentry.capture_exception(err)
     end
   end

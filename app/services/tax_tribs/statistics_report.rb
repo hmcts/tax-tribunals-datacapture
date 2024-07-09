@@ -1,8 +1,8 @@
 class TaxTribs::StatisticsReport
   def self.cases_by_date_csv
-    started_cases = TribunalCase.select("date(created_at) as date, count(*) as number")
-                      .group("date(created_at)")
-                      .map {|c| [c.date.strftime, c.number]}
+    started_cases = TribunalCase.select("date(created_at) as date, count(*) as number").
+                      group("date(created_at)").
+                      map {|c| [c.date.strftime, c.number]}
 
     started_dates = started_cases.inject({})  do |hash, row|
       date, number = row
@@ -10,10 +10,10 @@ class TaxTribs::StatisticsReport
       hash
     end
 
-    submitted_cases = TribunalCase.select("date(updated_at) as date, count(*) as number")
-                        .where(case_status: 'submitted')
-                        .group("date(updated_at)")
-                        .map {|c| [c.date.strftime, c.number]}
+    submitted_cases = TribunalCase.select("date(updated_at) as date, count(*) as number").
+                        where(case_status: 'submitted').
+                        group("date(updated_at)").
+                        map {|c| [c.date.strftime, c.number]}
 
     combined_dates = submitted_cases.each_with_object(started_dates) do |row, hash|
       date, number = row
