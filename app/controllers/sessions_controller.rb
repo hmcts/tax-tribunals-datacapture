@@ -10,9 +10,13 @@ class SessionsController < ApplicationController
     show_survey ? reset_session : reset_tribunal_case_session
 
     respond_to do |format|
-      format.html { redirect_to show_survey ? Rails.configuration.survey_link : local_root_path }
+      format.html { redirect_to redirect_to_link(show_survey), allow_other_host: true }
       format.json { render json: {} }
     end
+  end
+
+  def redirect_to_link(show_survey)
+    show_survey ? Rails.configuration.survey_link : local_root_path
   end
 
   def create_and_fill_appeal
