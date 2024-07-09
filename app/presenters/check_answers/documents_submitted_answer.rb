@@ -3,7 +3,7 @@ module CheckAnswers
     attr_reader :documents
 
     def initialize(question, documents, change_path: nil)
-      super(question, documents, change_path:)
+      super
       @documents = documents
     end
 

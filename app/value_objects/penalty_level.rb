@@ -23,7 +23,7 @@ class PenaltyLevel < ValueObject
             }].freeze
 
   def self.names
-    LEVELS.map {|v| v[:name] }.map(&:to_s)
+    LEVELS.pluck(:name).map(&:to_s)
   end
 
   def self.lower_bound(level)
@@ -36,6 +36,6 @@ class PenaltyLevel < ValueObject
 
   def self.bound(level, type)
     return unless names.include? level.to_s
-    LEVELS.select {|v| v[:name].value == level.to_sym }[0][type]
+    LEVELS.find {|v| v[:name].value == level.to_sym }[type]
   end
 end

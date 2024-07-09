@@ -23,6 +23,8 @@ module ApplicationHelper
     }
   end
 
+  # TODO: fix the rubocop issue
+  # rubocop:disable Rails/HelperInstanceVariable
   def govuk_error_summary(form_object = @form_object)
     return if form_object.try(:errors).blank?
 
@@ -33,6 +35,7 @@ module ApplicationHelper
       f.govuk_error_summary t('errors.error_summary.heading')
     end
   end
+  # rubocop:enable Rails/HelperInstanceVariable
 
   def translate_for_user_type(key, params={})
     suffix = '_html' if key.end_with?('_html')
