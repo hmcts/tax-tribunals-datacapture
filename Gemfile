@@ -30,6 +30,9 @@ gem 'application_insights',            '~> 0.5.6'
 gem 'sprockets'
 gem 'rest-client'
 
+# To fix ruby 3.3.3 gemsepec file issue with this gem
+gem 'net-pop', github: 'ruby/net-pop'
+
 # Admin
 gem 'sidekiq'
 gem 'sidekiq-batch'
