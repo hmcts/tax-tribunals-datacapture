@@ -330,6 +330,11 @@ Bundler/OrderedGems:
 Rails/WhereRange:
   Enabled: false
 
+Naming/PredicateName:
+  Enabled: false
+
+Performance/MethodObjectAsBlock:
+  Enabled: false
 require:
   - rubocop-rails
   - rubocop-capybara
