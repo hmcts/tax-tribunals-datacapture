@@ -46,7 +46,7 @@ cy:
       review_late_rejection: "Roedd fy nghais yn hwyr. Rwy'n gwneud cais am ganiatâd i ofyn am adolygiad hwyr"
 
     SEND_CASE_DETAILS_COPY: &SEND_CASE_DETAILS_COPY
-      heading: "Dewiswch fanylion cyswllt dewisol y ${entity} ar gyfer copi o fanylion yr achos"
+      heading: "Dewiswch fanylion cyswllt dewisol y %{entity} ar gyfer copi o fanylion yr achos"
       lead_text: "Os byddwch yn dewis e-bost a/neu neges testun, byddwn yn anfon copi o fanylion yr achos at y %{entity} pan fyddwch yn cyflwyno’r achos. Argymhellir eich bod yn cadw copi ar gyfer eich cofnodion."
       page_title: "Y ffordd orau i gyfathrebu"
       confirm_email_text: "I amddiffyn preifatrwydd, gofynnwn i chi gadarnhau'r cyfeiriad e-bost a roddoch yn flaenorol ar gyfer manylion y %{entity}."
@@ -1654,6 +1654,11 @@ cy:
           sign_language_interpreter_hint: "Nodwch pa fath o iaith arwyddion y byddwch angen. Er enghraifft, Iaith Arwyddion Prydain."
           no_results: Ni ddarganfuwyd unrhyw ganlyniadau
       <<: *CYA_CONFIRMATION
+      send_taxpayer_copy:
+        question: "Dewiswch fanylion cyswllt dewisol y trethdalwr ar gyfer copi o fanylion yr achos"
+        accessible_change_text: "Dewiswch fanylion cyswllt dewisol y trethdalwr ar gyfer copi o fanylion yr achos"
+        answers:
+          <<: *CONTACT_PREFERENCES
     hardship:
       disputed_tax_paid:
         edit:
@@ -1749,6 +1754,14 @@ cy:
         heading: "Beth yw cynrychiolydd a beth allant ei wneud?"
       send_application_details:
         <<: *SEND_CASE_DETAILS_COPY
+      what_support:
+        edit:
+          heading: "Cefnogaeth yn y gwrandawiad"
+          lead_text: "Dewiswch pa gefnogaeth y byddwch angen yn eich gwrandawiad. Dewiswch bob un sy'n berthnasol:"
+          page_title: "Pa fath o gefnogaeth?"
+          sign_language_interpreter_hint: "Nodwch pa fath o iaith arwyddion y byddwch angen. Er enghraifft, Iaith Arwyddion Prydain."
+          no_results: Ni ddarganfuwyd unrhyw ganlyniadau
+      <<: *CYA_CONFIRMATION
   surveys:
     feedback:
       new:
