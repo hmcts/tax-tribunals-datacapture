@@ -16,7 +16,7 @@ gem 'pg'
 gem 'pry-rails'
 gem 'puma',                            '6.4.2'
 gem 'rack-attack',                     '~> 6.7.0'
-gem 'rails',                           '~> 6.1.7.6'
+gem 'rails',                           '~> 7.0'
 gem 'responders',                      '3.1.1'
 gem 'sanitize'
 gem 'sassc-rails',                     '~> 2.1.2'
@@ -43,6 +43,9 @@ gem 'grover'
 gem 'azure-storage-blob', '~> 2'
 gem 'mimemagic', '~> 0.4.0'
 
+# Loading envs from settings
+gem 'config'
+
 source 'https://oss:Q7U7p2q2XlpY45kwqjCpXLIPf122rjkR@gem.mutant.dev' do
   gem 'mutant-license',                '0.1.1.2.1739399027284447558325915053311580324856.4'
 end
@@ -65,7 +68,7 @@ group :development do
 end
 
 group :development, :test do
-  gem 'actionpack',                    '6.1.7.8'
+  gem 'actionpack'
   gem 'byebug', '11.1.3', platform: :mri
   gem 'dotenv-rails'
   gem 'faker',                         '3.3.1'

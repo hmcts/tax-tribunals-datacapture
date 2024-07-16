@@ -36,7 +36,40 @@ Rails.application.configure do
 
   config.assets.compile = false
 
+  # Enable serving of images, stylesheets, and JavaScripts from an asset server.
+  # config.asset_host = "http://assets.example.com"
+
+  # Specifies the header that your server uses for sending files.
+  # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for Apache
+  # config.action_dispatch.x_sendfile_header = "X-Accel-Redirect" # for NGINX
+
+  # Assume all access to the app is happening through a SSL-terminating reverse proxy.
+  # Can be used together with config.force_ssl for Strict-Transport-Security and secure cookies.
+  # config.assume_ssl = true
+
+  # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
+  config.force_ssl = true
+
+  # Log to STDOUT by default
+  config.logger = ActiveSupport::Logger.new(STDOUT)
+    .tap  { |logger| logger.formatter = ::Logger::Formatter.new }
+    .then { |logger| ActiveSupport::TaggedLogging.new(logger) }
+
+  # Prepend all log lines with the following tags.
   config.log_tags = [ :request_id ]
+
+  # "info" includes generic and useful information about system operation, but avoids logging too much
+  # information to avoid inadvertent exposure of personally identifiable information (PII). If you
+  # want to log everything, set the level to "debug".
+  config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "info")
+
+  # Use a different cache store in production.
+  # config.cache_store = :mem_cache_store
+
+  # Use a real queuing backend for Active Job (and separate queues per environment).
+  # config.active_job.queue_adapter = :resque
+  # config.active_job.queue_name_prefix = "tax_tribunals_datacapture_production"
+
   config.action_mailer.perform_caching = false
   config.action_mailer.raise_delivery_errors = true
   config.i18n.fallbacks = true
@@ -49,7 +82,7 @@ Rails.application.configure do
   # gov.uk elements formbuilder, exceptions will not be raised for
   # missing translations of model attribute names. The form will
   # get the constantized attribute name itself, in form labels.
-  config.action_view.raise_on_missing_translations = false
+  config.i18n.raise_on_missing_translations = false
 
   config.force_ssl = false
   config.ssl_options = {
