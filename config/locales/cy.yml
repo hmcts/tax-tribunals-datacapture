@@ -46,7 +46,7 @@ cy:
       review_late_rejection: "Roedd fy nghais yn hwyr. Rwy'n gwneud cais am ganiatâd i ofyn am adolygiad hwyr"
 
     SEND_CASE_DETAILS_COPY: &SEND_CASE_DETAILS_COPY
-      heading: "Dewiswch fanylion cyswllt dewisol y ${entity} ar gyfer copi o fanylion yr achos"
+      heading: "Dewiswch fanylion cyswllt dewisol y %{entity} ar gyfer copi o fanylion yr achos"
       lead_text: "Os byddwch yn dewis e-bost a/neu neges testun, byddwn yn anfon copi o fanylion yr achos at y %{entity} pan fyddwch yn cyflwyno’r achos. Argymhellir eich bod yn cadw copi ar gyfer eich cofnodion."
       page_title: "Y ffordd orau i gyfathrebu"
       confirm_email_text: "I amddiffyn preifatrwydd, gofynnwn i chi gadarnhau'r cyfeiriad e-bost a roddoch yn flaenorol ar gyfer manylion y %{entity}."
@@ -768,7 +768,7 @@ cy:
       save_or_print_pdf: "Cadw neu argraffu manylion eich achos"
       <<: *START_FINISH
     error_summary:
-      heading: "Mae yna broblem"
+      heading: "Mae problem wedi codi"
       text: ""
     format: "%{message}"
     invalid_session:
@@ -1309,7 +1309,8 @@ cy:
           <li>Os caiff nodau annilys eu defnyddio mewn enw ffeil, bydd y system yn ceisio tynnu'r rhain, gan olygu bydd enw’r ffeil a uwchlwythwyd yn newid ar y pwynt uwchlwytho. Gall problemau godi wrth geisio dod o hyd i’r ffeil wedi i chi ei huwchlwytho</li>
         </ul>
       file_too_big: " mae'n rhy fawr. Bydd angen ichi ailgyflwyno fersiwn sy'n llai na XXX megabeit (MB)."
-      file_wrong_format: " mae mewn fformat ni allwn dderbyn. Gallwch lwytho ffeiliau JPG, PNG, GIF, PDF, Word neu Excel."
+      file_wrong_format: "Mae %{file_name} mewn fformat nad ydym yn ei derbyn. Gallwch lwytho ffeiliau MS Word, 
+      MS Excel, PDF, JPG, GIF, PNG, TXT neu RTF."
       footer: "Ni allwch lwytho ffeiliau gweithredu (.exe), ffeiliau zip neu ffeiliau archif eraill oherwydd y risg o firws. "
       header: "Gofynion llwytho ffeil"
       no_uploaded_files: "Nid oes ffeiliau wedi cael eu llwytho"
@@ -1658,6 +1659,11 @@ cy:
           sign_language_interpreter_hint: "Nodwch pa fath o iaith arwyddion y byddwch angen. Er enghraifft, Iaith Arwyddion Prydain."
           no_results: Ni ddarganfuwyd unrhyw ganlyniadau
       <<: *CYA_CONFIRMATION
+      send_taxpayer_copy:
+        question: "Dewiswch fanylion cyswllt dewisol y trethdalwr ar gyfer copi o fanylion yr achos"
+        accessible_change_text: "Dewiswch fanylion cyswllt dewisol y trethdalwr ar gyfer copi o fanylion yr achos"
+        answers:
+          <<: *CONTACT_PREFERENCES
     hardship:
       disputed_tax_paid:
         edit:
@@ -1753,6 +1759,14 @@ cy:
         heading: "Beth yw cynrychiolydd a beth allant ei wneud?"
       send_application_details:
         <<: *SEND_CASE_DETAILS_COPY
+      what_support:
+        edit:
+          heading: "Cefnogaeth yn y gwrandawiad"
+          lead_text: "Dewiswch pa gefnogaeth y byddwch angen yn eich gwrandawiad. Dewiswch bob un sy'n berthnasol:"
+          page_title: "Pa fath o gefnogaeth?"
+          sign_language_interpreter_hint: "Nodwch pa fath o iaith arwyddion y byddwch angen. Er enghraifft, Iaith Arwyddion Prydain."
+          no_results: Ni ddarganfuwyd unrhyw ganlyniadau
+      <<: *CYA_CONFIRMATION
   surveys:
     feedback:
       new:

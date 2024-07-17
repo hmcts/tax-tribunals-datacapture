@@ -11,7 +11,7 @@ class Uploader
       log_delete
 
       @client.delete_blob(
-        ENV.fetch('AZURE_STORAGE_CONTAINER'),
+        Settings.azure.storage_container,
         blob_name
       )
     rescue KeyError => err # e.g. Env not found
@@ -41,6 +41,7 @@ class Uploader
             backtrace: err.backtrace
           })
       }
+      Sentry.capture_exception(err)
     end
   end
 end

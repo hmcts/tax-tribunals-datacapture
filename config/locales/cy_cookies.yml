@@ -29,17 +29,6 @@ cy:
           col_2: Cadw eich gosodiadau caniatáu cwcis.
           col_3: 1 blwyddyn.
       essential_cookies: Cwcis Hanfodol
-      line_1: Mae angen cwcis hanfodol er mwyn i'r gwasanaeth weithio. Nid oes angen inni ofyn am ganiatâd i'w defnyddio.
-      table_1:
-        header_1: Enw
-        header_2: Pwrpas
-        header_3: "Dyddiad darfod"
-        row_1:
-          col_1: seen_cookie_message
-          col_2: Saves a message to let us know that you've seen our cookie message
-          col_3: 1 month
-
-
       intro_message: "Ein neges cyflwyno"
       line_1: "Efallai y byddwch yn gweld neges yn eich croesawu pan fyddwch yn ymweld â'r gwasanaeth Apelio i'r tribiwnlys treth am y tro cyntaf. Byddwn yn storio cwci ar eich cyfrifiadur fel ei fod yn gwybod i beidio â'i dangos eto."
       line_10: "Nid ydym yn caniatáu i Google ddefnyddio na rhannu ein data dadansoddi."

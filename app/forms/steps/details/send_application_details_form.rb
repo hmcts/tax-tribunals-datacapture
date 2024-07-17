@@ -32,7 +32,7 @@ module Steps::Details
 
     def selected_option
       if not self.class.choices.include?(send_application_details)
-        errors.add(:send_application_details, tribunal_case_entity, message: 'what are your contect preferences?')
+        errors.add(:send_application_details, tribunal_case_entity, message: 'what are your contact preferences?')
       end
     end
 

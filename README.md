@@ -54,3 +54,6 @@ variables are set directly in the trais configuration:
 [1]: At the time of writing, `TribunalCase` brings in 17 other objects via the
 `.has_value_object` call.  Any mutation referencing a `self` call will
 need to include all of these in its syntax tree.
+
+
+Trigger rebuild: 2

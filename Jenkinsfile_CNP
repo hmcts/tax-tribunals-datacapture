@@ -1,6 +1,4 @@
-#!groovy
-
-@Library("Infrastructure@ruby-troubleshoot")
+@Library("Infrastructure")
 
 def type = "ruby"
 def product = "tax-tribunals"
@@ -58,13 +56,19 @@ withPipeline(type, product, component) {
     env.ADDRESS_LOOKUP_API_SECRET = 'replace_this_at_build_time'
 
     before('build') {
-        yarnBuilder.runYarn("--mutex network install --f``rozen-lockfile")
+        yarnBuilder.runYarn("--mutex network install --frozen-lockfile")
+        sh script:"""#!/bin/bash -l
+            set +x
+            source /usr/local/rvm/scripts/rvm
+            rvm install ruby-3.3.0
+        """, label: 'Ruby version install'
     }
 
     before('test') {
-        sh script:"""
+        sh script: """
+            docker pull hmctspublic.azurecr.io/imported/postgres:latest
             docker stop tt-test-postgres && docker rm tt-test-postgres || echo 'Ignoring failure in stopping old postgres'
-            docker run --rm --name tt-test-postgres --publish 5421:5432 -e POSTGRES_PASSWORD=mysecretpassword -d postgres
+            docker run --rm --name tt-test-postgres --publish 5421:5432 -e POSTGRES_PASSWORD=mysecretpassword -d hmctspublic.azurecr.io/imported/postgres:latest
         """, label: 'Start test postgres'
 
         rubyBuilder.bundle("exec rake db:create")

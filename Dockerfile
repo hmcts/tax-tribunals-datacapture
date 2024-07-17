@@ -104,7 +104,7 @@ USER appuser
 WORKDIR /home/app
 COPY Gemfile* .ruby-version ./
 
-RUN gem install bundler -v 2.3.15 && \
+RUN gem install bundler -v 2.4.20 && \
     bundle config set frozen 'true' && \
     bundle config without test:development && \
     bundle install
