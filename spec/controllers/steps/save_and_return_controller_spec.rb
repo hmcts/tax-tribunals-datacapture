@@ -11,7 +11,7 @@ RSpec.describe Steps::SaveAndReturnController do
   end
 
   describe 'update' do
-    let!(:existing_case) { TribunalCase.create }
+    let!(:existing_case) { TribunalCase.create(intent: Intent::TAX_APPEAL) }
 
     context 'return to saved appeal' do
       let(:params) { { save_and_return_save_form: { save_or_return: 'return_to_saved_appeal' } } }

@@ -13,6 +13,7 @@ Feature: Save and return
     When I click continue
     Then I should see a 'Select the type of enquiry you want to close' error
     When I submit that it is a personal return
+    And I choose to select english only
     Then I should be on the closure user type page
 
   Scenario: User not signed in, create an account (appeal journey)
@@ -25,10 +26,9 @@ Feature: Save and return
   Scenario: User not signed in, create an account (closure journey)
     Given I am on the closure case type page without login
     And I submit that it is a personal return
-    And I create an account in closure journey
-    When I click on continue when I am on the save confirmation page
     And I choose to select english only
-    Then I should be on the closure user type page
+    And I create an account in closure journey
+    Then I should be on the language selection page
 
   Scenario: Timeout test - should trigger (logged in user)
     Given I am on the appeal case type page
@@ -40,7 +40,8 @@ Feature: Save and return
   Scenario: Timeout test - should trigger (not logged in user)
     Given I am on the closure case type page without login
     And I submit that it is a personal return
+    And I choose to select english only
     And I create an account in closure journey
     And I wait for 11 minutes
-    When I click on continue when I am on the save confirmation page
+    And I click the continue button
     Then I will see the invalid session timeout error

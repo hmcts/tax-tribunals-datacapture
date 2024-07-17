@@ -82,10 +82,9 @@ def complete_valid_closure_application
     home_page.close_enquiry
     expect(closure_page.content).to have_header
     closure_page.continue
+    save_return_page.continue_new_appeal
     expect(closure_case_type_page.content).to have_header
     closure_case_type_page.submit_personal_return
-    expect(save_return_page.content).to have_header
-    save_return_page.skip_save_and_return
     select_language_page.select_english_only
     expect(user_type_page.content).to have_closure_header
     if ENV['TEST_LOCALE'] == 'cy'
@@ -125,10 +124,9 @@ def complete_valid_appeal_application
     home_page.appeal
     expect(appeal_page.content).to have_header
     appeal_page.continue
+    save_return_page.continue_new_appeal
     expect(appeal_case_type_page.content).to have_header
     appeal_case_type_page.submit_income_tax
-    expect(save_return_page.content).to have_header
-    save_return_page.skip_save_and_return
     select_language_page.select_english_only
     expect(challenge_decision_page.content).to have_appeal_header
     submit_yes
@@ -280,6 +278,13 @@ def navigate_to_closure_user_type_page
   end
 end
 
+def navigate_to_closure_user_type_page_no_user
+  navigate_to_save_return_page_closure
+  save_return_page.continue_new_appeal
+  closure_case_type_page.submit_personal_return
+  select_language_page.select_english_only
+end
+
 def navigate_to_challenge_decision_page
   RSpec::Mocks.with_temporary_scope do
     create_user
@@ -288,6 +293,13 @@ def navigate_to_challenge_decision_page
     login_and_continue
     challenge_decision_page.load_page
   end
+end
+
+def navigate_to_challenge_decision_page_no_user
+  navigate_to_save_return_page_appeal
+  save_return_page.continue_new_appeal
+  appeal_case_type_page.submit_income_tax
+  select_language_page.select_english_only
 end
 
 def navigate_to_what_support_page
@@ -386,8 +398,6 @@ end
 def navigate_to_save_return_page_closure
   closure_page.load_page
   closure_page.continue
-  expect(closure_case_type_page.content).to have_header
-  closure_case_type_page.submit_personal_return
 end
 
 def go_to_contact_page

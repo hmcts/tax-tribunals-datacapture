@@ -4,4 +4,8 @@ class Steps::DetailsStepController < StepController
   def decision_tree_class
     DetailsDecisionTree
   end
+
+  def intent
+    Intent::CLOSE_ENQUIRY
+  end
 end

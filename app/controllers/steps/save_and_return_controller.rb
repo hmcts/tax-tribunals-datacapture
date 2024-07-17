@@ -17,9 +17,9 @@ module Steps
         redirect_to helpers.login_or_portfolio_path
       when 'continue_with_new_appeal'
         session[:continue_with_new_appeal] = true
-        if current_tribunal_case.intent.value == :tax_appeal
+        if current_tribunal_case&.intent.eql?(Intent::TAX_APPEAL)
           redirect_to edit_steps_appeal_case_type_path
-        elsif current_tribunal_case.intent.value == :close_enquiry
+        elsif current_tribunal_case&.intent.eql?(Intent::CLOSE_ENQUIRY)
           redirect_to edit_steps_closure_case_type_path
         end
       else

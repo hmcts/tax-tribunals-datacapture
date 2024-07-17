@@ -9,7 +9,7 @@ end
 
 Given("I create an account in closure journey") do
   save_and_come_back
-  expect(save_appeal_page.content).to have_appeal_header
+  expect(save_appeal_page.content).to have_closure_header
   save_appeal_page.content.email_input.set 'test_tt@hmcts.net'
   save_appeal_page.content.password_input.set 'TaxTribun4!'
   save

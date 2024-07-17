@@ -1,10 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Users::LoginsController do
-  let(:tribunal_case) { double.as_null_object }
+  let(:user) { User.new(email: 'foo@bar.com') }
+  let(:tribunal_case) { instance_double(TribunalCase, intent: Intent::TAX_APPEAL, user: user, case_type?: true) }
 
   before do
     allow(subject).to receive(:current_tribunal_case).and_return(tribunal_case)
+    allow(warden).to receive(:authenticate).and_return(user)
     request.env['devise.mapping'] = Devise.mappings[:user]
   end
 
@@ -16,10 +18,6 @@ RSpec.describe Users::LoginsController do
   end
 
   describe '#create' do
-    let(:tribunal_case) { double('TribunalCase', case_type?: true) }
-    let(:user) { User.new(email: 'foo@bar.com') }
-    let(:case_type) { nil }
-
     def do_post
       local_post :create, params: { 'user' => {
         email: 'foo@bar.com',
@@ -28,12 +26,6 @@ RSpec.describe Users::LoginsController do
     end
 
     context 'when the authentication was successful' do
-      let(:tribunal_case) { instance_double(TribunalCase, user:) }
-
-      before do
-        expect(warden).to receive(:authenticate).and_return(user)
-      end
-
       it 'signs the user in and takes to case type page' do
         do_post
         expect(response).to redirect_to(users_cases_path)

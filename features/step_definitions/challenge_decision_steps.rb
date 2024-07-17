@@ -1,5 +1,5 @@
 Given("I am on the challenge decision page") do
-  navigate_to_challenge_decision_page
+  navigate_to_challenge_decision_page_no_user
 end
 
 When("I continue with no option selected") do

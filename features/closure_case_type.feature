@@ -8,27 +8,27 @@ Feature: Case type page
 
   Scenario: Personal return
     When I submit that it is a personal return
-    Then I should be on the closure user type page
+    Then I should be on the language selection page
 
   Scenario: Company return
     When I submit that it is a company return
-    Then I should be on the closure user type page
+    Then I should be on the language selection page
 
   Scenario: Partnership return
     When I submit that it is a partnership return
-    Then I should be on the closure user type page
+    Then I should be on the language selection page
 
   Scenario: Trustee return
     When I submit that it is a trustee return
-    Then I should be on the closure user type page
+    Then I should be on the language selection page
 
   Scenario: Enterprise Management Incentives (EMIs)
     When I submit that it is an enterprise management incentive (EMI)
-    Then I should be on the closure user type page
+    Then I should be on the language selection page
 
   Scenario: Non-resident Capital Gains Tax (NRCGT) return
     When I submit that is is a non-resident Capital Gains Tax (NRCGT) return
-    Then I should be on the closure user type page
+    Then I should be on the language selection page
 
 #  Scenario: Stamp Duty Land Tax (SDLT) or Land Transaction Tax (in Wales)
 #    When I submit that it is a Stamp Duty Land Tax (SDLT) or Land Transaction Tax (in Wales): land transaction return
@@ -38,11 +38,11 @@ Feature: Case type page
 
   Scenario: Transactions in securities: issue of counteraction or no-counteraction notice
     When I submit that is a Transactions in securities: issue of counteraction or no-counteraction notice
-    Then I should be on the closure user type page
+    Then I should be on the language selection page
 
   Scenario: Claim or amendment of a claim
     When I submit that is a Claim or amendment of a claim
-    Then I should be on the closure user type page
+    Then I should be on the language selection page
 
   Scenario: I press continue with no option selected
     When I press continue with nothing selected

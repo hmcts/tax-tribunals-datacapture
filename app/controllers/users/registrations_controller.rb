@@ -14,9 +14,9 @@ module Users
 
     def sign_up(_resource_name, user)
       save_for_later = TaxTribs::SaveCaseForLater.new(current_tribunal_case, user)
-      if current_tribunal_case.intent.value == :tax_appeal
+      if current_tribunal_case&.intent.eql?(Intent::TAX_APPEAL)
         save_for_later.save unless current_tribunal_case.case_type.blank?
-      elsif current_tribunal_case.intent.value == :close_enquiry
+      elsif current_tribunal_case&.intent.eql?(Intent::CLOSE_ENQUIRY)
         save_for_later.save unless current_tribunal_case.closure_case_type.blank?
       end
       super if session[:save_for_later] == true || session[:continue_with_new_appeal] == true
@@ -31,9 +31,9 @@ module Users
     end
 
     def after_sign_up_path_for(_)
-      if current_tribunal_case.intent.value == :tax_appeal
+      if current_tribunal_case.intent.eql?(Intent::TAX_APPEAL)
         current_tribunal_case.case_type? ? users_registration_save_confirmation_path : edit_steps_appeal_case_type_path
-      elsif current_tribunal_case.intent.value == :close_enquiry
+      elsif current_tribunal_case.intent.eql?(Intent::CLOSE_ENQUIRY)
         current_tribunal_case.closure_case_type? ? users_registration_save_confirmation_path : edit_steps_closure_case_type_path
       else
         users_registration_save_confirmation_path
