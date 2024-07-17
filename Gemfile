@@ -34,7 +34,7 @@ gem 'rest-client'
 gem 'net-pop', github: 'ruby/net-pop'
 
 # Admin
-gem 'sidekiq'
+gem 'sidekiq', '7.0.9'
 gem 'sidekiq-batch'
 gem 'sidekiq_alive'
 
