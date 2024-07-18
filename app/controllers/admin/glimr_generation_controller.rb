@@ -20,7 +20,7 @@ class Admin::GlimrGenerationController < AdminController
 
   def payload
     @payload ||= {
-      jurisdictionId: jurisdiction_id,
+      jurisdictionId: jurisdiction_id
     }.merge(generator_params)
   end
 
@@ -41,7 +41,7 @@ class Admin::GlimrGenerationController < AdminController
   def queue_creation(num)
     delay = 25.seconds
     batch = Sidekiq::Batch.new
-    batch.description = "Glimr batch @ #{Time.now}, n = #{num}"
+    batch.description = "Glimr batch @ #{Time.zone.now}, n = #{num}"
     batch.on(:complete, Admin::GenerateGlimrRecordsComplete, to: params[:email])
     batch.jobs do
       num.times do |index|

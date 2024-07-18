@@ -31,16 +31,17 @@ class HomeController < ApplicationController
       response:
     ).save
     flash[:cookie_notification] = cookie_notification
-    redirect_to request.referer
+    # TODO: check if there is safer way to do this
+    redirect_to request.referer, allow_other_host: true
   end
 
   private
 
   def cookie_setting
-    params[:cookie_setting_form]
-      .permit(:cookie_setting)
-      .to_h
-      .fetch(:cookie_setting)
+    params[:cookie_setting_form].
+      permit(:cookie_setting).
+      to_h.
+      fetch(:cookie_setting)
   end
 
   def cookie_notification

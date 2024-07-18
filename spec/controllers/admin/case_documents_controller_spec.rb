@@ -16,7 +16,7 @@ RSpec.describe Admin::CaseDocumentsController, type: :controller do
     allow(ENV).to receive(:fetch).with('AZURE_STORAGE_KEY').and_return('123')
     allow(ENV).to receive(:fetch).with('AZURE_STORAGE_CONTAINER').and_return('123')
 
-    allow(TribunalCase).to receive(:find_by_files_collection_ref)
+    allow(TribunalCase).to receive(:find_by).with(files_collection_ref: "TC/123")
       .and_return(tribunal_case)
     allow(Azure::Storage::Common::Core::Auth::SharedAccessSignature).to \
       receive(:new).and_return(double)

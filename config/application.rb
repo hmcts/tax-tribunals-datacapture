@@ -39,7 +39,7 @@ module TaxTribunalsDatacapture
     end
     # :nocov:
 
-    config.load_defaults 6.0
+    config.load_defaults 7.0
 
     config.middleware.use Rack::Attack
 

@@ -38,7 +38,7 @@ module Steps::Shared
     end
 
     def coerce_value(attr)
-      return true if attr.is_a?(Virtus::Attribute::Boolean) && !self[attr.name].blank?
+      return true if attr.is_a?(Virtus::Attribute::Boolean) && self[attr.name].present?
 
       self[attr.name]
     end

@@ -51,6 +51,15 @@ Rails.application.configure do
   config.i18n.raise_on_missing_translations = true
 
   config.assets.css_compressor = false
+
+  config.enable_reloading = false
+
+  # Raise error when a before_action's only/except options reference missing actions
+  config.action_controller.raise_on_missing_callback_actions = true
+
+  config.action_controller.raise_on_missing_callback_actions = false
+  config.action_controller.raise_on_open_redirects = false
+
 end
 
 Rails.application.routes.default_url_options[:locale] = I18n.default_locale

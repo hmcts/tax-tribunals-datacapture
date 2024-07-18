@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_tribunal_case
 
   def current_tribunal_case
-    @current_tribunal_case ||= TribunalCase.find_by_id(session[:tribunal_case_id])
+    @current_tribunal_case ||= TribunalCase.find_by(id: session[:tribunal_case_id])
   end
 
   def current_step_path
@@ -73,7 +73,7 @@ class ApplicationController < ActionController::Base
   def show_maintenance_page(config = Rails.application.config)
     if config.maintenance_enabled
       Rails.logger.level = :debug
-      Rails.logger.debug("Remote IP: #{request.remote_ip}")
+      Rails.logger.debug { "Remote IP: #{request.remote_ip}" }
     end
     return if !config.maintenance_enabled || config.maintenance_allowed_ips.include?(request.remote_ip)
 

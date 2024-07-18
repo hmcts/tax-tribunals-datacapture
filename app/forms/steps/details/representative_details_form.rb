@@ -35,7 +35,7 @@ module Steps::Details
     def special_chars_in_mail
       return if representative_contact_email.blank?
 
-      if representative_contact_email =~ /[;&()!\/*]/i
+      if /[;&()!\/*]/i.match?(representative_contact_email)
         errors.add :representative_contact_email, I18n.t('errors.messages.email.special_characters')
       end
     end

@@ -37,8 +37,8 @@ to_hash: {name: 'image.jpg', encoded_name: "aW1hZ2UuanBn\n", collection_ref: '12
 
     context 'document is valid' do
       let(:document_upload) {
- instance_double(DocumentUpload, upload!: {}, valid?: true, errors?: false,
-to_hash: {name: 'image.jpg', encoded_name: "aW1hZ2UuanBn\n", collection_ref: '12345'}) }
+        instance_double(DocumentUpload, upload!: {}, valid?: true, errors?: false,
+          to_hash: {name: 'image.jpg', encoded_name: "aW1hZ2UuanBn\n", collection_ref: '12345'}) }
 
       context 'HTML format' do
         it 'should create the document and redirect back to the step' do

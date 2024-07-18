@@ -15,7 +15,7 @@ class NormalisedEmailType < ActiveRecord::Type::String
 
   def normalise(value)
     value.to_s.strip.
-        gsub(/[#{UNICODE_QUOTES}]/,  APOSTROPHE).
-        gsub(/[#{UNICODE_HYPHENS}]/, HYPHEN)
+        gsub(/[#{UNICODE_QUOTES}]/o,  APOSTROPHE).
+        gsub(/[#{UNICODE_HYPHENS}]/o, HYPHEN)
   end
 end

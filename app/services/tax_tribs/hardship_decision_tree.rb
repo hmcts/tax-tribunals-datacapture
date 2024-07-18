@@ -42,9 +42,7 @@ class TaxTribs::HardshipDecisionTree < TaxTribs::DecisionTree
 
   def after_hardship_review_status
     case tribunal_case.hardship_review_status
-    when HardshipReviewStatus::GRANTED
-      { controller: '/steps/lateness/in_time', action: :edit }
-    when HardshipReviewStatus::PENDING
+    when HardshipReviewStatus::GRANTED, HardshipReviewStatus::PENDING
       { controller: '/steps/lateness/in_time', action: :edit }
     when HardshipReviewStatus::REFUSED
       { controller: :hardship_reason, action: :edit }

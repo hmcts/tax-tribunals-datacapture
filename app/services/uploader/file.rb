@@ -31,14 +31,12 @@ class Uploader
       key == other.key
     end
 
-    def hash
-      key.hash
-    end
+    delegate :hash, to: :key
 
     private
 
     def expires_at
-      (Time.now + EXPIRES_IN).utc.iso8601
+      (Time.zone.now + EXPIRES_IN).utc.iso8601
     end
 
     def storage_container_name

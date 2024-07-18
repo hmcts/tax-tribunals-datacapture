@@ -15,7 +15,7 @@ class User < ApplicationRecord
     include ActiveModel::Model
     attr_accessor :email, :password
 
-    validates_format_of :email, with: /\A([^\s]+)((?:[-a-z0-9]\.)[a-z]{2,})\z/i, unless: Proc.new { |o| o.email.blank? }
+    validates :email, format: { with: /\A([^\s]+)((?:[-a-z0-9]\.)[a-z]{2,})\z/i, unless: Proc.new { |o| o.email.blank? } }
     validates :email, :password, presence: true
 
     validate :email_password_combination
@@ -47,7 +47,7 @@ class User < ApplicationRecord
   end
 
   def invalidate_all_sessions!
-    self.update_attribute(:session_token, SecureRandom.hex)
+    self.update(session_token: SecureRandom.hex)
   end
 
   private
@@ -65,7 +65,7 @@ class User < ApplicationRecord
   def special_chars_in_mail
     return if email.blank?
 
-    if email =~ /[;&()!\/*]/i
+    if /[;&()!\/*]/i.match?(email)
       errors.add :email, I18n.t('errors.messages.email.special_characters')
     end
   end
