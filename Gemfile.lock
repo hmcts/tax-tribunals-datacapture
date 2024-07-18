@@ -682,7 +682,6 @@ DEPENDENCIES
   rack-attack (~> 6.7.0)
   rails (~> 7.0)
   rails-controller-testing
-  redis
   responders
   rest-client
   rspec-rails
