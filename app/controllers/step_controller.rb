@@ -34,6 +34,7 @@ class StepController < ApplicationController
         end
       rescue StandardError => e
         Rails.logger.error("Address Lookup Fetch Access Token error: #{e}")
+        Sentry.capture_exception(e)
         nil
       end
     end
@@ -67,9 +68,9 @@ class StepController < ApplicationController
   end
 
   def permitted_params(form_class)
-    params
-      .fetch(form_class.model_name.singular, {})
-      .permit(form_class.new.attributes.keys)
+    params.
+      fetch(form_class.model_name.singular, {}).
+      permit(form_class.new.attributes.keys)
   end
 
   def store_step_path_in_session

@@ -31,23 +31,23 @@ module Steps::Details
     private
 
     def selected_option
-      if not self.class.choices.include?(send_application_details)
-        errors.add(:send_application_details, tribunal_case_entity, message: 'what are your contect preferences?')
+      if self.class.choices.exclude?(send_application_details)
+        errors.add(:send_application_details, tribunal_case_entity, message: 'what are your contact preferences?')
       end
     end
 
     def email_address_identical
-      return unless errors.blank?
+      return if errors.present?
       if saved_email != email_address
-        key = "different_#{send_to}".to_sym
+        key = :"different_#{send_to}"
         errors.add(:email_address, key, message: "#{send_to.to_s.capitalize}'s email does not match entered email address")
       end
     end
 
     def phone_number_identical
-      return unless errors.blank?
+      return if errors.present?
       if saved_phone_number.present? && (saved_phone_number != phone_number)
-        key = "different_#{send_to}".to_sym
+        key = :"different_#{send_to}"
         errors.add(:phone_number, key, message: "#{send_to.to_s.capitalize}'s phone number does not match entered phone number")
       end
     end

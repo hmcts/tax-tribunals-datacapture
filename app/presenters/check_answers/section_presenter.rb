@@ -37,7 +37,7 @@ module CheckAnswers
         :sign_language_interpreter,
         :hearing_loop,
         :disabled_access,
-        :other_support,
+        :other_support
       ].select { |support| tribunal_case[support] }
     end
 

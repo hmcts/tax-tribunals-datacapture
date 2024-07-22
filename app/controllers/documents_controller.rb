@@ -11,13 +11,13 @@ class DocumentsController < ApplicationController
 
     respond_with(uploader, location: current_step_path) do |format|
       if uploader.errors?
-        format.html {
+        format.html do
           flash[:alert] = uploader.errors
           redirect_to current_step_path
-        }
-        format.json {
+        end
+        format.json do
           render json: {error: uploader.errors.first}, status: :unprocessable_entity
-        }
+        end
       end
     end
   end

@@ -25,7 +25,7 @@ RSpec.describe Steps::Closure::CheckAnswersController, type: :controller do
 
       local_get :show, format: :pdf, session: { tribunal_case_id: tribunal_case.id }
 
-      expect(subject).to render_template("steps/closure/check_answers/show.pdf.erb")
+      expect(subject).to render_template("steps/closure/check_answers/show")
       expect(assigns[:presenter]).to eq(presenter)
       expect(response.headers['Content-Disposition']).to eq('attachment; filename="check_answers.pdf"; filename*=UTF-8\'\'check_answers.pdf')
     end

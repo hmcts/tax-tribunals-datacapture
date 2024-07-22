@@ -32,7 +32,7 @@ module Steps::Details
     def special_chars_in_mail
       return if taxpayer_contact_email.blank?
 
-      if taxpayer_contact_email =~ /[;&()!\/*]/i
+      if /[;&()!\/*]/i.match?(taxpayer_contact_email)
         errors.add :taxpayer_contact_email, I18n.t('errors.messages.email.special_characters')
       end
     end

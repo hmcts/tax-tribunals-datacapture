@@ -12,9 +12,7 @@ module CheckAnswers
       case_reference.present?
     end
 
-    def case_reference
-      tribunal_case.case_reference
-    end
+    delegate :case_reference, to: :tribunal_case
 
     def pdf_params
       { pdf: pdf_filename, footer: { right: '[page]' } }

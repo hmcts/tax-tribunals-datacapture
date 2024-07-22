@@ -23,7 +23,7 @@ module TaxTribs
 
     def check_glimr
       {
-        glimr_status:,
+        glimr_status:
       }
     end
 
@@ -50,9 +50,7 @@ module TaxTribs
         begin ENV.fetch('GLIMR_API_CLIENT_MOCK', nil) == 'true' ||
           GlimrDirectApiClient::Available.call.available?
               'ok'
-        rescue GlimrDirectApiClient::Unavailable
-          'failed'
-        rescue NoMethodError
+        rescue GlimrDirectApiClient::Unavailable, NoMethodError
           'failed'
         end
     end

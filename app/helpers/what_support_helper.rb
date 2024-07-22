@@ -250,9 +250,9 @@ module WhatSupportHelper
   end
 
   def lang_options(language_method)
-    send(language_method)
-      .map { |s| t("#{language_method}.#{locale_key(s)}") }
-      .unshift('')
+    send(language_method).
+      map { |s| t("#{language_method}.#{locale_key(s)}") }.
+      unshift('')
   end
 
   def locale_key(str)

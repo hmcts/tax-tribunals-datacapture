@@ -17,7 +17,5 @@ class ValueObject
     [ValueObject, self.class, value].hash
   end
 
-  def to_s
-    value.to_s
-  end
+  delegate :to_s, to: :value
 end

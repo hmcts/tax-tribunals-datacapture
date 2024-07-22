@@ -20,14 +20,22 @@ class GlimrCasesController < ApplicationController
   def send_emails
     NotifyMailer.taxpayer_case_confirmation(current_tribunal_case).deliver_later
     NotifyMailer.ftt_new_case_notification(current_tribunal_case).deliver_later if current_tribunal_case.case_reference.blank?
-    NotifyMailer.application_details_copy(current_tribunal_case, :taxpayer,
-                                          case_to_string).deliver_later if current_tribunal_case.send_taxpayer_copy?
-    NotifyMailer.application_details_text(current_tribunal_case, :taxpayer,
-                                          case_to_string).deliver_later if current_tribunal_case.send_taxpayer_text_copy?
-    NotifyMailer.application_details_copy(current_tribunal_case, :representative,
-                                          case_to_string).deliver_later if current_tribunal_case.send_representative_copy?
-    NotifyMailer.application_details_text(current_tribunal_case, :representative,
-                                          case_to_string).deliver_later if current_tribunal_case.send_representative_text_copy?
+    if current_tribunal_case.send_taxpayer_copy?
+      NotifyMailer.application_details_copy(current_tribunal_case, :taxpayer,
+                                            case_to_string).deliver_later
+    end
+    if current_tribunal_case.send_taxpayer_text_copy?
+      NotifyMailer.application_details_text(current_tribunal_case, :taxpayer,
+                                            case_to_string).deliver_later
+    end
+    if current_tribunal_case.send_representative_copy?
+      NotifyMailer.application_details_copy(current_tribunal_case, :representative,
+                                            case_to_string).deliver_later
+    end
+    if current_tribunal_case.send_representative_text_copy?
+      NotifyMailer.application_details_text(current_tribunal_case, :representative,
+                                            case_to_string).deliver_later
+    end
   end
 
   def case_to_string

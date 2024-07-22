@@ -9,13 +9,18 @@
       <% entity = t(['dictionary', @form_object.send_to].join('.')) %>
       <%= f.govuk_radio_buttons_fieldset :send_application_details, inline: false, legend: { text: t('.heading', entity: entity), size: 'l' }, hint: { text: t('.lead_text', entity: entity) } do %>
         <%= f.govuk_radio_button :send_application_details,
-               Steps::Details::SendApplicationDetailsForm.choices[0], link_errors: true %>
+               Steps::Details::SendApplicationDetailsForm.choices[0],
+               label: { text: t("dictionary.CONTACT_PREFERENCES.email") },
+               link_errors: true %>
         <%= f.govuk_radio_button :send_application_details,
-               Steps::Details::SendApplicationDetailsForm.choices[1] %>
+               Steps::Details::SendApplicationDetailsForm.choices[1],
+               label: { text: t("dictionary.CONTACT_PREFERENCES.text") }%>
         <%= f.govuk_radio_button :send_application_details,
-               Steps::Details::SendApplicationDetailsForm.choices[2] %>
+               Steps::Details::SendApplicationDetailsForm.choices[2],
+               label: { text: t("dictionary.CONTACT_PREFERENCES.both") }%>
         <%= f.govuk_radio_button :send_application_details,
-               Steps::Details::SendApplicationDetailsForm.choices[3] %>
+               Steps::Details::SendApplicationDetailsForm.choices[3],
+               label: { text: t("dictionary.CONTACT_PREFERENCES.none") }%>
         <div id="confirm-email" class="<%= @form_object.send_email_copy? ? '' : 'hide' %> govuk-form-group">
           <%= f.govuk_text_field :email_address, width: 'one-half' do %>
               <span class="govuk-hint"><%= t('.confirm_email_text', entity: @form_object.send_to) %> </span>

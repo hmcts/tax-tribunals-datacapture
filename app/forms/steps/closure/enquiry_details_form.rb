@@ -13,7 +13,7 @@ module Steps::Closure
 
     def closure_years_in_range?
       return false if closure_years_under_enquiry.nil?
-      return false if closure_years_under_enquiry.scan(/\D/).empty? && (0..20).include?(closure_years_under_enquiry.to_i)
+      return false if closure_years_under_enquiry.scan(/\D/).empty? && (0..20).cover?(closure_years_under_enquiry.to_i)
 
       errors.add(:closure_years_under_enquiry,
                  I18n.t('activemodel.errors.models.steps/closure/enquiry_details_form.attributes.closure_years_under_enquiry.blank'))

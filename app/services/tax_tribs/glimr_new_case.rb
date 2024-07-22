@@ -10,10 +10,10 @@ module TaxTribs
     end
 
     def call
-      GlimrDirectApiClient::RegisterNewCase.call(params).tap { |api|
+      GlimrDirectApiClient::RegisterNewCase.call(params).tap do |api|
         @case_reference = api.response_body.fetch(:tribunalCaseNumber)
         @confirmation_code = api.response_body.fetch(:confirmationCode)
-      }
+      end
       self
     rescue => e
       Rails.logger.info({ caller: self.class.name, method: __callee__, error: e }.to_json)
@@ -36,15 +36,11 @@ module TaxTribs
       params.merge!(taxpayer_street_params)
 
       if tc.taxpayer_is_organisation?
-        params.merge!(
-          contactOrganisationName: tc.taxpayer_organisation_name,
-          contactFAO: tc.taxpayer_organisation_fao
-        )
+        params[:contactOrganisationName] = tc.taxpayer_organisation_name
+        params[:contactFAO] = tc.taxpayer_organisation_fao
       else
-        params.merge!(
-          contactFirstName: tc.taxpayer_individual_first_name,
-          contactLastName: tc.taxpayer_individual_last_name
-        )
+        params[:contactFirstName] = tc.taxpayer_individual_first_name
+        params[:contactLastName] = tc.taxpayer_individual_last_name
       end
 
       params.merge!(representative_params) if tc.has_representative?

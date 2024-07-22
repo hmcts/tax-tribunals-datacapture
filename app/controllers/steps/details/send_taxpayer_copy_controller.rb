@@ -17,9 +17,9 @@ module Steps::Details
     private
 
     def permitted_params(form_class)
-      super
-        .to_h
-        .merge(send_to: UserType::TAXPAYER)
+      super.
+        to_h.
+        merge(send_to: UserType::TAXPAYER)
     end
 
     def email_address

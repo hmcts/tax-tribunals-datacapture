@@ -21,15 +21,15 @@ class Uploader
 
     def upload
       @client.create_block_blob(
-        ENV.fetch('AZURE_STORAGE_CONTAINER'),
+        Settings.azure.storage_container,
         blob_name,
         @data,
         { content_type: }
       )
-    rescue KeyError => err # e.g. Env not found
-      raise KeyError, err
-    rescue StandardError => err
-      repeat_or_raise(err)
+    rescue KeyError => e # e.g. Env not found
+      raise KeyError, e
+    rescue StandardError => e
+      repeat_or_raise(e)
     end
 
     def content_type
@@ -40,13 +40,13 @@ class Uploader
 
     def sanitize_filename
       @filename = @filename.unicode_normalize(:nfkd)
-      @filename = Sanitize.fragment(@filename)
-        .gsub(/[^0-9a-zA-Z.\-_]/, '')
+      @filename = Sanitize.fragment(@filename).
+                  gsub(/[^0-9a-zA-Z.\-_]/, '')
     end
 
     def validate_arguments
-      raise Uploader::UploaderError, 'Filename must be provided' unless @filename.present?
-      raise Uploader::UploaderError, 'File data must be provided' unless @data.present?
+      raise Uploader::UploaderError, 'Filename must be provided' if @filename.blank?
+      raise Uploader::UploaderError, 'File data must be provided' if @data.blank?
     end
 
     def repeat_or_raise(err)
@@ -77,15 +77,16 @@ class Uploader
     end
 
     def log_retry_error
-      Rails.logger.tagged('add_file') {
+      Rails.logger.tagged('add_file') do
         Rails.logger.warn('Uploader::RequestError::Retry': {retry_counter: @retries})
-      }
+      end
     end
 
     def log_request_error(err)
-      Rails.logger.tagged('add_file') {
+      Rails.logger.tagged('add_file') do
         Rails.logger.warn('Uploader::RequestError': {error: err.inspect, backtrace: err.backtrace})
-      }
+      end
+      Sentry.capture_exception(err)
     end
   end
 end

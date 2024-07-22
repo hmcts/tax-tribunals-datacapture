@@ -25,7 +25,7 @@ class Uploader
     Uploader::DeleteFile.new(
       collection_ref: args[:collection_ref],
       document_key:   args[:document_key],
-      filename:       args[:filename],
+      filename:       args[:filename]
     ).call
   end
 end

@@ -10,7 +10,7 @@ module Steps::Closure
         hearing_loop: current_tribunal_case.hearing_loop,
         disabled_access: current_tribunal_case.disabled_access,
         other_support: current_tribunal_case.other_support,
-        other_support_details: current_tribunal_case.other_support_details,
+        other_support_details: current_tribunal_case.other_support_details
       )
       render template: 'steps/shared/what_support/edit'
     end
