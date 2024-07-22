@@ -43,7 +43,7 @@ RSpec.describe NotifyMailer, type: :mailer do
         first_reminder: 'NOTIFY_CASE_FIRST_REMINDER_TEMPLATE_ID',
         last_reminder: 'NOTIFY_CASE_LAST_REMINDER_TEMPLATE_ID'
       },
-      english_welsh: {
+      welsh: {
         new_case_saved_confirmation: 'NOTIFY_NEW_CASE_SAVED_CY_TEMPLATE_ID',
         reset_password_instructions: 'NOTIFY_RESET_PASSWORD_CY_TEMPLATE_ID',
         password_change: 'NOTIFY_CHANGE_PASSWORD_CY_TEMPLATE_ID',

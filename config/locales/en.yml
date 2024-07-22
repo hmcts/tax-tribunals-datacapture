@@ -9,7 +9,7 @@ en:
     select_language_question: &select_language_question "What language do you want us to use when we contact you?"
     SUPPORTED_LANGUAGES: &SUPPORTED_LANGUAGES
       english: English only
-      english_welsh: English and Welsh
+      welsh: English and Welsh
     default_service_title: &default_service_title "Appeal to the tax tribunal - GOV.UK"
     tax_tribunal_independent: &tax_tribunal_independent "The tax tribunal is independent and doesn't have access to files from HMRC."
     attach_reasons_document: &attach_reasons_document "<strong>Attach reasons as a document</strong>"
