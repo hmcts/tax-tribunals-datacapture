@@ -3,7 +3,7 @@ module Steps::Appeal
     attribute :dispute_type, String
     attribute :dispute_type_other_value, String
 
-    validates_inclusion_of :dispute_type, in: proc { |record| record.choices }
+    validates_inclusion_of :dispute_type, in: proc(&:choices)
     validates_presence_of  :dispute_type_other_value, if: :other_dispute_type?
 
     def choices

@@ -15,7 +15,7 @@ module Cookie
     validates_inclusion_of :cookie_setting, in: choices
 
     def cookie_setting
-      super.blank? ? cookie_setting_value : super
+      super.presence || cookie_setting_value
     end
 
     def accepted?

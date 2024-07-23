@@ -85,8 +85,8 @@ cy:
           <p class="govuk-body">"Yma gallwch ddweud pa ganlyniad yr hoffech gael"</p>
       - question_html: "7. Ydych chi angen unrhyw gefnogaeth yn y gwrandawiad?"
         answer_html: |
-          <p class="govuk-body">This is to help the tribunal with understanding your needs and make any necessary arrangements to welcome you at a face-to-face hearing.</p>
-          <p class="govuk-body">Selecting “Yes” will present you with several options for the type of support you will need at your hearing:</p>
+          <p class="govuk-body">Mae hyn er mwyn helpu’r tribiwnlys i ddeall eich anghenion a gwneud unrhyw drefniadau angenrheidiol i’ch croesawu mewn gwrandawiad wyneb yn wyneb.</p>
+          <p class="govuk-body">Bydd dewis "Ie" yn rhoi sawl opsiwn i chi ar gyfer y math o gymorth y bydd ei angen arnoch yn eich gwrandawiad:</p>
           <ul style="margin-left: 40px" class="govuk-list govuk-list--bullet">
            <li>Cyfieithydd</li>
            <li>Dehonglydd iaith arwyddion</li>

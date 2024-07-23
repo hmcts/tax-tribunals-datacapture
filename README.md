@@ -55,4 +55,5 @@ variables are set directly in the trais configuration:
 `.has_value_object` call.  Any mutation referencing a `self` call will
 need to include all of these in its syntax tree.
 
-Trigger rebuild
+
+Trigger rebuild: 2

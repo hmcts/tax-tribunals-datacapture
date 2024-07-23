@@ -10,9 +10,13 @@ class SessionsController < ApplicationController
     show_survey ? reset_session : reset_tribunal_case_session
 
     respond_to do |format|
-      format.html { redirect_to show_survey ? Rails.configuration.survey_link : local_root_path }
+      format.html { redirect_to redirect_to_link(show_survey), allow_other_host: true }
       format.json { render json: {} }
     end
+  end
+
+  def redirect_to_link(show_survey)
+    show_survey ? Rails.configuration.survey_link : local_root_path
   end
 
   def create_and_fill_appeal
@@ -69,6 +73,7 @@ class SessionsController < ApplicationController
     }
   end
 
+  # rubocop:disable Metrics/MethodLength
   def fake_details_data
     {
       taxpayer_type: ContactableEntityType::INDIVIDUAL,
@@ -103,9 +108,10 @@ class SessionsController < ApplicationController
       user_type: UserType::TAXPAYER
     }
   end
+  # rubocop:enable Metrics/MethodLength
 
   def tribunal_case
-    @tribunal_case ||= TribunalCase.find_by_id(session[:tribunal_case_id]) || TribunalCase.create.tap do |tribunal_case|
+    @tribunal_case ||= TribunalCase.find_by(id: session[:tribunal_case_id]) || TribunalCase.create.tap do |tribunal_case|
       session[:tribunal_case_id] = tribunal_case.id
     end
   end

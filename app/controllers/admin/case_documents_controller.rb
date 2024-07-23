@@ -8,9 +8,9 @@ class Admin::CaseDocumentsController < AdminController
       collection_ref: @tribunal_case.files_collection_ref
     )
 
-    @files ||= files
-                .map(&:name)
-                .map do |filepath|
+    @files ||= files.
+               map(&:name).
+               map do |filepath|
       filepath = filepath.gsub(' ', '%20')
       Uploader::File.new(filepath)
     end
@@ -18,16 +18,16 @@ class Admin::CaseDocumentsController < AdminController
 
   def tc
     tc = request.url.split('/')[-3..].join('/')
-    @tribunal_case = TribunalCase.find_by_case_reference tc
+    @tribunal_case = TribunalCase.find_by case_reference: tc
     return unless @tribunal_case
 
     files = Uploader.list_files(
       collection_ref: @tribunal_case.files_collection_ref
     )
 
-    @files ||= files
-                 .map(&:name)
-                 .map do |filepath|
+    @files ||= files.
+               map(&:name).
+               map do |filepath|
       filepath = filepath.gsub(' ', '%20')
       Uploader::File.new(filepath)
     end
@@ -38,7 +38,7 @@ class Admin::CaseDocumentsController < AdminController
   private
 
   def set_case
-    @tribunal_case = TribunalCase.find_by_files_collection_ref params[:id]
+    @tribunal_case = TribunalCase.find_by files_collection_ref: params[:id]
     nil unless @tribunal_case
   end
 end

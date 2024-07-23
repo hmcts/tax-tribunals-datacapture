@@ -23,10 +23,10 @@ class TaxTribs::GroverPdf
     mark_as_succeeded
 
     pdf
-  rescue StandardError => exception
+  rescue StandardError => e
     return if @test_early_exit # to simulate Grover crashing server
     mark_as_failed
-    Sentry.capture_exception(exception)
+    Sentry.capture_exception(e)
   end
 
   private
