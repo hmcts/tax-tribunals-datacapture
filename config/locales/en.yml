@@ -1257,7 +1257,7 @@ en:
         tobacco_products_duty: Tobacco Products Duty
         vat: Value Added Tax (VAT)
     challenged_decision_direct:
-      question: Did you appeal the original decision to HMRC?
+      question: Did you appeal the original decision to HMRC and other agency?
       accessible_change_text: whether you appealed the original decision to HMRC
       answers:
         <<: *YESNO
