@@ -98,7 +98,7 @@ cy:
       - question_html: "8. Llwythwch yr hysbysiad gwreiddiol neu’r llythyr penderfyniad"
         answer_html: |
           <p class="govuk-body">Mae hon yn rhan sylfaenol o'r gwasanaeth ar-lein a bydd yr opsiwn y byddwch yn ei ddewis yma yn pennu p’un a allwch lwytho dogfen sengl, amryw o ddogfennau neu, os nad yw'r dogfennau gennych wrth law, cadw eich cais a dychwelyd ato yn ddiweddarach.</p>
-          <p style="margin-left: 40px" class="govuk-body"><b>Nodyn pwysig:</b> Er bod modd ichi lwytho amryw o ddogfennau, dylech ond wneud hynny os yw eich hysbysiad gwreiddiol neu'r llythyr penderfyniad gan Bydd Gyllid a Thollau EM neu asiantaeth arall yn penderfynu p'un a fydd yn derbyn eich apêl neu'n egluro beth allwch wneud nesaf.</p>
+          <p style="margin-left: 40px" class="govuk-body"><b>Nodyn pwysig:</b>Er bod modd ichi lwytho amryw o ddogfennau, dylech ond wneud hynny os yw eich hysbysiad gwreiddiol neu'r llythyr penderfyniad gan Gyllid a Thollau EM neu asiantaeth arall yn sawl tudalen o hyd yn hytrach na bod yn un ddogfen sengl.</p>
           <p style="margin-left: 40px" class="govuk-body">Nid oes angen ichi ddarparu rhagor o dystiolaeth ar y cam hwn oherwydd bydd y tribiwnlys yn gofyn am hyn gennych yn ddiweddarach pan, ac os bydd ei hangen.</p>
       - question_html: "9. Gwiriwch eich atebion"
         answer_html: |

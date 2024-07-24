@@ -1693,7 +1693,7 @@ cy:
       in_time:
         edit:
           heading: "A ydych mewn pryd i apelio i'r tribiwnlys treth?"
-          lead_text: "Mae gennych 30 diwrnod yn dechrau o ddyddiad yr hysbysiad gwreiddiol neu'r llythyr canlyniad adolygiad. Os byddwch yn apelio ar ôl hynny, bydd angen ichi egluro pam."
+          lead_text: "Mae gennych 30 diwrnod calendr o ddyddiad yr hysbysiad gwreiddiol neu lythyr casgliad yr adolygiad Gyllid a Thollau EM."
           page_title: "Apelio'n hwyr"
       lateness_reason:
         edit:
@@ -1703,10 +1703,10 @@ cy:
           lead_text_html: |
             <p>Bydd y barnwr yn ystyried eich rhesymau ac unrhyw ymateb gan Gyllid a Thollau EM.
             Efallai y cynhelir gwrandawiad i benderfynu a all eich %{appeal_or_application} barhau. Os na chaniateir ichi apelio'n hwyr, fe ddywedir wrthych pam.</p>
-            <p>Nodwch eich rhesymau isod neu atodwch fel dogfen pam na wnaethoch apelio o fewn 30 diwrnod calendr i'r hysbysiad gwreiddiol neu lythyr casgliad yr adolygiad.</p>
+            <p>Nodwch eich rhesymau isod neu atodwch fel dogfen pam efallai na wnaethoch apelio o fewn 30 diwrnod calendr i'r hysbysiad gwreiddiol neu lythyr casgliad adolygiad.</p>
           lead_text_unsure_html: |
             <p>I helpu i brosesu eich achos yn gyflym, dylech roi rhesymau pam bod eich %{appeal_or_application} yn hwyr. Y barnwr fydd yn penderfynu a all eich %{appeal_or_application} barhau os yw'n hwyr.</p>
-            <p>Nodwch eich rhesymau isod neu atodwch fel dogfen pam na wnaethoch apelio o fewn 30 diwrnod calendr i'r hysbysiad gwreiddiol neu lythyr casgliad yr adolygiad.</p>
+            <p>Nodwch eich rhesymau isod neu atodwch fel dogfen pam efallai na wnaethoch apelio o fewn 30 diwrnod calendr i'r hysbysiad gwreiddiol neu lythyr casgliad adolygiad.</p>
           page_title: "Rheswm dros fod yn hwyr"
           upload_explanation_html: "Bydd eich dogfen yn cael ei llwytho pan fyddwch yn clicio ‘Parhau'."
     save_and_return:
