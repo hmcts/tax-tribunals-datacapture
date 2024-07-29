@@ -26,7 +26,7 @@ cy:
     blank_tax_amount: &blank_tax_amount "Nodwch swm y dreth (neu rhowch ‘anhysbys' os nad yw gennych)"
     default_service_title: &default_service_title "Apelio i'r tribiwnlys treth - GOV.UK"
     invalid_email: &invalid_email "Rhowch gyfeiriad e-bost yn y fformat cywir, er enghraifft enw@enghraifft.com"
-    tax_tribunal_independent: &tax_tribunal_independent "Mae'r tribiwnlys treth yn annibynnol ac nid oes ganddo fynediad at ffeiliau gan Gyllid a Thollau EM."
+    tax_tribunal_independent: &tax_tribunal_independent "Mae'r tribiwnlys treth yn annibynnol ac nid oes ganddo fynediad at ffeiliau gan Gyllid a Thollau EM nac asiantaethau eraill."
     blank_email: &blank_email "Rhowch eich cyfeiriad e-bost"
     blank_phone_number: &blank_phone_number "Rhowch rif ffôn yn y fformat cywir, er enghraifft 07700 900 982"
     blank_password: &blank_password "Teipiwch gyfrinair"
@@ -36,8 +36,8 @@ cy:
       lead_text: "Dewiswch yr opsiwn sydd fwyaf perthnasol yn seiliedig ar yr hysbysiad gwreiddiol neu'r llythyr canlyniad adolygiad."
 
     CHALLENGE_STATUS: &CHALLENGE_STATUS
-      appeal_late_rejection: "Roedd fy apêl i Gyllid a Thollau EM yn hwyr. Rwy'n gwneud cais am ganiatâd i wneud apêl hwyr i Gyllid a Thollau EM"
-      appealing_directly: "Rwy'n apelio'n uniongyrchol i'r tribiwnlys cyn cael ymateb gan Gyllid a Thollau EM"
+      appeal_late_rejection: "Roedd fy apêl i Gyllid a Thollau EM neu asiantaeth arall yn hwyr. Rwy'n gwneud cais am ganiatâd i wneud apêl hwyr i Gyllid a Thollau EM neu asiantaeth arall"
+      appealing_directly: "Rwy'n apelio'n uniongyrchol i'r tribiwnlys cyn cael ymateb gan Gyllid a Thollau EM neu asiantaeth arall"
       not_required: "Cefais gynnig adolygiad ond ni wnes ei dderbyn"
       overdue: "Rwyf wedi bod yn aros am 45 diwrnod neu fwy i adolygiad ddod i ben"
       pending: "Rwyf wedi bod yn aros am llai na 45 diwrnod i adolygiad ddod i ben"
@@ -416,7 +416,7 @@ cy:
       continue: Parhau
       description_html: |-
         <p class="govuk-body">Mae'n bosib y gallwch apelio'n hwyr drwy roi rhesymau. Y barnwr fydd yn penderfynu a all eich apêl barhau.</p>
-        <p class="govuk-body govuk-!-font-weight-bold">Mae’r tribiwnlys yn annibynnol ar Gyllid a Thollau EM.</p>
+        <p class="govuk-body govuk-!-font-weight-bold">Mae'r tribiwnlys ar wahân i Gyllid a Thollau EM neu asiantaethau eraill.</p>
         <h2 class="govuk-heading-m">Byddwch angen</h2>
         <ul class="govuk-list govuk-list--bullet">
             <li><strong>sgan neu lun</strong> o'r hysbysiad gwreiddiol neu'r llythyr canlyniad adolygiad</li>
@@ -517,16 +517,16 @@ cy:
       answers:
         <<: *TRUEFALSE
     closure_hmrc_reference:
-      accessible_change_text: "Cyfeirnod Cyllid a Thollau EM"
-      question: "Cyfeirnod Cyllid a Thollau EM"
+      accessible_change_text: "Cyfeirnod Cyllid a Thollau EM neu asiantaeth arall"
+      question: "Cyfeirnod Cyllid a Thollau EM neu asiantaeth arall"
     closure_years_under_enquiry:
       question: "Hyd yr ymholiad mewn blynyddoedd"
     dispute_type:
       accessible_change_text: "ynglŷn â beth yw eich anghydfod"
       answers:
-        amount_and_penalty: "Mae Cyllid a Thollau EM yn honni bod arnoch chi arian a chosb neu gordal"
-        amount_of_tax_owed_by_hmrc: "Dylai Cyllid a Thollau EM ad-dalu arian i chi"
-        amount_of_tax_owed_by_taxpayer: "Mae Cyllid a Thollau EM yn honni bod arnoch chi arian"
+        amount_and_penalty: "Mae Cyllid a Thollau EM neu asiantaeth arall yn honni bod arnoch chi arian a chosb neu gordal"
+        amount_of_tax_owed_by_hmrc: "Dylai Cyllid a Thollau EM neu asiantaeth arall ad-dalu arian i chi"
+        amount_of_tax_owed_by_taxpayer: "Mae Cyllid a Thollau EM neu asiantaeth arall yn honni bod arnoch chi arian"
         cancellation_of_registration: "Canslo cofrestriad"
         information_notice: "Apelio yn erbyn hysbysiad gwybodaeth"
         paye_coding_notice: "Hysbysiad Cod Talu wrth Ennill (PAYE)"
@@ -693,10 +693,10 @@ cy:
     index:
       continue: Parhau
       description_html: |-
-        <p class="govuk-body govuk-!-font-weight-bold">Mae’r tribiwnlys yn annibynnol ar Gyllid a Thollau EM.</p>
+        <p class="govuk-body govuk-!-font-weight-bold">Mae'r tribiwnlys ar wahân i Gyllid a Thollau EM neu asiantaethau eraill.</p>
         <h2 class="govuk-heading-m">Byddwch angen</h2>
         <ul class="govuk-list govuk-list--bullet">
-          <li><strong>manylion yr ymholiad</strong> gan gynnwys cyfeirnod Cyllid a Thollau EM a hyd yr ymholiad mewn blynyddoedd</li>
+          <li><strong>manylion yr ymholiad</strong> gan gynnwys cyfeirnod Gyllid a Thollau EM neu asiantaeth arall a'r blynyddoedd treth sy'n destun ymholiad</li>
         </ul>
         <p class="govuk-body">Gallwch hefyd ddarparu rhagor o wybodaeth a dogfennau ategol i egluro pam yr ydych yn credu y dylid cau'r ymholiad.</p>
         <p class="govuk-body">Bydd angen ichi lenwi <a href="%{approval_form_href}" class="govuk-link" target="_blank" rel="noopener">ffurflen awdurdodi  (%{approval_form_format_and_size})<span class="govuk-visually-hidden"> (agor mewn ffenestr newydd)</span></a> os ydych eisiau i rywun eich cynrychioli ac nad ydynt yn gyfreithiwr neu'n fargyfreithiwr sy'n ymarfer.</p>
@@ -921,11 +921,11 @@ cy:
           tobacco_products_duty_html: "<strong>Toll Cynhyrchion Tybaco</strong>"
         case_type_other_value: "Nodwch y math o dreth neu anghydfod sy'n gysylltiedig â'ch achos"
       steps_appeal_dispute_type_form:
-        amount_of_tax_owed_by_hmrc: Rydych eisiau i Gyllid a Thollau EM ad-dalu arian
+        amount_of_tax_owed_by_hmrc: Rydych chi eisiau i Gyllid a Thollau EM neu asiantaeth arall ad-dalu arian
         dispute_type_options:
-          amount_and_penalty_html: "<strong>Mae Cyllid a Thollau EM yn honni bod arnoch chi arian a chosb neu gordal rhaid i'r</strong><br>ddau anghydfod fod ar yr hysbysiad gwreiddiol neu'r llythyr canlyniad adolygiad"
-          amount_of_tax_owed_by_hmrc_html: "<strong>Rydych eisiau i Gyllid a Thollau EM ad-dalu arian</strong><br>er enghraifft, mae HMRC wedi gwrthod eich cais am ad-daliad am VAT"
-          amount_of_tax_owed_by_taxpayer_html: "<strong>Mae Cyllid a Thollau EM yn honni bod arnoch chi arian</strong><br>er enghraifft, mae HMRC wedi rhoi asesiad i chi"
+          amount_and_penalty_html: "<strong>Mae Cyllid a Thollau EM neu asiantaeth arall yn honni bod arnoch chi arian a chosb neu gordal rhaid i'r</strong><br>ddau anghydfod fod ar yr hysbysiad gwreiddiol neu'r llythyr canlyniad adolygiad"
+          amount_of_tax_owed_by_hmrc_html: "<strong>Rydych chi eisiau i Gyllid a Thollau EM neu asiantaeth arall ad-dalu arian</strong><br>er enghraifft, mae HMRC wedi gwrthod eich cais am ad-daliad am VAT"
+          amount_of_tax_owed_by_taxpayer_html: "<strong>Mae Cyllid a Thollau EM neu asiantaeth arall yn honni bod arnoch chi arian</strong><br>er enghraifft, mae HMRC wedi rhoi asesiad i chi"
           cancellation_of_registration_html: "<strong>Canslo cofrestriad</strong>"
           security_notice_html: "<strong>Hysbysiad o ofyniad i ddarparu diogelwch</strong><BR>
           Mae HMRC wedi gofyn am flaendal neu fond"
@@ -968,7 +968,7 @@ cy:
           trustee_return_html: "Ffurflen dreth ymddiriedolwr"
       steps_closure_enquiry_details_form:
         closure_hmrc_officer: "Enw'r swyddog treth sy'n cynnal yr ymholiad (dewisol)"
-        closure_hmrc_reference: "Cyfeirnod Cyllid a Thollau EM"
+        closure_hmrc_reference: "Cyfeirnod Cyllid a Thollau EM neu asiantaeth arall"
         closure_years_under_enquiry: "Hyd yr ymholiad mewn blynyddoedd   "
       steps_closure_support_documents_form:
         having_problems_uploading_explanation: "Nodwch y rhesymau pam na allwch lwytho dogfennau"
@@ -1327,7 +1327,7 @@ cy:
         late_appeal_refusal_letter: "Llwythwch y llythyr yn gwrthod eich apêl hwyr"
         late_review_refusal_letter: "Llwythwch y llythyr yn gwrthod eich adolygiad hwyr"
         original_notice_letter: "Llwythwch yr hysbysiad gwreiddiol neu'r llythyr penderfyniad"
-        review_conclusion_letter: "Llwythwch y llythyr canlyniad adolygiad"
+        review_conclusion_letter: "Llwythwch y llythyr canlyniad adolygiad gan Gyllid a Thollau EM"
         lead_text: Rydym yn derbyn sgan neu lun o ansawdd da ac eglur. Efallai y bydd rhaid dychwelyd eich apêl i chi os na allwn ddarllen y llythyr, ac mae'n bosib y byddwch yn methu'r terfyn amser.
       lead_text: *tax_tribunal_independent
       upload_explanation_html: "Bydd eich dogfen yn cael ei llwytho pan fyddwch yn clicio ‘Parhau'."
@@ -1379,7 +1379,7 @@ cy:
     challenge:
       decision:
         edit:
-          heading_direct: "A wnaethoch apelio yn erbyn y penderfyniad gwreiddiol i Gyllid a Thollau EM?"
+          heading_direct: "A wnaethoch apelio yn erbyn y penderfyniad gwreiddiol i Gyllid Thollau EM neu asiantaeth arall?"
           heading_indirect: "A wnaethoch ofyn am adolygiad o'r penderfyniad gwreiddiol?"
           help_panel:
             content_html: |-
@@ -1412,9 +1412,9 @@ cy:
       must_challenge_hmrc:
         show:
           contact_hmrc_button: "Cysylltu â Cyllid a Thollau EM"
-          free_to_challenge_hmrc_guidance_html: "<p class=\"govuk-body\">Dylech apelio hyd yn oed os ydych yn credu eich bod yn hwyr. Bydd Cyllid a Thollau EM yn penderfynu p'un a fydd yn derbyn eich apêl neu'n egluro beth allwch wneud nesaf. </p>"
-          free_to_challenge_hmrc_heading_html: "Dim ond ar ol i chi ysgrifennu at Gyllid a Thollau EM y cewch apelio i'r tribiwnlys treth. Gwiriwch yr opsiynau pan fyddwch <a href=\"https://www.gov.uk/tax-appeals\" class=\"govuk-link\">yn anghytuno â phenderfyniad treth.</a>"
-          heading: "Mae'n rhaid ichi apelio yn erbyn y penderfyniad gwreiddiol i Gyllid a Thollau EM"
+          free_to_challenge_hmrc_guidance_html: "<p class=\"govuk-body\">Dylech apelio hyd yn oed os ydych yn credu eich bod yn hwyr. Bydd Gyllid a Thollau EM neu asiantaeth arall yn penderfynu p'un a fydd yn derbyn eich apêl neu'n egluro beth allwch wneud nesaf.</p>"
+          free_to_challenge_hmrc_heading_html: "Dim ond ar ol i chi ysgrifennu at Gyllid a Thollau EM neu asiantaeth arall y cewch apelio i'r tribiwnlys treth. Gwiriwch yr opsiynau pan fyddwch <a href=\"https://www.gov.uk/tax-appeals\" class=\"govuk-link\">yn anghytuno â phenderfyniad treth.</a>"
+          heading: "Mae'n rhaid ichi apelio yn erbyn y penderfyniad gwreiddiol i Gyllid a Thollau EM neu asiantaeth arall"
           lead_text: "Bydd yr hysbysiad gwreiddiol yn egluro beth i'w wneud."
           page_title: "Rhaid herio Cyllid a Thollau EM"
           <<: *START_FINISH
@@ -1520,16 +1520,16 @@ cy:
       grounds_for_appeal:
         edit:
           attach_document_html: "<strong>Atodwch eich rhesymau fel dogfen sengl</strong>"
-          description_text: "Eglurwch yn eglur yn eich geiriau eich hun. Bydd y barnwr eisiau deall eich ochr chi a sut y mae unrhyw dystiolaeth yr ydych yn ei darparu yn cefnogi eich achos. "
+          description_text: "Eglurwch yn glir pam eich bod yn apelio i'r tribiwnlys, gan roi rhesymau dros bob penderfyniad yr ydych yn ei wrthwynebu. "
           footer_description_text: "Yna, bydd rhaid ichi lwytho unrhyw ddogfennau ategol gan gynnwys unrhyw ohebiaeth gan Gyllid a Thollau EM a thystiolaeth i gefnogi eich achos. "
           heading: "Seiliau'r %{appeal_or_application}"
           lead_text_html: |-
-            <p>Eglurwch yn eglur pam rydych yn apelio, gan roi rhesymau dros bob penderfyniad rydych yn anghytuno ag o. Bydd y barnwr eisiau deall eich ochr chi.</p>
-            <p>Rhowch eich rhesymau isod neu atodwch nhw fel dogfen.</p>
+            <p>Eglurwch yn glir pam eich bod yn apelio i'r tribiwnlys, gan roi rhesymau dros bob penderfyniad yr ydych yn ei wrthwynebu. Bydd y barnwr eisiau deall eich ochr chi.</p>
+            <p>Rhowch eich rhesymau isod neu atodwch nhw fel dogfen. Peidiwch â datgan na chynnwys gohebiaeth i, neu oddi wrth, Gyllid a Thollau EM.</p>
           page_title: "Seiliau'r apêl"
           upload_explanation_html: |-
             <p class="govuk-body">Bydd eich dogfen yn cael ei llwytho pan fyddwch yn clicio ‘Parhau'.</p>
-            <p class="govuk-body">Cewch gyfle i lwytho'r hysbysiad gwreiddiol, y llythyr penderfyniad neu'r llythyr canlyniad adolygiad yn hwyrach ymlaen yn y broses.</p>
+            <p class="govuk-body">Byddwch yn cael cyfle i uwchlwytho’r hysbysiad gwreiddiol, y llythyr penderfyniad neu lythyr casgliad yr adolygiad gan Gyllid a Thollau EM yn ddiweddarach yn y broses.</p>
       has_representative:
         edit:
           heading: "A oes gennych chi rywun sy'n eich cynrychioli?"
@@ -1693,7 +1693,7 @@ cy:
       in_time:
         edit:
           heading: "A ydych mewn pryd i apelio i'r tribiwnlys treth?"
-          lead_text: "Mae gennych 30 diwrnod yn dechrau o ddyddiad yr hysbysiad gwreiddiol neu'r llythyr canlyniad adolygiad. Os byddwch yn apelio ar ôl hynny, bydd angen ichi egluro pam."
+          lead_text: "Mae gennych 30 diwrnod calendr o ddyddiad yr hysbysiad gwreiddiol neu lythyr casgliad yr adolygiad Gyllid a Thollau EM."
           page_title: "Apelio'n hwyr"
       lateness_reason:
         edit:
@@ -1703,10 +1703,10 @@ cy:
           lead_text_html: |
             <p>Bydd y barnwr yn ystyried eich rhesymau ac unrhyw ymateb gan Gyllid a Thollau EM.
             Efallai y cynhelir gwrandawiad i benderfynu a all eich %{appeal_or_application} barhau. Os na chaniateir ichi apelio'n hwyr, fe ddywedir wrthych pam.</p>
-            <p>Rhowch eich rhesymau isod neu atodwch nhw fel dogfen.</p>
+            <p>Nodwch eich rhesymau isod neu atodwch fel dogfen pam efallai na wnaethoch apelio o fewn 30 diwrnod calendr i'r hysbysiad gwreiddiol neu lythyr casgliad adolygiad.</p>
           lead_text_unsure_html: |
             <p>I helpu i brosesu eich achos yn gyflym, dylech roi rhesymau pam bod eich %{appeal_or_application} yn hwyr. Y barnwr fydd yn penderfynu a all eich %{appeal_or_application} barhau os yw'n hwyr.</p>
-            <p>Rhowch eich rhesymau isod neu atodwch nhw fel dogfen.</p>
+            <p>Nodwch eich rhesymau isod neu atodwch fel dogfen pam efallai na wnaethoch apelio o fewn 30 diwrnod calendr i'r hysbysiad gwreiddiol neu lythyr casgliad adolygiad.</p>
           page_title: "Rheswm dros fod yn hwyr"
           upload_explanation_html: "Bydd eich dogfen yn cael ei llwytho pan fyddwch yn clicio ‘Parhau'."
     save_and_return:
