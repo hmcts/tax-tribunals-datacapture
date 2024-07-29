@@ -5,9 +5,9 @@ cy:
     lead_text: Canfod atebion i gwestiynau cyffredin, ac arweiniad cam wrth gam drwy’r gwasanaeth. Gallwch adael yr arweiniad hwn drwy glicio ar y botwm Yn ôl. Oddi yno gallwch ‘Apelio yn erbyn penderfyniad treth’ neu ‘Gwneud cais i gau ymholiad’.
     subheading_1: "Cwestiynau cyffredin"
     accordion_1:
-      - question_html: "A yw’r tribiwnlys treth yn gwybod fy mod wedi cysylltu â HMRC yn barod?"
+      - question_html: "A yw’r tribiwnlys treth yn gwybod fy mod eisoes wedi cysylltu â Gyllid a Thollau EM neu asiantaeth arall?"
         answer_html: |
-          <p class="govuk-body">Mae'r tribiwnlys treth yn annibynnol ac nid oes ganddo unrhyw wybodaeth am eich cysylltiadau â HMRC. Dim ond ar ôl ichi gyflwyno eich achos y byddwn yn gofyn am fanylion gan HMRC er mwyn i farnwr allu gwneud penderfyniad diduedd ynghylch eich apêl.</p>
+          <p class="govuk-body">Mae'r tribiwnlys treth yn annibynnol ac nid oes ganddo unrhyw wybodaeth am eich cysylltiadau a Gyllid a Thollau EM neu asiantaeth arall. Dim ond ar ôl i chi gyflwyno'ch achos y byddwn yn gofyn i a Gyllid a Thollau EM neu'r asiantaeth arall am fanylion, fel y gall barnwr wneud penderfyniad diduedd ar gyfer eich apêl.</p>
       - question_html: "A yw’n bosib i mi gadw fy manylion a dychwelyd yn hwyrach ymlaen?"
         answer_html: |
           <p class="govuk-body">Trwy gydol y gwasanaeth gallwch gadw'r hyn rydych wedi’i wneud a pharhau yn hwyrach ymlaen.  Mae’r nodwedd cadw a pharhau wedi’i greu er eich budd chi rhag ofn na allwch gwblhau eich apêl neu eich bod eisiau cyflwyno eich apêl yn hwyrach ymlaen.</p>
@@ -34,7 +34,7 @@ cy:
           <p class="govuk-body">Ar hyn o bryd, dim ond dau set o ddogfennau y mae’r tribiwnlys eu hangen i gefnogi eich apêl:</p>
           <ul style="margin-left: 40px" class="govuk-list govuk-list--bullet">
             <li>“Seiliau’r apêl” sy’n disgrifio pam rydych yn apelio, sy’n gallu bod yn destun rhydd, yn ddogfen sengl neu'r ddau.</li>
-            <li>Y llythyr canlyniad adolygiad y dylech fod wedi’i gael ar ôl ichi apelio i HMRC, er enghraifft.  Er gallwch atodi mwy nag un ddogfen sengl yma, nid yw hyn yn angenrheidiol oherwydd bydd y tribiwnlys yn cysylltu â chi pan fydd angen hyn.  I gynorthwyo'r tribiwnlys i brosesu eich apêl, dylech osgoi darparu mwy o ddogfennau na sydd angen ar hyn o bryd pa bynnag y bo hynny’n bosibl.</li>
+            <li>Y llythyr canlyniad adolygiad y dylech fod wedi’i gael ar ôl ichi apelio i Gyllid a Thollau EM neu asiantaeth arall, er enghraifft.  Er gallwch atodi mwy nag un ddogfen sengl yma, nid yw hyn yn angenrheidiol oherwydd bydd y tribiwnlys yn cysylltu â chi pan fydd angen hyn.  I gynorthwyo'r tribiwnlys i brosesu eich apêl, dylech osgoi darparu mwy o ddogfennau na sydd angen ar hyn o bryd pa bynnag y bo hynny’n bosibl.</li>
             </ul>
     subheading_2: "Beth yw’r camau sy’n gysylltiedig ag apêl ar-lein arferol?"
     steps_details_html: |
@@ -47,12 +47,12 @@ cy:
             <ul style="margin-left: 40px" class="govuk-list govuk-list--bullet">
               <li>Os byddwch yn dewis “Math arall o dreth, apêl neu gais” fe gewch ragor o opsiynau ar y sgrin nesaf.  Os na allwch ddod o hyd i'r opsiwn yr ydych ei angen, gallwch ddewis “Dim un o'r uchod” a nodi’r math o dreth neu anghydfod sy’n berthnasol i barhau.</li>
               </ul>
-          <p class="govuk-body">Yn amodol ar yr opsiwn y bu ichi ddewis ar y sgrin flaenorol fe ofynnir i chi, “A wnaethoch apelio yn erbyn y penderfyniad gwreiddiol i HMRC?” neu fel arall “A wnaethoch ofyn i'r penderfyniad gwreiddiol gael ei adolygu?”.</p>
+          <p class="govuk-body">Yn amodol ar yr opsiwn y bu ichi ddewis ar y sgrin flaenorol fe ofynnir i chi, “A wnaethoch apelio yn erbyn y penderfyniad gwreiddiol i Gyllid a Thollau EM neu asiantaeth arall?” neu fel arall “A wnaethoch ofyn i'r penderfyniad gwreiddiol gael ei adolygu?”.</p>
       - question_html: "2. A wnaethoch apelio yn erbyn y penderfyniad gwreiddiol neu ofyn iddo gael ei adolygu?"
         answer_html: |
           <p class="govuk-body">Gan ddibynnu ar y math o apêl y bu ichi ddewis ar y sgrin flaenorol fe ofynnir i chi, “A wnaethoch apelio yn erbyn y penderfyniad gwreiddiol i HMRC?” neu fel arall “A wnaethoch ofyn i'r penderfyniad gwreiddiol gael ei adolygu?”.</p>
           <ul style="margin-left: 40px" class="govuk-list govuk-list--bullet">
-            <li><b>A wnaethoch apelio yn erbyn y penderfyniad gwreiddiol?</b><br> Os dewiswch ‘Naddo’ i'r cwestiwn hwn yna bydd y sgrin nesaf yn dweud “Mae’n rhaid ichi apelio yn erbyn y penderfyniad gwreiddiol i HMRC” oherwydd gallwch ond apelio i'r tribiwnlys treth unwaith y byddwch wedi ysgrifennu at HMRC ac wedi cael eu hymateb.</li>
+            <li><b>A wnaethoch apelio yn erbyn y penderfyniad gwreiddiol?</b><br> Os dewiswch ‘Naddo’ i'r cwestiwn hwn yna bydd y sgrin nesaf yn dweud “Mae'n rhaid ichi apelio yn erbyn y penderfyniad gwreiddiol i Gyllid a Thollau EM neu asiantaeth arall” oherwydd gallwch ond apelio i'r tribiwnlys treth unwaith y byddwch wedi ysgrifennu at HMRC ac wedi cael eu hymateb.</li>
             <br>
             <li><b>A wnaethoch ofyn i'r penderfyniad gwreiddiol gael ei adolygu?</b><br> Os dewiswch ‘Do’ neu ‘Naddo’ ar gyfer y cwestiwn hwn bydd y sgrin nesaf yn cynnwys set arall o opsiynau i chi ddewis o’u plith:</li>
           </ul>
@@ -98,7 +98,7 @@ cy:
       - question_html: "8. Llwythwch yr hysbysiad gwreiddiol neu’r llythyr penderfyniad"
         answer_html: |
           <p class="govuk-body">Mae hon yn rhan sylfaenol o'r gwasanaeth ar-lein a bydd yr opsiwn y byddwch yn ei ddewis yma yn pennu p’un a allwch lwytho dogfen sengl, amryw o ddogfennau neu, os nad yw'r dogfennau gennych wrth law, cadw eich cais a dychwelyd ato yn ddiweddarach.</p>
-          <p style="margin-left: 40px" class="govuk-body"><b>Nodyn pwysig:</b> Er bod modd ichi lwytho amryw o ddogfennau, dylech ond wneud hynny os yw eich hysbysiad gwreiddiol neu'r llythyr penderfyniad gan HMRC yn sawl tudalen o hyd yn hytrach na bod yn un ddogfen sengl.</p>
+          <p style="margin-left: 40px" class="govuk-body"><b>Nodyn pwysig:</b>Er bod modd ichi lwytho amryw o ddogfennau, dylech ond wneud hynny os yw eich hysbysiad gwreiddiol neu'r llythyr penderfyniad gan Gyllid a Thollau EM neu asiantaeth arall yn sawl tudalen o hyd yn hytrach na bod yn un ddogfen sengl.</p>
           <p style="margin-left: 40px" class="govuk-body">Nid oes angen ichi ddarparu rhagor o dystiolaeth ar y cam hwn oherwydd bydd y tribiwnlys yn gofyn am hyn gennych yn ddiweddarach pan, ac os bydd ei hangen.</p>
       - question_html: "9. Gwiriwch eich atebion"
         answer_html: |
