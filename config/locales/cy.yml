@@ -416,7 +416,7 @@ cy:
       continue: Parhau
       description_html: |-
         <p class="govuk-body">Mae'n bosib y gallwch apelio'n hwyr drwy roi rhesymau. Y barnwr fydd yn penderfynu a all eich apêl barhau.</p>
-        <p class="govuk-body govuk-!-font-weight-bold">Mae’r tribiwnlys ar wahân i Gyllid a Thollau EM neu asiantaethau eraill.</p>
+        <p class="govuk-body govuk-!-font-weight-bold">Mae'r tribiwnlys ar wahân i Gyllid a Thollau EM neu asiantaethau eraill.</p>
         <h2 class="govuk-heading-m">Byddwch angen</h2>
         <ul class="govuk-list govuk-list--bullet">
             <li><strong>sgan neu lun</strong> o'r hysbysiad gwreiddiol neu'r llythyr canlyniad adolygiad</li>
