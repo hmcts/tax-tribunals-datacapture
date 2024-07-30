@@ -3,7 +3,7 @@ class ContactHmrcPage < BasePage
 
   section :content, '#main-content' do
     element :header, 'h1', text: I18n.t('steps.hardship.hardship_contact_hmrc.edit.heading')
-    element :contact_hmrc, "input[type='submit']"
+    element :contact_hmrc, :button, text: I18n.t('steps.challenge.must_challenge_hmrc.show.contact_hmrc_button')
   end
 
   def redirect_to_contact_hmrc

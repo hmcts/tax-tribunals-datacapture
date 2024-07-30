@@ -112,7 +112,7 @@ def complete_valid_closure_application
     expect(support_documents_page.content).to have_header
     continue_or_save_continue
     expect(check_answers_page.content).to have_header
-    submit
+    submit_check_your_answers
   end
 end
 
@@ -174,7 +174,7 @@ def complete_valid_appeal_application
     letter_upload_page.attach_file(identifier, filename)
     continue_or_save_continue
     expect(check_answers_page.content).to have_header
-    submit
+    submit_check_your_answers
   end
 end
 
