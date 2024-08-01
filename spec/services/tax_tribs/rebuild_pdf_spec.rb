@@ -36,4 +36,21 @@ RSpec.describe TaxTribs::RebuildPdf do
       described_class.rebuild
     end
   end
+
+  context "when it raises a standard error" do
+    before do
+      @tc = TribunalCase.create(case_reference: 'TC/2016/12345', pdf_generation_status: 'test')
+      allow(TaxTribs::RebuildPdf).to receive(:build).with(@tc).and_raise(StandardError)
+      expect(TaxTribs::CaseDetailsPdf).not_to receive(:new)
+      expect(Sentry).to receive(:capture_message)
+    end
+
+    after do
+      @tc.destroy
+    end
+
+    it 'does not re-attempt generation and upload' do
+      described_class.rebuild
+    end
+  end
 end
