@@ -11,7 +11,7 @@ en:
       english: English only
       english_welsh: English and Welsh
     default_service_title: &default_service_title "Appeal to the tax tribunal - GOV.UK"
-    tax_tribunal_independent: &tax_tribunal_independent "The tax tribunal is independent and doesn't have access to files from HMRC."
+    tax_tribunal_independent: &tax_tribunal_independent "The tax tribunal is independent and doesn't have access to files from HMRC or other agencies."
     attach_reasons_document: &attach_reasons_document "<strong>Attach reasons as a document</strong>"
     attach_reasons_blank_error: &attach_reasons_blank_error "You must enter reasons or attach a document"
     unknown: &unknown "unknown"
@@ -71,9 +71,9 @@ en:
       pending: I have been waiting less than 45 days for a review to finish
       overdue: I have been waiting for 45 days or more for a review to finish
       refused: I was refused a review as I was outside the time limit
-      appeal_late_rejection: My appeal to HMRC was late. I am applying to be allowed to make a late appeal to HMRC
+      appeal_late_rejection: My appeal to HMRC or other agency was late. I am applying to be allowed to make a late appeal to HMRC or other agency
       review_late_rejection: My request was late. I am applying to be able to request a late review
-      appealing_directly: I am appealing direct to the tribunal before receiving a response from HMRC
+      appealing_directly: I am appealing direct to the tribunal before receiving a response from HMRC or other agency
       not_required: I was offered a review but didn’t accept
 
     START_FINISH: &START_FINISH
@@ -173,7 +173,7 @@ en:
     challenge:
       decision:
         edit:
-          heading_direct: Did you appeal the original decision to HMRC?
+          heading_direct: Did you appeal the original decision to HMRC or other agency?
           heading_indirect: Did you ask for a review of the original decision?
           help_panel:
             heading: Help with challenging a tax decision
@@ -215,14 +215,13 @@ en:
           page_title: Must wait for review
       must_challenge_hmrc:
         show:
-          heading: You must appeal the original decision to HMRC
+          heading: You must appeal the original decision to HMRC or other agency
           lead_text: The original notice letter will explain what to do.
-          free_to_challenge_hmrc_heading_html: You can only appeal to the tax tribunal
-            once you have written to HMRC. Check the options when you <a href="https://www.gov.uk/tax-appeals" class="govuk-link">disagree
+          free_to_challenge_hmrc_heading_html: You can only appeal to the tax tribunal once you have written to HMRC or other agency.
+            Check the options when you <a href="https://www.gov.uk/tax-appeals" class="govuk-link">disagree
             with a tax decision.</a>
           free_to_challenge_hmrc_guidance_html: <p class="govuk-body">You should appeal even if you think
-            you are late. HMRC will decide whether to accept your appeal or explain
-            what you can do next. </p>
+            you are late. HMRC or another agency will decide whether to accept your appeal or explain what you can do next. </p>
           contact_hmrc_button: Contact HMRC
           <<: *START_FINISH
           page_title: Must challenge HMRC
@@ -416,9 +415,9 @@ en:
         edit:
           heading: Grounds for %{appeal_or_application}
           lead_text_html: |
-            <p>Clearly explain why you are appealing, giving reasons for each
-            decision you dispute. The judge will want to hear things from your side.</p>
-            <p>Enter reasons below or attach as a document.</p>
+            <p>Clearly explain why you are appealing to the tribunal, giving reasons for each decision you dispute.
+            The judge will want to hear things from your side.</p>
+            <p>Enter reasons below or attach as a document. Do not state or include correspondence to or from HMRC.</p>
           description_text: Clearly explain in your own words. The judge will want
             to know things from your side and understand how any evidence you provide
             supports your case.
@@ -428,7 +427,7 @@ en:
           page_title: Grounds for appeal
           upload_explanation_html: |
             <p class="govuk-body">Your document will upload when you click 'Continue'.</p>
-            <p class="govuk-body">You will have an opportunity to upload the original notice, decision letter or review conclusion letter later in the process.</p>
+            <p class="govuk-body">You will have an opportunity to upload the original notice, decision letter or review conclusion letter from HMRC later in the process.</p>
       letter_upload:
         edit:
           page_title: Letter upload
@@ -531,9 +530,8 @@ en:
       in_time:
         edit:
           heading: Are you in time to appeal to the tax tribunal?
-          lead_text: You have 30 calendar days from the date of the original notice
-            or review conclusion letter. If you appeal any later, you’ll need to explain
-            why.
+          lead_text: You have 30 calendar days to appeal to the tribunal from the date of the original notice or review conclusion letter from HMRC.
+            If you appeal any later, you’ll need to explain why.
           page_title: Lateness
       lateness_reason:
         edit:
@@ -545,12 +543,12 @@ en:
             There may be a hearing to decide if your %{appeal_or_application} can
             go ahead. If you are not allowed to appeal late, you will be told why
             not.</p>
-            <p>Enter reasons below or attach as a document.</p>
+            <p>Enter your reasons below or attach as a document why you may not have appealed within 30 calendar days of the original notice or review conclusion letter.</p>
           lead_text_unsure_html: |
             <p>To help process your case quickly, you should give reasons
             why your %{appeal_or_application} might be late. The judge will decide
             whether your %{appeal_or_application} can go ahead if it is late.</p>
-            <p>Enter reasons below or attach as a document.</p>
+            <p>Enter your reasons below or attach as a document why you may not have appealed within 30 calendar days of the original notice or review conclusion letter.</p>
           attach_document_html: *attach_reasons_document
           page_title: Lateness reason
           upload_explanation_html: "Your document will upload when you click 'Continue'."
@@ -920,16 +918,15 @@ en:
           other_html: "<strong>None of the above</strong>"
       steps_appeal_dispute_type_form:
         dispute_type_other_value: What is your dispute about?
-        amount_of_tax_owed_by_hmrc: You want HMRC to repay money
+        amount_of_tax_owed_by_hmrc: You want HMRC or other agency to repay money
         dispute_type_options:
           penalty_html: "<strong>Penalty or surcharge</strong><br>for example late
             payment, inaccurate returns or failure to notify tax liability"
-          amount_of_tax_owed_by_hmrc_html: "<strong>You want HMRC to repay money</strong><br>
+          amount_of_tax_owed_by_hmrc_html: "<strong>You want HMRC or other agency to repay money</strong><br>
           for example HMRC refused your repayment claim for VAT"
-          amount_of_tax_owed_by_taxpayer_html: "<strong>HMRC claim you owe money</strong><br>
+          amount_of_tax_owed_by_taxpayer_html: "<strong>HMRC or other agency claim you owe money</strong><br>
           for example HMRC have issued you with an assessment"
-          amount_and_penalty_html: "<strong>HMRC claim you owe money and a penalty or
-            surcharge</strong><br>both disputes must be shown on the original notice
+          amount_and_penalty_html: "<strong>HMRC or other agency claim you owe money and a penalty or surcharge</strong><br>both disputes must be shown on the original notice
             or review conclusion letter"
           paye_coding_notice_html: "<strong>Pay As You Earn (PAYE) coding notice</strong><br>the
             code used to work out how much tax is taken from your pay"
@@ -972,7 +969,7 @@ en:
           transactions_in_securities_html: 'Transactions in securities: issue of counteraction
             or no-counteraction notice'
       steps_closure_enquiry_details_form:
-        closure_hmrc_reference: HMRC reference number
+        closure_hmrc_reference: HMRC or other agency reference number
         closure_years_under_enquiry: Years under enquiry
         closure_hmrc_officer: Name of the tax officer running the enquiry (optional)
       steps_closure_additional_info_form:
@@ -1260,7 +1257,7 @@ en:
         tobacco_products_duty: Tobacco Products Duty
         vat: Value Added Tax (VAT)
     challenged_decision_direct:
-      question: Did you appeal the original decision to HMRC?
+      question: Did you appeal the original decision to HMRC and other agency?
       accessible_change_text: whether you appealed the original decision to HMRC
       answers:
         <<: *YESNO
@@ -1280,9 +1277,9 @@ en:
       answers:
         paye_coding_notice: Pay As You Earn (PAYE) coding notice
         penalty: Penalty or surcharge
-        amount_of_tax_owed_by_hmrc: HMRC should repay money to you
-        amount_of_tax_owed_by_taxpayer: HMRC claim you owe money
-        amount_and_penalty: HMRC claim you owe money and a penalty or surcharge
+        amount_of_tax_owed_by_hmrc: HMRC or other agency should repay money to you
+        amount_of_tax_owed_by_taxpayer: HMRC or other agency claim you owe money
+        amount_and_penalty: HMRC or other agency claim you owe money and a penalty or surcharge
         information_notice: Appeal against an information notice
         refusal_to_register_applicant: Refusal to register an applicant
         cancellation_of_registration: Cancellation of registration
@@ -1406,8 +1403,8 @@ en:
         transactions_in_securities: 'Transactions in securities: issue of counteraction
           or no-counteraction notice'
     closure_hmrc_reference:
-      question: HMRC reference number
-      accessible_change_text: HMRC reference number
+      question: HMRC or other agency reference number
+      accessible_change_text: HMRC or other agency reference number
     closure_years_under_enquiry:
       question: Years under enquiry
     closure_hmrc_officer:
@@ -1489,7 +1486,7 @@ en:
       lead_text: *tax_tribunal_independent
       heading:
         original_notice_letter: Upload the original notice or decision letter
-        review_conclusion_letter: Upload the review conclusion letter
+        review_conclusion_letter: Upload the review conclusion letter from HMRC
         late_review_refusal_letter: Upload the letter refusing your late review
         late_appeal_refusal_letter: Upload the letter refusing your late appeal
         lead_text: We accept a good quality and legible scan or photograph. Your appeal may be returned if we can't read the letter, and you risk missing the deadline.
@@ -1919,7 +1916,7 @@ en:
         date of the original notice or review conclusion letter.
       description_html: |
         <p class="govuk-body">You may be able to appeal late by giving reasons. The judge will decide if your appeal can go ahead.</p>
-        <p class="govuk-body govuk-!-font-weight-bold">The tribunal is separate from HMRC.</p>
+        <p class="govuk-body govuk-!-font-weight-bold">The tribunal is separate from HMRC or other agencies.</p>
         <h2 class="govuk-heading-m">What you will need</h2>
         <ul class="govuk-list govuk-list--bullet">
           <li><strong>a scan or photo</strong> of the original notice or review conclusion letter</li>
@@ -1935,10 +1932,10 @@ en:
       heading: Apply to close an enquiry
       lead_text: Ask the judge to end a tax enquiry with a closure, counteraction or no-counteraction notice.
       description_html: |
-        <p class="govuk-body govuk-!-font-weight-bold">The tribunal is separate from HMRC.</p>
+        <p class="govuk-body govuk-!-font-weight-bold">The tribunal is separate from HMRC or other agencies.</p>
         <h2 class="govuk-heading-m">What you will need</h2>
         <ul class="govuk-list govuk-list--bullet">
-          <li><strong>details of the enquiry</strong> including the HMRC reference number and tax years under enquiry</li>
+          <li><strong>details of the enquiry</strong> including the HMRC  or other agency reference number and tax years under enquiry</li>
         </ul>
         <p class="govuk-body">You can also provide further information and supporting documents saying why you think the enquiry should end.</p>
         <p class="govuk-body">You'll need to complete an <a href="%{approval_form_href}" class="govuk-link" target="_blank" rel="noopener">authorisation form (%{approval_form_format_and_size})<span class="govuk-visually-hidden"> (opens in new window)</span></a> if you want someone to represent you and they are not a practising solicitor or barrister.</p>
