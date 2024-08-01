@@ -4,6 +4,9 @@ class TaxTribs::RebuildPdf
   def self.rebuild
     TribunalCase.where.not(pdf_generation_status: nil).find_each do |tc|
       build(tc)
+    rescue StandardError => e
+      Sentry.capture_message(e.message,
+                             extra: { case_reference: tc.case_reference, event: 'rebuild pdf' })
     end
   end
 
