@@ -53,4 +53,36 @@ RSpec.describe TaxTribs::RebuildPdf do
       described_class.rebuild
     end
   end
+
+  context "when everything is correct" do
+    context "it has the correct parameters for appeal" do
+      before do
+        @tc = TribunalCase.create(case_reference: 'TC/2016/12345', pdf_generation_status: 'APPEAL_ATTEMPT')
+        expect(TaxTribs::CaseDetailsPdf).to receive(:new).with(@tc, AppealCasesController, CheckAnswers::AppealAnswersPresenter)
+      end
+
+      after do
+        @tc.destroy
+      end
+
+      it 'does not re-attempt generation and upload' do
+        described_class.rebuild
+      end
+    end
+
+    context "it has the correct parameters for closure" do
+      before do
+        @tc = TribunalCase.create(case_reference: 'TC/2016/12345', pdf_generation_status: 'CLOSURE_ATTEMPT')
+        expect(TaxTribs::CaseDetailsPdf).to receive(:new).with(@tc, ClosureCasesController, CheckAnswers::ClosureAnswersPresenter)
+      end
+
+      after do
+        @tc.destroy
+      end
+
+      it 'does not re-attempt generation and upload' do
+        described_class.rebuild
+      end
+    end
+  end
 end
