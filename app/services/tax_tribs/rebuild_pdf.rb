@@ -11,19 +11,18 @@ class TaxTribs::RebuildPdf
   end
 
   def self.build(tribunal_case)
-    controller = controller_for(tribunal_case)
-    presenter = controller.new.presenter_class
+    controller_object = controller_for(tribunal_case)
+    presenter = controller_object.presenter_class
 
-    TaxTribs::CaseDetailsPdf.
-      new(tribunal_case, controller, presenter).
+    TaxTribs::CaseDetailsPdf.new(tribunal_case, controller_object, presenter).
       generate_and_upload
   end
 
   def self.controller_for(tribunal_case)
     if tribunal_case.pdf_generation_status.include?('APPEAL')
-      AppealCasesController
+      AppealCasesController.new
     elsif tribunal_case.pdf_generation_status.include?('CLOSURE')
-      ClosureCasesController
+      ClosureCasesController.new
     elsif tribunal_case.pdf_generation_status.present?
       raise StandardError, "Pdf generation status #{
           tribunal_case.pdf_generation_status} not found"
