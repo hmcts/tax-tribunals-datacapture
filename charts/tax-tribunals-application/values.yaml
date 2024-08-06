@@ -14,6 +14,26 @@ base:
     DB_NAME: taxtribunals
     RAILS_SERVE_STATIC_FILES: 'true'
     DOCKER_STATE: 'migrate'
+    NOTIFY_CASE_CONFIRMATION_TEMPLATE_ID: "fa138a1a-5bea-4b01-993f-f25927363d02"
+    NOTIFY_FTT_CASE_NOTIFICATION_TEMPLATE_ID: "c2362d14-f99e-4420-b102-8d297dd3a62f"
+    NOTIFY_NEW_CASE_SAVED_TEMPLATE_ID: "effca85f-0718-483a-bcd8-529a4e7e6b0f"
+    NOTIFY_CHANGE_PASSWORD_TEMPLATE_ID: "cc99c21b-7c28-442e-b8fa-20eba92dec52"
+    NOTIFY_RESET_PASSWORD_TEMPLATE_ID: "fcb832bf-a46d-4bf2-a539-b9daa56bbfee"
+    NOTIFY_CASE_FIRST_REMINDER_TEMPLATE_ID: "ff66f5ae-6f8c-4365-bb43-a608cbde1e1c"
+    NOTIFY_CASE_LAST_REMINDER_TEMPLATE_ID: "23ecd5e1-2a6f-4cbb-9839-d6567360943a"
+    NOTIFY_REPORT_PROBLEM_TEMPLATE_ID: "01248de5-4018-4165-8a6f-2508fc481c20"
+    NOTIFY_SEND_APPLICATION_DETAIL_TEMPLATE_ID: "aa55e7f3-d26b-411c-bba9-1e3b55815814"
+    NOTIFY_SEND_APPLICATION_DETAIL_TEXT_TEMPLATE_ID: "f1f4a25e-9a85-4dd7-9d97-2e3dbd103b38"
+    NOTIFY_GLIMR_GENERATION_COMPLETE_ID: "1c3306da-c99a-492a-96a4-c553dc8732de"
+    NOTIFY_CASE_CONFIRMATION_CY_TEMPLATE_ID: "ef48c6b6-e3fa-4b1c-8463-9c4fbe504279"
+    NOTIFY_FTT_CASE_NOTIFICATION_CY_TEMPLATE_ID: "c2362d14-f99e-4420-b102-8d297dd3a62f"
+    NOTIFY_NEW_CASE_SAVED_CY_TEMPLATE_ID: "f5e99be0-f809-4624-87a9-993a55065f14"
+    NOTIFY_CHANGE_PASSWORD_CY_TEMPLATE_ID: "309c3ac0-3e26-42e2-9a3e-926f66fa3dc2"
+    NOTIFY_RESET_PASSWORD_CY_TEMPLATE_ID: "bd60f125-9dc8-4eba-85ca-8059e9dcfe7c"
+    NOTIFY_CASE_FIRST_REMINDER_CY_TEMPLATE_ID: "fcddda68-3bcc-4272-85f1-143274a4ae02"
+    NOTIFY_CASE_LAST_REMINDER_CY_TEMPLATE_ID: "066415bc-1150-4e51-b506-0c074059cde1"
+    NOTIFY_SEND_APPLICATION_DETAIL_CY_TEMPLATE_ID: "be590b09-7371-4f46-8c6e-3393df5faef4"
+    NOTIFY_SEND_APPLICATION_DETAIL_TEXT_CY_TEMPLATE_ID: "f1f4a25e-9a85-4dd7-9d97-2e3dbd103b38"
   keyVaults:
     tax-tribunals-cft:
       secrets:
@@ -47,46 +67,6 @@ base:
           alias: ADMIN_PASSWORD
         - name: govuk-notify-api-key
           alias: GOVUK_NOTIFY_API_KEY
-        - name: notify-case-confirmation-template-id
-          alias: NOTIFY_CASE_CONFIRMATION_TEMPLATE_ID
-        - name: notify-ftt-case-notification-template-id
-          alias: NOTIFY_FTT_CASE_NOTIFICATION_TEMPLATE_ID
-        - name: notify-new-case-saved-template-id
-          alias: NOTIFY_NEW_CASE_SAVED_TEMPLATE_ID
-        - name: notify-change-password-template-id
-          alias: NOTIFY_CHANGE_PASSWORD_TEMPLATE_ID
-        - name: notify-reset-password-template-id
-          alias: NOTIFY_RESET_PASSWORD_TEMPLATE_ID
-        - name: notify-case-first-reminder-template-id
-          alias: NOTIFY_CASE_FIRST_REMINDER_TEMPLATE_ID
-        - name: notify-case-last-reminder-template-id
-          alias: NOTIFY_CASE_LAST_REMINDER_TEMPLATE_ID
-        - name: notify-report-problem-template-id
-          alias: NOTIFY_REPORT_PROBLEM_TEMPLATE_ID
-        - name: notify-send-application-detail-template-id
-          alias: NOTIFY_SEND_APPLICATION_DETAIL_TEMPLATE_ID
-        - name: notify-send-application-detail-text-template-id
-          alias: NOTIFY_SEND_APPLICATION_DETAIL_TEXT_TEMPLATE_ID
-        - name: notify-case-confirmation-cy-template-id
-          alias: NOTIFY_CASE_CONFIRMATION_CY_TEMPLATE_ID
-        - name: notify-ftt-case-notification-cy-template-id
-          alias: NOTIFY_FTT_CASE_NOTIFICATION_CY_TEMPLATE_ID
-        - name: notify-new-case-saved-cy-template-id
-          alias: NOTIFY_NEW_CASE_SAVED_CY_TEMPLATE_ID
-        - name: notify-change-password-cy-template-id
-          alias: NOTIFY_CHANGE_PASSWORD_CY_TEMPLATE_ID
-        - name: notify-reset-password-cy-template-id
-          alias: NOTIFY_RESET_PASSWORD_CY_TEMPLATE_ID
-        - name: notify-case-first-reminder-cy-template-id
-          alias: NOTIFY_CASE_FIRST_REMINDER_CY_TEMPLATE_ID
-        - name: notify-case-last-reminder-cy-template-id
-          alias: NOTIFY_CASE_LAST_REMINDER_CY_TEMPLATE_ID
-        - name: notify-send-application-detail-cy-template-id
-          alias: NOTIFY_SEND_APPLICATION_DETAIL_CY_TEMPLATE_ID
-        - name: notify-send-application-detail-text-cy-template-id
-          alias: NOTIFY_SEND_APPLICATION_DETAIL_TEXT_CY_TEMPLATE_ID
-        - name: notify-glimr-generation-complete-template-id
-          alias: NOTIFY_GLIMR_GENERATION_COMPLETE_TEMPLATE_ID
         - name: report-problem-email-address
           alias: REPORT_PROBLEM_EMAIL_ADDRESS
         - name: tax-tribunal-email
@@ -180,46 +160,6 @@ sidekiq:
           alias: ADMIN_PASSWORD
         - name: govuk-notify-api-key
           alias: GOVUK_NOTIFY_API_KEY
-        - name: notify-case-confirmation-template-id
-          alias: NOTIFY_CASE_CONFIRMATION_TEMPLATE_ID
-        - name: notify-ftt-case-notification-template-id
-          alias: NOTIFY_FTT_CASE_NOTIFICATION_TEMPLATE_ID
-        - name: notify-new-case-saved-template-id
-          alias: NOTIFY_NEW_CASE_SAVED_TEMPLATE_ID
-        - name: notify-change-password-template-id
-          alias: NOTIFY_CHANGE_PASSWORD_TEMPLATE_ID
-        - name: notify-reset-password-template-id
-          alias: NOTIFY_RESET_PASSWORD_TEMPLATE_ID
-        - name: notify-case-first-reminder-template-id
-          alias: NOTIFY_CASE_FIRST_REMINDER_TEMPLATE_ID
-        - name: notify-case-last-reminder-template-id
-          alias: NOTIFY_CASE_LAST_REMINDER_TEMPLATE_ID
-        - name: notify-report-problem-template-id
-          alias: NOTIFY_REPORT_PROBLEM_TEMPLATE_ID
-        - name: notify-send-application-detail-template-id
-          alias: NOTIFY_SEND_APPLICATION_DETAIL_TEMPLATE_ID
-        - name: notify-send-application-detail-text-template-id
-          alias: NOTIFY_SEND_APPLICATION_DETAIL_TEXT_TEMPLATE_ID
-        - name: notify-case-confirmation-cy-template-id
-          alias: NOTIFY_CASE_CONFIRMATION_CY_TEMPLATE_ID
-        - name: notify-ftt-case-notification-cy-template-id
-          alias: NOTIFY_FTT_CASE_NOTIFICATION_CY_TEMPLATE_ID
-        - name: notify-new-case-saved-cy-template-id
-          alias: NOTIFY_NEW_CASE_SAVED_CY_TEMPLATE_ID
-        - name: notify-change-password-cy-template-id
-          alias: NOTIFY_CHANGE_PASSWORD_CY_TEMPLATE_ID
-        - name: notify-reset-password-cy-template-id
-          alias: NOTIFY_RESET_PASSWORD_CY_TEMPLATE_ID
-        - name: notify-case-first-reminder-cy-template-id
-          alias: NOTIFY_CASE_FIRST_REMINDER_CY_TEMPLATE_ID
-        - name: notify-case-last-reminder-cy-template-id
-          alias: NOTIFY_CASE_LAST_REMINDER_CY_TEMPLATE_ID
-        - name: notify-send-application-detail-cy-template-id
-          alias: NOTIFY_SEND_APPLICATION_DETAIL_CY_TEMPLATE_ID
-        - name: notify-send-application-detail-text-cy-template-id
-          alias: NOTIFY_SEND_APPLICATION_DETAIL_TEXT_CY_TEMPLATE_ID
-        - name: notify-glimr-generation-complete-template-id
-          alias: NOTIFY_GLIMR_GENERATION_COMPLETE_TEMPLATE_ID
         - name: report-problem-email-address
           alias: REPORT_PROBLEM_EMAIL_ADDRESS
         - name: tax-tribunal-email
@@ -305,46 +245,6 @@ job:
           alias: ADMIN_PASSWORD
         - name: govuk-notify-api-key
           alias: GOVUK_NOTIFY_API_KEY
-        - name: notify-case-confirmation-template-id
-          alias: NOTIFY_CASE_CONFIRMATION_TEMPLATE_ID
-        - name: notify-ftt-case-notification-template-id
-          alias: NOTIFY_FTT_CASE_NOTIFICATION_TEMPLATE_ID
-        - name: notify-new-case-saved-template-id
-          alias: NOTIFY_NEW_CASE_SAVED_TEMPLATE_ID
-        - name: notify-change-password-template-id
-          alias: NOTIFY_CHANGE_PASSWORD_TEMPLATE_ID
-        - name: notify-reset-password-template-id
-          alias: NOTIFY_RESET_PASSWORD_TEMPLATE_ID
-        - name: notify-case-first-reminder-template-id
-          alias: NOTIFY_CASE_FIRST_REMINDER_TEMPLATE_ID
-        - name: notify-case-last-reminder-template-id
-          alias: NOTIFY_CASE_LAST_REMINDER_TEMPLATE_ID
-        - name: notify-report-problem-template-id
-          alias: NOTIFY_REPORT_PROBLEM_TEMPLATE_ID
-        - name: notify-send-application-detail-template-id
-          alias: NOTIFY_SEND_APPLICATION_DETAIL_TEMPLATE_ID
-        - name: notify-send-application-detail-text-template-id
-          alias: NOTIFY_SEND_APPLICATION_DETAIL_TEXT_TEMPLATE_ID
-        - name: notify-case-confirmation-cy-template-id
-          alias: NOTIFY_CASE_CONFIRMATION_CY_TEMPLATE_ID
-        - name: notify-ftt-case-notification-cy-template-id
-          alias: NOTIFY_FTT_CASE_NOTIFICATION_CY_TEMPLATE_ID
-        - name: notify-new-case-saved-cy-template-id
-          alias: NOTIFY_NEW_CASE_SAVED_CY_TEMPLATE_ID
-        - name: notify-change-password-cy-template-id
-          alias: NOTIFY_CHANGE_PASSWORD_CY_TEMPLATE_ID
-        - name: notify-reset-password-cy-template-id
-          alias: NOTIFY_RESET_PASSWORD_CY_TEMPLATE_ID
-        - name: notify-case-first-reminder-cy-template-id
-          alias: NOTIFY_CASE_FIRST_REMINDER_CY_TEMPLATE_ID
-        - name: notify-case-last-reminder-cy-template-id
-          alias: NOTIFY_CASE_LAST_REMINDER_CY_TEMPLATE_ID
-        - name: notify-send-application-detail-cy-template-id
-          alias: NOTIFY_SEND_APPLICATION_DETAIL_CY_TEMPLATE_ID
-        - name: notify-send-application-detail-text-cy-template-id
-          alias: NOTIFY_SEND_APPLICATION_DETAIL_TEXT_CY_TEMPLATE_ID
-        - name: notify-glimr-generation-complete-template-id
-          alias: NOTIFY_GLIMR_GENERATION_COMPLETE_TEMPLATE_ID
         - name: report-problem-email-address
           alias: REPORT_PROBLEM_EMAIL_ADDRESS
         - name: tax-tribunal-email
