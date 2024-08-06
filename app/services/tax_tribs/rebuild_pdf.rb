@@ -24,7 +24,7 @@ class TaxTribs::RebuildPdf
     if tribunal_case.pdf_generation_status.include?('APPEAL')
       AppealCaseRebuildsController.new
     elsif tribunal_case.pdf_generation_status.include?('CLOSURE')
-      ClosureCasesController.new
+      ClosureCaseRebuildsController.new
     elsif tribunal_case.pdf_generation_status.present?
       raise StandardError, "Pdf generation status #{
           tribunal_case.pdf_generation_status} not found"
