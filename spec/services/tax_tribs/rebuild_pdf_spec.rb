@@ -41,7 +41,7 @@ RSpec.describe TaxTribs::RebuildPdf do
       let(:presenter_class) { CheckAnswers::ClosureAnswersPresenter }
       let(:case_detail_pdf) { instance_double(TaxTribs::CaseDetailsPdf, generate_and_upload: true) }
 
-      context "it has the correct parameters for appeal" do
+      context "it has the correct parameters for closure" do
         before do
           tribunal_case
           allow(TaxTribs::CaseDetailsPdf).to receive(:new).and_return case_detail_pdf
