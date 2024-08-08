@@ -62,6 +62,42 @@ cy:
           col_1: _tax-tribunals-datacapture_session
           col_2: "Cofio sut yr ydych chi’n symud ymlaen drwy’r gwasanaeth gan ddefnyddio’r cyfrifiadur hwn ac olrhain pan fyddwch heb wneud dim. "
           col_3: "Ar ôl 30 munud i chi wneud dim byd neu pan fyddwch yn cau eich porwr gwe"
+      apm_cookie:
+        line_1: We use an Application Performance Monitoring Service to collect information about how you use HMCTS services. We do this to monitor HMCTS services in order to resolve issues within our services, as well as collect data on how our services can be improved. WELSH NEEDED
+        line_2: "HMCTS store information about: WELSH NEEDED"
+        line_3: Site performance, WELSH NEEDED
+        line_4: Website usage, WELSH NEEDED
+        line_5: User behaviour. WELSH NEEDED
+        line_6: Information is presented within the Application Performance Monitoring service for the purposes detailed above. We do not use or share the information or allow Service Providers to use or share the information for any other purposes. WELSH NEEDED
+        line_7: "Application Performance Monitoring sets the following cookies: WELSH NEEDED"
+        table_1:
+          header_1: Cookie Name WELSH NEEDED
+          header_2: What this cookie is for WELSH NEEDED
+          header_3: Expires after WELSH NEEDED
+          row_1:
+            col_1: dtCookie WELSH NEEDED
+            col_2: Tracks a visit across multiple requests. WELSH NEEDED
+            col_3: Session ends WELSH NEEDED
+          row_2:
+            col_1: dtLatC WELSH NEEDED
+            col_2: Measures server latency for performance monitoring. WELSH NEEDED
+            col_3: Session ends WELSH NEEDED
+          row_3:
+            col_1: dtPC WELSH NEEDED
+            col_2: Required to identify proper endpoints for beacon transmission; includes session ID for correlation. WELSH NEEDED
+            col_3: Session ends WELSH NEEDED
+          row_4:
+            col_1: dtSa WELSH NEEDED
+            col_2: Intermediate store for page-spanning actions WELSH NEEDED
+            col_3: Session ends WELSH NEEDED
+          row_5:
+            col_1: rxVisitor WELSH NEEDED
+            col_2: Visitor ID to correlate sessions WELSH NEEDED
+            col_3: Equates to when users are asked to re-consent (typically 1 year) WELSH NEEDED
+          row_6:
+            col_1: rxvt WELSH NEEDED
+            col_2: Session timeout WELSH NEEDED
+            col_3: Session ends WELSH NEEDED
       table_3:
         header_1: Enw
         header_2: Pwrpas
@@ -109,5 +145,6 @@ cy:
     section_list:
       further_information: "Rhagor o wybodaeth"
       how_we_use: "Sut ydym yn defnyddio cwcis yn y gwasanaeth Apelio i'r tribiwnlys treth"
+      APM_cookies: Application performance monitoring WELSH NEEDED
       analytics_cookies: Analytics cwcis (dewisol)
       accept_cookies: Ydych chi eisiau dechrau analytics cwcis?

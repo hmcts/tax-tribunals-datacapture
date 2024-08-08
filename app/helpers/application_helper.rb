@@ -68,6 +68,10 @@ module ApplicationHelper
     ENV.fetch('GTM_TRACKING_ID', nil) if Cookie::SettingForm.new(request:).accepted?
   end
 
+  def cookie_accepted?
+    Cookie::SettingForm.new(request:).accepted?
+  end
+
   def login_or_portfolio_path
     user_signed_in? ? users_cases_path(locale: I18n.locale) : user_session_path(locale: I18n.locale)
   end
