@@ -62,7 +62,6 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'i18n-debug'
-  gem 'listen'
   gem 'hashdiff', '>= 0.4.0'
   gem 'web-console'
   gem 'spring'
