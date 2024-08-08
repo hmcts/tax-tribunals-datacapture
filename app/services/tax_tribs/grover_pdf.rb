@@ -1,5 +1,13 @@
 class TaxTribs::GroverPdf
   STATUS = {
+    AppealCaseRebuildsController: {
+      ATTEMPT: 'APPEAL_ATTEMPT',
+      FAILED: 'APPEAL_FAILED'
+    },
+    ClosureCaseRebuildsController: {
+      ATTEMPT: 'CLOSURE_ATTEMPT',
+      FAILED: 'CLOSURE_FAILED'
+    },
     AppealCasesController: {
       ATTEMPT: 'APPEAL_ATTEMPT',
       FAILED: 'APPEAL_FAILED'

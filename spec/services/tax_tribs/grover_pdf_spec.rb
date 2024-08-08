@@ -84,4 +84,11 @@ RSpec.describe TaxTribs::GroverPdf do
       end
     end
   end
+
+  context 'check the constant' do
+    it { expect(TaxTribs::GroverPdf::STATUS.has_key?(:AppealCaseRebuildsController)).to be true }
+    it { expect(TaxTribs::GroverPdf::STATUS.has_key?(:AppealCasesController)).to be true }
+    it { expect(TaxTribs::GroverPdf::STATUS.has_key?(:ClosureCaseRebuildsController)).to be true }
+    it { expect(TaxTribs::GroverPdf::STATUS.has_key?(:ClosureCasesController)).to be true }
+  end
 end
