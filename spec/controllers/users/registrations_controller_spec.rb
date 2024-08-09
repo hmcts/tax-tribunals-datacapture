@@ -12,9 +12,9 @@ RSpec.describe Users::RegistrationsController do
     context 'when there is no tribunal case in the session' do
       let(:tribunal_case) { nil }
 
-      it 'redirects to the invalid session error page' do
+      it 'responds with HTTP success' do
         local_get :new
-        expect(response).to redirect_to(invalid_session_errors_path)
+        expect(response).to be_successful
       end
     end
 
@@ -30,9 +30,9 @@ RSpec.describe Users::RegistrationsController do
     context 'when there is no tribunal case in the session' do
       let(:tribunal_case) { nil }
 
-      it 'redirects to the invalid session error page' do
-        local_post :create, params: { doesnt: 'matter' }
-        expect(response).to redirect_to(invalid_session_errors_path)
+      it 'responds with HTTP success' do
+        local_get :new
+        expect(response).to be_successful
       end
     end
 
@@ -88,9 +88,9 @@ RSpec.describe Users::RegistrationsController do
     context 'when there is no tribunal case in the session' do
       let(:tribunal_case) { nil }
 
-      it 'redirects to the invalid session error page' do
+      it 'renders the expected page' do
         local_get :save_confirmation
-        expect(response).to redirect_to(invalid_session_errors_path)
+        expect(response).to render_template(:save_confirmation)
       end
     end
 

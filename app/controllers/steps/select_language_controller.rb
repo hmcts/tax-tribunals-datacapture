@@ -1,5 +1,6 @@
 module Steps
   class SelectLanguageController < StepController
+    skip_before_action :check_tribunal_case_presence
     def edit
       @form_object = SelectLanguage::SaveLanguageForm.new(
         tribunal_case: current_tribunal_case,
