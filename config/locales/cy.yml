@@ -9,8 +9,8 @@ cy:
     representative: cynrychiolydd
     select_language_question: &select_language_question Pa iaith ydych chi eisiau i ni ei defnyddio pan fyddwn yn cysylltu â chi?
     SUPPORTED_LANGUAGES: &SUPPORTED_LANGUAGES
-      english: Saesneg yn unig
-      english_welsh: Cymraeg a Saesneg
+      english: Saesneg
+      welsh: Cymraeg
     attach_reasons_blank_error: &attach_reasons_blank_error "Mae'n rhaid ichi roi rhesymau neu atodi dogfen"
     attach_reasons_document: &attach_reasons_document "<strong>Atodwch eich rhesymau fel dogfen</strong>"
     blank_address: &blank_address "Rhowch gyfeiriad"

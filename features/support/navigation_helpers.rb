@@ -8,7 +8,7 @@ def closure
     proc { closure_page.continue },
     proc { closure_case_type_page.submit_personal_return },
     proc { save_return_page.skip_save_and_return },
-    proc { select_language_page.select_english_only },
+    proc { select_language_page.select_english },
     proc { submit_yes },
     proc { taxpayer_type_page.submit_individual },
     proc { taxpayer_details_page.submit_taxpayer_details },
@@ -28,7 +28,7 @@ def appeal
     proc {  appeal_page.continue },
     proc {  appeal_case_type_page.submit_income_tax },
     proc {  save_return_page.skip_save_and_return },
-    proc {  select_language_page.select_english_only },
+    proc {  select_language_page.select_english },
     proc {  submit_yes },
     proc {  challenge_decision_status_page.submit_review_conclusion_letter },
     proc {  dispute_type_page.submit_penalty_or_surcharge },
@@ -86,7 +86,7 @@ def complete_valid_closure_application
     closure_case_type_page.submit_personal_return
     expect(save_return_page.content).to have_header
     save_return_page.skip_save_and_return
-    select_language_page.select_english_only
+    select_language_page.select_english
     expect(user_type_page.content).to have_closure_header
     if ENV['TEST_LOCALE'] == 'cy'
       submit_yes_2
@@ -129,7 +129,7 @@ def complete_valid_appeal_application
     appeal_case_type_page.submit_income_tax
     expect(save_return_page.content).to have_header
     save_return_page.skip_save_and_return
-    select_language_page.select_english_only
+    select_language_page.select_english
     expect(challenge_decision_page.content).to have_appeal_header
     submit_yes
     expect(challenge_decision_status_page.content).to have_header
