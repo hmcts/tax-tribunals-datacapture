@@ -1,6 +1,7 @@
 <% content_for?(:page_title) ? yield(:page_title) : fallback_title %>
 
 <% content_for(:head) do %>
+  <%= render partial: 'layouts/analytics/dynatrace_script' if cookie_accepted? %>
   <%= render partial: 'layouts/analytics/gtm_script' if analytics_tracking_id.present? %>
   <%= csrf_meta_tags %>
   <%= stylesheet_link_tag 'application', media: 'all' %>
