@@ -30,6 +30,7 @@ gem 'application_insights',            '~> 0.5.6'
 gem 'sprockets'
 gem 'rest-client'
 
+gem 'ffi', '~> 1.17.0'
 gem 'rexml', '>= 3.3.6'
 
 # To fix ruby 3.3.3 gemsepec file issue with this gem
