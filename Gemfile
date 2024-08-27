@@ -49,6 +49,9 @@ gem 'mimemagic', '~> 0.4.0'
 # Loading envs from settings
 gem 'config'
 
+# To fix vulnerability
+gem 'rexml', '>= 3.3.6'
+
 source 'https://oss:Q7U7p2q2XlpY45kwqjCpXLIPf122rjkR@gem.mutant.dev' do
   gem 'mutant-license', '0.1.1.2.1739399027284447558325915053311580324856.4'
 end
