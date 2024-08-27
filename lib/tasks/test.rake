@@ -9,7 +9,7 @@ task test: :environment do
 end
 
 namespace :test do
-  task smoke: :environment do
+  task :smoke do
     if system "bundle exec cucumber features/  --tags @smoke"
       puts "Smoke test passed"
     else
@@ -17,7 +17,7 @@ namespace :test do
     end
   end
 
-  task functional: :environment do
+  task :functional do
     if system "bundle exec cucumber features/"
       puts "Functional test passed"
     else
