@@ -9,11 +9,24 @@ task test: :environment do
 end
 
 namespace :test do
-  task :smoke do
-    if system "bundle exec cucumber features/  --tags @smoke"
-      puts "Smoke test passed"
-    else
-      raise "Smoke tests failed"
+  namespace :test do
+    task :smoke do
+
+      # Start the database server (example for PostgreSQL)
+      puts "Starting the database server..."
+      system("sudo service postgresql start") || raise("Failed to start the database server")
+
+      # Set up the test database
+      puts "Setting up the test database..."
+      system("bundle exec rake db:test:prepare") || raise("Failed to set up the test database")
+
+      # Run the smoke tests
+      puts "Running smoke tests..."
+      if system("bundle exec cucumber features/ --tags @smoke")
+        puts "Smoke test passed"
+      else
+        raise "Smoke tests failed"
+      end
     end
   end
 
