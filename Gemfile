@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.3.4'
+ruby '3.3.3'
 
 gem 'azure_env_secrets', git: 'https://github.com/hmcts/azure_env_secrets.git', tag: 'v1.0.1'
 gem 'bootsnap',                        '~> 1.16', require: false
@@ -62,9 +62,9 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'i18n-debug'
+  gem 'listen'
   gem 'hashdiff', '>= 0.4.0'
   gem 'web-console'
-  gem 'listen'
   gem 'spring'
   gem 'spring-commands-rspec'
   gem "spring-commands-cucumber"
