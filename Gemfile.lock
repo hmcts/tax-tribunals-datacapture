@@ -260,6 +260,7 @@ GEM
     faraday_middleware (1.2.0)
       faraday (~> 1.0)
     ffi (1.17.0)
+    ffi (1.17.0-arm64-darwin)
     geckodriver-helper (0.24.0)
       archive-zip (~> 0.7)
     globalid (1.2.1)
@@ -455,7 +456,7 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
-    rexml (3.3.4)
+    rexml (3.3.6)
       strscan
     rouge (4.3.0)
     rspec-core (3.13.0)
@@ -683,6 +684,7 @@ DEPENDENCIES
   rails-controller-testing
   responders
   rest-client
+  rexml (>= 3.3.6)
   rspec-rails
   rspec-sidekiq
   rspec_junit_formatter (~> 0.6.0)
