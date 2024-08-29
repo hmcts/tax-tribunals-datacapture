@@ -71,8 +71,8 @@ withPipeline(type, product, component) {
             docker run --rm --name tt-test-postgres --publish 5421:5432 -e POSTGRES_PASSWORD=mysecretpassword -d hmctspublic.azurecr.io/imported/postgres:latest
         """, label: 'Start test postgres'
 
-        rubyBuilder.bundle("exec rake db:create")
-        rubyBuilder.bundle("exec rake db:schema:load")
+        rubyBuilder.bundle("exec rails db:create db:schema:load")
+        rubyBuilder.bundle("install")
     }
 
     afterAlways('test') {
