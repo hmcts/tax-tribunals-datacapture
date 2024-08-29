@@ -11,8 +11,8 @@ end
 namespace :test do
   task :smoke do
     # Start the database server (example for PostgreSQL)
-    puts "Starting the database server..."
-    system("service postgresql start") || raise("Failed to start the database server")
+    # puts "Starting the database server..."
+    # system("service postgresql start") || raise("Failed to start the database server")
 
     # Set up the test database
     puts "Setting up the test database..."
