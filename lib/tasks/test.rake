@@ -10,13 +10,13 @@ end
 
 namespace :test do
   task :smoke do
-    # # Start the database server (example for PostgreSQL)
-    # puts "Starting the database server..."
-    # system("service postgresql start") || raise("Failed to start the database server")
-    #
-    # # Set up the test database
-    # puts "Setting up the test database..."
-    # system("bundle exec rake db:test:prepare") || raise("Failed to set up the test database")
+    # Start the database server (example for PostgreSQL)
+    puts "Starting the database server..."
+    system("service postgresql start") || raise("Failed to start the database server")
+
+    # Set up the test database
+    puts "Setting up the test database..."
+    system("bundle exec rake db:test:prepare") || raise("Failed to set up the test database")
 
     # Run the smoke tests
     puts "Running smoke tests..."
