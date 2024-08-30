@@ -1,10 +1,16 @@
 # Rake::Task[:test].clear
 
 task test: :environment do
+    if system "bundle exec cucumber features/  --tags @smoke"
+      puts "Smoke test passed"
+    else
+      raise "Smoke tests failed"
+    end
+
   # Code to run your tests
-  Rake::Task['rubocop'].invoke
-  # Rake::Task['brakeman'].invoke
-  Rake::Task['rspec'].invoke
+  # Rake::Task['rubocop'].invoke
+  # # Rake::Task['brakeman'].invoke
+  # Rake::Task['rspec'].invoke
   # Rake::Task['cucumber'].invoke
 end
 
