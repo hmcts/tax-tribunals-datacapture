@@ -1,17 +1,13 @@
-# Rake::Task[:test].clear
+# These tasks are needed by Jenkins pipeline
 
 task test: :environment do
-    if system "bundle exec cucumber features/  --tags @smoke"
-      puts "Smoke test passed"
-    else
-      raise "Smoke tests failed"
-    end
+  unless system "bundle exec rubocop"
+    raise "Rubocop failed"
+  end
 
-  # Code to run your tests
-  # Rake::Task['rubocop'].invoke
-  # # Rake::Task['brakeman'].invoke
-  # Rake::Task['rspec'].invoke
-  # Rake::Task['cucumber'].invoke
+  unless system("rspec --format RspecJunitFormatter --out tmp/test/rspec.xml")
+    raise "Rspec testing failed #{$?}"
+  end
 end
 
 namespace :test do
