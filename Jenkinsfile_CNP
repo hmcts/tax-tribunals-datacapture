@@ -12,9 +12,16 @@ withPipeline(type, product, component) {
     env.RACK_ENV = 'test'
     env.CI = 'test'
     env.ENV='test'
+    env.DB_NAME='tt-test-postgres'
+    env.DB_USERNAME = 'postgres'
+    env.DB_PASSWORD = 'postgres'
+    env.DB_HOST = 'localhost'
+    env.DB_PORT = '5421'
+    env.TEST_BROWSER = 'chrome_local'
+    env.NODE_OPTIONS='--openssl-legacy-provider'
+    env.ENABLE_COVERAGE='true'
+
     // random free port should probably be used instead
-    env.DATABASE_URL = 'postgres://postgres:mysecretpassword@localhost:5421/tax-tribunals-test'
-    env.EXTERNAL_URL = 'mocked_in_tests'
     env.GOVUK_NOTIFY_API_KEY = 'mocked_in_tests'
     env.GLIMR_API_URL = 'replace_this_at_build_time'
     env.GLIMR_DIRECT_API_URL = 'replace_this_at_build_time'
