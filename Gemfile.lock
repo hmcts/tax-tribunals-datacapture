@@ -563,11 +563,6 @@ GEM
       site_prism-all_there (> 2, < 5)
     site_prism-all_there (3.0.5)
     sorbet-runtime (0.5.11514)
-    spring (4.2.1)
-    spring-commands-cucumber (1.0.1)
-      spring (>= 0.9.1)
-    spring-commands-rspec (1.0.4)
-      spring (>= 0.9.1)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -704,9 +699,6 @@ DEPENDENCIES
   simplecov (~> 0.22.0)
   simplecov-rcov
   site_prism
-  spring
-  spring-commands-cucumber
-  spring-commands-rspec
   sprockets
   strong_password (~> 0.0.8)
   timecop

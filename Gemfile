@@ -65,9 +65,9 @@ group :development do
   gem 'hashdiff', '>= 0.4.0'
   gem 'web-console'
   gem 'listen'
-  gem 'spring'
-  gem 'spring-commands-rspec'
-  gem "spring-commands-cucumber"
+  # gem 'spring'
+  # gem 'spring-commands-rspec'
+  # gem "spring-commands-cucumber"
 end
 
 group :development, :test do
