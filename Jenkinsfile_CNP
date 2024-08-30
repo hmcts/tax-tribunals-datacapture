@@ -84,7 +84,7 @@ withPipeline(type, product, component) {
         rubyBuilder.bundle("install")
     }
 
-    afterAlways('test') {
+    afterAlways('smokeTest') {
         sh script: "docker stop tt-test-postgres && docker rm tt-test-postgres || echo 'Ignoring failure in stopping postgres'",
             label: "docker stop tt-test-postgres"
     }
