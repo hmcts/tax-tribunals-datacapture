@@ -14,7 +14,7 @@ withPipeline(type, product, component) {
     env.ENV='test'
     env.DB_NAME='tt-test-postgres'
     env.DB_USERNAME = 'postgres'
-    env.DB_PASSWORD = 'postgres'
+    env.DB_PASSWORD = 'mysecretpassword'
     env.DB_HOST = 'localhost'
     env.DB_PORT = '5421'
     env.TEST_BROWSER = 'chrome_local'
