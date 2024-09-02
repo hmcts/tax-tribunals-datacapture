@@ -255,7 +255,9 @@ GEM
     faraday-retry (1.0.3)
     faraday_middleware (1.2.0)
       faraday (~> 1.0)
-    ffi
+    ffi (1.17.0-arm64-darwin)
+    ffi (1.17.0-x86_64-darwin)
+    ffi (1.17.0-x86_64-linux-gnu)
     geckodriver-helper (0.24.0)
       archive-zip (~> 0.7)
     globalid (1.2.1)
@@ -706,7 +708,7 @@ DEPENDENCIES
   zendesk_api (~> 1.28)
 
 RUBY VERSION
-   ruby 3.3.4p94
+   ruby 3.3.2p78
 
 BUNDLED WITH
    2.5.15
