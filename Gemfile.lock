@@ -267,8 +267,8 @@ GEM
       activemodel (>= 6.1)
       activesupport (>= 6.1)
       html-attributes-utils (~> 1)
-    govuk_notify_rails (2.2.0)
-      notifications-ruby-client (~> 5.1)
+    govuk_notify_rails (3.0.0)
+      notifications-ruby-client (~> 6.2)
       rails (>= 4.1.0)
     grover (1.1.10)
       combine_pdf (~> 1.0)
@@ -361,7 +361,7 @@ GEM
       racc (~> 1.4)
     nokogiri (1.16.7-x86_64-linux)
       racc (~> 1.4)
-    notifications-ruby-client (5.4.0)
+    notifications-ruby-client (6.2.0)
       jwt (>= 1.5, < 3)
     orm_adapter (0.5.0)
     parallel (1.26.3)
@@ -651,7 +651,7 @@ DEPENDENCIES
   geckodriver-helper (~> 0.24.0)
   glimr-api-client!
   govuk_design_system_formbuilder
-  govuk_notify_rails (~> 2.1)
+  govuk_notify_rails (~> 3.0)
   grover
   hashdiff (>= 0.4.0)
   i18n-debug
