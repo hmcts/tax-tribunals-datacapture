@@ -71,7 +71,7 @@ withPipeline(type, product, component) {
             source /usr/local/rvm/scripts/rvm
             rvm install ruby-3.3.2
             rvm use ruby-3.3.2
-            sudo apt install zlib1g
+            apt install zlib1g
         """, label: 'Ruby version install'
     }
 
