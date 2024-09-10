@@ -226,6 +226,10 @@ def submit
   base_page.content.submit_button.click
 end
 
+def submit_check_your_answers
+  check_answers_page.submit_check_answers
+end
+
 def continue_or_save_continue
   base_page.content.continue_or_save_continue.click
 end

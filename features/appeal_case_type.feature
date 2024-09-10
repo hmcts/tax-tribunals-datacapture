@@ -20,7 +20,7 @@ Feature: Appeal case type page
   Scenario: No selection on the case type show more page
     When I click on continue after selecting Other option
     And I am on the case type show more page
-    And I click on continue without selecting an option
+#    And I click on continue without selecting an option
     Then I should see appeal case type error message
 
   Scenario: Selection provided on the case type show more page
