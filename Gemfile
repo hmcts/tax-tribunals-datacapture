@@ -9,7 +9,7 @@ gem 'devise'
 gem "valid_email2"
 gem 'glimr-api-client', github: 'ministryofjustice/glimr-api-client', tag: 'v0.4.1'
 gem 'govuk_design_system_formbuilder'
-gem 'govuk_notify_rails',              '~> 2.1'
+gem 'govuk_notify_rails', '~> 3.0'
 gem 'jquery-rails'
 gem 'nokogiri', '>= 1.16.2'
 gem 'pg'
@@ -65,9 +65,6 @@ group :development do
   gem 'hashdiff', '>= 0.4.0'
   gem 'web-console'
   gem 'listen'
-  gem 'spring'
-  gem 'spring-commands-rspec'
-  gem "spring-commands-cucumber"
 end
 
 group :development, :test do
