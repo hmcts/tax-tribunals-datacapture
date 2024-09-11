@@ -118,8 +118,8 @@ RUN bundle exec rails assets:precompile RAILS_ENV=production SECRET_KEY_BASE=req
 # Copy fonts and images (without digest) along with the digested ones,
 # as there are some hardcoded references in the `govuk-frontend` files
 # that will not be able to use the rails digest mechanism.
-RUN cp node_modules/govuk-frontend/govuk/assets/fonts/*  public/assets/govuk-frontend/govuk/assets/fonts
-RUN cp node_modules/govuk-frontend/govuk/assets/images/* public/assets/govuk-frontend/govuk/assets/images
+RUN cp node_modules/govuk-frontend/dist/govuk/assets/fonts/*  public/assets/govuk-frontend/govuk/assets/fonts
+RUN cp node_modules/govuk-frontend/dist/govuk/assets/images/* public/assets/govuk-frontend/govuk/assets/images
 
 ## Set up sidekiq
 COPY --chown=appuser:appgroup sidekiq.sh /home/app/sidekiq.sh
