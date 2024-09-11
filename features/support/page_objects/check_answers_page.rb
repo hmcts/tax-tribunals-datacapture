@@ -6,5 +6,6 @@ class CheckAnswersPage < BasePage
     element :application_type_heading, 'h2', text: I18n.t('check_answers.sections.closure_type')
     element :taxpayer_details_heading, 'h2', text: I18n.t('check_answers.sections.taxpayer')
     element :enquiry_details_heading, 'h2', text: I18n.t('check_answers.sections.closure_details')
+    element :submit_button, 'button[type="submit"]'
   end
 end
