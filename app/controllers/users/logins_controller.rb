@@ -31,17 +31,23 @@ module Users
 
     protected
 
+    # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity:
     def sign_in(_resource_name, user)
       super
       save_for_later = TaxTribs::SaveCaseForLater.new(current_tribunal_case, user)
-      save_for_later.save
+      if current_tribunal_case&.intent.eql?(Intent::TAX_APPEAL)
+        save_for_later.save if current_tribunal_case.respond_to?(:case_type?) || current_tribunal_case.case_type?
+      elsif current_tribunal_case&.intent.eql?(Intent::CLOSE_ENQUIRY)
+        save_for_later.save if current_tribunal_case.respond_to?(:closure_case_type?) || current_tribunal_case.closure_case_type?
+      end
       session[:confirmation_email_address] = user.email if save_for_later.email_sent?
     end
+    # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity:
 
     # Devise will try to return to a previously login-protected page if available,
     # otherwise this is the fallback route to redirect the user after login
     def signed_in_root_path(_)
-      current_tribunal_case ? users_login_save_confirmation_path : users_cases_path
+      users_cases_path
     end
 
     def after_sign_out_path_for(_)

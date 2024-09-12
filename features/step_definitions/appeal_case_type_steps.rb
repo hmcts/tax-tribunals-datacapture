@@ -3,7 +3,8 @@ Given("I am on the appeal case type page") do
 end
 
 Given("I am on the appeal case type page without login") do
-  appeal_case_type_page.load_page
+  navigate_to_save_return_page_appeal
+  save_return_page.continue_new_appeal
 end
 
 When("I click on continue without selecting an option") do
@@ -29,6 +30,10 @@ end
 
 When("I click on continue after selecting Other option") do
   appeal_case_type_page.submit_other
+end
+
+Then("I should be on the language selection page") do
+  expect(select_language_page.content).to have_header
 end
 
 When("I am on the case type show more page") do
@@ -80,6 +85,10 @@ end
 And("I select nothing then english only") do
   continue_or_save_continue
   expect(select_language_page.content.error).to have_error_heading
+  select_language_page.select_english_only
+end
+
+And("I choose to select english only") do
   select_language_page.select_english_only
 end
 

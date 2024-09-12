@@ -12,7 +12,7 @@
 
 <p class="govuk-body"><%=t '.not_available_online' %></p>
 
-<h2 class="govuk-heading-m"><%=t ('.no_email_heading') %></h1>
+<h2 class="govuk-heading-m"><%=t ('.no_email_heading') %></h2>
 
 <p class="govuk-body"><%=t('.no_email_junk') %></p>
 
@@ -29,7 +29,7 @@
 
 <%- if current_user %>
   <p class="govuk-body"><%=t '.continue_hint' %></p>
-  <%= link_to t('.continue'), session['next_step'], class: 'govuk-button' %>
+  <%= link_to t('.continue'), session[:next_step], class: 'govuk-button' %>
 <% else %>
   <p class="govuk-body"><%=t '.return_info' %></p>
 <% end %>

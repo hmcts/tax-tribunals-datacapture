@@ -1,6 +1,6 @@
 module Steps::Closure
   class CaseTypeController < Steps::ClosureStepController
-    include StartingPointStep
+    skip_before_action :check_tribunal_case_presence
 
     def edit
       @form_object = CaseTypeForm.new(
