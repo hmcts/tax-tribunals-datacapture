@@ -30,6 +30,8 @@ gem 'application_insights',            '~> 0.5.6'
 gem 'sprockets'
 gem 'rest-client'
 
+gem 'rexml', '>= 3.3.6'
+
 # To fix ruby 3.3.3 gemsepec file issue with this gem
 gem 'net-pop', github: 'ruby/net-pop'
 

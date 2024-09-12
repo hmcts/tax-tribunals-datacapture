@@ -678,6 +678,7 @@ DEPENDENCIES
   rails-controller-testing
   responders
   rest-client
+  rexml (>= 3.3.6)
   rspec-rails
   rspec-sidekiq
   rspec_junit_formatter (~> 0.6.0)
