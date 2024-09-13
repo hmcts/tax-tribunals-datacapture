@@ -11,8 +11,8 @@ Rails.application.config.assets.precompile += %w(
 Rails.application.config.assets.precompile += %w(
   govuk-frontend/dist/govuk/all.scss
   govuk-frontend/dist/govuk/all.bundle.js
-  govuk-frontend/dist/assets/fonts/*
-  govuk-frontend/dist/assets/images/*
+  govuk-frontend/dist/govuk/assets/fonts/*
+  govuk-frontend/dist/govuk/assets/images/*
 )
 
 Rails.application.config.assets.configure do |env|
