@@ -107,7 +107,6 @@ COPY Gemfile* .ruby-version ./
 RUN gem install bundler -v 2.5.14 && \
     bundle config set frozen 'true' && \
     bundle config without test:development && \
-    bundle config set force_ruby_platform true && \
     bundle install
 
 COPY --chown=appuser:appgroup . .
