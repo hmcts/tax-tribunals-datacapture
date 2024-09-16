@@ -565,7 +565,7 @@ GEM
       capybara (~> 3.32)
       site_prism-all_there (> 2, < 5)
     site_prism-all_there (3.0.5)
-    sorbet-runtime (0.5.11481)
+    sorbet-runtime (0.5.11553)
     spring (4.2.1)
     spring-commands-cucumber (1.0.1)
       spring (>= 0.9.1)
@@ -722,7 +722,7 @@ DEPENDENCIES
   zendesk_api (~> 1.28)
 
 RUBY VERSION
-   ruby 3.3.3p89
+   ruby 3.3.0p0
 
 BUNDLED WITH
    2.5.14
