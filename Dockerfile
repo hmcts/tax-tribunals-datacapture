@@ -61,7 +61,16 @@ RUN apk --no-cache add --virtual build-deps \
   postgresql-dev \
   git \
   curl \
-&& apk --no-cache add \
+  clang \
+  flac-libs \
+  jsoncpp \
+  libc-dev \
+  woff2 \
+  llvm \
+  musl-fts \
+  snappy \
+  svt-av1 \
+  && apk --no-cache add \
   postgresql-client \
   shared-mime-info \
   linux-headers \
