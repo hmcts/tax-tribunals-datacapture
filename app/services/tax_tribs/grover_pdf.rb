@@ -1,3 +1,4 @@
+# TODO: rename this
 class TaxTribs::GroverPdf
   STATUS = {
     AppealCaseRebuildsController: {
@@ -27,7 +28,8 @@ class TaxTribs::GroverPdf
 
   def generate
     mark_as_attempted
-    pdf = Grover.new(@html, format: 'A4').to_pdf
+    # pdf = Grover.new(@html, format: 'A4').to_pdf
+    pdf = WickedPdf.new.pdf_from_string(@html)
     mark_as_succeeded
 
     pdf

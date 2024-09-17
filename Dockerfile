@@ -1,3 +1,4 @@
+FROM surnet/alpine-wkhtmltopdf:3.20.2-0.12.6-small as wkhtmltopdf
 FROM ruby:3.3.2-alpine3.20
 
 # Adding argument support for ping.json
@@ -78,8 +79,8 @@ RUN apk --no-cache add --virtual build-deps \
   ttf-freefont
 
 # Tell Puppeteer to skip installing Chrome. We'll be using the installed package.
-ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
-    PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
+# ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
+#     PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 
 # ensure everything is executable
 RUN chmod +x /usr/local/bin/*
