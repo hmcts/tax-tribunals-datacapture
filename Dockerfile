@@ -120,8 +120,12 @@ RUN bundle exec rails assets:precompile RAILS_ENV=production SECRET_KEY_BASE=req
 # that will not be able to use the rails digest mechanism.
 RUN mkdir -p public/assets/govuk-frontend/dist/govuk/assets/fonts && \
     cp node_modules/govuk-frontend/dist/govuk/assets/fonts/* public/assets/govuk-frontend/dist/govuk/assets/fonts/
+
 RUN mkdir -p public/assets/govuk-frontend/dist/govuk/assets/images && \
     cp node_modules/govuk-frontend/dist/govuk/assets/images/* public/assets/govuk-frontend/dist/govuk/assets/images/
+
+RUN cp node_modules/govuk-frontend/dist/govuk/assets/images/favicon.ico public/favicon.ico
+
 
 ## Set up sidekiq
 COPY --chown=appuser:appgroup sidekiq.sh /home/app/sidekiq.sh
