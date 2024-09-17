@@ -253,6 +253,9 @@ GEM
     faraday_middleware (1.2.0)
       faraday (~> 1.0)
     ffi (1.17.0)
+    ffi (1.17.0-arm64-darwin)
+    ffi (1.17.0-x86_64-darwin)
+    ffi (1.17.0-x86_64-linux-gnu)
     geckodriver-helper (0.24.0)
       archive-zip (~> 0.7)
     globalid (1.2.1)
@@ -323,6 +326,7 @@ GEM
       nokogiri (~> 1)
       rake
     mini_mime (1.1.5)
+    mini_portile2 (2.8.7)
     minitest (5.25.1)
     msgpack (1.7.2)
     multi_test (1.1.0)
@@ -347,6 +351,9 @@ GEM
       net-protocol
     netrc (0.11.0)
     nio4r (2.7.3)
+    nokogiri (1.16.7)
+      mini_portile2 (~> 2.8.2)
+      racc (~> 1.4)
     nokogiri (1.16.7-arm64-darwin)
       racc (~> 1.4)
     nokogiri (1.16.7-x86_64-darwin)
@@ -615,6 +622,7 @@ GEM
 PLATFORMS
   arm64-darwin-22
   arm64-darwin-23
+  ruby
   x86_64-darwin-22
   x86_64-linux
 

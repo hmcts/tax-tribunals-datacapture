@@ -105,8 +105,11 @@ USER appuser
 WORKDIR /home/app
 COPY Gemfile* .ruby-version ./
 
+COPY --from=wkhtmltopdf /bin/wkhtmltopdf /bin/wkhtmltopdf
+
 RUN gem install bundler -v 2.5.15 && \
     bundle config set frozen 'true' && \
+    bundle config set force_ruby_platform true \
     bundle config without test:development && \
     bundle install
 
