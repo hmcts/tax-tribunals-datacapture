@@ -70,8 +70,6 @@ withPipeline(type, product, component) {
             set +x
             source /usr/local/rvm/scripts/rvm
             rvm install ruby-3.3.5
-            rvm use ruby-3.3.5
-            apt install zlib1g
         """, label: 'Ruby version install'
     }
 
