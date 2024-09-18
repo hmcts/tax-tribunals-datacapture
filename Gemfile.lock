@@ -256,7 +256,6 @@ GEM
     faraday_middleware (1.2.0)
       faraday (~> 1.0)
     ffi (1.17.0)
-    ffi (1.17.0-arm64-darwin)
     geckodriver-helper (0.24.0)
       archive-zip (~> 0.7)
     globalid (1.2.1)
@@ -558,11 +557,6 @@ GEM
       site_prism-all_there (> 2, < 5)
     site_prism-all_there (3.0.5)
     sorbet-runtime (0.5.11553)
-    spring (4.2.1)
-    spring-commands-cucumber (1.0.1)
-      spring (>= 0.9.1)
-    spring-commands-rspec (1.0.4)
-      spring (>= 0.9.1)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -700,9 +694,6 @@ DEPENDENCIES
   simplecov (~> 0.22.0)
   simplecov-rcov
   site_prism
-  spring
-  spring-commands-cucumber
-  spring-commands-rspec
   sprockets
   strong_password (~> 0.0.8)
   timecop
@@ -714,7 +705,7 @@ DEPENDENCIES
   zendesk_api (~> 1.28)
 
 RUBY VERSION
-   ruby 3.3.2p78
+   ruby 3.3.5p100
 
 BUNDLED WITH
    2.5.15
