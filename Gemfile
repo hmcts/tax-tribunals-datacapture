@@ -29,6 +29,7 @@ gem 'zendesk_api',                     '~> 1.28'
 gem 'application_insights',            '~> 0.5.6'
 gem 'sprockets'
 gem 'rest-client'
+gem 'ostruct'
 
 gem 'rexml', '>= 3.3.6'
 
