@@ -39,4 +39,14 @@ RSpec.describe Steps::SaveAndReturnController do
     end
   end
 
+  describe 'update closure' do
+    let!(:existing_case) { TribunalCase.create(intent: Intent::CLOSE_ENQUIRY) }
+
+    context 'continue with new appeal' do
+      let(:params) { { save_and_return_save_form: { save_or_return: 'continue_with_new_appeal' } } }
+      subject { local_put :update, session: { tribunal_case_id: existing_case.id }, params: }
+
+      it { expect(subject).to redirect_to(edit_steps_closure_case_type_path) }
+    end
+  end
 end
