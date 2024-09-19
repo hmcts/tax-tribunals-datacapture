@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "govuk-frontend": "^3.15.0"
+    "govuk-frontend": "^5.0.0"
   }
 }
