@@ -31,6 +31,12 @@ RSpec.describe TaxTribs::ClosureDecisionTree do
 
           it { is_expected.to have_destination('/steps/select_language', :edit) }
         end
+
+        describe 'when the step is `save_and_return`' do
+          let(:step_params) { { save_and_return: 'anything' } }
+
+          it { is_expected.to have_destination('/steps/details/user_type', :edit) }
+        end
       end
 
       context 'user is not logged in' do
@@ -41,6 +47,18 @@ RSpec.describe TaxTribs::ClosureDecisionTree do
           it { is_expected.to have_destination('/steps/select_language', :edit) }
         end
       end
+    end
+
+    context 'when the step is `save_and_return`' do
+      let(:step_params) { { save_and_return: 'anything' } }
+
+      it { is_expected.to have_destination('/steps/save_and_return', :edit) }
+    end
+
+    context 'when the step is `select_language`' do
+      let(:step_params) { { language: 'anything' } }
+
+      it { is_expected.to have_destination('/steps/details/user_type', :edit) }
     end
 
     context 'when the step is `enquiry_details`' do
