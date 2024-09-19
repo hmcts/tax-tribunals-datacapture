@@ -14,13 +14,4 @@
 //= require jquery_ujs
 //= require dropzone
 //= require_tree .
-
-//= require govuk-frontend/dist/govuk/all.bundle
 //= require select2
-
-$(document).ready(function() {
-  // Initialize frontend toolkit
-  window.GOVUKFrontend.initAll();
-
-  window.moj.init();
-});
