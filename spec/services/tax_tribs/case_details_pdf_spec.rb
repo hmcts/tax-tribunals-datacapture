@@ -24,6 +24,10 @@ RSpec.describe TaxTribs::CaseDetailsPdf do
   subject { described_class.new(tribunal_case, controller_ctx, presenter) }
 
   describe '#generate' do
+    before {
+      allow(WickedPdf).to receive_message_chain(:new, :pdf_from_string).and_return 'test'
+    }
+
     it 'should generate the PDF' do
       expect(controller_ctx).to receive(:render_to_string).with(
         formats: [:pdf],
@@ -37,6 +41,9 @@ RSpec.describe TaxTribs::CaseDetailsPdf do
   end
 
   describe '#generate_and_upload' do
+    before {
+      allow(WickedPdf).to receive_message_chain(:new, :pdf_from_string).and_return 'test'
+    }
     it 'calls generate' do
       expect(subject).to receive(:generate)
       subject.generate_and_upload
@@ -44,6 +51,7 @@ RSpec.describe TaxTribs::CaseDetailsPdf do
 
     it 'calls upload' do
       expect(subject).to receive(:upload)
+
       subject.generate_and_upload
     end
   end

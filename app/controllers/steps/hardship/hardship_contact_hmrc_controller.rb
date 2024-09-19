@@ -5,7 +5,7 @@ module Steps::Hardship
     def edit; end
 
     def update
-      redirect_to CONTACT_HMRC_URL
+      redirect_to CONTACT_HMRC_URL, allow_other_host: true
     end
   end
 end

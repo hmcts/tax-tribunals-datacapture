@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.3.2'
+ruby '3.3.5'
 
 gem 'azure_env_secrets', git: 'https://github.com/hmcts/azure_env_secrets.git', tag: 'v1.0.1'
 gem 'bootsnap',                        '~> 1.16', require: false
@@ -29,6 +29,9 @@ gem 'zendesk_api',                     '~> 1.28'
 gem 'application_insights',            '~> 0.5.6'
 gem 'sprockets'
 gem 'rest-client'
+gem 'ostruct'
+
+gem 'rexml', '>= 3.3.6'
 
 # To fix ruby 3.3.3 gemsepec file issue with this gem
 gem 'net-pop', github: 'ruby/net-pop'
@@ -40,7 +43,7 @@ gem 'sidekiq_alive'
 
 # PDF generation
 gem "select2-rails"
-gem 'grover'
+gem 'wicked_pdf'
 
 # Azure blob storage
 gem 'azure-storage-blob', '~> 2'
@@ -48,6 +51,7 @@ gem 'mimemagic', '~> 0.4.0'
 
 # Loading envs from settings
 gem 'config'
+
 
 source 'https://oss:Q7U7p2q2XlpY45kwqjCpXLIPf122rjkR@gem.mutant.dev' do
   gem 'mutant-license', '0.1.1.2.1739399027284447558325915053311580324856.4'
