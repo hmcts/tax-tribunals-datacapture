@@ -71,6 +71,7 @@ Rails.application.configure do
 
   # Enable console when running via docker compose
   config.web_console.whitelisted_ips = '172.23.0.0/16'
+  Settings.reload!
 end
 
 # Use env var to enable i18n-debug gem on demand
