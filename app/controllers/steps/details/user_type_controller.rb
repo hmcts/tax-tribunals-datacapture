@@ -1,7 +1,5 @@
 module Steps::Details
   class UserTypeController < Steps::DetailsStepController
-    include StartingPointStep
-
     def edit
       @form_object = UserTypeForm.new(
         tribunal_case: current_tribunal_case,

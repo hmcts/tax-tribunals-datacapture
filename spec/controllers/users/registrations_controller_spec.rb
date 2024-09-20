@@ -178,4 +178,54 @@ RSpec.describe Users::RegistrationsController do
       end
     end
   end
+
+  describe '#sign_up' do
+    let(:user) { double }
+    let(:save_for_later) { double('TaxTribs::SaveCaseForLater', save: nil) }
+
+    before do
+      allow(TaxTribs::SaveCaseForLater).to receive(:new).and_return(save_for_later)
+    end
+
+    context 'when current_tribunal_case is nil' do
+      before { allow(subject).to receive(:current_tribunal_case).and_return(nil) }
+
+      it 'does not call save_for_later' do
+        subject.send(:sign_up, :some_resource_name, user)
+        expect(save_for_later).not_to have_received(:save)
+      end
+    end
+
+    context 'when intent is TAX_APPEAL' do
+      before { allow(tribunal_case).to receive(:intent).and_return(Intent::TAX_APPEAL) }
+
+      it 'saves if case_type is present' do
+        allow(tribunal_case).to receive(:case_type).and_return('some_case_type')
+        subject.send(:sign_up, :some_resource_name, user)
+        expect(save_for_later).to have_received(:save)
+      end
+
+      it 'does not save if case_type is not present' do
+        allow(tribunal_case).to receive(:case_type).and_return(nil)
+        subject.send(:sign_up, :some_resource_name, user)
+        expect(save_for_later).not_to have_received(:save)
+      end
+    end
+
+    context 'when intent is CLOSE_ENQUIRY' do
+      before { allow(tribunal_case).to receive(:intent).and_return(Intent::CLOSE_ENQUIRY) }
+
+      it 'saves if closure_case_type is present' do
+        allow(tribunal_case).to receive(:closure_case_type).and_return('some_closure_case_type')
+        subject.send(:sign_up, :some_resource_name, user)
+        expect(save_for_later).to have_received(:save)
+      end
+
+      it 'does not save if closure_case_type is not present' do
+        allow(tribunal_case).to receive(:closure_case_type).and_return(nil)
+        subject.send(:sign_up, :some_resource_name, user)
+        expect(save_for_later).not_to have_received(:save)
+      end
+    end
+  end
 end

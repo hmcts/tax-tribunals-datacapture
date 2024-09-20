@@ -49,4 +49,26 @@ RSpec.describe Steps::SaveAndReturnController do
       it { expect(subject).to redirect_to(edit_steps_closure_case_type_path) }
     end
   end
+
+  describe '#decision_tree' do
+    subject { described_class.new }
+
+    context 'when intent_value is :tax_appeal' do
+      it 'returns AppealDecisionTree' do
+        expect(subject.send(:decision_tree, :tax_appeal)).to eq(AppealDecisionTree)
+      end
+    end
+
+    context 'when intent_value is :close_enquiry' do
+      it 'returns TaxTribs::ClosureDecisionTree' do
+        expect(subject.send(:decision_tree, :close_enquiry)).to eq(TaxTribs::ClosureDecisionTree)
+      end
+    end
+
+    context 'when intent_value is unknown' do
+      it 'returns nil' do
+        expect(subject.send(:decision_tree, :unknown_intent)).to be_nil
+      end
+    end
+  end
 end

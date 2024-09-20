@@ -1,5 +1,6 @@
 module Steps::Closure
   class CaseTypeController < Steps::ClosureStepController
+    include StartingPointStep
 
     def edit
       @form_object = CaseTypeForm.new(

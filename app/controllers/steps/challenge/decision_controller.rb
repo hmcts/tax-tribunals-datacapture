@@ -1,7 +1,5 @@
 module Steps::Challenge
   class DecisionController < Steps::ChallengeStepController
-    include StartingPointStep
-
     def edit
       @form_object = DecisionForm.new(
         tribunal_case: current_tribunal_case,
