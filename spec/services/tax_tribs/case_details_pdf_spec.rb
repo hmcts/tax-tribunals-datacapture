@@ -41,10 +41,8 @@ RSpec.describe TaxTribs::CaseDetailsPdf do
   end
 
   describe '#generate_and_upload' do
-    before {
-      allow(WickedPdf).to receive_message_chain(:new, :pdf_from_string).and_return 'test'
-    }
     it 'calls generate' do
+      expect(WickedPdf).not_to receive(:new)
       expect(subject).to receive(:generate)
       subject.generate_and_upload
     end
