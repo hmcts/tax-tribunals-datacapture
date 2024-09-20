@@ -18,8 +18,8 @@ class TaxTribs::CaseDetailsPdf
   end
 
   def generate
-    html = controller_ctx.render_to_string(**render_options)
-    @pdf = TaxTribs::GroverPdf.new(@tribunal_case, html, @controller_ctx.class.name).generate
+    # this is renders pdf not html so no need for another pdf render
+    @pdf = controller_ctx.render_to_string(**render_options)
   end
 
   def generate_and_upload
@@ -45,7 +45,7 @@ class TaxTribs::CaseDetailsPdf
       File.binwrite(file, pdf)
 
       uploader = DocumentUpload.new(file, document_key: :case_details, filename:, content_type: 'application/pdf',
-collection_ref:)
+        collection_ref:)
       uploader.upload! if uploader.valid?
 
       raise UploadError.new(uploader.errors) if uploader.errors?
