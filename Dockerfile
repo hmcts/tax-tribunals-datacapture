@@ -52,6 +52,8 @@ ENV  NOTIFY_CASE_LAST_REMINDER_CY_TEMPLATE_ID         replace_this_at_build_time
 ENV  NOTIFY_REPORT_PROBLEM_CY_TEMPLATE_ID             replace_this_at_build_time
 ENV  NOTIFY_SEND_APPLICATION_DETAIL_CY_TEMPLATE_ID    replace_this_at_build_time
 ENV  NOTIFY_SEND_APPLICATION_DETAIL_CY_TEXT_TEMPLATE_ID       replace_this_at_build_time
+ENV  DYNATRACE_UI_TRACKING_ID                         replace_this_at_build_time
+ENV  DYNATRACE_INTEGRITY                              replace_this_at_build_time
 
 # Chromium onwards is latest Chromium (100) package
 # for Puppeteer for Grover
