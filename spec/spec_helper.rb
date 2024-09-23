@@ -1,7 +1,6 @@
 require 'webmock/rspec'
 require 'simplecov'
 require "simplecov_json_formatter"
-require "factory_bot_rails"
 
 ENV['RAILS_ENV'] ||= 'test'
 

@@ -22,6 +22,25 @@ Create the database with `rake db:setup db:migrate`
 
 Then run `rails server`
 
+## AZURE Blob storage ##
+
+Until we refactor file uploader to use active storage we have to use storage for Demo or AAT env.
+Example for AAT(Staging)
+
+### Add your IP to storoage ###
+Add your IP to whitelisting on relevant storage account
+Storage account -> Security + networking -> Networking -> Firewall and virtual networks tab
+https://portal.azure.com/#@HMCTS.NET/resource/subscriptions/58a2ce36-4e09-467b-8330-d164aa559c68/resourceGroups/tt_stg_taxtribunalsazure_resource_group/providers/Microsoft.Storage/storageAccounts/stgttfilestore/networking
+
+Firewall section -> Add IP ranges to allow access from the internet or your on-premises networks.
+There should be checkbox with your IP address. Check it and click on save (at the top of the page)
+
+### Load storoage credentials on your local ###
+Find a tax-tribunals-cft-aat key/vault on portal (https://portal.azure.com/#@HMCTS.NET/resource/subscriptions/1c4f0704-a29e-403d-b719-b90c34ef14c9/resourceGroups/tax-tribunals-aat/providers/Microsoft.KeyVault/vaults/tax-tribunals-cft-aat/overview)
+
+Copy azure-storage-account, azure-storage-container and azure-storage-key into your localhost .env setup accordingly.
+
+
  
 ## Mutation testing performance issues and resolution
 

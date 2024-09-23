@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.3.4'
+ruby '3.3.5'
 
 gem 'azure_env_secrets', git: 'https://github.com/hmcts/azure_env_secrets.git', tag: 'v1.0.1'
 gem 'bootsnap',                        '~> 1.16', require: false
@@ -9,7 +9,7 @@ gem 'devise'
 gem "valid_email2"
 gem 'glimr-api-client', github: 'ministryofjustice/glimr-api-client', tag: 'v0.4.1'
 gem 'govuk_design_system_formbuilder'
-gem 'govuk_notify_rails',              '~> 2.1'
+gem 'govuk_notify_rails', '~> 3.0'
 gem 'jquery-rails'
 gem 'nokogiri', '>= 1.16.2'
 gem 'pg'
@@ -29,6 +29,9 @@ gem 'zendesk_api',                     '~> 1.28'
 gem 'application_insights',            '~> 0.5.6'
 gem 'sprockets'
 gem 'rest-client'
+gem 'ostruct'
+
+gem 'rexml', '>= 3.3.6'
 
 # To fix ruby 3.3.3 gemsepec file issue with this gem
 gem 'net-pop', github: 'ruby/net-pop'
@@ -40,7 +43,7 @@ gem 'sidekiq_alive'
 
 # PDF generation
 gem "select2-rails"
-gem 'grover'
+gem 'wicked_pdf'
 
 # Azure blob storage
 gem 'azure-storage-blob', '~> 2'
@@ -48,6 +51,7 @@ gem 'mimemagic', '~> 0.4.0'
 
 # Loading envs from settings
 gem 'config'
+
 
 source 'https://oss:Q7U7p2q2XlpY45kwqjCpXLIPf122rjkR@gem.mutant.dev' do
   gem 'mutant-license', '0.1.1.2.1739399027284447558325915053311580324856.4'
@@ -64,9 +68,7 @@ group :development do
   gem 'i18n-debug'
   gem 'hashdiff', '>= 0.4.0'
   gem 'web-console'
-  gem 'spring'
-  gem 'spring-commands-rspec'
-  gem "spring-commands-cucumber"
+  gem 'listen'
 end
 
 group :development, :test do

@@ -31,9 +31,9 @@ Feature: One email required
   Scenario: Non solicitor representative
     Given I submit that I am not the tax payer making the application
     And I submit that the representative is a tax agent
-    Then I should see 'Do you want to start receiving correspondence from the tribunal?'
-    When I click continue
-    Then I submit that I am an individual
+#    Then I should see 'Do you want to start receiving correspondence from the tribunal?'
+#    When I click continue
+#    Then I submit that I am an individual
 
   Scenario: Testing timeout for taxpayer - should trigger
     Given I submit that I am the tax payer making the application

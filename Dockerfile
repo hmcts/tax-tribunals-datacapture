@@ -1,4 +1,5 @@
-FROM ruby:3.3.4-alpine3.20
+FROM surnet/alpine-wkhtmltopdf:3.20.2-0.12.6-small as wkhtmltopdf
+FROM ruby:3.3.5-alpine3.20
 
 # Adding argument support for ping.json
 ARG APP_VERSION=unknown
@@ -78,8 +79,8 @@ RUN apk --no-cache add --virtual build-deps \
   ttf-freefont
 
 # Tell Puppeteer to skip installing Chrome. We'll be using the installed package.
-ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
-    PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
+# ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
+#     PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 
 # ensure everything is executable
 RUN chmod +x /usr/local/bin/*
@@ -104,8 +105,11 @@ USER appuser
 WORKDIR /home/app
 COPY Gemfile* .ruby-version ./
 
+COPY --from=wkhtmltopdf /bin/wkhtmltopdf /bin/wkhtmltopdf
+
 RUN gem install bundler -v 2.5.15 && \
     bundle config set frozen 'true' && \
+    bundle config set force_ruby_platform true \
     bundle config without test:development && \
     bundle install
 
