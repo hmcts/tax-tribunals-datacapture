@@ -68,8 +68,12 @@ module ApplicationHelper
     ENV.fetch('GTM_TRACKING_ID', nil) if Cookie::SettingForm.new(request:).accepted?
   end
 
-  def cookie_accepted?
-    Cookie::SettingForm.new(request:).accepted?
+  def dynatrace_ui_tracking_id
+    Rails.application.config.dynatrace_ui_tracking_id if Cookie::SettingForm.new(request:).accepted?
+  end
+
+  def dynatrace_integrity
+    Rails.application.config.dynatrace_integrity if Cookie::SettingForm.new(request:).accepted?
   end
 
   def login_or_portfolio_path

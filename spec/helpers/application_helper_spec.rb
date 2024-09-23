@@ -138,13 +138,14 @@ appeal_or_application_capitalised: 'Wibble').and_return('Yay!')
     end
   end
 
-  describe '#cookie_accepted?' do
+  describe '#dynatrace_ui_tracking_id' do
     context 'when cookies are accepted' do
       before do
         allow_any_instance_of(Cookie::SettingForm).to receive(:accepted?).and_return(true)
       end
-      it 'returns true' do
-        expect(helper.cookie_accepted?).to be_truthy
+      it 'grabs the tracking id' do
+        expect(Rails).to receive_message_chain(:application, :config, :dynatrace_ui_tracking_id)
+        helper.dynatrace_ui_tracking_id
       end
     end
 
@@ -152,8 +153,30 @@ appeal_or_application_capitalised: 'Wibble').and_return('Yay!')
       before do
         allow_any_instance_of(Cookie::SettingForm).to receive(:accepted?).and_return(false)
       end
-      it 'returns true' do
-        expect(helper.cookie_accepted?).to be_falsey
+      it 'does not grab the tracking id' do
+        helper.dynatrace_ui_tracking_id
+        expect(helper.dynatrace_ui_tracking_id).to eq nil
+      end
+    end
+  end
+
+  describe '#dynatrace_integrity' do
+    context 'when cookies are accepted' do
+      before do
+        allow_any_instance_of(Cookie::SettingForm).to receive(:accepted?).and_return(true)
+      end
+      it 'grabs the integrity sha' do
+        expect(Rails).to receive_message_chain(:application, :config, :dynatrace_integrity)
+        helper.dynatrace_integrity
+      end
+    end
+
+    context 'when cookies are not accepted' do
+      before do
+        allow_any_instance_of(Cookie::SettingForm).to receive(:accepted?).and_return(false)
+      end
+      it 'does not grab the integrity sha' do
+        expect(helper.dynatrace_integrity).to eq nil
       end
     end
   end
