@@ -62,6 +62,42 @@ cy:
           col_1: _tax-tribunals-datacapture_session
           col_2: "Cofio sut yr ydych chi’n symud ymlaen drwy’r gwasanaeth gan ddefnyddio’r cyfrifiadur hwn ac olrhain pan fyddwch heb wneud dim. "
           col_3: "Ar ôl 30 munud i chi wneud dim byd neu pan fyddwch yn cau eich porwr gwe"
+      apm_cookie:
+        line_1: Rydym yn defnyddio Gwasanaeth Monitro Perfformiad Ceisiadau i gasglu gwybodaeth am sut rydych chi'n defnyddio gwasanaethau GLlTEF. Rydym yn gwneud hyn i fonitro gwasanaethau GLlTEF er mwyn datrys materion o fewn ein gwasanaethau, yn ogystal â chasglu data ar sut y gellir gwella ein gwasanaethau.
+        line_2: "Mae GLlTEF yn cadw gwybodaeth am y canlynol:"
+        line_3: Perfformiad y safle,
+        line_4: Defnydd o’r wefan,
+        line_5: Ymddygiad defnyddwyr.
+        line_6: Cyflwynir gwybodaeth o fewn y gwasanaeth Monitro Perfformiad Ceisiadau at y dibenion y manylir arnynt uchod. Nid ydym yn defnyddio neu’n rhannu’r wybodaeth nac yn caniatáu i Ddarparwyr Gwasanaeth ddefnyddio na rhannu'r wybodaeth at unrhyw ddibenion eraill.
+        line_7: "Mae Monitro Perfformiad Ceisiadau yn gosod y cwcis canlynol:"
+        table_1:
+          header_1: Enw’r cwci
+          header_2: Pwrpas y cwci
+          header_3: Darfod ymhen
+          row_1:
+            col_1: dtCookie
+            col_2: Olrhain ymweliad ar draws ceisiadau amryfal.
+            col_3: Diwedd y sesiwn
+          row_2:
+            col_1: dtLatC
+            col_2: Mesurau segurdod gweinydd ar gyfer monitro perfformiad.
+            col_3: Diwedd y sesiwn
+          row_3:
+            col_1: dtPC
+            col_2: Angenrheidiol i nodi diweddbwyntiau priodol ar gyfer trosglwyddo beacon; yn cynnwys ID sesiwn ar gyfer cydberthyniad.
+            col_3: Diwedd y sesiwn
+          row_4:
+            col_1: dtSa
+            col_2: Storfa ganolradd ar gyfer gweithredoedd sy'n rhychwantu tudalennau
+            col_3: Diwedd y sesiwn
+          row_5:
+            col_1: rxVisitor
+            col_2: Rhif adnabod ymwelydd er mwyn cydberthnasu sesiynau
+            col_3: Yn cyfateb i'r adeg pan ofynnir i ddefnyddwyr ail-gydsynio (blwyddyn fel arfer)
+          row_6:
+            col_1: rxvt
+            col_2: Terfyn amser y sesiwn
+            col_3: Diwedd y sesiwn
       table_3:
         header_1: Enw
         header_2: Pwrpas
@@ -109,5 +145,6 @@ cy:
     section_list:
       further_information: "Rhagor o wybodaeth"
       how_we_use: "Sut ydym yn defnyddio cwcis yn y gwasanaeth Apelio i'r tribiwnlys treth"
+      APM_cookies: Monitro perfformiad ceisiadau
       analytics_cookies: Analytics cwcis (dewisol)
       accept_cookies: Ydych chi eisiau dechrau analytics cwcis?
