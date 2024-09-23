@@ -10,9 +10,18 @@ def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
 withPipeline(type, product, component) {
     env.RAILS_ENV = 'test'
     env.RACK_ENV = 'test'
+    env.CI = 'test'
+    env.ENV='test'
+    env.DB_NAME='tt-test-postgres'
+    env.DB_USERNAME = 'postgres'
+    env.DB_PASSWORD = 'mysecretpassword'
+    env.DB_HOST = 'localhost'
+    env.DB_PORT = '5421'
+    env.TEST_BROWSER = 'chrome_local'
+    env.NODE_OPTIONS='--openssl-legacy-provider'
+    env.ENABLE_COVERAGE='true'
+
     // random free port should probably be used instead
-    env.DATABASE_URL = 'postgres://postgres:mysecretpassword@localhost:5421/tax-tribunals-test'
-    env.EXTERNAL_URL = 'mocked_in_tests'
     env.GOVUK_NOTIFY_API_KEY = 'mocked_in_tests'
     env.GLIMR_API_URL = 'replace_this_at_build_time'
     env.GLIMR_DIRECT_API_URL = 'replace_this_at_build_time'
@@ -60,22 +69,22 @@ withPipeline(type, product, component) {
         sh script:"""#!/bin/bash -l
             set +x
             source /usr/local/rvm/scripts/rvm
-            rvm install ruby-3.3.4
+            rvm install ruby-3.3.5
         """, label: 'Ruby version install'
     }
 
     before('test') {
         sh script: """
-            docker pull hmctspublic.azurecr.io/imported/postgres:latest
+            docker inspect hmctspublic.azurecr.io/imported/postgres:16-alpine > /dev/null 2>&1 || docker pull hmctspublic.azurecr.io/imported/postgres:16-alpine
             docker stop tt-test-postgres && docker rm tt-test-postgres || echo 'Ignoring failure in stopping old postgres'
-            docker run --rm --name tt-test-postgres --publish 5421:5432 -e POSTGRES_PASSWORD=mysecretpassword -d hmctspublic.azurecr.io/imported/postgres:latest
+            docker run --rm --name tt-test-postgres --publish 5421:5432 -e POSTGRES_PASSWORD=mysecretpassword -d hmctspublic.azurecr.io/imported/postgres:16-alpine
         """, label: 'Start test postgres'
 
-        rubyBuilder.bundle("exec rake db:create")
-        rubyBuilder.bundle("exec rake db:schema:load")
+        rubyBuilder.bundle("exec rails db:create db:schema:load")
+        rubyBuilder.bundle("install")
     }
 
-    afterAlways('test') {
+    afterAlways('smokeTest') {
         sh script: "docker stop tt-test-postgres && docker rm tt-test-postgres || echo 'Ignoring failure in stopping postgres'",
             label: "docker stop tt-test-postgres"
     }

@@ -19,7 +19,9 @@ RSpec.describe Steps::Details::CheckAnswersController, type: :controller do
 
   context 'PDF format' do
     let(:format) { :pdf }
-
+    before {
+      allow(WickedPdf).to receive_message_chain(:new, :pdf_from_string)
+    }
     it 'generates and sends the case details PDF' do
       expect(CheckAnswers::AppealAnswersPresenter).to receive(:new).with(tribunal_case, format: :pdf, locale: :en).and_return(presenter)
 

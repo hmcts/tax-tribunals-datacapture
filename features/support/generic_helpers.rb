@@ -223,7 +223,7 @@ def save
 end
 
 def submit
-  base_page.content.submit_button.click
+  check_answers_page.content.submit_button.click
 end
 
 def continue_or_save_continue

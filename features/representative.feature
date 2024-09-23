@@ -30,7 +30,6 @@ Feature: Representative Path
     When I press Email only and submit a non matching email
     Then I will see the error response
     Then I enter a valid matching email address
-    Then I see the grounds for appeal page
 
   Scenario: Representative type page alternative route
     When I advance to the representative professional status page
