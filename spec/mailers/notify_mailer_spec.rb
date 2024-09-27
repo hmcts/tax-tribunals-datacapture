@@ -314,56 +314,21 @@ RSpec.describe NotifyMailer, type: :mailer do
     before do
       Timecop.freeze(Time.zone.local(2017, 1, 1, 12, 0, 0))
     end
+
     after do
       Timecop.return
     end
 
-    context 'with tribunal_case language set to English' do
-      it 'sends the text' do
-        tribunal_case.language = Language.new('English')
+    languages = [
+      { name: 'English', template_id: 'NOTIFY_SEND_APPLICATION_DETAIL_TEXT_TEMPLATE_ID' },
+      { name: 'Welsh', template_id: 'NOTIFY_SEND_APPLICATION_DETAIL_TEXT_CY_TEMPLATE_ID' }
+    ]
 
-        expect(tribunal_case).to receive(:send)
-                                   .with(:taxpayer_contact_phone)
-                                   .and_return('07777777777')
-
-        expect_any_instance_of(Notifications::Client).to receive(:send_sms)
-                                                           .with({
-                                                                   phone_number: '07777777777',
-                                                                   template_id: 'NOTIFY_SEND_APPLICATION_DETAIL_TEXT_TEMPLATE_ID',
-                                                                   reference: case_reference,
-                                                                   personalisation: {
-                                                                     appeal_or_application: :appeal,
-                                                                     submission_date_and_time: '1 January 2017 12:00hrs',
-                                                                     case_reference:
-                                                                   },
-                                                                 })
-        NotifyMailer.new.application_details_text(tribunal_case, :taxpayer, "text content")
+    languages.each do |language|
+      context "with tribunal_case language set to #{language[:name]}" do
+        include_examples 'sends the correct text message', language[:name], language[:template_id]
       end
-
-    end
-
-    context 'with tribunal_case language set to Welsh' do
-      it 'sends the text' do
-        tribunal_case.language = Language.new('Welsh')
-
-        expect(tribunal_case).to receive(:send)
-                                   .with(:taxpayer_contact_phone)
-                                   .and_return('07777777777')
-
-        expect_any_instance_of(Notifications::Client).to receive(:send_sms)
-                                                           .with({
-                                                                   phone_number: '07777777777',
-                                                                   template_id: 'NOTIFY_SEND_APPLICATION_DETAIL_TEXT_CY_TEMPLATE_ID',
-                                                                   reference: case_reference,
-                                                                   personalisation: {
-                                                                     appeal_or_application: :appeal,
-                                                                     submission_date_and_time: '1 January 2017 12:00hrs',
-                                                                     case_reference:
-                                                                   },
-                                                                 })
-        NotifyMailer.new.application_details_text(tribunal_case, :taxpayer, "text content")
-      end
-
     end
   end
+
 end
