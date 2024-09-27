@@ -104,8 +104,6 @@ class NotifyMailer < GovukNotifyRails::Mailer
     mail_presenter = CaseMailPresenter.new(tribunal_case)
     recipient_number = tribunal_case.send(:"#{entity}_contact_phone")
 
-    set_template(template(tribunal_case.language, :application_details_text))
-
     client.send_sms(
       phone_number: recipient_number,
       reference: tribunal_case.case_reference || '',
@@ -165,7 +163,7 @@ class NotifyMailer < GovukNotifyRails::Mailer
   end
 
   def template(language, method_name)
-    GOVUK_NOTIFY_TEMPLATES.dig(language&.value || :english, method_name)
+    GOVUK_NOTIFY_TEMPLATES.dig(language&.value&.downcase || :english, method_name)
   end
 
   def log_errors(exception)

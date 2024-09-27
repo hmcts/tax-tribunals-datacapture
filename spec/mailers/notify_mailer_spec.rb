@@ -98,9 +98,9 @@ RSpec.describe NotifyMailer, type: :mailer do
 
     it 'has the right keys' do
       expect(mail.govuk_notify_personalisation).to eq({
-        title: 'My Title',
-        data: "foo\nbar\nbaz"
-      })
+                                                        title: 'My Title',
+                                                        data: "foo\nbar\nbaz"
+                                                      })
     end
 
     it "gets the template id from an env var" do
@@ -126,12 +126,12 @@ RSpec.describe NotifyMailer, type: :mailer do
 
     it 'has the right keys' do
       expect(mail.govuk_notify_personalisation).to eq({
-        appeal_or_application: :appeal,
-        draft_expire_in_days: 120,
-        show_deadline_warning: 'yes',
-        resume_case_link: "https://tax.justice.uk/#{I18n.locale}/users/cases/4a362e1c-48eb-40e3-9458-a31ead3f30a4/resume",
-        resume_case_cy_link: "https://tax.justice.uk/cy/users/cases/4a362e1c-48eb-40e3-9458-a31ead3f30a4/resume"
-      })
+                                                        appeal_or_application: :appeal,
+                                                        draft_expire_in_days: 120,
+                                                        show_deadline_warning: 'yes',
+                                                        resume_case_link: "https://tax.justice.uk/#{I18n.locale}/users/cases/4a362e1c-48eb-40e3-9458-a31ead3f30a4/resume",
+                                                        resume_case_cy_link: "https://tax.justice.uk/cy/users/cases/4a362e1c-48eb-40e3-9458-a31ead3f30a4/resume"
+                                                      })
     end
   end
 
@@ -146,9 +146,9 @@ RSpec.describe NotifyMailer, type: :mailer do
 
     it 'has the right keys' do
       expect(mail.govuk_notify_personalisation).to eq({
-        reset_url: "https://tax.justice.uk/#{I18n.locale}/users/password/edit?reset_password_token=0xDEADBEEF",
-        reset_cy_url: "https://tax.justice.uk/cy/users/password/edit?reset_password_token=0xDEADBEEF"
-      })
+                                                        reset_url: "https://tax.justice.uk/#{I18n.locale}/users/password/edit?reset_password_token=0xDEADBEEF",
+                                                        reset_cy_url: "https://tax.justice.uk/cy/users/password/edit?reset_password_token=0xDEADBEEF"
+                                                      })
     end
   end
 
@@ -162,9 +162,9 @@ RSpec.describe NotifyMailer, type: :mailer do
 
     it 'has the right keys' do
       expect(mail.govuk_notify_personalisation).to eq({
-        portfolio_url: "https://tax.justice.uk/#{I18n.locale}/users/cases",
-        portfolio_cy_url: "https://tax.justice.uk/cy/users/cases"
-      })
+                                                        portfolio_url: "https://tax.justice.uk/#{I18n.locale}/users/cases",
+                                                        portfolio_cy_url: "https://tax.justice.uk/cy/users/cases"
+                                                      })
     end
   end
 
@@ -176,9 +176,9 @@ RSpec.describe NotifyMailer, type: :mailer do
 
     it "has the right keys" do
       expect(mail.govuk_notify_personalisation).to eq({
-        successes: 2,
-        total: 3
-      })
+                                                        successes: 2,
+                                                        total: 3
+                                                      })
     end
   end
 
@@ -287,8 +287,8 @@ RSpec.describe NotifyMailer, type: :mailer do
 
     before do
       expect(tribunal_case).to receive(:send)
-        .with(:taxpayer_contact_email)
-        .and_return('taxpayer@email.com')
+                                 .with(:taxpayer_contact_email)
+                                 .and_return('taxpayer@email.com')
     end
 
     it_behaves_like 'a Notify mail', template_id: 'NOTIFY_SEND_APPLICATION_DETAIL_TEMPLATE_ID'
@@ -317,23 +317,53 @@ RSpec.describe NotifyMailer, type: :mailer do
     after do
       Timecop.return
     end
-    it 'sends the text' do
-      expect(tribunal_case).to receive(:send)
-        .with(:taxpayer_contact_phone)
-        .and_return('07777777777')
 
-      expect_any_instance_of(Notifications::Client).to receive(:send_sms)
-        .with({
-          phone_number: '07777777777',
-          template_id: 'NOTIFY_SEND_APPLICATION_DETAIL_TEXT_TEMPLATE_ID',
-          reference: case_reference,
-          personalisation: {
-            appeal_or_application: :appeal,
-            submission_date_and_time: '1 January 2017 12:00hrs',
-            case_reference:
-          },
-        })
-      NotifyMailer.new.application_details_text(tribunal_case, :taxpayer, "text content")
+    context 'with tribunal_case language set to English' do
+      it 'sends the text' do
+        tribunal_case.language = Language.new('English')
+
+        expect(tribunal_case).to receive(:send)
+                                   .with(:taxpayer_contact_phone)
+                                   .and_return('07777777777')
+
+        expect_any_instance_of(Notifications::Client).to receive(:send_sms)
+                                                           .with({
+                                                                   phone_number: '07777777777',
+                                                                   template_id: 'NOTIFY_SEND_APPLICATION_DETAIL_TEXT_TEMPLATE_ID',
+                                                                   reference: case_reference,
+                                                                   personalisation: {
+                                                                     appeal_or_application: :appeal,
+                                                                     submission_date_and_time: '1 January 2017 12:00hrs',
+                                                                     case_reference:
+                                                                   },
+                                                                 })
+        NotifyMailer.new.application_details_text(tribunal_case, :taxpayer, "text content")
+      end
+
+    end
+
+    context 'with tribunal_case language set to Welsh' do
+      it 'sends the text' do
+        tribunal_case.language = Language.new('Welsh')
+
+        expect(tribunal_case).to receive(:send)
+                                   .with(:taxpayer_contact_phone)
+                                   .and_return('07777777777')
+
+        expect_any_instance_of(Notifications::Client).to receive(:send_sms)
+                                                           .with({
+                                                                   phone_number: '07777777777',
+                                                                   template_id: 'NOTIFY_SEND_APPLICATION_DETAIL_TEXT_CY_TEMPLATE_ID',
+                                                                   reference: case_reference,
+                                                                   personalisation: {
+                                                                     appeal_or_application: :appeal,
+                                                                     submission_date_and_time: '1 January 2017 12:00hrs',
+                                                                     case_reference:
+                                                                   },
+                                                                 })
+        NotifyMailer.new.application_details_text(tribunal_case, :taxpayer, "text content")
+      end
+
     end
   end
 end
