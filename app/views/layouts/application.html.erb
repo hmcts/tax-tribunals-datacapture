@@ -3,13 +3,12 @@
 <% content_for(:head) do %>
   <%= render partial: 'layouts/analytics/gtm_script' if analytics_tracking_id.present? %>
   <%= csrf_meta_tags %>
-  <%= stylesheet_link_tag 'application', media: 'all' %>
   <meta name="robots" content="noindex, nofollow">
 <% end %>
 
 <% content_for(:service_name) do %>
   <%= link_to t('application.name'), local_root_path,
-    class: 'govuk-header__link govuk-header__link--service-name ga-pageLink'
+    class: 'govuk-header__link govuk-header__link--service-name govuk-!-font-size-24 govuk-!-font-weight-bold ga-pageLink'
   %>
 <% end %>
 
@@ -20,6 +19,9 @@
 <% content_for(:body_start) do %>
   <%= render partial: 'layouts/analytics/gtm_iframe' if analytics_tracking_id.present? %>
 
+  <script>
+      document.body.classList.add('govuk-frontend-supported');
+  </script>
 
   <%#
     it's easier to trigger the non-js dropzone solution than to style and tweak

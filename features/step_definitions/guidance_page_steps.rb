@@ -9,7 +9,7 @@ end
 
 Then("I can only see a question and not the answer") do
   expect(guidance_page.content).to have_visible_first_question
-  expect(guidance_page.content).not_to have_visible_first_answer
+  expect(guidance_page.content).to have_visible_first_answer(visible: false)
 end
 
 When("I click a question") do
@@ -18,7 +18,7 @@ end
 
 Then("I can see a question and the answer") do
   expect(guidance_page.content).to have_visible_first_question
-  expect(guidance_page.content).to have_visible_first_answer
+  expect(guidance_page.content).to have_visible_first_answer(visible: true)
 end
 
 When("I click open all") do
