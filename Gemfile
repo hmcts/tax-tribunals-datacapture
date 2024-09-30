@@ -32,6 +32,7 @@ gem 'rest-client'
 gem 'ostruct'
 
 gem 'rexml', '>= 3.3.6'
+gem 'webrick', '>= 1.8.2'
 
 # To fix ruby 3.3.3 gemsepec file issue with this gem
 gem 'net-pop', github: 'ruby/net-pop'
