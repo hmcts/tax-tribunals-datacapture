@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe TaxTribs::GroverPdf do
+RSpec.describe TaxTribs::PdfGenerator do
   let(:tribunal_case) {
     TribunalCase.create(case_reference: 'TC/2016/12345')
   }
@@ -86,9 +86,9 @@ RSpec.describe TaxTribs::GroverPdf do
   end
 
   context 'check the constant' do
-    it { expect(TaxTribs::GroverPdf::STATUS.has_key?(:AppealCaseRebuildsController)).to be true }
-    it { expect(TaxTribs::GroverPdf::STATUS.has_key?(:AppealCasesController)).to be true }
-    it { expect(TaxTribs::GroverPdf::STATUS.has_key?(:ClosureCaseRebuildsController)).to be true }
-    it { expect(TaxTribs::GroverPdf::STATUS.has_key?(:ClosureCasesController)).to be true }
+    it { expect(TaxTribs::PdfGenerator::STATUS.has_key?(:AppealCaseRebuildsController)).to be true }
+    it { expect(TaxTribs::PdfGenerator::STATUS.has_key?(:AppealCasesController)).to be true }
+    it { expect(TaxTribs::PdfGenerator::STATUS.has_key?(:ClosureCaseRebuildsController)).to be true }
+    it { expect(TaxTribs::PdfGenerator::STATUS.has_key?(:ClosureCasesController)).to be true }
   end
 end
