@@ -36,9 +36,9 @@ module Users
       super
       save_for_later = TaxTribs::SaveCaseForLater.new(current_tribunal_case, user)
       if current_tribunal_case&.intent.eql?(Intent::TAX_APPEAL)
-        save_for_later.save if current_tribunal_case.respond_to?(:case_type?) || current_tribunal_case.case_type?
+        save_for_later.save if current_tribunal_case.respond_to?(:case_type?) && current_tribunal_case.case_type?
       elsif current_tribunal_case&.intent.eql?(Intent::CLOSE_ENQUIRY)
-        save_for_later.save if current_tribunal_case.respond_to?(:closure_case_type?) || current_tribunal_case.closure_case_type?
+        save_for_later.save if current_tribunal_case.respond_to?(:closure_case_type?) && current_tribunal_case.closure_case_type?
       end
       session[:confirmation_email_address] = user.email if save_for_later.email_sent?
     end

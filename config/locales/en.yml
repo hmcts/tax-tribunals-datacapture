@@ -555,7 +555,7 @@ en:
     save_and_return:
       edit:
         page_title: Do you want to be able to save and return to your appeal?
-        heading: Do you want to be able to save and return your appeal?
+        heading: Do you want to be able to save and return to your appeal?
         lead_text: Creating an account will allow you to save an incomplete appeal and return to it later.
         lead_text_2: If you choose not to create an account and you do not submit your appeal, then any information you have provided will be lost, and you will need to start again.
         answers:
