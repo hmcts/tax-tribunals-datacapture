@@ -55,8 +55,6 @@ ENV  NOTIFY_SEND_APPLICATION_DETAIL_CY_TEXT_TEMPLATE_ID       replace_this_at_bu
 ENV  DYNATRACE_UI_TRACKING_ID                         replace_this_at_build_time
 ENV  DYNATRACE_INTEGRITY                              replace_this_at_build_time
 
-# Chromium onwards is latest Chromium (100) package
-# for Puppeteer for Grover
 RUN apk --no-cache add --virtual build-deps \
   build-base \
   libxml2-dev \
@@ -79,10 +77,6 @@ RUN apk --no-cache add --virtual build-deps \
   harfbuzz \
   ca-certificates \
   ttf-freefont
-
-# Tell Puppeteer to skip installing Chrome. We'll be using the installed package.
-# ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
-#     PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 
 # ensure everything is executable
 RUN chmod +x /usr/local/bin/*
@@ -124,8 +118,14 @@ RUN bundle exec rails assets:precompile RAILS_ENV=production SECRET_KEY_BASE=req
 # Copy fonts and images (without digest) along with the digested ones,
 # as there are some hardcoded references in the `govuk-frontend` files
 # that will not be able to use the rails digest mechanism.
-RUN cp node_modules/govuk-frontend/govuk/assets/fonts/*  public/assets/govuk-frontend/govuk/assets/fonts
-RUN cp node_modules/govuk-frontend/govuk/assets/images/* public/assets/govuk-frontend/govuk/assets/images
+RUN mkdir -p public/assets/govuk-frontend/dist/govuk/assets/fonts && \
+    cp node_modules/govuk-frontend/dist/govuk/assets/fonts/* public/assets/govuk-frontend/dist/govuk/assets/fonts/
+
+RUN mkdir -p public/assets/govuk-frontend/dist/govuk/assets/images && \
+    cp node_modules/govuk-frontend/dist/govuk/assets/images/* public/assets/govuk-frontend/dist/govuk/assets/images/
+
+RUN cp node_modules/govuk-frontend/dist/govuk/assets/images/favicon.ico public/favicon.ico
+
 
 ## Set up sidekiq
 COPY --chown=appuser:appgroup sidekiq.sh /home/app/sidekiq.sh

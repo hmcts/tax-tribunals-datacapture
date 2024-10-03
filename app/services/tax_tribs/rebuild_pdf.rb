@@ -1,5 +1,5 @@
 class TaxTribs::RebuildPdf
-  STATUS = TaxTribs::GroverPdf::STATUS
+  STATUS = TaxTribs::PdfGenerator::STATUS
 
   def self.rebuild
     TribunalCase.where.not(pdf_generation_status: nil).find_each do |tc|

@@ -1,6 +1,11 @@
 // GOV.UK Frontend
-$govuk-assets-path: '/assets/govuk-frontend/govuk/assets/';
-@import "govuk-frontend/govuk/all";
+$govuk-global-styles: true;
+$govuk-new-typography-scale: true;
+
+$govuk-fonts-path: 'govuk-frontend/dist/govuk/assets/fonts/';
+$govuk-images-path: 'govuk-frontend/dist/govuk/assets/images/';
+
+@import "govuk-frontend/dist/govuk/all";
 
 @import 'local/address_lookup';
 @import 'local/banners';
