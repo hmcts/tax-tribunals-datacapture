@@ -1830,7 +1830,7 @@ en:
         page_title: Password updated
     cases:
       index:
-        heading: Your saved cases
+        heading: Your saved and submitted cases
         cases_intro: Resume a draft case you haven't yet submitted.
         expire_warning_html: |
           <p class="notice govuk-body>
@@ -1858,6 +1858,8 @@ en:
         edit_reference: Edit reference
         create_reference: Add a reference
         reference_not_entered: Not entered
+        date_not_applicable: Not applicable
+        submitted: "Submitted: %{submitted_date} at %{submitted_time}hrs"
         name_not_entered: Not entered
         resume: Resume
         delete: Delete
