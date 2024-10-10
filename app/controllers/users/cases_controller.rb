@@ -3,7 +3,7 @@ module Users
     before_action :authenticate_user!
 
     def index
-      @tribunal_cases = pending_user_cases.order(created_at: :asc)
+      @tribunal_cases = user_cases.order(created_at: :asc)
     end
 
     def edit
@@ -33,6 +33,10 @@ module Users
 
     def pending_user_cases
       current_user.pending_tribunal_cases
+    end
+
+    def user_cases
+      current_user.tribunal_cases
     end
 
     def pending_case_from_params
