@@ -15,7 +15,7 @@ class AppealCaseTypePage < BasePage
 
   def submit_income_tax
     content.income_tax.click
-    continue_or_save_continue
+    continue
   end
 
   def submit_vat

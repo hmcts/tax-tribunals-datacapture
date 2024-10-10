@@ -131,6 +131,10 @@ cy:
   activemodel:
     errors:
       models:
+        save_and_return/save_form:
+          attributes:
+            save_or_return:
+              inclusion: Dewiswch o'r rhestr o opsiynau
         steps/appeal/case_type_form:
           attributes:
             case_type:
@@ -738,8 +742,7 @@ cy:
       signed_out: "Wedi allgofnodi'n llwyddiannus. "
   document_upload:
     errors:
-      content_type: "Mae %{file_name} mewn fformat nad ydym yn ei derbyn. Gallwch lwytho ffeiliau MS Word, 
-      MS Excel, PDF, JPG, GIF, PNG, TXT neu RTF."
+      content_type: "Mae %{file_name} mewn fformat ni allwn dderbyn. Gallwch lwytho ffeiliau MS Word, MS Excel, PDF, JPG, GIF, PNG, TXT neu RTF"
       file_size: "Mae %{file_name} yn rhy fawr. Bydd angen ichi ailgyflwyno fersiwn sy'n llai na %{max_size} megabeit (MB)"
       invalid_characters: "Mae %{file_name} yn cynnwys nodau annilys. Peidiwch â defnyddio nodau fel £ neu ¬ yn enw'r ffeil"
       response_error: "Ni lwyddwyd i lwytho %{file_name}. Rhowch gynnig arall arni."
@@ -871,8 +874,9 @@ cy:
           <<: *SUPPORTED_LANGUAGES
       save_or_return_save_form:
         save_or_return_options:
-            save_for_later: "Creu cyfrif (dewisol)"
-            return_to_saved_appeal: "Dychwelyd at apêl neu gais sydd wedi'i gadw (dewisol)"
+          save_for_later: "Creu cyfrif"
+          return_to_saved_appeal: "Dychwelyd at apêl neu gais sydd wedi'i gadw"
+          continue_with_new_appeal: "Parhau gydag apêl newydd"
       generic_representative_contact_labels:
         <<: *REP_ADDRESS
       generic_taxpayer_contact_labels:
@@ -1708,7 +1712,7 @@ cy:
           upload_explanation_html: "Bydd eich dogfen yn cael ei llwytho pan fyddwch yn clicio ‘Parhau'."
     save_and_return:
       edit:
-        heading: "Ydych chi eisiau gallu cadw a dychwelyd at yr apêl hon?"
+        heading: "Ydych chi eisiau gallu cadw a dychwelyd at eich apêl?"
         lead_text: "Bydd creu cyfrif yn eich galluogi i gadw apêl sydd heb ei chwblhau a dychwelyd ati yn hwyrach ymlaen. "
         lead_text_2: "Os ydych chi'n dewis peidio â chreu cyfrif ac nad ydych yn cyflwyno eich apêl, yna byddwch yn colli unrhyw wybodaeth yr ydych wedi'i rhoi a bydd rhaid i chi ddechrau eto. "
         page_title: "Ydych chi eisiau gallu cadw a dychwelyd at yr apêl hon?"

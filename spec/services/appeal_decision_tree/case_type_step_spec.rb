@@ -11,7 +11,6 @@ RSpec.describe AppealDecisionTree, '#destination' do
   let(:navigation_stack)  { [] }
   let(:language)          { 'en' }
 
-
   subject { described_class.new(tribunal_case:, step_params:, next_step:, as:) }
 
   context 'for a `show more` option' do
@@ -78,12 +77,7 @@ RSpec.describe AppealDecisionTree, '#destination' do
       let(:case_type) { CaseType.new(:dummy, ask_challenged: false, ask_dispute_type: true) }
       let(:step_params) {{ case_type: 'vat' }}
 
-      it { is_expected.to have_destination('/steps/save_and_return', :edit) }
-
-      it 'next_step value is set' do
-        subject.destination
-        expect(subject.next_step).to eq({ action: :edit, controller: '/steps/select_language' })
-      end
+      it { is_expected.to have_destination('/steps/appeal/dispute_type', :edit) }
     end
 
     context 'case_type has a value but user changed mind' do

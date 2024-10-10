@@ -12,9 +12,9 @@ RSpec.describe Users::RegistrationsController do
     context 'when there is no tribunal case in the session' do
       let(:tribunal_case) { nil }
 
-      it 'redirects to the invalid session error page' do
+      it 'responds with HTTP success' do
         local_get :new
-        expect(response).to redirect_to(invalid_session_errors_path)
+        expect(response).to be_successful
       end
     end
 
@@ -30,9 +30,9 @@ RSpec.describe Users::RegistrationsController do
     context 'when there is no tribunal case in the session' do
       let(:tribunal_case) { nil }
 
-      it 'redirects to the invalid session error page' do
-        local_post :create, params: { doesnt: 'matter' }
-        expect(response).to redirect_to(invalid_session_errors_path)
+      it 'responds with HTTP success' do
+        local_get :new
+        expect(response).to be_successful
       end
     end
 
@@ -88,9 +88,9 @@ RSpec.describe Users::RegistrationsController do
     context 'when there is no tribunal case in the session' do
       let(:tribunal_case) { nil }
 
-      it 'redirects to the invalid session error page' do
+      it 'renders the expected page' do
         local_get :save_confirmation
-        expect(response).to redirect_to(invalid_session_errors_path)
+        expect(response).to render_template(:save_confirmation)
       end
     end
 
@@ -175,6 +175,56 @@ RSpec.describe Users::RegistrationsController do
       it 'renders to the update page' do
         do_update
         expect(subject).to render_template(:edit)
+      end
+    end
+  end
+
+  describe '#sign_up' do
+    let(:user) { double }
+    let(:save_for_later) { double('TaxTribs::SaveCaseForLater', save: nil) }
+
+    before do
+      allow(TaxTribs::SaveCaseForLater).to receive(:new).and_return(save_for_later)
+    end
+
+    context 'when current_tribunal_case is nil' do
+      before { allow(subject).to receive(:current_tribunal_case).and_return(nil) }
+
+      it 'does not call save_for_later' do
+        subject.send(:sign_up, :some_resource_name, user)
+        expect(save_for_later).not_to have_received(:save)
+      end
+    end
+
+    context 'when intent is TAX_APPEAL' do
+      before { allow(tribunal_case).to receive(:intent).and_return(Intent::TAX_APPEAL) }
+
+      it 'saves if case_type is present' do
+        allow(tribunal_case).to receive(:case_type).and_return('some_case_type')
+        subject.send(:sign_up, :some_resource_name, user)
+        expect(save_for_later).to have_received(:save)
+      end
+
+      it 'does not save if case_type is not present' do
+        allow(tribunal_case).to receive(:case_type).and_return(nil)
+        subject.send(:sign_up, :some_resource_name, user)
+        expect(save_for_later).not_to have_received(:save)
+      end
+    end
+
+    context 'when intent is CLOSE_ENQUIRY' do
+      before { allow(tribunal_case).to receive(:intent).and_return(Intent::CLOSE_ENQUIRY) }
+
+      it 'saves if closure_case_type is present' do
+        allow(tribunal_case).to receive(:closure_case_type).and_return('some_closure_case_type')
+        subject.send(:sign_up, :some_resource_name, user)
+        expect(save_for_later).to have_received(:save)
+      end
+
+      it 'does not save if closure_case_type is not present' do
+        allow(tribunal_case).to receive(:closure_case_type).and_return(nil)
+        subject.send(:sign_up, :some_resource_name, user)
+        expect(save_for_later).not_to have_received(:save)
       end
     end
   end

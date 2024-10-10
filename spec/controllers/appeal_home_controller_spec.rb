@@ -7,9 +7,9 @@ RSpec.describe AppealHomeController do
       expect(response).to render_template(:index)
     end
 
-    it 'should not initialise a tribunal case' do
+    it 'should initialise a tribunal case' do
       local_get :index
-      expect(controller.current_tribunal_case).to be_nil
+      expect(controller.send(:current_tribunal_case)).not_to be_nil
     end
   end
 end
