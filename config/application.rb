@@ -78,6 +78,5 @@ module TaxTribunalsDatacapture
     config.maintenance_end = ENV.fetch('MAINTENANCE_END', nil)
 
     config.dynatrace_ui_tracking_id = ENV.fetch('DYNATRACE_UI_TRACKING_ID', '')
-    config.dynatrace_integrity = ENV.fetch('DYNATRACE_INTEGRITY', '')
   end
 end

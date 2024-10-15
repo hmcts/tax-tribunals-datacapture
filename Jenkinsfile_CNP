@@ -64,7 +64,6 @@ withPipeline(type, product, component) {
     env.ADDRESS_LOOKUP_API_KEY = 'replace_this_at_build_time'
     env.ADDRESS_LOOKUP_API_SECRET = 'replace_this_at_build_time'
     env.DYNATRACE_UI_TRACKING_ID = 'replace_this_at_build_time'
-    env.DYNATRACE_INTEGRITY = 'replace_this_at_build_time'
 
     before('build') {
         yarnBuilder.runYarn("--mutex network install --frozen-lockfile")

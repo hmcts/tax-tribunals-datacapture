@@ -53,7 +53,6 @@ ENV  NOTIFY_REPORT_PROBLEM_CY_TEMPLATE_ID             replace_this_at_build_time
 ENV  NOTIFY_SEND_APPLICATION_DETAIL_CY_TEMPLATE_ID    replace_this_at_build_time
 ENV  NOTIFY_SEND_APPLICATION_DETAIL_CY_TEXT_TEMPLATE_ID       replace_this_at_build_time
 ENV  DYNATRACE_UI_TRACKING_ID                         replace_this_at_build_time
-ENV  DYNATRACE_INTEGRITY                              replace_this_at_build_time
 
 RUN apk --no-cache add --virtual build-deps \
   build-base \

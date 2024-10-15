@@ -72,10 +72,6 @@ module ApplicationHelper
     Rails.application.config.dynatrace_ui_tracking_id if Cookie::SettingForm.new(request:).accepted?
   end
 
-  def dynatrace_integrity
-    Rails.application.config.dynatrace_integrity if Cookie::SettingForm.new(request:).accepted?
-  end
-
   def login_or_portfolio_path
     user_signed_in? ? users_cases_path(locale: I18n.locale) : user_session_path(locale: I18n.locale)
   end
