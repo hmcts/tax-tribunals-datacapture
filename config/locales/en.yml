@@ -1496,9 +1496,6 @@ en:
         late_review_refusal_letter_html: "<strong>Attach the letter refusing your late review</strong>"
         late_appeal_refusal_letter_html: "<strong>Attach the letter refusing your late appeal</strong>"
       upload_explanation_html: "Your document will upload when you click 'Continue'."
-    password_toggle:
-      show_password: Show password
-      hide_password: Hide password
     <<: *START_FINISH
   errors:
     format: "%{message}"
