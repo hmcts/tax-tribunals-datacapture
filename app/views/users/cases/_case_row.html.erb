@@ -9,9 +9,15 @@
   </td>
   <% end %>
   <% if tribunal_case.case_status == CaseStatus::SUBMITTED %>
-    <td class="govuk-table__cell not-entered">
-      <%= tribunal_case.case_reference %><br>
-    </td>
+    <% if tribunal_case.case_reference %>
+      <td class="govuk-table__cell not-entered">
+        <%= tribunal_case.case_reference %><br>
+      </td>
+    <% else %>
+      <td class="govuk-table__cell not-entered">
+        <%= tribunal_case.user_case_reference %><br>
+      </td>
+    <% end %>
   <% elsif tribunal_case.user_case_reference?%>
     <td class="govuk-table__cell timeliness">
       <%= tribunal_case.user_case_reference %><br>
