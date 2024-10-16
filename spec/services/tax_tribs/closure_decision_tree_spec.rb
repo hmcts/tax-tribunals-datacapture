@@ -1,10 +1,11 @@
 require 'spec_helper'
 
 RSpec.describe TaxTribs::ClosureDecisionTree do
-  let(:tribunal_case) { double('TribunalCase', user_id:) }
+  let(:tribunal_case) { double('TribunalCase', user_id: user_id, intent: intent) }
   let(:step_params) { double('Step') }
   let(:next_step) { nil }
   let(:user_id) { nil }
+  let(:intent) { nil }
 
   subject { described_class.new(tribunal_case:, step_params:, next_step:) }
 
@@ -22,11 +23,17 @@ RSpec.describe TaxTribs::ClosureDecisionTree do
         describe 'when the step_params key is a string' do
           let(:step_params) { { 'case_type' => 'anything' } }
 
-          it { is_expected.to have_destination('/steps/details/user_type', :edit) }
+          it { is_expected.to have_destination('/steps/select_language', :edit) }
         end
 
         describe 'when the step is `case_type`' do
           let(:step_params) { { case_type: 'anything' } }
+
+          it { is_expected.to have_destination('/steps/select_language', :edit) }
+        end
+
+        describe 'when the step is `save_and_return`' do
+          let(:step_params) { { save_and_return: 'anything' } }
 
           it { is_expected.to have_destination('/steps/details/user_type', :edit) }
         end
@@ -35,15 +42,23 @@ RSpec.describe TaxTribs::ClosureDecisionTree do
       context 'user is not logged in' do
         describe 'when the step_params key is a string' do
           let(:step_params) { { 'case_type' => 'anything' } }
+          let(:intent) { Intent::CLOSE_ENQUIRY }
 
-          it { is_expected.to have_destination('/steps/save_and_return', :edit) }
-
-          it 'next_step value is set' do
-            subject.destination
-            expect(subject.next_step).to eq({ action: :edit, controller: '/steps/select_language' })
-          end
+          it { is_expected.to have_destination('/steps/select_language', :edit) }
         end
       end
+    end
+
+    context 'when the step is `save_and_return`' do
+      let(:step_params) { { save_and_return: 'anything' } }
+
+      it { is_expected.to have_destination('/steps/save_and_return', :edit) }
+    end
+
+    context 'when the step is `select_language`' do
+      let(:step_params) { { language: 'anything' } }
+
+      it { is_expected.to have_destination('/steps/details/user_type', :edit) }
     end
 
     context 'when the step is `enquiry_details`' do
