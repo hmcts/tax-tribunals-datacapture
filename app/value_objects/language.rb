@@ -1,7 +1,7 @@
 class Language < ValueObject
   VALUES = [
     English = new(:english),
-    EnglishWelsh = new(:english_welsh)
+    Welsh = new(:welsh)
   ].freeze
 
   def self.values

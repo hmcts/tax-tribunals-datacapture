@@ -17,7 +17,7 @@ RSpec.describe Steps::SelectLanguageController, type: :controller do
   describe '#update' do
     it 'invokes method #update_and_advance' do
       expect(subject).to receive(:update_and_advance).with(SelectLanguage::SaveLanguageForm)
-      local_post :update, params: { language: 'EnglishWelsh' }
+      local_post :update, params: { language: 'Welsh' }
     end
 
     context 'appeal case' do

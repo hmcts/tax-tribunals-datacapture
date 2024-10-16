@@ -163,7 +163,7 @@ class NotifyMailer < GovukNotifyRails::Mailer
   end
 
   def template(language, method_name)
-    GOVUK_NOTIFY_TEMPLATES.dig(language&.value || :english, method_name)
+    GOVUK_NOTIFY_TEMPLATES.dig(language&.value&.downcase || :english, method_name)
   end
 
   def log_errors(exception)
