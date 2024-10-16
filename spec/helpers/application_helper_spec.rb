@@ -138,6 +138,28 @@ appeal_or_application_capitalised: 'Wibble').and_return('Yay!')
     end
   end
 
+  describe '#dynatrace_ui_tracking_id' do
+    context 'when cookies are accepted' do
+      before do
+        allow_any_instance_of(Cookie::SettingForm).to receive(:accepted?).and_return(true)
+      end
+      it 'grabs the tracking id' do
+        expect(Rails).to receive_message_chain(:application, :config, :dynatrace_ui_tracking_id)
+        helper.dynatrace_ui_tracking_id
+      end
+    end
+
+    context 'when cookies are not accepted' do
+      before do
+        allow_any_instance_of(Cookie::SettingForm).to receive(:accepted?).and_return(false)
+      end
+      it 'does not grab the tracking id' do
+        helper.dynatrace_ui_tracking_id
+        expect(helper.dynatrace_ui_tracking_id).to eq nil
+      end
+    end
+  end
+
   describe 'capture missing translations' do
     it 'should not raise an exception, and capture in Sentry the missing translation' do
       expect(Sentry).to receive(:capture_exception).with(an_instance_of(I18n::MissingTranslationData))
