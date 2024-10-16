@@ -15,8 +15,8 @@ RSpec.describe SelectLanguage::SaveLanguageForm do
       it { expect(subject).to be_valid }
     end
 
-    context 'true for english_welsh' do
-      let(:language) { :english_welsh }
+    context 'true for welsh' do
+      let(:language) { :welsh }
       it { expect(subject).to be_valid }
     end
 
