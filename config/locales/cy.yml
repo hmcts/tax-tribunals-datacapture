@@ -1806,7 +1806,7 @@ cy:
               Gwiriwch eich bod o fewn terfyn amser y tribiwnlys treth. Mae'n bosib y gallwch apelio'n hwyr drwy roi rhesymau.
             </strong>
           </p>
-        heading: "Eich achosion sydd wedi’u cadw ac achosion sydd wedi’u cyflwyno"
+        heading: "Eich achosion sydd wedi'u cadw ac achosion sydd wedi'u cyflwyno"
         new_case: "Dechrau apêl neu gais newydd"
         page_title: "Eich achosion drafft"
         table:
