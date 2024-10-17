@@ -1786,6 +1786,8 @@ cy:
         delete: Dileu
         delete_confirmation: "Ydych chi'n siŵr eich bod eisiau dileu'r achos hwn?"
         edit_reference: "Golygu'r cyfeirnod"
+        date_not_applicable: "Amherthnasol"
+        submitted: "Cyflwynwyd: %{submitted_date} am %{submitted_time} o'r gloch"
         name_not_entered: "Heb ei nodi"
         reference_not_entered: "Heb ei nodi "
         resume: Parhau
@@ -1804,7 +1806,7 @@ cy:
               Gwiriwch eich bod o fewn terfyn amser y tribiwnlys treth. Mae'n bosib y gallwch apelio'n hwyr drwy roi rhesymau.
             </strong>
           </p>
-        heading: "Achosion rydych wedi'u cadw"
+        heading: "Eich achosion sydd wedi'u cadw ac achosion sydd wedi'u cyflwyno"
         new_case: "Dechrau apêl neu gais newydd"
         page_title: "Eich achosion drafft"
         table:
