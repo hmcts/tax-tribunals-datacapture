@@ -20,6 +20,7 @@ en:
     section_list:
       further_information: Further information
       how_we_use: How cookies are used on Appeal to the tax tribunal
+      APM_cookies: Application performance monitoring
       analytics_cookies: Analytics cookies (optional)
       accept_cookies: Do you want to accept analytics cookies?
 
@@ -63,6 +64,42 @@ en:
           col_1: _tax-tribunals-datacapture_session
           col_2: Saves your current progress in this computer and tracks inactivity periods
           col_3: After 30 minutes of inactivity or when you close your browser
+      apm_cookie:
+        line_1: We use an Application Performance Monitoring Service to collect information about how you use HMCTS services. We do this to monitor HMCTS services in order to resolve issues within our services, as well as collect data on how our services can be improved.
+        line_2: "HMCTS store information about:"
+        line_3: Site performance,
+        line_4: Website usage,
+        line_5: User behaviour.
+        line_6: Information is presented within the Application Performance Monitoring service for the purposes detailed above. We do not use or share the information or allow Service Providers to use or share the information for any other purposes.
+        line_7: "Application Performance Monitoring sets the following cookies:"
+        table_1:
+          header_1: Cookie Name
+          header_2: What this cookie is for
+          header_3: Expires after
+          row_1:
+            col_1: dtCookie
+            col_2: Tracks a visit across multiple requests.
+            col_3: Session ends
+          row_2:
+            col_1: dtLatC
+            col_2: Measures server latency for performance monitoring.
+            col_3: Session ends
+          row_3:
+            col_1: dtPC
+            col_2: Required to identify proper endpoints for beacon transmission; includes session ID for correlation.
+            col_3: Session ends
+          row_4:
+            col_1: dtSa
+            col_2: Intermediate store for page-spanning actions
+            col_3: Session ends
+          row_5:
+            col_1: rxVisitor
+            col_2: Visitor ID to correlate sessions
+            col_3: Equates to when users are asked to re-consent (typically 1 year)
+          row_6:
+            col_1: rxvt
+            col_2: Session timeout
+            col_3: Session ends
       measuring_usage: Measuring website usage (Google Analytics)
       line_3_html: We use Google Analytics software to collect information about how you use Appeal to the tax tribunal. We do this to help make sure the site is meeting the needs of its users and to help us make improvements, for example <a class="govuk-link" rel="external" target="_blank" href="https://insidegovuk.blog.gov.uk/2015/03/26/new-tool-to-see-trending-searches/">improving site search</a>.
       line_4: "Google Analytics stores information about:"

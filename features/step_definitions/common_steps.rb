@@ -23,5 +23,5 @@ When("I click the continue button") do
 end
 
 Given('I select english only') do
-  select_language_page.select_english_only
+  select_language_page.select_english
 end

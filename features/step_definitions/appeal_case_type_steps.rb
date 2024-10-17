@@ -57,12 +57,12 @@ end
 When("I click on continue after providing an answer") do
   appeal_case_type_show_more_page.content.none_of_above_answer_box.set 'Reason'
   continue_or_save_continue
-  select_language_page.select_english_only
+  select_language_page.select_english
 end
 
 When("I click on continue after selecting Aggregates Levy option") do
   appeal_case_type_show_more_page.submit_aggregates_levy_option
-  select_language_page.select_english_only
+  select_language_page.select_english
 end
 
 Then("I should be on the challenge decision page") do
@@ -80,7 +80,7 @@ end
 And("I select nothing then english only") do
   continue_or_save_continue
   expect(select_language_page.content.error).to have_error_heading
-  select_language_page.select_english_only
+  select_language_page.select_english
 end
 
 Then(/^I should see a 'Select what your appeal is about' error$/) do
