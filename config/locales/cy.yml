@@ -1787,7 +1787,7 @@ cy:
         delete_confirmation: "Ydych chi'n siŵr eich bod eisiau dileu'r achos hwn?"
         edit_reference: "Golygu'r cyfeirnod"
         date_not_applicable: "Amherthnasol"
-        submitted: "Cyflwynwyd: %{submitted_date} am %{submitted_time} o’r gloch"
+        submitted: "Cyflwynwyd: %{submitted_date} am %{submitted_time} o'r gloch"
         name_not_entered: "Heb ei nodi"
         reference_not_entered: "Heb ei nodi "
         resume: Parhau
