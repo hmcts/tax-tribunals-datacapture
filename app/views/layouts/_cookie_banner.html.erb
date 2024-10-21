@@ -17,12 +17,12 @@
       <%= form_with url: set_cookie_preference_path, method: :put, local: true do |f| %>
         <%= hidden_field_tag 'cookie_banner', '1' %>
         <%= hidden_field_tag 'cookie_setting_form[cookie_setting]', 'yes' %>
-        <%= f.submit t('cookies.banner.button.accept'), class: 'govuk-button' %>
+        <%= f.govuk_submit t('cookies.banner.button.accept') %>
       <% end %>
       <%= form_with url: set_cookie_preference_path, method: :put, local: true do |f| %>
         <%= hidden_field_tag 'cookie_banner', '1' %>
         <%= hidden_field_tag 'cookie_setting_form[cookie_setting]', 'no' %>
-        <%= f.submit t('cookies.banner.button.reject'), class: 'govuk-button' %>
+        <%= f.govuk_submit t('cookies.banner.button.reject') %>
       <% end %>
       <%= link_to t('cookies.banner.link'), cookies_page_path, class: 'govuk-link' %>
     </div>
