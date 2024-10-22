@@ -45,9 +45,6 @@ module TaxTribunalsDatacapture
 
     config.middleware.use Rack::Attack
 
-    config.middleware.use Rack::Deflater
-    config.middleware.use Rack::Brotli
-
     # This automatically adds id: :uuid to create_table in all future migrations
     config.active_record.primary_key = :uuid
 
