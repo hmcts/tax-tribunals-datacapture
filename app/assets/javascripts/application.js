@@ -15,3 +15,6 @@
 //= require dropzone
 //= require_tree .
 //= require select2
+
+document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
+document.body.classList.add('govuk-frontend-supported');

@@ -21,10 +21,6 @@
 <% content_for(:body_start) do %>
   <%= render partial: 'layouts/analytics/gtm_iframe' if analytics_tracking_id.present? %>
 
-  <script>
-      document.body.classList.add('govuk-frontend-supported');
-  </script>
-
   <%#
     it's easier to trigger the non-js dropzone solution than to style and tweak
     the dropzone fallback to work properly in IE9 and below and the upshot is

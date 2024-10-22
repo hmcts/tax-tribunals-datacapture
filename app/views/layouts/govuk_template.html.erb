@@ -23,9 +23,6 @@
 </head>
 
 <body class="govuk-template__body app-body-class">
-<script>
-  document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
-</script>
 
 <%= yield :body_start %>
 
@@ -101,9 +98,7 @@
   </div>
 </footer>
 
-<script src="<%= asset_path 'govuk-frontend/dist/govuk/govuk-frontend.min.js' %>" type="module"></script>
-
-<script type="module">
+<script type="module" nonce="<%= content_security_policy_nonce %>">
     import { initAll } from '<%= asset_path "govuk-frontend/dist/govuk/govuk-frontend.min.js" %>';
 
     initAll();
