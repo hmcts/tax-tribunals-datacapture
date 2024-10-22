@@ -12,6 +12,8 @@ require "action_view/railtie"
 # require "action_cable/engine"
 require "sprockets/railtie"
 # require "rails/test_unit/railtie"
+require 'rack'
+require 'rack/brotli'
 
 Bundler.require(*Rails.groups)
 
@@ -42,6 +44,9 @@ module TaxTribunalsDatacapture
     config.load_defaults 7.0
 
     config.middleware.use Rack::Attack
+
+    config.middleware.use Rack::Deflater
+    config.middleware.use Rack::Brotli
 
     # This automatically adds id: :uuid to create_table in all future migrations
     config.active_record.primary_key = :uuid

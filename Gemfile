@@ -31,6 +31,8 @@ gem 'sprockets'
 gem 'rest-client'
 gem 'ostruct'
 
+gem 'rack-brotli'
+
 gem 'rexml', '>= 3.3.6'
 gem 'webrick', '>= 1.8.2'
 
