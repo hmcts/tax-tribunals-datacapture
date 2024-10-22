@@ -24,6 +24,10 @@
 
 <body class="govuk-template__body app-body-class">
 
+<script nonce="<%= content_security_policy_nonce %>">
+    document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
+</script>
+
 <%= yield :body_start %>
 
 <a href="#main-content" class="govuk-skip-link govuk-link">
