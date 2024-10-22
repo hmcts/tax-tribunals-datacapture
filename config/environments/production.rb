@@ -51,9 +51,14 @@ Rails.application.configure do
   config.force_ssl = true
   config.ssl_options = {
     hsts: { expires: 1.year, preload: true },
-    redirect: false
-    #redirect: { exclude: ->(request) { /status\.json|\/health\/liveness/.match?(request.path) } }
+    redirect: { exclude: ->(request) { /status\.json|\/health\/liveness|\/health\/readiness/.match?(request.path) } }
   }
+
+  # config.force_ssl = true
+  # config.ssl_options = {
+  #   hsts: { expires: 1.year, preload: true },
+  #   redirect: { exclude: ->(request) { /status\.json/.match?(request.path) } }
+  # }
 
   # Security policies
   config.action_dispatch.default_headers = {
