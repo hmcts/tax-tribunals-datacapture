@@ -50,10 +50,10 @@ Rails.application.configure do
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   config.force_ssl = false
   #config.force_ssl = true
-  # config.ssl_options = {
-  #   hsts: { expires: 1.year, preload: true },
-  #   redirect: { exclude: ->(request) { /status\.json/.match?(request.path) } }
-  # }
+  config.ssl_options = {
+    hsts: { expires: 1.year, preload: true },
+    redirect: { exclude: ->(request) { /status\.json/.match?(request.path) } }
+  }
 
   # Security policies
   config.action_dispatch.default_headers = {
