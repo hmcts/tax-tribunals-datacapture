@@ -642,6 +642,7 @@ DEPENDENCIES
   binding_of_caller
   bootsnap (~> 1.16)
   brakeman
+  brotli
   bundler-audit
   byebug
   capybara
