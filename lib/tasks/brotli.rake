@@ -1,5 +1,5 @@
 namespace :assets do
-  task :brotli => :environment do
+  task :brotli_compression => :environment do
 
     require 'brotli'
 

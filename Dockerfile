@@ -114,7 +114,7 @@ RUN yarn install --check-files
 
 RUN bundle exec rails assets:precompile RAILS_ENV=production SECRET_KEY_BASE=required_but_does_not_matter_for_assets
 
-RUN bundle exec rails assets:brotli RAILS_ENV=production SECRET_KEY_BASE=required_but_does_not_matter_for_assets
+RUN bundle exec rails assets:brotli_compression RAILS_ENV=production SECRET_KEY_BASE=required_but_does_not_matter_for_assets
 
 # Copy fonts and images (without digest) along with the digested ones,
 # as there are some hardcoded references in the `govuk-frontend` files
