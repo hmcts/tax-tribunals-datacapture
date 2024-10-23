@@ -114,6 +114,7 @@ RUN yarn install --check-files
 
 RUN bundle exec rails assets:precompile RAILS_ENV=production SECRET_KEY_BASE=required_but_does_not_matter_for_assets
 
+#Compress static assets using brotli compression, after assets have been precompiled
 RUN bundle exec rails assets:brotli_compression RAILS_ENV=production SECRET_KEY_BASE=required_but_does_not_matter_for_assets
 
 # Copy fonts and images (without digest) along with the digested ones,
