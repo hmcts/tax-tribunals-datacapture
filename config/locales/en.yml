@@ -8,8 +8,8 @@ en:
     representative: representative
     select_language_question: &select_language_question "What language do you want us to use when we contact you?"
     SUPPORTED_LANGUAGES: &SUPPORTED_LANGUAGES
-      english: English only
-      english_welsh: English and Welsh
+      english: English
+      welsh: Welsh
     default_service_title: &default_service_title "Appeal to the tax tribunal - GOV.UK"
     tax_tribunal_independent: &tax_tribunal_independent "The tax tribunal is independent and doesn't have access to files from HMRC or other agencies."
     attach_reasons_document: &attach_reasons_document "<strong>Attach reasons as a document</strong>"
@@ -1501,9 +1501,6 @@ en:
         late_review_refusal_letter_html: "<strong>Attach the letter refusing your late review</strong>"
         late_appeal_refusal_letter_html: "<strong>Attach the letter refusing your late appeal</strong>"
       upload_explanation_html: "Your document will upload when you click 'Continue'."
-    password_toggle:
-      show_password: Show password
-      hide_password: Hide password
     <<: *START_FINISH
   errors:
     format: "%{message}"
@@ -1835,7 +1832,7 @@ en:
         page_title: Password updated
     cases:
       index:
-        heading: Your saved cases
+        heading: Your saved and submitted cases
         cases_intro: Resume a draft case you haven't yet submitted.
         expire_warning_html: |
           <p class="notice govuk-body>
@@ -1863,6 +1860,8 @@ en:
         edit_reference: Edit reference
         create_reference: Add a reference
         reference_not_entered: Not entered
+        date_not_applicable: Not applicable
+        submitted: "Submitted: %{submitted_date} at %{submitted_time}hrs"
         name_not_entered: Not entered
         resume: Resume
         delete: Delete

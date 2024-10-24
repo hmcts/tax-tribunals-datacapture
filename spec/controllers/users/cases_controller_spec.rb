@@ -16,7 +16,7 @@ RSpec.describe Users::CasesController, type: :controller do
 
       before do
         sign_in(user)
-        expect(user).to receive(:pending_tribunal_cases).and_return(finder_double)
+        expect(user).to receive(:tribunal_cases).and_return(finder_double)
       end
 
       it 'renders the cases portfolio page' do

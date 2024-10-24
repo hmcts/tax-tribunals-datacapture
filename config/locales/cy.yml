@@ -9,8 +9,8 @@ cy:
     representative: cynrychiolydd
     select_language_question: &select_language_question Pa iaith ydych chi eisiau i ni ei defnyddio pan fyddwn yn cysylltu â chi?
     SUPPORTED_LANGUAGES: &SUPPORTED_LANGUAGES
-      english: Saesneg yn unig
-      english_welsh: Cymraeg a Saesneg
+      english: Saesneg
+      welsh: Cymraeg
     attach_reasons_blank_error: &attach_reasons_blank_error "Mae'n rhaid ichi roi rhesymau neu atodi dogfen"
     attach_reasons_document: &attach_reasons_document "<strong>Atodwch eich rhesymau fel dogfen</strong>"
     blank_address: &blank_address "Rhowch gyfeiriad"
@@ -1335,9 +1335,6 @@ cy:
         lead_text: Rydym yn derbyn sgan neu lun o ansawdd da ac eglur. Efallai y bydd rhaid dychwelyd eich apêl i chi os na allwn ddarllen y llythyr, ac mae'n bosib y byddwch yn methu'r terfyn amser.
       lead_text: *tax_tribunal_independent
       upload_explanation_html: "Bydd eich dogfen yn cael ei llwytho pan fyddwch yn clicio ‘Parhau'."
-    password_toggle:
-      hide_password: "Cuddio'r cyfrinair"
-      show_password: "Dangos y cyfrinair"
     <<: *START_FINISH
   steps:
     appeal:
@@ -1793,6 +1790,8 @@ cy:
         delete: Dileu
         delete_confirmation: "Ydych chi'n siŵr eich bod eisiau dileu'r achos hwn?"
         edit_reference: "Golygu'r cyfeirnod"
+        date_not_applicable: "Amherthnasol"
+        submitted: "Cyflwynwyd: %{submitted_date} am %{submitted_time} o'r gloch"
         name_not_entered: "Heb ei nodi"
         reference_not_entered: "Heb ei nodi "
         resume: Parhau
@@ -1811,7 +1810,7 @@ cy:
               Gwiriwch eich bod o fewn terfyn amser y tribiwnlys treth. Mae'n bosib y gallwch apelio'n hwyr drwy roi rhesymau.
             </strong>
           </p>
-        heading: "Achosion rydych wedi'u cadw"
+        heading: "Eich achosion sydd wedi'u cadw ac achosion sydd wedi'u cyflwyno"
         new_case: "Dechrau apêl neu gais newydd"
         page_title: "Eich achosion drafft"
         table:

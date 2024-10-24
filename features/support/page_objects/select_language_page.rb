@@ -3,8 +3,8 @@ class SelectLanguagePage < BasePage
 
   section :content, '#main-content' do
     element :header, 'h1', text: I18n.t('dictionary.select_language_question')
-    element :english_only_checkbox, 'label', text: I18n.t('dictionary.SUPPORTED_LANGUAGES.english')
-    element :english_welsh_checkbox, 'label', text: I18n.t('dictionary.SUPPORTED_LANGUAGES.english_welsh')
+    element :english_checkbox, 'label', text: I18n.t('dictionary.SUPPORTED_LANGUAGES.english')
+    element :welsh_checkbox, 'label', text: I18n.t('dictionary.SUPPORTED_LANGUAGES.welsh')
     section :error, '.govuk-error-summary' do
       element :error_heading, '.govuk-error-summary__title', text: I18n.t('errors.error_summary.heading')
     end

@@ -1,18 +1,24 @@
 <tr class="govuk-table__row <%= tribunal_case.expires_in_class %>">
+  <% if tribunal_case.case_status == CaseStatus::SUBMITTED %>
+    <td class="govuk-table__cell timeliness">
+      <%=t '.date_not_applicable' %><br>
+    </td>
+  <% else %>
   <td class="govuk-table__cell timeliness">
     <%= content_tag(:span, tribunal_case.expires_in) %>
   </td>
-  <% if tribunal_case.user_case_reference? %>
-    <td class="govuk-table__cell timeliness">
-      <%= tribunal_case.user_case_reference %><br>
-      <%= link_to t('.edit_reference'), edit_users_case_path(tribunal_case), class: 'govuk-link' %>
-    </td>
-  <% else %>
-    <td class="govuk-table__cell not-entered">
-      <%=t '.reference_not_entered' %><br>
-      <%= link_to t('.create_reference'), edit_users_case_path(tribunal_case), class: 'govuk-link' %>
-    </td>
   <% end %>
+
+  <% case_reference = tribunal_case.case_reference || tribunal_case.user_case_reference %>
+  <td class="govuk-table__cell <%= tribunal_case.case_status == CaseStatus::SUBMITTED ? 'not-entered' : 'timeliness' %>">
+    <% if tribunal_case.case_status == CaseStatus::SUBMITTED %>
+      <%= case_reference.present? ? case_reference : '' %><br>
+    <% else %>
+      <%= case_reference.present? ? case_reference : t('.reference_not_entered') %><br>
+      <%= link_to t(case_reference.present? ? '.edit_reference' : '.create_reference'), edit_users_case_path(tribunal_case), class: 'govuk-link' %>
+    <% end %>
+  </td>
+
   <% if tribunal_case.taxpayer_name? %>
     <td class="govuk-table__cell"><%= tribunal_case.taxpayer_name %></td>
   <% else %>
@@ -20,8 +26,13 @@
   <% end %>
   <td class="govuk-table__cell right">
     <span class="right actions actions-tight">
-      <%= button_to t('.delete'), users_case_path(tribunal_case), method: :delete, data: {confirm: t('.delete_confirmation')}, class: 'govuk-button govuk-button--secondary' %>
-      <%= link_to t('.resume'), resume_users_case_path(tribunal_case), class: 'govuk-button ga-pageLink', data: {ga_category: 'save and return', ga_label: 'resume case'} %>
+      <% if tribunal_case.case_status == CaseStatus::SUBMITTED %>
+        <%= t '.submitted',
+              submitted_date: tribunal_case.submitted_at.strftime("%d/%m/%y"), submitted_time: tribunal_case.submitted_at.strftime("%H:%M") %><br>
+      <% else %>
+        <%= button_to t('.delete'), users_case_path(tribunal_case), method: :delete, data: {confirm: t('.delete_confirmation')}, class: 'govuk-button govuk-button--secondary' %>
+        <%= link_to t('.resume'), resume_users_case_path(tribunal_case), class: 'govuk-button ga-pageLink', data: {ga_category: 'save and return', ga_label: 'resume case'} %>
+      <% end %>
     </span>
   </td>
 </tr>
