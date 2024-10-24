@@ -29,7 +29,7 @@
 
 <%- if current_user %>
   <p class="govuk-body"><%=t '.continue_hint' %></p>
-  <%= link_to t('.continue'), session['next_step'], class: 'govuk-button' %>
+  <%= link_to t('.continue'), session[:next_step], class: 'govuk-button' %>
 <% else %>
   <p class="govuk-body"><%=t '.return_info' %></p>
 <% end %>
