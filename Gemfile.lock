@@ -392,6 +392,8 @@ GEM
     rack (2.2.10)
     rack-attack (6.7.0)
       rack (>= 1.0, < 4)
+    rack-cors (2.0.2)
+      rack (>= 2.0.0)
     rack-session (1.0.2)
       rack (< 3)
     rack-test (2.1.0)
@@ -673,6 +675,7 @@ DEPENDENCIES
   pry-rails
   puma
   rack-attack (~> 6.7.0)
+  rack-cors
   rails (~> 7.0)
   rails-controller-testing
   responders

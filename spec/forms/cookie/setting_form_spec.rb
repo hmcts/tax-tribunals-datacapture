@@ -94,7 +94,10 @@ RSpec.describe Cookie::SettingForm do
         {
           value:,
           path: '/',
-          expires: 1.year.from_now
+          expires: 1.week.from_now,
+          secure: true,
+          httponly: true,
+          samesite: :lax
         }
       )
       expect(subject.save).to be true

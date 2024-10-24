@@ -21,7 +21,7 @@
 <% content_for(:body_start) do %>
   <%= render partial: 'layouts/analytics/gtm_iframe' if analytics_tracking_id.present? %>
 
-  <script>
+  <script nonce="<%= content_security_policy_nonce %>">
       document.body.classList.add('govuk-frontend-supported');
   </script>
 
