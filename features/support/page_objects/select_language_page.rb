@@ -14,8 +14,8 @@ class SelectLanguagePage < BasePage
     continue_or_save_continue
   end
 
-  def select_english_only
-    content.english_only_checkbox.click
+  def select_english
+    content.english_checkbox.click
     continue
   end
 end

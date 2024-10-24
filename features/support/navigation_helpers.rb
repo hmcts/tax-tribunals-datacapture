@@ -86,7 +86,7 @@ def complete_valid_closure_application
     save_return_page.continue_new_appeal
     expect(closure_case_type_page.content).to have_header
     closure_case_type_page.submit_personal_return
-    select_language_page.select_english_only
+    select_language_page.select_english
     expect(user_type_page.content).to have_closure_header
     if ENV['TEST_LOCALE'] == 'cy'
       submit_yes_2
@@ -129,7 +129,7 @@ def complete_valid_appeal_application
     save_return_page.continue_new_appeal
     expect(appeal_case_type_page.content).to have_header
     appeal_case_type_page.submit_income_tax
-    select_language_page.select_english_only
+    select_language_page.select_english
     expect(challenge_decision_page.content).to have_appeal_header
     submit_yes
     expect(challenge_decision_status_page.content).to have_header
@@ -284,7 +284,7 @@ def navigate_to_closure_user_type_page_no_user
   navigate_to_save_return_page_closure
   save_return_page.continue_new_appeal
   closure_case_type_page.submit_personal_return
-  select_language_page.select_english_only
+  select_language_page.select_english
 end
 
 def navigate_to_challenge_decision_page
@@ -301,7 +301,7 @@ def navigate_to_challenge_decision_page_no_user
   navigate_to_save_return_page_appeal
   save_return_page.continue_new_appeal
   appeal_case_type_page.submit_income_tax
-  select_language_page.select_english_only
+  select_language_page.select_english
 end
 
 def navigate_to_what_support_page

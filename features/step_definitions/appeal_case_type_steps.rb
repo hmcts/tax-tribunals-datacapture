@@ -89,7 +89,7 @@ And("I select nothing then english only") do
 end
 
 And("I choose to select english only") do
-  select_language_page.select_english_only
+  select_language_page.select_english
 end
 
 Then(/^I should see a 'Select what your appeal is about' error$/) do
