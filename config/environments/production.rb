@@ -20,6 +20,9 @@ Rails.application.configure do
 
   config.cache_classes = true
   config.cache_store = :memory_store
+  config.public_file_server.headers = {
+    'Cache-Control' => "public, max-age=#{1.year.to_i}, immutable"
+  }
 
   config.eager_load = true
 

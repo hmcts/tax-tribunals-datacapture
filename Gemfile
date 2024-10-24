@@ -30,6 +30,8 @@ gem 'application_insights',            '~> 0.5.6'
 gem 'sprockets'
 gem 'rest-client'
 gem 'ostruct'
+gem 'rack-brotli'
+gem 'brotli'
 
 gem 'rexml', '>= 3.3.6'
 gem 'webrick', '>= 1.8.2'
