@@ -83,10 +83,9 @@ def complete_valid_closure_application
     home_page.close_enquiry
     expect(closure_page.content).to have_header
     closure_page.continue
+    save_return_page.continue_new_appeal
     expect(closure_case_type_page.content).to have_header
     closure_case_type_page.submit_personal_return
-    expect(save_return_page.content).to have_header
-    save_return_page.skip_save_and_return
     select_language_page.select_english
     expect(user_type_page.content).to have_closure_header
     if ENV['TEST_LOCALE'] == 'cy'
@@ -127,10 +126,9 @@ def complete_valid_appeal_application
     home_page.appeal
     expect(appeal_page.content).to have_header
     appeal_page.continue
+    save_return_page.continue_new_appeal
     expect(appeal_case_type_page.content).to have_header
     appeal_case_type_page.submit_income_tax
-    expect(save_return_page.content).to have_header
-    save_return_page.skip_save_and_return
     select_language_page.select_english
     expect(challenge_decision_page.content).to have_appeal_header
     submit_yes
@@ -196,6 +194,13 @@ def login
   login_page.content.sign_in_button.click
 end
 
+def login_and_continue
+  login_page.content.email_input.set @user.email
+  login_page.content.password_input.set @user.password
+  login_page.content.sign_in_button.click
+  your_saved_cases_page.resume
+end
+
 def login_and_resume
   login_page.content.email_input.set @user.email
   login_page.content.password_input.set @user.password
@@ -220,7 +225,7 @@ def navigate_to_closure_case_type_page
     create_user
     FactoryBot.create(:closure_case)
     stub_uploader_and_go_to_login_page
-    login
+    login_and_continue
     closure_case_type_page.load_page
   end
 end
@@ -230,10 +235,9 @@ def navigate_to_appeal_case_type_page
     create_user
     FactoryBot.create(:appeal_case)
     stub_uploader_and_go_to_login_page
-    login
+    login_and_continue
     appeal_case_type_page.load_page
   end
-
 end
 
 def navigate_to_disputed_tax_paid_page
@@ -276,14 +280,28 @@ def navigate_to_closure_user_type_page
   end
 end
 
+def navigate_to_closure_user_type_page_no_user
+  navigate_to_save_return_page_closure
+  save_return_page.continue_new_appeal
+  closure_case_type_page.submit_personal_return
+  select_language_page.select_english
+end
+
 def navigate_to_challenge_decision_page
   RSpec::Mocks.with_temporary_scope do
     create_user
     FactoryBot.create(:appeal_case, :income_tax_case)
     stub_uploader_and_go_to_login_page
-    login_and_resume
+    login_and_continue
     challenge_decision_page.load_page
   end
+end
+
+def navigate_to_challenge_decision_page_no_user
+  navigate_to_save_return_page_appeal
+  save_return_page.continue_new_appeal
+  appeal_case_type_page.submit_income_tax
+  select_language_page.select_english
 end
 
 def navigate_to_what_support_page
@@ -372,6 +390,16 @@ def navigate_to_the_letter_upload_type_page
     login_and_resume
     letter_upload_type_page.load_page
   end
+end
+
+def navigate_to_save_return_page_appeal
+  appeal_page.load_page
+  appeal_page.continue
+end
+
+def navigate_to_save_return_page_closure
+  closure_page.load_page
+  closure_page.continue
 end
 
 def go_to_contact_page

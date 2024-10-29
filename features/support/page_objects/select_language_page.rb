@@ -16,6 +16,6 @@ class SelectLanguagePage < BasePage
 
   def select_english
     content.english_checkbox.click
-    continue_or_save_continue
+    continue
   end
 end

@@ -46,6 +46,10 @@ class TaxTribs::DecisionTree
     { controller: '/steps/select_language', action: :edit }
   end
 
+  def case_type_path
+    { controller: '/steps/appeal/case_type', action: :edit }
+  end
+
   def dispute_or_penalties_decision
     if tribunal_case.case_type.ask_dispute_type?
       edit('/steps/appeal/dispute_type')
