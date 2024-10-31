@@ -43,7 +43,10 @@ module Cookie
         {
           value: cookie_setting,
           path: '/',
-          expires: 1.year.from_now
+          expires: 1.week.from_now,
+          secure: true,
+          httponly: true,
+          samesite: :lax
         }
       )
 
