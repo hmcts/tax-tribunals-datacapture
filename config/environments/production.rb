@@ -46,12 +46,24 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for Apache
   # config.action_dispatch.x_sendfile_header = "X-Accel-Redirect" # for NGINX
 
-  # Assume all access to the app is happening through a SSL-terminating reverse proxy.
-  # Can be used together with config.force_ssl for Strict-Transport-Security and secure cookies.
-  # config.assume_ssl = true
-
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   config.force_ssl = true
+  config.ssl_options = {
+    hsts: { expires: 1.year, preload: true },
+    redirect: { exclude: ->(request) { /status\.json|\/health\/liveness|\/health\/readiness/.match?(request.path) } }
+  }
+
+  # Security policies
+  config.action_dispatch.default_headers = {
+    "X-Frame-Options" => "DENY",
+    "X-XSS-Protection" => "0",
+    'Cross-Origin-Embedder-Policy' => 'require-corp',
+    'Cross-Origin-Resource-Policy' => 'same-site',
+    'Cross-Origin-Opener-Policy' => 'same-origin',
+    'Permissions-Policy' => 'geolocation=(), camera=(), microphone=(), interest-cohort=()',
+    'Strict-Transport-Security' => 'max-age=31536000; includeSubDomains; preload',
+    'X-DNS-Prefetch-Control' => 'off',
+  }
 
   # Log to STDOUT by default
   config.logger = ActiveSupport::Logger.new(STDOUT)
@@ -86,12 +98,6 @@ Rails.application.configure do
   # missing translations of model attribute names. The form will
   # get the constantized attribute name itself, in form labels.
   config.i18n.raise_on_missing_translations = false
-
-  config.force_ssl = false
-  config.ssl_options = {
-    hsts: { expires: 1.year, preload: true },
-    redirect: { exclude: ->(request) { /status\.json/.match?(request.path) } }
-  }
 
   config.active_record.dump_schema_after_migration = false
 end

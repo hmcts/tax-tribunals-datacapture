@@ -7,11 +7,13 @@
 
     <p class="govuk-body-l"><%=t '.lead_text' %></p>
     <p class="govuk-body-l"><%=t '.lead_text_2' %></p>
+    <%= govuk_error_summary %>
 
     <%= step_form @form_object, html:{ class: 'ga-radioButtonGroup'  } do |f| %>
       <div class="govuk-form-group">
         <%= f.govuk_radio_button :save_or_return, :save_for_later, label: { text: t('helpers.label.save_or_return_save_form.save_or_return_options.save_for_later') } %>
         <%= f.govuk_radio_button :save_or_return, :return_to_saved_appeal, label: { text: t('helpers.label.save_or_return_save_form.save_or_return_options.return_to_saved_appeal') } %>
+        <%= f.govuk_radio_button :save_or_return, :continue_with_new_appeal, label: { text: t('helpers.label.save_or_return_save_form.save_or_return_options.continue_with_new_appeal') } %>
       </div>
 
       <%= f.submit class: 'govuk-button' %>

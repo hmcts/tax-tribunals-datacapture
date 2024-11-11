@@ -2,7 +2,7 @@
     <%= hidden_field_tag(:bearer, access_token) %>
     <%= hidden_field_tag(:address_lookup_url, address_lookup_url) %>
     <%= label_tag(:address_lookup, t('helpers.address_lookup.enter_a_uk_postcode'), class: 'govuk-label') %>
-    <span class="govuk-error-message" id="address-lookup-postcode-error" style="<% if !@form_object.try(:errors).present? %>display: none;<% end %>">
+    <span class="govuk-error-message <%= 'display-none' unless @form_object.try(:errors).present? %>" id="address-lookup-postcode-error">
         <span class="govuk-visually-hidden"><%= t('helpers.address_lookup.error') %>: </span>
         <%= t('helpers.address_lookup.please_enter_valid_postcode') %>
     </span>
@@ -14,7 +14,7 @@
 <div id="address-lookup-addresses" class="govuk-form-group">
     <%= label_tag(:address_lookup_options, t('helpers.address_lookup.select_an_address'),class: 'govuk-label') %>
     <%= select_tag(:address_lookup_options, nil, class: 'govuk-select') %>
-    <p class="govuk-error-message" style="display: none;"> <%= t('helpers.address_lookup.api_call_error') %></p>
+    <p class="govuk-error-message display-none"> <%= t('helpers.address_lookup.api_call_error') %></p>
 </div>
 
 <div id="address-lookup-manual-address" class="">
