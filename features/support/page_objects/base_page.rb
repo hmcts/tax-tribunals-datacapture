@@ -1,10 +1,4 @@
 class BasePage < SitePrism::Page
-  section :cookie, '.govuk-cookie-banner' do
-    element :header, 'h2', text: I18n.t('cookies.banner.heading')
-    element :accept_button, "input[value='#{I18n.t('cookies.banner.button.accept')}']"
-    element :reject_button, "input[value='#{I18n.t('cookies.banner.button.reject')}']"
-  end
-
   section :content, '#main-content' do
     element :continue_button, "input[value='#{I18n.t('helpers.submit.create')}']"
     element :save_continue_button, "input[value='#{I18n.t('helpers.submit.save_and_continue')}']"
