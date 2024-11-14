@@ -85,6 +85,7 @@ group :development, :test do
   gem 'bundler-audit'
   gem 'pry-byebug'
   gem 'timecop'
+  gem 'parallel_tests'
   gem 'rspec-rails'
   gem 'rubocop', require: false
   gem 'rubocop-performance'
