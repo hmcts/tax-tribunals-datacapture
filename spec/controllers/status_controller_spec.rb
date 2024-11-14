@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe TaxTribs::StatusController do
+  before do
+    allow(ENV).to receive(:fetch).with('GLIMR_API_CLIENT_MOCK', nil).and_return('true')
+  end
   let(:status) do
     {
       service_status: 'ok',
