@@ -11,6 +11,13 @@ class HomePage < BasePage
     element :time_information_enquiry, 'p', text: '(15 minutes to complete)'
   end
 
+  section :cookie_banner, '.govuk-cookie-banner' do
+    element :header, 'h2', text: I18n.t('cookies.banner.heading')
+    element :accept_button, "button", text: "#{I18n.t('cookies.banner.button.accept')}"
+    element :reject_button, "button", text: "#{I18n.t('cookies.banner.button.reject')}"
+  end
+
+
   def appeal
     content.appeal_link.click
   end

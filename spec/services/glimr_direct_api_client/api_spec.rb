@@ -84,20 +84,22 @@ RSpec.describe GlimrDirectApiClient::Api do
       expect(RestClient::Request).to receive(:execute).with(hash_including(headers:)).and_call_original
       subject.post
     end
-  end
 
-  describe 'parsing the JSON response' do
-    let(:parsed_response) { instance_double(Hash, key?: false, empty?: false) }
+    describe 'parsing the JSON response' do
+      let(:parsed_response) { instance_double(Hash, key?: false, empty?: false) }
 
-    before do
-      stub_request(:post, /endpoint$/)
-        .to_return(status: 200, body: {response: 'response'}.to_json)
-      allow(JSON).to receive(:parse).and_return(parsed_response)
+      before do
+        stub_request(:post, /endpoint$/)
+          .to_return(status: 200, body: {response: 'response'}.to_json)
+        allow(JSON).to receive(:parse).and_return(parsed_response)
+      end
+
+      it 'symbolizes the keys' do
+        expect(JSON).to receive(:parse).with(anything, symbolize_names: true)
+        subject.post
+      end
     end
 
-    it 'symbolizes the keys' do
-      expect(JSON).to receive(:parse).with(anything, symbolize_names: true)
-      subject.post
-    end
   end
+
 end
