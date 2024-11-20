@@ -1,5 +1,5 @@
 FROM surnet/alpine-wkhtmltopdf:3.20.2-0.12.6-small as wkhtmltopdf
-FROM ruby:3.3.5-alpine3.20
+FROM ruby:3.3.6-alpine3.20
 
 # Adding argument support for ping.json
 ARG APP_VERSION=unknown
