@@ -342,6 +342,9 @@ Rails/RequestReferer:
 Rails/I18nLocaleTexts:
   Enabled: false
 
+Style/KeywordArgumentsMerging:
+  Enabled: false
+
 require:
   - rubocop-rails
   - rubocop-capybara
