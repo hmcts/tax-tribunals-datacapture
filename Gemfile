@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.3.5'
+ruby '3.3.6'
 
 gem 'azure_env_secrets', git: 'https://github.com/hmcts/azure_env_secrets.git', tag: 'v1.0.1'
 gem 'bootsnap',                        '~> 1.16', require: false
@@ -16,6 +16,7 @@ gem 'pg'
 gem 'pry-rails'
 gem 'puma'
 gem 'rack-attack',                     '~> 6.7.0'
+gem 'rackup',                          '1.0.0', require: false
 gem 'rails',                           '~> 7.0'
 gem 'responders'
 gem 'sanitize'
