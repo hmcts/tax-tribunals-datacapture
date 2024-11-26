@@ -43,9 +43,8 @@ Feature: Appeal case type page
     And I click on continue after providing an answer
     Then I should be on the lateness page
 
-  Scenario: Timeout test - shouldn't trigger
+  Scenario: Timeout test - should trigger
     When I wait for 11 minutes
     And I click continue
-    Then I should be on the appeal case type page
-    And I should see appeal case type error message
-    And I will not see the invalid timeout error
+    Then I will see the invalid session timeout error
+

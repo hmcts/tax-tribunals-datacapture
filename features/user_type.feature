@@ -15,7 +15,8 @@ Feature: User type page
     When I submit that I am not the tax payer making the application
     Then I see the representative professional page
 
-  Scenario: Timeout test - should trigger
+  Scenario: Timeout test - shouldn't trigger
     When I wait for 11 minutes
     And I click the continue button
-    Then I will see the invalid session timeout error
+    Then The error should appear
+    And I will not see the invalid timeout error
