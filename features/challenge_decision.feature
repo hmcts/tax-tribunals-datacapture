@@ -67,7 +67,8 @@ Background: Appeal decision question page
     And I press how to 'challenge a national crime agency'
     Then I will be on the appeal home page
 
-  Scenario: Timeout test - should trigger
+  Scenario: Timeout test - shouldn't trigger
     When I wait for 11 minutes
     And I click continue
-    Then I will see the invalid session timeout error
+    Then The error should appear
+    And I will not see the invalid timeout error

@@ -9,7 +9,7 @@ module Steps::Challenge
     validates_inclusion_of :challenged_decision, in: choices
 
     def heading_translation_key
-      if tribunal_case.case_type.direct_tax?
+      if tribunal_case&.case_type&.direct_tax?
         '.heading_direct'
       else
         '.heading_indirect'

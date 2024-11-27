@@ -51,5 +51,5 @@ Feature: Case type page
   Scenario: Timeout test - shouldn't trigger
     When I wait for 11 minutes
     And I click continue
-    Then The error should appear
-    And I will not see the invalid timeout error
+    Then I will see the invalid session timeout error
+
