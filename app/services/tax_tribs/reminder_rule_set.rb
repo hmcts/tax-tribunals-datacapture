@@ -13,9 +13,18 @@ class TaxTribs::ReminderRuleSet
     @email_template_id = email_template_id
   end
 
+  def self.test_reminder
+    new(
+      created_days_ago: 0,
+      status: nil,
+      status_transition_to: nil,
+      email_template_id: :first_reminder
+    )
+  end
+
   def self.first_reminder
     new(
-      created_days_ago: 9,
+      created_days_ago: Rails.configuration.x.cases.expire_in_days - 5,
       status: nil,
       status_transition_to: CaseStatus::FIRST_REMINDER_SENT,
       email_template_id: :first_reminder
@@ -24,7 +33,7 @@ class TaxTribs::ReminderRuleSet
 
   def self.last_reminder
     new(
-      created_days_ago: 13,
+      created_days_ago: Rails.configuration.x.cases.expire_in_days - 1,
       status: CaseStatus::FIRST_REMINDER_SENT,
       status_transition_to: CaseStatus::LAST_REMINDER_SENT,
       email_template_id: :last_reminder
