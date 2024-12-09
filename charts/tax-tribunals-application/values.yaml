@@ -231,7 +231,7 @@ job:
   kind: CronJob
   global:
     jobKind: CronJob
-  schedule: "0 3 * * *"
+  schedule: "0 18 * * *"
   concurrencyPolicy: Forbid
   startingDeadlineSeconds: 300
   ttlSecondsAfterFinished: 216000 # 60 hours
