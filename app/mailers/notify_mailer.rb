@@ -119,7 +119,7 @@ class NotifyMailer < GovukNotifyRails::Mailer
   def incomplete_case_reminder(tribunal_case, template_key)
     mail_presenter = CaseMailPresenter.new(tribunal_case)
 
-    set_template(template(tribunal_case.language, template_key))
+    set_template(template(tribunal_case&.language, template_key))
 
     set_personalisation(
       appeal_or_application: mail_presenter.appeal_or_application,
