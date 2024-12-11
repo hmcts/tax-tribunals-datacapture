@@ -233,7 +233,7 @@ job:
     jobKind: CronJob
   schedule: "0 18 * * *"
   concurrencyPolicy: Forbid
-  startingDeadlineSeconds: 300
+  startingDeadlineSeconds: 3600
   ttlSecondsAfterFinished: 216000 # 60 hours
   backoffLimit: 0
   command:
