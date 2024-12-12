@@ -26,7 +26,7 @@ module Steps::Details
     private
 
     def render_pdf(html, filename:)
-      pdf = WickedPdf.new.pdf_from_string(html)
+      pdf = Grover.new(html, format: 'A4').to_pdf
       send_data pdf, filename:, type: "application/pdf"
     end
 

@@ -18,8 +18,8 @@ class TaxTribs::CaseDetailsPdf
   end
 
   def generate
-    # this is renders pdf not html so no need for another pdf render
-    @pdf = controller_ctx.render_to_string(**render_options)
+    html = controller_ctx.render_to_string(**render_options)
+    @pdf = TaxTribs::PdfGenerator.new(@tribunal_case, html, @controller_ctx.class.name).generate
   end
 
   def generate_and_upload

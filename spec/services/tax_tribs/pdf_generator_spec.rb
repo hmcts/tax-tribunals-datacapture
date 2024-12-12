@@ -9,9 +9,9 @@ RSpec.describe TaxTribs::PdfGenerator do
     let(:controller_name) { AppealCasesController.name }
     subject { described_class.new(tribunal_case, 'ABC', controller_name) }
 
-    context 'when WickedPdf succeeds' do
+    context 'when Grover succeeds' do
       before do
-        expect(WickedPdf).to receive_message_chain(:new, :pdf_from_string).and_return('ABC')
+        expect(Grover).to receive_message_chain(:new, :to_pdf).and_return('ABC')
       end
 
       it 'should generate the PDF' do
@@ -19,9 +19,9 @@ RSpec.describe TaxTribs::PdfGenerator do
       end
     end
 
-    context 'when WickedPdf crashes the server' do
+    context 'when Grover crashes the server' do
       before do
-        expect(WickedPdf).to receive(:new).and_raise(StandardError)
+        expect(Grover).to receive(:new).and_raise(StandardError)
       end
       it 'should mark the tribunal case as attempted' do
         described_class
@@ -33,9 +33,9 @@ RSpec.describe TaxTribs::PdfGenerator do
       end
     end
 
-    context 'when WickedPdf raises an error' do
+    context 'when Grover raises an error' do
       before do
-        expect(WickedPdf).to receive(:new).and_raise(StandardError)
+        expect(Grover).to receive(:new).and_raise(StandardError)
       end
       it 'should mark the tribunal case as failed' do
         subject.generate
@@ -50,9 +50,9 @@ RSpec.describe TaxTribs::PdfGenerator do
     let(:controller_name) { ClosureCasesController.name }
     subject { described_class.new(tribunal_case, 'ABC', controller_name) }
 
-    context 'when WickedPdf succeeds' do
+    context 'when Grover succeeds' do
       before do
-        expect(WickedPdf).to receive_message_chain(:new, :pdf_from_string).and_return('ABC')
+        expect(Grover).to receive_message_chain(:new, :to_pdf).and_return('ABC')
       end
 
       it 'should generate the PDF' do
@@ -60,9 +60,9 @@ RSpec.describe TaxTribs::PdfGenerator do
       end
     end
 
-    context 'when WickedPdf crashes the server' do
+    context 'when Grover crashes the server' do
       before do
-        expect(WickedPdf).to receive(:new).and_raise(StandardError)
+        expect(Grover).to receive(:new).and_raise(StandardError)
       end
       it 'should mark the tribunal case as attempted' do
         described_class.new(tribunal_case, 'ABC', controller_name, test_early_exit: true).generate
@@ -72,9 +72,9 @@ RSpec.describe TaxTribs::PdfGenerator do
       end
     end
 
-    context 'when WickedPdf raises an error' do
+    context 'when Grover raises an error' do
       before do
-        expect(WickedPdf).to receive(:new).and_raise(StandardError)
+        expect(Grover).to receive(:new).and_raise(StandardError)
       end
       it 'should mark the tribunal case as failed' do
         subject.generate
