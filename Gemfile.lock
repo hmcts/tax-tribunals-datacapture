@@ -215,9 +215,9 @@ GEM
     diff-lcs (1.5.1)
     docile (1.4.1)
     domain_name (0.6.20240107)
-    dotenv (3.1.5)
-    dotenv-rails (3.1.5)
-      dotenv (= 3.1.5)
+    dotenv (3.1.6)
+    dotenv-rails (3.1.6)
+      dotenv (= 3.1.6)
       railties (>= 6.1)
     drb (2.2.1)
     erubi (1.13.0)
@@ -532,7 +532,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    securerandom (0.4.0)
+    securerandom (0.4.1)
     select2-rails (4.0.13)
     selenium-webdriver (4.27.0)
       base64 (~> 0.2)
