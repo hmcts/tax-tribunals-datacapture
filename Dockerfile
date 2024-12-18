@@ -1,4 +1,3 @@
-FROM surnet/alpine-wkhtmltopdf:3.20.3-0.12.6-small as wkhtmltopdf
 FROM ruby:3.3.6-alpine3.20
 
 # Adding argument support for ping.json
@@ -99,8 +98,6 @@ USER appuser
 
 WORKDIR /home/app
 COPY Gemfile* .ruby-version ./
-
-COPY --from=wkhtmltopdf /bin/wkhtmltopdf /bin/wkhtmltopdf
 
 RUN gem install bundler -v 2.5.23 && \
     bundle config set frozen 'true' && \
