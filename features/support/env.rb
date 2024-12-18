@@ -10,6 +10,7 @@ require 'capybara-screenshot/cucumber'
 require 'cucumber/rails'
 require 'rest-client'
 require 'selenium-webdriver'
+require 'webmock'
 ENV['TEST_LOCALE'] = "en" if ENV['TEST_LOCALE'] != "cy"
 require_relative 'page_objects/base_page'
 
@@ -62,3 +63,5 @@ end
 if ENV['TEST_LOCALE'] == "cy"
   I18n.locale = 'cy'
 end
+
+WebMock.disable_net_connect!(allow_localhost: true)
