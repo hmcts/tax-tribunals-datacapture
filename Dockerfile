@@ -76,6 +76,8 @@ RUN apk --no-cache add --virtual build-deps \
   ca-certificates \
   ttf-freefont
 
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
+
 # ensure everything is executable
 RUN chmod +x /usr/local/bin/*
 
