@@ -711,7 +711,7 @@ DEPENDENCIES
   selenium-webdriver
   sentry-rails
   sentry-ruby
-  sidekiq (= 6.5.12)
+  sidekiq
   sidekiq-batch
   sidekiq_alive
   simplecov (~> 0.22.0)
