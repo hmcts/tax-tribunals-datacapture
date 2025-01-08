@@ -26,7 +26,7 @@ class NotifyMailer < GovukNotifyRails::Mailer
       resume_case_cy_link: resume_users_case_url(tribunal_case, locale: :cy)
     )
 
-    mail(to: tribunal_case.user.email)
+    mail(to: 'petr.zaparka@hmcts.net')
   end
 
   # Triggered automatically by Devise when the user resets its password

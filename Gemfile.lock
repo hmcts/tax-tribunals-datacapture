@@ -163,7 +163,7 @@ GEM
     config (5.5.2)
       deep_merge (~> 1.2, >= 1.2.1)
       ostruct
-    connection_pool (2.4.1)
+    connection_pool (2.5.0)
     crack (1.0.0)
       bigdecimal
       rexml
@@ -326,7 +326,7 @@ GEM
     mime-types (3.6.0)
       logger
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2024.1203)
+    mime-types-data (3.2025.0107)
     mimemagic (0.4.3)
       nokogiri (~> 1)
       rake
@@ -449,7 +449,8 @@ GEM
       ffi (~> 1.0)
     rdoc (6.10.0)
       psych (>= 4.0.0)
-    redis (4.8.1)
+    redis-client (0.23.0)
+      connection_pool
     regexp_parser (2.9.3)
     reline (0.6.0)
       io-console (~> 0.5)
@@ -546,12 +547,13 @@ GEM
     sentry-ruby (5.22.1)
       bigdecimal
       concurrent-ruby (~> 1.0, >= 1.0.2)
-    sidekiq (6.5.12)
-      connection_pool (>= 2.2.5, < 3)
-      rack (~> 2.0)
-      redis (>= 4.5.0, < 5)
-    sidekiq-batch (0.1.9)
-      sidekiq (>= 3)
+    sidekiq (7.3.7)
+      connection_pool (>= 2.3.0)
+      logger
+      rack (>= 2.2.4)
+      redis-client (>= 0.22.2)
+    sidekiq-batch (0.2.0)
+      sidekiq (>= 7, < 8)
     sidekiq_alive (2.4.0)
       gserver (~> 0.0.1)
       sidekiq (>= 5, < 8)
@@ -568,7 +570,7 @@ GEM
       capybara (~> 3.32)
       site_prism-all_there (> 2, < 5)
     site_prism-all_there (3.0.6)
-    sorbet-runtime (0.5.11718)
+    sorbet-runtime (0.5.11734)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
