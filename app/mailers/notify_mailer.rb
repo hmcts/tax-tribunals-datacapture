@@ -13,7 +13,6 @@ class NotifyMailer < GovukNotifyRails::Mailer
   # Define methods as usual, and set the template and personalisation, if needed,
   # then just use mail() as with any other ActionMailer, with the recipient email
 
-
   def test_delayed_job
     set_template('01a8ef67-1bf7-4b91-b153-17868df2afe4')
     mail(to: 'petr.zaparka@hmcts.net')
