@@ -1,7 +1,6 @@
 task :daily_tasks do
   puts "#{Time.now} Starting daily tasks"
 
-  Rake::Task['case_reminders:test_email'].invoke
   Rake::Task['case_reminders:first_email'].invoke
   Rake::Task['case_reminders:last_email'].invoke
 
@@ -24,14 +23,6 @@ task :daily_tasks do
 end
 
 namespace :case_reminders do
-
-  task :test_email => :environment do
-    rule_set = TaxTribs::ReminderRuleSet.test_reminder
-
-    puts "#{Time.now} case_reminders:test_email - Count: #{rule_set.count}"
-    TaxTribs::CaseReminders.new(rule_set: rule_set).run
-  end
-
   task :first_email => :environment do
     rule_set = TaxTribs::ReminderRuleSet.first_reminder
 

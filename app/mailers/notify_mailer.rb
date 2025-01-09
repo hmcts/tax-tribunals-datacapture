@@ -119,11 +119,6 @@ class NotifyMailer < GovukNotifyRails::Mailer
   def incomplete_case_reminder(tribunal_case, template_key)
     mail_presenter = CaseMailPresenter.new(tribunal_case)
 
-    Sidekiq.logger.info "******************** Mail Presenter Details ********************"
-    Sidekiq.logger.info mail_presenter.inspect
-    Sidekiq.logger.info "******************** Tribunal Case Details ********************"
-    Sidekiq.logger.info tribunal_case.inspect
-
     set_template(template(tribunal_case&.language, template_key))
 
     set_personalisation(

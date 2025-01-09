@@ -14,7 +14,7 @@ class TaxTribs::CaseReminders
   private
 
   def send_reminder(tribunal_case)
-    NotifyMailer.incomplete_case_reminder(tribunal_case, rule_set.email_template_id).deliver_later(queue: 'mailers')
+    NotifyMailer.incomplete_case_reminder(tribunal_case, rule_set.email_template_id).deliver_later
 
     tribunal_case.update(
       case_status: rule_set.status_transition_to
