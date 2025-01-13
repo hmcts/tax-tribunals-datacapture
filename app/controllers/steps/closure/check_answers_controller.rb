@@ -14,7 +14,7 @@ module Steps::Closure
             handlers: [:erb],
             layout: false
           )
-          render_pdf summary, filename: @presenter.pdf_filename
+          render_pdf summary, filename: pdf_filename
         end
       end
     end
@@ -32,6 +32,11 @@ module Steps::Closure
 
     def closure_presenter
       CheckAnswers::ClosureAnswersPresenter.new(current_tribunal_case, format: request.format.symbol, locale: I18n.locale)
+    end
+
+    def pdf_filename
+      name_from_presenter = @presenter.pdf_filename
+      name_from_presenter.include?('.pdf') ? name_from_presenter : "#{name_from_presenter}.pdf"
     end
   end
 end
