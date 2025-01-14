@@ -1,4 +1,3 @@
-FROM surnet/alpine-wkhtmltopdf:3.20.3-0.12.6-small as wkhtmltopdf
 FROM ruby:3.3.6-alpine3.20
 
 # Adding argument support for ping.json
@@ -75,7 +74,10 @@ RUN apk --no-cache add --virtual build-deps \
   freetype \
   harfbuzz \
   ca-certificates \
-  ttf-freefont
+  ttf-freefont \
+  yaml-dev
+
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 
 # ensure everything is executable
 RUN chmod +x /usr/local/bin/*
@@ -99,8 +101,6 @@ USER appuser
 
 WORKDIR /home/app
 COPY Gemfile* .ruby-version ./
-
-COPY --from=wkhtmltopdf /bin/wkhtmltopdf /bin/wkhtmltopdf
 
 RUN gem install bundler -v 2.5.23 && \
     bundle config set frozen 'true' && \

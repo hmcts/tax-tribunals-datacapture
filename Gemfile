@@ -48,7 +48,7 @@ gem 'sidekiq_alive'
 
 # PDF generation
 gem "select2-rails"
-gem 'wicked_pdf'
+gem 'grover'
 
 # Azure blob storage
 gem 'azure-storage-blob', '~> 2'
