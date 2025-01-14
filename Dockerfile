@@ -74,7 +74,8 @@ RUN apk --no-cache add --virtual build-deps \
   freetype \
   harfbuzz \
   ca-certificates \
-  ttf-freefont
+  ttf-freefont \
+  yaml-dev
 
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 
