@@ -24,10 +24,6 @@ RSpec.describe TaxTribs::CaseDetailsPdf do
   subject { described_class.new(tribunal_case, controller_ctx, presenter) }
 
   describe '#generate' do
-    # before {
-    #   allow(WickedPdf).to receive_message_chain(:new, :pdf_from_string).and_return 'test'
-    # }
-
     it 'should generate the PDF' do
       expect(controller_ctx).to receive(:render_to_string).with(
         formats: [:pdf],
