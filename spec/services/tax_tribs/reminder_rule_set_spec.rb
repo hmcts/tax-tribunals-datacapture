@@ -10,7 +10,7 @@ RSpec.describe TaxTribs::ReminderRuleSet do
     subject { described_class.first_reminder }
 
     context '#created_days_ago' do
-      it { expect(subject.created_days_ago).to eq(9) }
+      it { expect(subject.created_days_ago).to eq(115) }
     end
 
     context '#status' do
@@ -30,7 +30,7 @@ RSpec.describe TaxTribs::ReminderRuleSet do
     subject { described_class.last_reminder }
 
     context '#created_days_ago' do
-      it { expect(subject.created_days_ago).to eq(13) }
+      it { expect(subject.created_days_ago).to eq(119) }
     end
 
     context '#status' do
