@@ -222,7 +222,7 @@ def save
   base_page.content.save_button.click
 end
 
-# first commit
+# first c
 def submit
   check_answers_page.content.submit_button.click
 end
