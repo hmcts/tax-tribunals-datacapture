@@ -105,7 +105,7 @@ RSpec.describe TaxTribs::HardshipDecisionTree do
 
       it 'raises an error' do
         expect { subject.destination }.to raise_error(
-          TaxTribs::DecisionTree::InvalidStep, "Invalid step '{:ungueltig=>{:waschmaschine=>\"nein\"}}'"
+          TaxTribs::DecisionTree::InvalidStep, "Invalid step '{ungueltig: {waschmaschine: \"nein\"}}'"
         )
       end
     end
