@@ -40,8 +40,8 @@ module Surveys
     def permitted_params
       params_key = form_object_class.name.underscore.tr('/'.freeze, '_'.freeze)
 
-      params.require(params_key).permit(
-        :rating, :comment, :name, :assistance_level, :email, :referrer
+      params.expect(
+        params_key => [:rating, :comment, :name, :assistance_level, :email, :referrer]
       ).to_h
     end
   end

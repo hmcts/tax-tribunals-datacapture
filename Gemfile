@@ -17,7 +17,7 @@ gem 'pry-rails'
 gem 'puma'
 gem 'rack-attack',                     '~> 6.7.0'
 gem 'rackup',                          '1.0.1', require: false
-gem 'rails',                           '~> 7.0'
+gem 'rails',                           '~> 8.0.0'
 gem 'responders'
 gem 'sanitize'
 gem 'sassc-rails',                     '~> 2.1.2'

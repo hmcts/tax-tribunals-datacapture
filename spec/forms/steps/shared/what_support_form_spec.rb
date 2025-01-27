@@ -68,7 +68,7 @@ RSpec.describe Steps::Shared::WhatSupportForm do
 
         it 'should not display the what support validation message' do
           subject.valid?
-          subject.errors[:what_support].should_not include("Select what support you need at the hearing")
+          expect(subject.errors[:what_support]).not_to include("Select what support you need at the hearing")
         end
       end
     end
