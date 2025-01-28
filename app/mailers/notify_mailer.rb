@@ -119,7 +119,7 @@ class NotifyMailer < GovukNotifyRails::Mailer
   def incomplete_case_reminder(tribunal_case, template_key)
     mail_presenter = CaseMailPresenter.new(tribunal_case)
 
-    set_template(template(tribunal_case.language, template_key))
+    set_template(template(tribunal_case&.language, template_key))
 
     set_personalisation(
       appeal_or_application: mail_presenter.appeal_or_application,
@@ -156,16 +156,6 @@ class NotifyMailer < GovukNotifyRails::Mailer
     mail(to: ENV.fetch('REPORT_PROBLEM_EMAIL_ADDRESS'))
   end
 
-  private
-
-  def client
-    @client ||= Notifications::Client.new(ENV.fetch('GOVUK_NOTIFY_API_KEY'))
-  end
-
-  def template(language, method_name)
-    GOVUK_NOTIFY_TEMPLATES[language&.value&.downcase || :english][method_name]
-  end
-
   def log_errors(exception)
     Rails.logger.info({caller: self.class.name, method: self.action_name, error: exception}.to_json)
 
@@ -174,6 +164,16 @@ class NotifyMailer < GovukNotifyRails::Mailer
       personalisation: filtered_personalisation
     )
     Sentry.capture_exception(exception)
+  end
+
+  private
+
+  def client
+    @client ||= Notifications::Client.new(ENV.fetch('GOVUK_NOTIFY_API_KEY'))
+  end
+
+  def template(language, method_name)
+    GOVUK_NOTIFY_TEMPLATES.dig(language&.value&.downcase || :english, method_name)
   end
 
   def filtered_personalisation
