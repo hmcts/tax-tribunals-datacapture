@@ -120,7 +120,7 @@ sidekiq:
   livenessPath: /health
   startupPath: /health
   image: "hmctspublic.azurecr.io/tax-tribunals/application"
-  args: [ './sidekiq.sh' ]
+  args: ['./sidekiq.sh']
   useWorkloadIdentity: true
   memoryRequests: "2Gi"
   cpuRequests: "500m"
@@ -231,9 +231,9 @@ job:
   global:
     jobKind: CronJob
   suspend: false
-  schedule: "*/5 * * * *"
+  schedule: "0 3 * * *"
   concurrencyPolicy: Forbid
-  startingDeadlineSeconds: 3600
+  startingDeadlineSeconds: 300
   ttlSecondsAfterFinished: 216000 # 60 hours
   backoffLimit: 0
   command:

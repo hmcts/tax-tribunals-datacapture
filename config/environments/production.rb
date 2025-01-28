@@ -83,18 +83,15 @@ Rails.application.configure do
 
   # Use a real queuing backend for Active Job (and separate queues per environment).
   config.active_job.queue_adapter = :sidekiq
-
-  config.action_mailer.perform_deliveries = true
-  config.action_mailer.raise_delivery_errors = true
   config.action_mailer.deliver_later_queue_name = 'mailers'
 
+  config.action_mailer.perform_deliveries = true
   config.action_mailer.perform_caching = false
-  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.raise_delivery_errors = false
+
   config.i18n.fallbacks = true
 
   config.active_support.deprecation = :notify
-
-  config.active_record.dump_schema_after_migration = false
 
   # NB: Because of the way the form builder works, and hence the
   # gov.uk elements formbuilder, exceptions will not be raised for
