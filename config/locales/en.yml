@@ -59,9 +59,9 @@ en:
       confirm_phone_text: Enter the contact phone number for the %{entity}'s details.
 
     PENALTY_LEVELS: &PENALTY_LEVELS
-      penalty_level_1: "£100 or less"
-      penalty_level_2: over £100 – £20,000
-      penalty_level_3: over £20,000
+      penalty_level_1: Between £1 and £100
+      penalty_level_2: Between £100.01 and £20,000
+      penalty_level_3: Over £20,000
 
     CASE_TYPE_QUESTION: &CASE_TYPE_QUESTION
       heading: What is your appeal about?
