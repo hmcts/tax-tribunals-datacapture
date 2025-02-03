@@ -222,8 +222,8 @@ def save
   base_page.content.save_button.click
 end
 
-def submit
-  check_answers_page.content.submit_button.click
+def submit_check_your_answers
+  check_answers_page.submit_check_answers
 end
 
 def continue_or_save_continue

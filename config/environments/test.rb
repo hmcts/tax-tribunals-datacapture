@@ -8,8 +8,6 @@ require "active_support/core_ext/integer/time"
 Rails.application.configure do
   config.cache_classes = false
 
-  config.eager_load = false
-
   # Eager loading loads your entire application. When running a single test locally,
   # this is usually not necessary, and can slow down your test suite. However, it's
   # recommended that you enable it in continuous integration systems to ensure eager
@@ -37,6 +35,7 @@ Rails.application.configure do
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
+  config.action_mailer.perform_deliveries = false
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr

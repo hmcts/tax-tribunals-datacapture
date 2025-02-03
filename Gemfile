@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.3.6'
+ruby '3.4.1'
 
 gem 'azure_env_secrets', git: 'https://github.com/hmcts/azure_env_secrets.git', tag: 'v1.0.1'
 gem 'bootsnap',                        '~> 1.16', require: false
@@ -17,7 +17,7 @@ gem 'pry-rails'
 gem 'puma'
 gem 'rack-attack',                     '~> 6.7.0'
 gem 'rackup',                          '1.0.1', require: false
-gem 'rails',                           '~> 7.0'
+gem 'rails',                           '~> 8.0.0'
 gem 'responders'
 gem 'sanitize'
 gem 'sassc-rails',                     '~> 2.1.2'
@@ -48,7 +48,7 @@ gem 'sidekiq_alive'
 
 # PDF generation
 gem "select2-rails"
-gem 'wicked_pdf'
+gem 'grover'
 
 # Azure blob storage
 gem 'azure-storage-blob', '~> 2'

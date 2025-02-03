@@ -71,7 +71,7 @@ module Users
     end
 
     def permitted_params
-      params.require(:tribunal_case).permit(:user_case_reference)
+      params.expect(tribunal_case: [:user_case_reference])
     end
   end
 end
