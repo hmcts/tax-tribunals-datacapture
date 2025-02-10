@@ -68,7 +68,7 @@ base:
         - name: admin-password
           alias: ADMIN_PASSWORD
         - name: sidekiq-admin-password
-          alias: SIDEKIQ-ADMIN_PASSWORD
+          alias: SIDEKIQ_ADMIN_PASSWORD
         - name: govuk-notify-api-key
           alias: GOVUK_NOTIFY_API_KEY
         - name: report-problem-email-address
@@ -186,7 +186,7 @@ sidekiq:
         - name: admin-password
           alias: ADMIN_PASSWORD
         - name: sidekiq-admin-password
-          alias: SIDEKIQ-ADMIN_PASSWORD
+          alias: SIDEKIQ_ADMIN_PASSWORD
         - name: govuk-notify-api-key
           alias: GOVUK_NOTIFY_API_KEY
         - name: report-problem-email-address
@@ -300,7 +300,7 @@ job:
         - name: admin-password
           alias: ADMIN_PASSWORD
         - name: sidekiq-admin-password
-          alias: SIDEKIQ-ADMIN_PASSWORD
+          alias: SIDEKIQ_ADMIN_PASSWORD
         - name: govuk-notify-api-key
           alias: GOVUK_NOTIFY_API_KEY
         - name: report-problem-email-address
