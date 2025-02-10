@@ -17,7 +17,7 @@ def closure
     proc { enquiry_details_page.valid_submission },
     proc { continue_or_save_continue },
     proc { continue_or_save_continue },
-    proc { submit },
+    proc { submit_check_your_answers },
   ]
 end
 
@@ -50,7 +50,7 @@ def appeal
       letter_upload_page.attach_file(identifier, filename)
     end,
     proc {  continue_or_save_continue },
-    proc {  submit  }
+    proc {  submit_check_your_answers  }
   ]
 end
 
@@ -75,7 +75,6 @@ end
 # rubocop:disable MethodLength
 def complete_valid_closure_application
   RSpec::Mocks.with_temporary_scope do
-    allow(WickedPdf).to receive_message_chain(:new, :pdf_from_string).and_return('test')
     allow(Uploader).to receive(:list_files).and_return([])
     allow(Uploader).to receive(:add_file).and_return(double(name: '123/foo/bar.png'))
     home_page.load_page
@@ -112,13 +111,12 @@ def complete_valid_closure_application
     expect(support_documents_page.content).to have_header
     continue_or_save_continue
     expect(check_answers_page.content).to have_header
-    submit
+    submit_check_your_answers
   end
 end
 
 def complete_valid_appeal_application
   RSpec::Mocks.with_temporary_scope do
-    allow(WickedPdf).to receive_message_chain(:new, :pdf_from_string).and_return('test')
     allow(Uploader).to receive(:list_files).and_return([])
     allow(Uploader).to receive(:add_file).and_return(double(name: '123/foo/bar.png'))
     home_page.load_page
@@ -174,7 +172,7 @@ def complete_valid_appeal_application
     letter_upload_page.attach_file(identifier, filename)
     continue_or_save_continue
     expect(check_answers_page.content).to have_header
-    submit
+    submit_check_your_answers
   end
 end
 

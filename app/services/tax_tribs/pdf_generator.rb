@@ -27,7 +27,7 @@ class TaxTribs::PdfGenerator
 
   def generate
     mark_as_attempted
-    pdf = WickedPdf.new.pdf_from_string(@html)
+    pdf = Grover.new(@html, format: 'A4').to_pdf
     mark_as_succeeded
 
     pdf

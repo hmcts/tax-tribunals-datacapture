@@ -264,7 +264,7 @@ appeal_or_application_capitalised: 'Wibble').and_return('Yay!')
 
     it 'inserts address lookup partial when access_token present' do
       token = 'osapitoken'
-      helper.stub(:address_lookup_access_token).and_return(token)
+      allow(helper).to receive(:address_lookup_access_token).and_return(token)
       expect(helper).to receive(:content_for).with(:form, &form_block)
       expect(helper).to receive(:render).with(
         partial: 'steps/shared/address_lookup',
@@ -285,7 +285,7 @@ appeal_or_application_capitalised: 'Wibble').and_return('Yay!')
 
   describe '#address_lookup_access_token' do
     it 'returns a cached token when present' do
-      Rails.cache.stub(:read).and_return('faketoken')
+      allow(Rails.cache).to receive(:read).and_return('faketoken')
       expect(helper.address_lookup_access_token).to eq('faketoken')
     end
   end

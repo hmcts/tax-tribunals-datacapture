@@ -98,9 +98,6 @@ RUN bundle exec rails assets:precompile RAILS_ENV=production SECRET_KEY_BASE=req
 RUN cp node_modules/govuk-frontend/govuk/assets/fonts/*  public/assets/govuk-frontend/govuk/assets/fonts
 RUN cp node_modules/govuk-frontend/govuk/assets/images/* public/assets/govuk-frontend/govuk/assets/images
 
-## copy wkhtmltopdf bin
-RUN cd /usr/local/bundle/gems/wkhtmltopdf-binary-*/bin && ln -s /usr/bin/wkhtmltopdf wkhtmltopdf_"$(. /etc/os-release 2> /dev/null && echo ${ID}_${VERSION_ID})"_amd64
-
 ## adding cron jobs
 ADD daily-export /etc/periodic/daily
 

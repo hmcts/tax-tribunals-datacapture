@@ -86,9 +86,9 @@ cy:
             </p>
 
     PENALTY_LEVELS: &PENALTY_LEVELS
-      penalty_level_1: "£100 neu lai"
-      penalty_level_2: "Rhwng £100 ac £20,000"
-      penalty_level_3: "Dros £20,000"
+      penalty_level_1: Rhwng £1 a £100
+      penalty_level_2: Rhwng £100.01 a £20,000
+      penalty_level_3: Dros £20,000
 
     REP_ADDRESS: &REP_ADDRESS
       representative_contact_address: Cyfeiriad

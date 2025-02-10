@@ -48,9 +48,11 @@
     </div>
 
     <div class="govuk-button-group">
-        <button value="accept" type="button" name="cookies" class="govuk-button" data-module="govuk-button" onClick="window.location.reload(true)">
-            <%= t('cookies.banner.button.hide') %>
+      <form action="<%= request.url %>" method="get">
+        <button class="govuk-button" data-module="govuk-button">
+          <%= t('cookies.banner.button.hide') %>
         </button>
+      </form>
     </div>
   </div>
 </div>

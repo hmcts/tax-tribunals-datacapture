@@ -1,7 +1,7 @@
 inherit_from: .rubocop_todo.yml
 
 AllCops:
-  TargetRubyVersion: 3.3.5
+  TargetRubyVersion: 3.3.6
   NewCops: enable
 
   Exclude:
@@ -340,6 +340,9 @@ Rails/RequestReferer:
   Enabled: false
 
 Rails/I18nLocaleTexts:
+  Enabled: false
+
+Style/KeywordArgumentsMerging:
   Enabled: false
 
 require:
