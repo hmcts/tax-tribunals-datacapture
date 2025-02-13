@@ -7,7 +7,6 @@ module TaxTribs
     end
 
     def call
-
       Sentry.capture_message("INFO: Submitting application in progress")
 
       tribunal_case.update(
