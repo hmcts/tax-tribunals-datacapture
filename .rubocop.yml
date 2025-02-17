@@ -345,10 +345,12 @@ Rails/I18nLocaleTexts:
 Style/KeywordArgumentsMerging:
   Enabled: false
 
-require:
+plugins:
+  - rubocop-performance
   - rubocop-rails
+  - rubocop-rspec
+
+require:
+  - rubocop-rspec_rails
   - rubocop-capybara
   - rubocop-factory_bot
-  - rubocop-rspec_rails
-  - rubocop-performance
-  - rubocop-rspec
