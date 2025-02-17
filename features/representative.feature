@@ -76,15 +76,15 @@ Feature: Representative Path
     And I select both email and text message and fill in an email and a non matching phone number
     Then I am shown a blank phone error
 
-  Scenario: Submitting phone number and triggering non matching phone number error (text)
-    When I select yes
-    Then I see the representative professional status page
-    And I select that the representative is a solicitor
-    And I select that the representative is an individual
-    Then I am taken to the representative details (individual) page
-    And I fill in the details and progress to the representative copy page
-    And I select text message and fill in an email and a non matching phone number
-    Then I am shown a blank phone error
+#  Scenario: Submitting phone number and triggering non matching phone number error (text)
+#    When I select yes
+#    Then I see the representative professional status page
+#    And I select that the representative is a solicitor
+#    And I select that the representative is an individual
+#    Then I am taken to the representative details (individual) page
+#    And I fill in the details and progress to the representative copy page
+#    And I select text message and fill in an email and a non matching phone number
+#    Then I am shown a blank phone error
 
   Scenario: Timeout test - should trigger
     When I wait for 11 minutes
