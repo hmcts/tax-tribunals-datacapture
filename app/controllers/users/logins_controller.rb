@@ -31,7 +31,7 @@ module Users
 
     protected
 
-    # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity:
+    # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
     def sign_in(_resource_name, user)
       super
       save_for_later = TaxTribs::SaveCaseForLater.new(current_tribunal_case, user)
@@ -42,7 +42,7 @@ module Users
       end
       session[:confirmation_email_address] = user.email if save_for_later.email_sent?
     end
-    # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity:
+    # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
     # Devise will try to return to a previously login-protected page if available,
     # otherwise this is the fallback route to redirect the user after login
