@@ -13,6 +13,10 @@ module TaxTribs
       )
 
       GlimrApiCallJob.perform_later(tribunal_case)
+
+    rescue StandardError => e
+      Sentry.capture_exception(e, extra: { tribunal_case_id: tribunal_case.id })
+      raise e
     end
   end
 end
