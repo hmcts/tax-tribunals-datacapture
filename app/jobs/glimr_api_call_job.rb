@@ -9,7 +9,6 @@ class GlimrApiCallJob < ApplicationJob
     tribunal_case.update(
       case_reference:
     )
-
   rescue StandardError => e
     Rails.logger.info({ caller: self.class.name, method: __callee__, error: e }.to_json)
     Sentry.capture_exception(e, extra: { tribunal_case_id: tribunal_case.id })
