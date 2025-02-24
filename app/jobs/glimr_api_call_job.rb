@@ -1,5 +1,6 @@
 class GlimrApiCallJob < ApplicationJob
   queue_as :glimr_api_calls
+  retry_on StandardError, wait: 5.seconds, attempts: 3
 
   def perform(tribunal_case)
     glimr_case = TaxTribs::GlimrNewCase.new(tribunal_case).call
@@ -9,10 +10,9 @@ class GlimrApiCallJob < ApplicationJob
       case_reference:
     )
 
-    Sentry.capture_message("DEBUG: Sidekiq job executed")
-    # rescue StandardError => e
-    #   Rails.logger.info({ caller: self.class.name, method: __callee__, error: e }.to_json)
-    #   Sentry.capture_exception(e, extra: { tribunal_case_id: tribunal_case.id })
-    # on fail can send email to user saying that their case wasn't successfully sent
+  rescue StandardError => e
+    Rails.logger.info({ caller: self.class.name, method: __callee__, error: e }.to_json)
+    Sentry.capture_exception(e, extra: { tribunal_case_id: tribunal_case.id })
+    raise e
   end
 end
