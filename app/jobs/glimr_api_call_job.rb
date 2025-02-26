@@ -11,6 +11,7 @@ class GlimrApiCallJob < ApplicationJob
     )
   rescue StandardError => e
     Sentry.capture_exception(e, extra: { tribunal_case_id: tribunal_case.id })
+    Rails.logger.error("************************ #{e}")
     raise e
   end
 end
