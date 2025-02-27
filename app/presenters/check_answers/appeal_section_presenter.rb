@@ -6,7 +6,7 @@ module CheckAnswers
 
     def answers
       [
-        case_type_answer,
+        Answer.new(:case_type, tribunal_case.case_type, change_path: edit_steps_appeal_case_type_path),
         Answer.new(:selected_language, tribunal_case.language, change_path: edit_steps_select_language_path),
         challenged_decision_answer,
         Answer.new(:challenged_decision_status, tribunal_case.challenged_decision_status,
@@ -18,15 +18,6 @@ module CheckAnswers
     end
 
     private
-
-    def case_type_answer
-      if tribunal_case.case_type == CaseType::OTHER
-        Answer.new(:case_type, tribunal_case.case_type_other_value, raw: true,
-change_path: edit_steps_appeal_case_type_show_more_path)
-      else
-        Answer.new(:case_type, tribunal_case.case_type, change_path: edit_steps_appeal_case_type_path)
-      end
-    end
 
     def dispute_type_answer
       if tribunal_case.dispute_type == DisputeType::OTHER
