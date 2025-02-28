@@ -359,14 +359,14 @@ GEM
     net-smtp (0.5.0)
     netrc (0.11.0)
     nio4r (2.7.4)
-    nokogiri (1.18.2)
+    nokogiri (1.18.3)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
-    nokogiri (1.18.2-arm64-darwin)
+    nokogiri (1.18.3-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.18.2-x86_64-darwin)
+    nokogiri (1.18.3-x86_64-darwin)
       racc (~> 1.4)
-    nokogiri (1.18.2-x86_64-linux-gnu)
+    nokogiri (1.18.3-x86_64-linux-gnu)
       racc (~> 1.4)
     notifications-ruby-client (6.2.0)
       jwt (>= 1.5, < 3)
@@ -684,7 +684,7 @@ DEPENDENCIES
   mutant-license (= 0.1.1.2.1739399027284447558325915053311580324856.4)!
   mutant-rspec
   net-pop!
-  nokogiri (>= 1.16.2)
+  nokogiri (>= 1.18.3)
   ostruct
   pg
   phantomjs
