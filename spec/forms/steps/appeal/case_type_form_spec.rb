@@ -26,6 +26,22 @@ RSpec.describe Steps::Appeal::CaseTypeForm do
     end
   end
 
+  describe '.dropdown_choices' do
+    it 'returns the relevant choices' do
+      expect(described_class.dropdown_choices).to eq(%w(
+        apn_penalty aggregates_levy air_passenger_duty
+        alcoholic_liquor_duties bingo_duty climate_change_levy
+        construction_industry_scheme counter_terrorism customs_duty
+        dotas_penalty export_regulations_penalty gaming_duty
+        general_betting_duty hydrocarbon_oil_duties information_notice
+        inheritance_tax insurance_premium_tax landfill_tax lottery_duty
+        money_laundering_decisions ni_contributions petroleum_revenue_tax
+        pool_betting_duty remote_gaming_duty restoration_case stamp_duties
+        statutory_payments student_loans tax_credits tobacco_products_duty
+      ))
+    end
+  end
+
   describe '#save' do
     context 'when no tribunal_case is associated with the form' do
       let(:tribunal_case) { nil }
