@@ -187,8 +187,8 @@ Rails.application.routes.draw do
         ENV.fetch("ADMIN_USERNAME", nil)
       ) &
         ActiveSupport::SecurityUtils.secure_compare(
-          Digest::SHA256.hexdigest(password),
-          ENV.fetch("ADMIN_PASSWORD", nil)
+          password,
+          ENV.fetch("SIDEKIQ_ADMIN_PASSWORD", nil)
         )
     end
     mount Sidekiq::Web => "/sidekiq"

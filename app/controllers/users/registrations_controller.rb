@@ -10,7 +10,7 @@ module Users
 
     protected
 
-    # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity:
+    # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
     def sign_up(_resource_name, user)
       save_for_later = TaxTribs::SaveCaseForLater.new(current_tribunal_case, user)
       if current_tribunal_case&.intent.eql?(Intent::TAX_APPEAL)
@@ -20,7 +20,7 @@ module Users
       end
       super if session[:save_for_later] == true || session[:continue_with_new_appeal] == true
     end
-    # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity:
+    # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
     # Devise will not give an error when leaving blank the new password, it will just ignore the update,
     # which is a very confusing behaviour IMO. Overriding this method to force validation on this field.
