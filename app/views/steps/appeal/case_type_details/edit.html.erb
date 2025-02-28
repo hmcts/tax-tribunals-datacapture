@@ -1,0 +1,19 @@
+<% title t('.page_title') %>
+
+<%= step_header %>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= step_form @tribunal_case do |f| %>
+      <h1 class="govuk-heading-l"><%= t "helpers.label.steps_appeal_case_type_form.case_type_options.#{@tribunal_case.case_type}" %></h1>
+      <p class="govuk-body-l">
+        <% if [:income_tax, :information_notice, :alcoholic_liquor_duties, :landfill_tax, :restoration_case, :stamp_duties, :statutory_payments, :tax_credits].include? @tribunal_case.case_type.value %>
+          <%=t ".#{@tribunal_case.case_type.value.to_s}_description_text" %>
+        <% else %>
+          <%=t '.general_description_text' %>
+      <% end %>
+      </p>
+      <%= f.submit class: 'govuk-button' %>
+    <% end %>
+  </div>
+</div>

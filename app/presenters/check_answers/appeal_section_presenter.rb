@@ -22,7 +22,7 @@ module CheckAnswers
     def case_type_answer
       if tribunal_case.case_type == CaseType::OTHER
         Answer.new(:case_type, tribunal_case.case_type_other_value, raw: true,
-change_path: edit_steps_appeal_case_type_show_more_path)
+change_path: edit_steps_appeal_case_type_path)
       else
         Answer.new(:case_type, tribunal_case.case_type, change_path: edit_steps_appeal_case_type_path)
       end

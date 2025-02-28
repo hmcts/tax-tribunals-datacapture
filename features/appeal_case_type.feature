@@ -10,37 +10,23 @@ Feature: Appeal case type page
 
   Scenario: Successful step (Income tax)
     When I click on continue after selecting Income Tax option
+    Then I am on the Income Tax case type details page
     And I select nothing then english only
     Then I should be on the appeal challenge decision page
 
-  Scenario: Successful step (Other)
-    When I click on continue after selecting Other option
-    Then I am on the case type show more page
+  Scenario: Successful step (Student loans)
+    When I click on continue after selecting Student loans option
+    Then I am on the Student loans case type details page
+    And I select nothing then english only
+    Then I should be on the appeal challenge decision page
 
-  Scenario: No selection on the case type show more page
+  Scenario: Detail is not provided to None of the above option
     When I click on continue after selecting Other option
-    And I am on the case type show more page
-    And I click on continue without selecting an option
-    Then I should see appeal case type error message
-
-  Scenario: Selection provided on the case type show more page
-    When I click on continue after selecting Other option
-    And I am on the case type show more page
-    And I click on continue after selecting Aggregates Levy option
-    Then I should be on the review challenge decision page
-
-  Scenario: No detail provided to None of the above option
-    When I click on continue after selecting Other option
-    And I am on the case type show more page
-    And I click on None of the above option
-    And I click on continue without providing an answer
-    Then I should see answer error message
+    Then I should see appeal case type presence error message
 
   Scenario: Detail is provided to None of the above option
-    When I click on continue after selecting Other option
-    And I am on the case type show more page
-    And I click on None of the above option
-    And I click on continue after providing an answer
+    When I click on continue after selecting Other option with text
+    And I select nothing then english only
     Then I should be on the lateness page
 
   Scenario: Timeout test - should trigger

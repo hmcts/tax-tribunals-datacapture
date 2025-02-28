@@ -44,7 +44,6 @@ Layout/ClosingParenthesisIndentation:
     - 'app/forms/steps/details/eu_exit_form.rb'
     - 'app/forms/steps/details/send_application_details_form.rb'
     - 'app/helpers/privacy_helper.rb'
-    - 'spec/forms/steps/appeal/case_type_show_more_form_spec.rb'
     - 'spec/forms/steps/challenge/decision_status_form_spec.rb'
     - 'spec/forms/steps/details/eu_exit_form_spec.rb'
     - 'spec/forms/steps/details/taxpayer_individual_details_form_spec.rb'
@@ -161,7 +160,6 @@ Layout/FirstArgumentIndentation:
     - 'app/controllers/steps/details/eu_exit_controller.rb'
     - 'app/forms/steps/details/eu_exit_form.rb'
     - 'app/forms/steps/details/what_support_form.rb'
-    - 'spec/forms/steps/appeal/case_type_show_more_form_spec.rb'
     - 'spec/forms/steps/challenge/decision_status_form_spec.rb'
     - 'spec/forms/steps/details/eu_exit_form_spec.rb'
     - 'spec/forms/steps/details/taxpayer_individual_details_form_spec.rb'
@@ -293,7 +291,6 @@ Layout/MultilineOperationIndentation:
 # Cop supports --auto-correct.
 Layout/SpaceAfterComma:
   Exclude:
-    - 'features/support/page_objects/appeal/appeal_case_type_show_more_page.rb'
     - 'features/support/page_objects/confirmation_page.rb'
     - 'lib/welsh_characters.rb'
     - 'spec/models/user_spec.rb'
@@ -778,7 +775,6 @@ Style/PercentLiteralDelimiters:
     - 'lib/tasks/brakeman.rake'
     - 'lib/tasks/cucumber.rake'
     - 'spec/forms/steps/appeal/case_type_form_spec.rb'
-    - 'spec/forms/steps/appeal/case_type_show_more_form_spec.rb'
     - 'spec/forms/steps/appeal/dispute_type_form_spec.rb'
     - 'spec/forms/steps/challenge/decision_status_form_spec.rb'
     - 'spec/forms/steps/closure/case_type_form_spec.rb'
