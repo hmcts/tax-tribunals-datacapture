@@ -3,10 +3,14 @@ require 'spec_helper'
 RSpec.describe Steps::Appeal::CaseTypeForm do
   let(:arguments) { {
     tribunal_case:,
-    case_type:
+    case_type:,
+    case_type_not_present:,
+    case_type_other_value:
   } }
   let(:tribunal_case) { instance_double(TribunalCase, case_type: nil) }
   let(:case_type) { nil }
+  let(:case_type_not_present) { nil }
+  let(:case_type_other_value) { nil }
 
   subject { described_class.new(arguments) }
 
@@ -18,9 +22,22 @@ RSpec.describe Steps::Appeal::CaseTypeForm do
         vat
         capital_gains_tax
         corporation_tax
-        ni_contributions
-        information_notice
-        _show_more
+      ))
+    end
+  end
+
+  describe '.dropdown_choices' do
+    it 'returns the relevant choices' do
+      expect(described_class.dropdown_choices).to eq(%w(
+        apn_penalty aggregates_levy air_passenger_duty
+        alcoholic_liquor_duties bingo_duty climate_change_levy
+        construction_industry_scheme counter_terrorism customs_duty
+        dotas_penalty export_regulations_penalty gaming_duty
+        general_betting_duty hydrocarbon_oil_duties information_notice
+        inheritance_tax insurance_premium_tax landfill_tax lottery_duty
+        money_laundering_decisions ni_contributions petroleum_revenue_tax
+        pool_betting_duty remote_gaming_duty restoration_case stamp_duties
+        statutory_payments student_loans tax_credits tobacco_products_duty
       ))
     end
   end
@@ -80,12 +97,25 @@ RSpec.describe Steps::Appeal::CaseTypeForm do
       end
     end
 
-    context 'when case_type is already the same on the model' do
-      let(:tribunal_case) { instance_double(TribunalCase, case_type: CaseType::VAT) }
-      let(:case_type)     { 'vat' }
+    context 'when case_type is nil but other value is entered' do
+      let(:case_type) { nil }
+      let(:case_type_object) { instance_double(CaseType) }
+      let(:case_type_not_present) { true }
+      let(:case_type_other_value) { 'some other value' }
 
-      it 'does not save the record but returns true' do
-        expect(tribunal_case).to_not receive(:update)
+      it 'saves the record with case type of other and other description' do
+        allow(CaseType).to receive(:find_constant).with('other').and_return(case_type_object)
+        expect(tribunal_case).to receive(:update).with(
+          case_type: case_type_object,
+          case_type_other_value: 'some other value',
+          challenged_decision: nil,
+          challenged_decision_status: nil,
+          dispute_type: nil,
+          dispute_type_other_value: nil,
+          penalty_level: nil,
+          penalty_amount: nil,
+          tax_amount: nil
+        ).and_return(true)
         expect(subject.save).to be(true)
       end
     end

@@ -33,7 +33,6 @@ cy:
 
     CASE_TYPE_QUESTION: &CASE_TYPE_QUESTION
       heading: "Ynglŷn â beth yw eich apêl?"
-      lead_text: "Dewiswch yr opsiwn sydd fwyaf perthnasol yn seiliedig ar yr hysbysiad gwreiddiol neu'r llythyr canlyniad adolygiad."
 
     CHALLENGE_STATUS: &CHALLENGE_STATUS
       appeal_late_rejection: "Roedd fy apêl i Gyllid a Thollau EM neu asiantaeth arall yn hwyr. Rwy'n gwneud cais am ganiatâd i wneud apêl hwyr i Gyllid a Thollau EM neu asiantaeth arall"
@@ -139,14 +138,14 @@ cy:
           attributes:
             case_type:
               inclusion: "Dewiswch ynglŷn â beth yw eich apêl"
+              multiple_selected: Dewiswch beth yw pwrpas eich apêl o'r opsiynau neu'r gwymplen
+              conflicted_selected: Dewiswch bwnc eich apêl o’r opsiynau neu’r gwymplen neu rhowch dic yn y blwch a nodi’r math o apêl
+            case_type_other_value:
+              blank: Dewiswch bwnc eich apêl o’r opsiynau neu’r gwymplen neu rhowch dic yn y blwch a nodi’r math o apêl
         select_language/save_language_form:
           attributes:
             language:
               inclusion: Dewiswch eich dewis iaith
-        steps/appeal/case_type_show_more_form:
-          attributes:
-            case_type:
-              inclusion: "Dewiswch ynglŷn â beth yw eich apêl"
         steps/appeal/dispute_type_form:
           attributes:
             dispute_type:
@@ -830,8 +829,6 @@ cy:
     fieldset:
       steps_appeal_case_type_form:
         case_type_html: "Ynglŷn â beth yw eich apêl?"
-      steps_appeal_case_type_show_more_form:
-        case_type_html: "Ynglŷn â beth yw eich apêl?"
       steps_appeal_dispute_type_form:
         dispute_type_html: "Ynglŷn â beth yw eich anghydfod?"
       steps_appeal_penalty_amount_form:
@@ -883,47 +880,44 @@ cy:
         <<: *TAXPAYER_ADDRESS
       steps_appeal_case_type_form:
         case_type_options:
-          _show_more_html: "<strong>Math arall o dreth, apêl neu gais</strong>"
-          capital_gains_tax_html: "<strong>Treth Enillion Cyfalaf</strong>"
-          corporation_tax_html: "<strong>Treth Gorfforaeth</strong>"
-          income_tax_html: "<strong>Treth Incwm</strong><br>gan gynnwys treth a delir drwy'r cynllun Talu wrth Ennill (PAYE) a Hunanasesiad"
-          information_notice_html: "<strong>Hysbysiad gwybodaeth</strong><br>cais am ragor o wybodaeth ynghylch eich sefyllfa dreth"
-          ni_contributions_html: "<strong>Cyfraniadau Yswiriant Gwladol (NI)</strong>"
-          self_assessment_late_penalty_html: "<strong>Cosb am ffeilio ffurflen dreth hunanasesiad yn hwyr</strong>"
-          vat_html: "<strong>Treth Ar Werth (VAT)</strong>"
-      steps_appeal_case_type_show_more_form:
-        case_type_options:
-          aggregates_levy_html: "<strong>Ardoll Agregau</strong>"
-          air_passenger_duty_html: "<strong>Toll Teithwyr Awyr</strong>"
-          alcoholic_liquor_duties_html: "<strong>Tollau ar Ddiodydd Alcoholaidd</strong><br>mae'n cynnwys y Cynllun Cofrestru Cyfanwerthwr Alcohol (AWRS)"
-          apn_penalty_html: "<strong>Cosb Hysbysiad o Daliad Cyflymedig (APN)</strong>"
-          bingo_duty_html: "<strong>Toll Bingo</strong>"
-          climate_change_levy_html: "<strong>Ardoll Newid yn yr Hinsawdd</strong>"
-          construction_industry_scheme_html: "<strong>Cynllun y Diwydiant Adeiladu (CIS)</strong>"
-          counter_terrorism_html: "<strong>Penderfyniadau Gwrthderfysgaeth</strong>"
-          customs_duty_html: "<strong>Toll Dramor</strong>"
-          dotas_penalty_html: "<strong>Cosb Datgelu Cynlluniau Osgoi Trethi (DOTAS)</strong>"
-          export_regulations_penalty_html: "<strong>Rheoliadau Allforio (Cosb) / Penderfyniad FA 2003</strong>"
-          gaming_duty_html: "<strong>Toll Hapchwarae</strong>"
-          general_betting_duty_html: "<strong>Toll Betio Cyffredinol</strong>"
-          hydrocarbon_oil_duties_html: "<strong>Tollau Olew Hydrocarbon</strong>"
-          inheritance_tax_html: "<strong>Treth Etifeddu</strong>"
-          insurance_premium_tax_html: "<strong>Treth Premiwm Yswiriant</strong>"
-          landfill_tax_html: "<strong>Treth Tirlenwi</strong><br>gan gynnwys Treth Gwarediadau Tirlenwi (yng Nghymru)"
-          lottery_duty_html: "<strong>Toll y Loteri</strong>"
-          money_laundering_decisions_html: "<strong>Penderfyniadau gwyngalchu arian</strong>"
-          ni_contributions_html: "<strong>Cyfraniadau Yswiriant Gwladol (NI)</strong>"
-          other_html: "<strong>Dim un o'r uchod</strong>"
-          petroleum_revenue_tax_html: "<strong>Treth Refeniw Petroliwm</strong>"
-          pool_betting_duty_html: "<strong>Toll Cronfa Betio</strong>"
-          remote_gaming_duty_html: "<strong>Toll Hapchwarae o Bell</strong>"
-          restoration_case_html: "<strong>Achos adfer</strong><br>gwneud cais i ddychwelyd nwyddau a atafaelwyd"
-          stamp_duties_html: "<strong>Tollau Stamp</strong><br>gan gynnwys Treth Gadw'r Toll Stamp (SDRT), Treth Dir y Toll Stamp (SDLT) a Threth Trafodiadau Tir (yng Nghymru)"
-          statutory_payments_html: "<strong>Taliadau statudol</strong><br>er enghraifft tâl salwch statudol, tâl mamolaeth, tâl tadolaeth neu dâl mabwysiadu"
-          student_loans_html: "<strong>Benthyciadau i fyfyrwyr</strong>"
-          tax_credits_html: "<strong>Credydau treth</strong><br>gan gynnwys Credyd Treth Plant a Chredyd Treth Gwaith"
-          tobacco_products_duty_html: "<strong>Toll Cynhyrchion Tybaco</strong>"
-        case_type_other_value: "Nodwch y math o dreth neu anghydfod sy'n gysylltiedig â'ch achos"
+          income_tax: Treth Incwm
+          self_assessment_late_penalty: Cosb am ffeilio ffurflen dreth hunanasesiad yn hwyr
+          vat: Treth Ar Werth (VAT)
+          capital_gains_tax: Treth Enillion Cyfalaf
+          corporation_tax: Treth Gorfforaeth
+          apn_penalty: Cosb Hysbysiad o Daliad Cyflymedig (APN)
+          aggregates_levy: Ardoll Agregau
+          air_passenger_duty: Toll Teithwyr Awyr
+          alcoholic_liquor_duties: Tollau ar Ddiodydd Alcoholaidd
+          bingo_duty: Toll Bingo
+          climate_change_levy: Ardoll Newid yn yr Hinsawdd
+          construction_industry_scheme: Cynllun y Diwydiant Adeiladu (CIS)
+          counter_terrorism: Penderfyniadau Gwrthderfysgaeth
+          customs_duty: Toll Dramor
+          dotas_penalty: Cosb Datgelu Cynlluniau Osgoi Trethi (DOTAS)
+          gaming_duty: Toll Hapchwarae
+          general_betting_duty: Toll Betio Cyffredinol
+          export_regulations_penalty: Rheoliadau Allforio (Cosb) / Penderfyniad FA 2003
+          hydrocarbon_oil_duties: Tollau Olew Hydrocarbon
+          information_notice: Hysbysiad gwybodaeth
+          inheritance_tax: Treth Etifeddu
+          insurance_premium_tax: Treth Premiwm Yswiriant
+          landfill_tax: Treth Tirlenwi
+          lottery_duty: Toll y Loteri
+          money_laundering_decisions: Penderfyniadau gwyngalchu arian
+          ni_contributions: Cyfraniadau Yswiriant Gwladol (NI)
+          petroleum_revenue_tax: Treth Refeniw Petroliwm
+          pool_betting_duty: Toll Cronfa Betio
+          remote_gaming_duty: Toll Hapchwarae o Bell
+          restoration_case: Achos adfer
+          stamp_duties: Tollau Stamp
+          statutory_payments: Taliadau statudol
+          student_loans: Benthyciadau i fyfyrwyr
+          tax_credits: Credydau treth
+          tobacco_products_duty: Toll Cynhyrchion Tybaco
+        case_type_select_other_hint: Dewiswch fath arall o dreth neu anghydfod yn seiliedig ar yr hysbysiad gwreiddiol neu lythyr canlyniad adolygiad.
+        case_type_not_present: Ni allaf ddod o hyd i'r math o dreth neu anghydfod yn seiliedig ar yr hysbysiad gwreiddiol neu'r llythyr canlyniad adolygiad.
+        case_type_other_value: Nodwch y math o dreth neu anghydfod sy'n gysylltiedig â'ch achos
       steps_appeal_dispute_type_form:
         amount_of_tax_owed_by_hmrc: Rydych chi eisiau i Gyllid a Thollau EM neu asiantaeth arall ad-dalu arian
         dispute_type_options:
@@ -1342,10 +1336,18 @@ cy:
         edit:
           page_title: "Math o achos"
           <<: *CASE_TYPE_QUESTION
-      case_type_show_more:
+      case_type_details:
         edit:
-          page_title: "Math o achos"
-          <<: *CASE_TYPE_QUESTION
+          page_title: Arweiniad achos
+          income_tax_description_text: Yn cynnwys treth a delir drwy Pay As You Earn (PAYE) a Hunanasesiad.
+          information_notice_description_text: Cais am ragor o wybodaeth am eich sefyllfa dreth.
+          alcoholic_liquor_duties_description_text: Yn cynnwys y Cynllun Cofrestru Cyfanwerthwyr Alcohol (AWRS).
+          landfill_tax_description_text: Yn cynnwys y Treth Gwarediadau Tirlenwi (yng Nghymru).
+          restoration_case_description_text: Gwneud cais i ddychwelyd nwyddau a atafaelwyd.
+          stamp_duties_description_text: Yn cynnwys Treth Wrth Gefn y Dreth Stamp (SDRT), Treth Dir y Dreth Stamp (SDLT) a Threth Trafodiadau Tir (yng Nghymru).
+          statutory_payments_description_text: Er enghraifft, tâl salwch statudol, tâl mamolaeth, tâl tadolaeth neu dâl mabwysiadu.
+          tax_credits_description_text: Yn cynnwys Credyd Treth Plant a Chredyd Treth Gwaith.
+          general_description_text: Gellir dod o hyd i'r math o apêl yn yr hysbysiad o benderfyniad gwreiddiol neu lythyr canlyniad adolygiad.
       dispute_type:
         edit:
           heading: "Ynglŷn â beth yw eich anghydfod?"

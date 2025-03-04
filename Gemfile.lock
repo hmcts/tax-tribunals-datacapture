@@ -690,7 +690,7 @@ DEPENDENCIES
   mutant-license (= 0.1.1.2.1739399027284447558325915053311580324856.4)!
   mutant-rspec
   net-pop!
-  nokogiri (>= 1.16.2)
+  nokogiri (>= 1.18.3)
   ostruct
   pg
   phantomjs
