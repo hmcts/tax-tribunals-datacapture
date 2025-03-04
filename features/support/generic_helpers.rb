@@ -30,8 +30,8 @@ def appeal_case_type_page
   @appeal_case_type_page ||= AppealCaseTypePage.new
 end
 
-def appeal_case_type_show_more_page
-  @appeal_case_type_show_more_page ||= AppealCaseTypeShowMorePage.new
+def appeal_case_type_details_page
+  @appeal_case_type_details_page ||= AppealCaseTypeDetailsPage.new
 end
 
 def login_page
