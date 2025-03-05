@@ -65,7 +65,6 @@ en:
 
     CASE_TYPE_QUESTION: &CASE_TYPE_QUESTION
       heading: What is your appeal about?
-      lead_text: Choose the most relevant option based on the original notice or review conclusion letter.
     CHALLENGE_STATUS: &CHALLENGE_STATUS
       received: I have a review conclusion letter
       pending: I have been waiting less than 45 days for a review to finish
@@ -132,10 +131,18 @@ en:
         edit:
           page_title: Case type
           <<: *CASE_TYPE_QUESTION
-      case_type_show_more:
+      case_type_details:
         edit:
-          page_title: Case type
-          <<: *CASE_TYPE_QUESTION
+          page_title: Case Guidance
+          income_tax_description_text: Including tax paid through Pay As You Earn (PAYE) and Self Assessment.
+          information_notice_description_text: A request for further information about your tax position.
+          alcoholic_liquor_duties_description_text: Includes the Alcohol Wholesaler Registration Scheme (AWRS).
+          landfill_tax_description_text: Includes Landfill Disposal Tax (in Wales).
+          restoration_case_description_text: Apply for the return of seized goods.
+          stamp_duties_description_text: Includes Stamp Duty Reserve Tax (SDRT), Stamp Duty Land Tax (SDLT) and Land Transaction Tax (in Wales).
+          statutory_payments_description_text: For example statutory sick pay, maternity pay, paternity pay or adoption pay.
+          tax_credits_description_text: Including Child Tax Credit and Working Tax Credit.
+          general_description_text: Appeal type can be found from the original decision notice or review conclusion letter.
       dispute_type:
         edit:
           heading: What is your dispute about?
@@ -578,14 +585,14 @@ en:
           attributes:
             case_type:
               inclusion: Select what your appeal is about
+              multiple_selected: Select what your appeal is about from the options or drop down list
+              conflicted_selected: Select what your appeal is about from the options or drop down list or select the checkbox and enter your appeal type
+            case_type_other_value:
+              blank: Select what your appeal is about from the options or drop down list or select the checkbox and enter your appeal type
         select_language/save_language_form:
           attributes:
             language:
               inclusion: Select your preferred language
-        steps/appeal/case_type_show_more_form:
-          attributes:
-            case_type:
-              inclusion: Select what your appeal is about
         steps/appeal/dispute_type_form:
           attributes:
             dispute_type:
@@ -822,8 +829,6 @@ en:
     fieldset:
       steps_appeal_case_type_form:
         case_type_html: What is your appeal about?
-      steps_appeal_case_type_show_more_form:
-        case_type_html: What is your appeal about?
       steps_appeal_dispute_type_form:
         dispute_type_html: What is your dispute about?
       steps_appeal_penalty_amount_form:
@@ -871,56 +876,44 @@ en:
           continue_with_new_appeal: Continue with a new appeal
       steps_appeal_case_type_form:
         case_type_options:
-          income_tax_html: "<strong>Income Tax</strong><br>including tax paid through
-            Pay As You Earn (PAYE) and Self Assessment"
-          self_assessment_late_penalty_html: "<strong>Penalty for late filing of self-assessment tax return</strong>"
-          vat_html: "<strong>Value Added Tax (VAT)</strong>"
-          capital_gains_tax_html: "<strong>Capital Gains Tax</strong>"
-          corporation_tax_html: "<strong>Corporation Tax</strong>"
-          information_notice_html: "<strong>Information notice</strong><br>a request
-            for further information about your tax position"
-          ni_contributions_html: "<strong>National Insurance (NI) contributions</strong>"
-          _show_more_html: "<strong>Other type of tax, appeal or application</strong>"
-      steps_appeal_case_type_show_more_form:
+          income_tax: Income Tax
+          self_assessment_late_penalty: Penalty for late filing of self-assessment tax return
+          vat: Value Added Tax (VAT)
+          capital_gains_tax: Capital Gains Tax
+          corporation_tax: Corporation Tax
+          apn_penalty: Accelerated Payment Notice (APN) penalty
+          aggregates_levy: Aggregates Levy
+          air_passenger_duty: Air Passenger Duty
+          alcoholic_liquor_duties: Alcoholic Liquor Duties
+          bingo_duty: Bingo Duty
+          climate_change_levy: Climate Change Levy
+          construction_industry_scheme: Construction Industry Scheme (CIS)
+          counter_terrorism: Counter-terrorism decision
+          customs_duty: Customs Duty
+          dotas_penalty: Disclosure Of Tax Avoidance Schemes (DOTAS) penalty
+          gaming_duty: Gaming Duty
+          general_betting_duty: General Betting Duty
+          export_regulations_penalty: Export (Penalty) Regulations / FA 2003 decision
+          hydrocarbon_oil_duties: Hydrocarbon Oil Duties
+          information_notice: Information notice
+          inheritance_tax: Inheritance Tax
+          insurance_premium_tax: Insurance Premium Tax
+          landfill_tax: Landfill Tax
+          lottery_duty: Lottery Duty
+          money_laundering_decisions: Money laundering decisions
+          ni_contributions: National Insurance (NI) contributions
+          petroleum_revenue_tax: Petroleum Revenue Tax
+          pool_betting_duty: Pool Betting Duty
+          remote_gaming_duty: Remote Gaming Duty
+          restoration_case: Restoration case
+          stamp_duties: Stamp duties
+          statutory_payments: Statutory payments
+          student_loans: Student loans
+          tax_credits: Tax credits
+          tobacco_products_duty: Tobacco Products Duty
+        case_type_select_other_hint: Select other type of tax or dispute based on the original notice or review conclusion letter.
+        case_type_not_present: I can't find the type of tax or dispute based on the original notice or review conclusion letter.
         case_type_other_value: Enter the type of tax or dispute involved in your case
-        case_type_options:
-          apn_penalty_html: "<strong>Accelerated Payment Notice (APN) penalty</strong>"
-          aggregates_levy_html: "<strong>Aggregates Levy</strong>"
-          air_passenger_duty_html: "<strong>Air Passenger Duty</strong>"
-          alcoholic_liquor_duties_html: "<strong>Alcoholic Liquor Duties</strong><br>
-            includes the Alcohol Wholesaler Registration Scheme (AWRS)"
-          bingo_duty_html: "<strong>Bingo Duty</strong>"
-          climate_change_levy_html: "<strong>Climate Change Levy</strong>"
-          construction_industry_scheme_html: "<strong>Construction Industry Scheme
-            (CIS)</strong>"
-          counter_terrorism_html: "<strong>Counter-terrorism decision</strong>"
-          customs_duty_html: "<strong>Customs Duty</strong>"
-          dotas_penalty_html: "<strong>Disclosure Of Tax Avoidance Schemes (DOTAS)
-            penalty</strong>"
-          gaming_duty_html: "<strong>Gaming Duty</strong>"
-          general_betting_duty_html: "<strong>General Betting Duty</strong>"
-          export_regulations_penalty_html: "<strong>Export (Penalty) Regulations /
-            FA 2003 decision</strong>"
-          hydrocarbon_oil_duties_html: "<strong>Hydrocarbon Oil Duties</strong>"
-          inheritance_tax_html: "<strong>Inheritance Tax</strong>"
-          insurance_premium_tax_html: "<strong>Insurance Premium Tax</strong>"
-          landfill_tax_html: "<strong>Landfill Tax</strong><br>includes Landfill Disposal Tax (in Wales)"
-          lottery_duty_html: "<strong>Lottery Duty</strong>"
-          ni_contributions_html: "<strong>National Insurance (NI) contributions</strong>"
-          money_laundering_decisions_html: "<strong>Money laundering decisions</strong>"
-          petroleum_revenue_tax_html: "<strong>Petroleum Revenue Tax</strong>"
-          pool_betting_duty_html: "<strong>Pool Betting Duty</strong>"
-          remote_gaming_duty_html: "<strong>Remote Gaming Duty</strong>"
-          restoration_case_html: "<strong>Restoration case</strong><br>apply for the
-            return of seized goods"
-          stamp_duties_html: "<strong>Stamp duties</strong><br>includes Stamp Duty
-            Reserve Tax (SDRT), Stamp Duty Land Tax (SDLT) and Land Transaction Tax (in Wales)"
-          statutory_payments_html: "<strong>Statutory payments</strong><br>for example
-            statutory sick pay, maternity pay, paternity pay or adoption pay"
-          student_loans_html: "<strong>Student loans</strong>"
-          tax_credits_html: "<strong>Tax credits</strong><br>including Child Tax Credit and Working Tax Credit"
-          tobacco_products_duty_html: "<strong>Tobacco Products Duty</strong>"
-          other_html: "<strong>None of the above</strong>"
       steps_appeal_dispute_type_form:
         dispute_type_other_value: What is your dispute about?
         amount_of_tax_owed_by_hmrc: You want HMRC or other agency to repay money
