@@ -68,7 +68,4 @@ if ENV['TEST_LOCALE'] == "cy"
   I18n.locale = 'cy'
 end
 
-ENV['AZURE_STORAGE_KEY'] = 'fake_test_key'
-ENV['AZURE_STORAGE_ACCOUNT'] = 'fake_test_account'
-
 WebMock.disable_net_connect!(allow_localhost: true)
