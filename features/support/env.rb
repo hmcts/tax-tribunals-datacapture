@@ -13,6 +13,7 @@ require 'selenium-webdriver'
 require 'webmock'
 ENV['TEST_LOCALE'] = "en" if ENV['TEST_LOCALE'] != "cy"
 require_relative 'page_objects/base_page'
+require_relative 'document_upload_helper_stub'
 
 Dir[File.dirname(__FILE__) + '/page_objects/**/*.rb'].each { |f| require f }
 
@@ -37,6 +38,9 @@ Dir[File.dirname(__FILE__) + '/page_objects/**/*.rb'].each { |f| require f }
 # recommended as it will mask a lot of errors for you!
 #
 # ActionController::Base.allow_rescue = false
+#
+# Stub methods in document_upload_helper.rb to not use Azure storage in tests
+DocumentUploadHelperStub.stub_uploaded_document_methods
 
 Capybara.register_driver :selenium do |app|
   capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
@@ -63,5 +67,8 @@ end
 if ENV['TEST_LOCALE'] == "cy"
   I18n.locale = 'cy'
 end
+
+ENV['AZURE_STORAGE_KEY'] = 'fake_test_key'
+ENV['AZURE_STORAGE_ACCOUNT'] = 'fake_test_account'
 
 WebMock.disable_net_connect!(allow_localhost: true)
