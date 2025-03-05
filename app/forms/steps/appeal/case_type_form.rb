@@ -22,18 +22,19 @@ module Steps::Appeal
     end
 
     before_validation :sanitize_case_type_more
-    before_validation :sanitize_case_type
+    before_validation :clear_case_type_other_value
+    after_validation :sanitize_case_type
+    validates_presence_of :case_type_other_value, if: :case_type_not_present
     validate :case_type_present
     validate :only_one_case_type_selected
     validate :case_type_selected_with_not_present
-    validates_presence_of :case_type_other_value, if: :case_type_not_present
 
     private
 
     def case_type_present
       return if case_type_not_present?
 
-      unless CaseType.values.map(&:to_s).include?(case_type)
+      unless CaseType.values.map(&:to_s).include?(case_type) || CaseType.values.map(&:to_s).include?(case_type_more)
         errors.add(:case_type, I18n.t('.activemodel.errors.models.steps/appeal/case_type_form.attributes.case_type.inclusion'))
       end
     end
@@ -45,7 +46,7 @@ module Steps::Appeal
     end
 
     def case_type_selected_with_not_present
-      if case_type.present? && case_type_not_present == true
+      if (case_type.present? || case_type_more.present?) && case_type_other_value.present?
         errors.add(:case_type_not_present,
                    I18n.t('.activemodel.errors.models.steps/appeal/case_type_form.attributes.case_type.conflicted_selected'))
       end
@@ -53,6 +54,10 @@ module Steps::Appeal
 
     def sanitize_case_type_more
       self.case_type_more = nil if case_type_more == "blank"
+    end
+
+    def clear_case_type_other_value
+      self.case_type_other_value = nil if case_type_not_present.blank?
     end
 
     def sanitize_case_type
