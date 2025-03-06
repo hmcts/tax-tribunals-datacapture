@@ -7,11 +7,11 @@ description: Tax Tribunals
 dependencies:
   - name: base
     version: 1.4.0
-    repository: oci://hmctspublic.azurecr.io/helm
+    repository: 'oci://hmctspublic.azurecr.io/helm'
   - name: base
     version: 1.4.0
     alias: sidekiq
-    repository: oci://hmctspublic.azurecr.io/helm
+    repository: 'oci://hmctspublic.azurecr.io/helm'
   - name: job
     version: 2.2.0
-    repository: oci://hmctspublic.azurecr.io/helm
+    repository: 'oci://hmctspublic.azurecr.io/helm'
