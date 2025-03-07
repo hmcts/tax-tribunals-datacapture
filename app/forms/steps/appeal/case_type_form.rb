@@ -42,13 +42,13 @@ module Steps::Appeal
     def only_one_case_type_selected
       return if case_type_other_value.present?
       if case_type.present? && case_type_more.present?
-        errors.add(:case_type_more, I18n.t('.activemodel.errors.models.steps/appeal/case_type_form.attributes.case_type.multiple_selected'))
+        errors.add(:case_type, I18n.t('.activemodel.errors.models.steps/appeal/case_type_form.attributes.case_type.multiple_selected'))
       end
     end
 
     def case_type_selected_with_not_present
       if (case_type.present? || case_type_more.present?) && case_type_other_value.present?
-        errors.add(:case_type_not_present,
+        errors.add(:case_type,
                    I18n.t('.activemodel.errors.models.steps/appeal/case_type_form.attributes.case_type.conflicted_selected'))
       end
     end

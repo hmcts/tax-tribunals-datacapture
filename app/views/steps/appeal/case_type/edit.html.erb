@@ -5,29 +5,32 @@
   <div class="govuk-grid-column-two-thirds">
     <%= govuk_error_summary %>
     <%= step_form @form_object, html:{ class: 'ga-radioButtonGroup'  } do |f| %>
-      <%= f.govuk_collection_radio_buttons :case_type,
-        Steps::Appeal::CaseTypeForm.choices, :to_s, nil,
-        legend: { text: t('.heading'), size: 'l' }, bold_labels: true
-      %>
+      <div class=<%="govuk-form-group--error" if @form_object.errors[:case_type].any? %>>
+        <%= f.govuk_collection_radio_buttons :case_type,
+          Steps::Appeal::CaseTypeForm.choices, :to_s, nil,
+          legend: { text: t('.heading'), size: 'l' }, bold_labels: true
+        %>
 
-      <div class="govuk-form-group">
-        <label class="govuk-label" for="case_type_more">
-          <%= t('helpers.label.steps_appeal_case_type_form.case_type_select_other_hint') %>
-        </label>
-        <select class="govuk-select" id="case_type_more" name="steps_appeal_case_type_form[case_type_more]">
-          <option value="blank"></option>
-          <%= Steps::Appeal::CaseTypeForm.dropdown_choices.each do |choice|%>
-            <option value=<%= choice %>><%= I18n.t("helpers.label.steps_appeal_case_type_form.case_type_options.#{choice}") %></option>
-        <% end %>
-        </select>
-      </div>
-      <div class="govuk-form-group">
-        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
-          <%= f.govuk_check_box :case_type_not_present, true, label: { text: I18n.t('helpers.label.steps_appeal_case_type_form.case_type_not_present') }, multiple: false, class: 'govuk-checkboxes__input' do %>
-            <%= f.govuk_text_field :case_type_other_value, class: 'govuk-input govuk-!-width-full'%>
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="case_type_more">
+            <%= t('helpers.label.steps_appeal_case_type_form.case_type_select_other_hint') %>
+          </label>
+          <select class="govuk-select" id="case_type_more" name="steps_appeal_case_type_form[case_type_more]">
+            <option value="blank"></option>
+            <%= Steps::Appeal::CaseTypeForm.dropdown_choices.each do |choice|%>
+              <option value=<%= choice %>><%= I18n.t("helpers.label.steps_appeal_case_type_form.case_type_options.#{choice}") %></option>
           <% end %>
+          </select>
+        </div>
+        <div class="govuk-form-group">
+          <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+            <%= f.govuk_check_box :case_type_not_present, true, label: { text: I18n.t('helpers.label.steps_appeal_case_type_form.case_type_not_present') }, multiple: false, class: 'govuk-checkboxes__input' do %>
+              <%= f.govuk_text_field :case_type_other_value, class: 'govuk-input govuk-!-width-full'%>
+            <% end %>
+          </div>
         </div>
       </div>
+
 
       <%= f.submit class: 'govuk-button' %>
     <% end %>
