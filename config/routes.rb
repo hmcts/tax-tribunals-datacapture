@@ -26,6 +26,7 @@ class ActionDispatch::Routing::Mapper
 end
 
 Rails.application.routes.draw do
+  devise_for :employees
   # TODO: these redirections can be removed in the future, as it is to ensure
   # users accessing through the old domain are redirected to the new one
   #
