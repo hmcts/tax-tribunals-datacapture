@@ -3,7 +3,8 @@ module Steps::Appeal
     def edit
       @form_object = CaseTypeForm.new(
         tribunal_case: current_tribunal_case,
-        case_type: current_tribunal_case.case_type
+        case_type_not_present: current_tribunal_case.case_type_other_value.present?,
+        case_type_other_value: current_tribunal_case.case_type_other_value
       )
     end
 

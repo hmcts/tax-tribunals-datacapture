@@ -52,7 +52,7 @@ Rails.application.routes.draw do
         root 'case_type#edit'
 
         edit_step :case_type
-        edit_step :case_type_show_more
+        edit_step :case_type_details
         edit_step :dispute_type
         edit_step :penalty_amount
         edit_step :tax_amount
