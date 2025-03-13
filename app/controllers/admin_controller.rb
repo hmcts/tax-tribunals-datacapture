@@ -1,8 +1,7 @@
 class AdminController < ApplicationController
   before_action :authenticate_employee!
 
-  def index
-  end
+  def index; end
 
   protected
 

@@ -49,7 +49,7 @@ class NotifyMailer < GovukNotifyRails::Mailer
     )
   end
 
-  def reset_employee_password(emploee, token, _opts={})
+  def reset_employee_password(_emploee, token, _opts={})
     set_template(template(nil, :reset_password_instructions))
 
     set_personalisation(
