@@ -2,10 +2,6 @@ require 'rails_helper'
 
 RSpec.describe Admin::GlimrGenerationController, type: :controller do
   before do
-    allow(ENV).to receive(:fetch).with('ADMIN_USERNAME').and_return('admin')
-    allow(ENV).to receive(:fetch).with('ADMIN_PASSWORD').and_return(
-      '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08'
-    )
     allow(ENV).to receive(:fetch).with('GLIMR_API_URL',
                                        'https://glimr-api.taxtribunals.dsd.io/Live_API/api/tdsapi').and_return(
                                          'http://glimr'
@@ -33,6 +29,7 @@ RSpec.describe Admin::GlimrGenerationController, type: :controller do
     context 'with valid number of records and parameters' do
 
       before do
+        sign_in double('employee')
         allow(Admin::GenerateGlimrRecordJob).to receive(:perform_in)
 
         batch_double = instance_double("Sidekiq::Batch")
@@ -77,6 +74,7 @@ RSpec.describe Admin::GlimrGenerationController, type: :controller do
     end
 
     context 'with invalid number of records' do
+      before { sign_in double('employee') }
       it 'renders the new template with errors' do
         post :create, params: { 'number-of-records': '0' }
         expect(assigns(:errors)).to include(:number_of_records)
