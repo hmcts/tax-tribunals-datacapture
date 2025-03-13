@@ -30,7 +30,16 @@ class NotifyMailer < GovukNotifyRails::Mailer
   end
 
   # Triggered automatically by Devise when the user resets its password
-  def reset_password_instructions(user, token, _opts={})
+  def reset_password_instructions(record, token, _opts={})
+    if record.is_a?(User)
+      reset_user_password(record, token)
+    elsif record.is_a?(Employee)
+      reset_employee_password(record, token)
+    end
+    mail(to: record.email)
+  end
+
+  def reset_user_password(user, token, _opts={})
     tribunal_case = TribunalCase.latest_case(user)
     set_template(template(tribunal_case&.language, :reset_password_instructions))
 
@@ -38,8 +47,14 @@ class NotifyMailer < GovukNotifyRails::Mailer
       reset_url: edit_user_password_url(reset_password_token: token, locale: :en),
       reset_cy_url: edit_user_password_url(reset_password_token: token, locale: :cy)
     )
+  end
 
-    mail(to: user.email)
+  def reset_employee_password(emploee, token, _opts={})
+    set_template(template(nil, :reset_password_instructions))
+
+    set_personalisation(
+      reset_url: edit_employee_password_url(reset_password_token: token, locale: :en)
+    )
   end
 
   # Triggered automatically by Devise when the user changes its password

@@ -1,0 +1,19 @@
+<% title t('.page_title') %>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= govuk_error_summary(resource) %>
+
+    <h1 class="govuk-heading-l"><%=t '.heading' %></h1>
+
+    <%= t('users.shared.password_guidelines_html')  %>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :patch }) do |f| %>
+      <%= f.govuk_password_field :current_password, width: 'two-thirds', autocomplete: 'off', autofocus: true, spellcheck: 'false', value: nil %>
+      <%= f.govuk_password_field :password, width: 'two-thirds', autocomplete: 'off', spellcheck: 'false' %>
+
+      <%= f.submit t('helpers.submit.change_password'), class: 'govuk-button' %>
+      <%= link_to 'Cancel', root_path, class: 'govuk-button govuk-!-margin-left-5' %>
+    <% end %>
+  </div>
+</div>
