@@ -4,6 +4,8 @@ Devise.setup do |config|
   # Configure the class responsible to send e-mails.
   config.mailer = 'NotifyMailer'
 
+  config.scoped_views = true
+
   # Send a notification email when the user's password is changed
   config.send_password_change_notification = true
 

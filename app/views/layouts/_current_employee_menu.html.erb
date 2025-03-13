@@ -1,0 +1,16 @@
+<% if employee_signed_in? %>
+  <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide Top Level Navigation">Menu</button>
+  <nav>
+    <ul id="navigation" class="govuk-header__navigation" aria-label="Top Level Navigation">
+      <li class="govuk-header__navigation-item">
+        <%= link_to t('.change_password'), edit_employee_registration_path, class: 'govuk-header__link' %>
+      </li>
+      <li class="govuk-header__navigation-item">
+        <%= current_employee.email %>
+      </li>
+      <li class="govuk-header__navigation-item">
+        <%= button_to t('.logout'), destroy_employee_session_path, class: 'govuk-header__link app-header__logout-link', method: :delete %>
+      </li>
+    </ul>
+  </nav>
+<% end %>

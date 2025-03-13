@@ -1,12 +1,15 @@
 class AdminController < ApplicationController
-  before_action :authenticate
+  before_action :authenticate_employee!
+
+  def index
+  end
 
   protected
 
   def authenticate
-    authenticate_or_request_with_http_basic do |user, password|
-      credentials[user] == Digest::SHA256.hexdigest(password)
-    end
+    # authenticate_or_request_with_http_basic do |user, password|
+    #   credentials[user] == Digest::SHA256.hexdigest(password)
+    # end
   end
 
   # We are reusing the same credentials we originally created for the upload problems report.
