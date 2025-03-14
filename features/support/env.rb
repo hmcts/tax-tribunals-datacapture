@@ -13,6 +13,7 @@ require 'selenium-webdriver'
 require 'webmock'
 ENV['TEST_LOCALE'] = "en" if ENV['TEST_LOCALE'] != "cy"
 require_relative 'page_objects/base_page'
+require_relative 'document_upload_helper_stub'
 
 Dir[File.dirname(__FILE__) + '/page_objects/**/*.rb'].each { |f| require f }
 
@@ -37,6 +38,9 @@ Dir[File.dirname(__FILE__) + '/page_objects/**/*.rb'].each { |f| require f }
 # recommended as it will mask a lot of errors for you!
 #
 # ActionController::Base.allow_rescue = false
+#
+
+DocumentUploadHelperStub.stub_uploaded_document_methods
 
 Capybara.register_driver :selenium do |app|
   capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
