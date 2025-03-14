@@ -1,7 +1,7 @@
 Selenium::WebDriver.logger.level = :error
 
 Capybara.configure do |config|
-  driver = ENV['DRIVER']&.to_sym || :headless
+  driver = ENV['DRIVER']&.to_sym || :firefox
   config.default_driver = driver
   config.default_max_wait_time = 30
   config.match = :prefer_exact
@@ -28,9 +28,10 @@ end
 
 Capybara.register_driver :firefox do |app|
   options = Selenium::WebDriver::Firefox::Options.new
-  Capybara::Selenium::Driver.new(app, browser: :firefox, marionette: true, options: options)
+  options.args << '--headless'
+  options.args << '--disable-gpu'
+  Capybara::Selenium::Driver.new(app, browser: :firefox, options: options)
 end
-
 
 Capybara.register_driver :safari do |app|
   Capybara::Selenium::Driver.new(app, browser: :safari)
