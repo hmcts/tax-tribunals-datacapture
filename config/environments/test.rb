@@ -6,11 +6,6 @@ require "active_support/core_ext/integer/time"
 # and recreated between test runs. Don't rely on the data there!
 
 Rails.application.configure do
-  #Load settings.yml file initially
-  config.before_initialize do
-    Config.load_and_set_settings(Config.setting_files(Rails.root.join('config'), Rails.env))
-  end
-
   config.cache_classes = false
 
   # Eager loading loads your entire application. When running a single test locally,

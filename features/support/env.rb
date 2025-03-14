@@ -39,7 +39,7 @@ Dir[File.dirname(__FILE__) + '/page_objects/**/*.rb'].each { |f| require f }
 #
 # ActionController::Base.allow_rescue = false
 #
-# Stub methods in document_upload_helper.rb to not use Azure storage in tests
+
 DocumentUploadHelperStub.stub_uploaded_document_methods
 
 Capybara.register_driver :selenium do |app|
