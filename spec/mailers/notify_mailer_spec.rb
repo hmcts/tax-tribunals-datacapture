@@ -310,24 +310,29 @@ RSpec.describe NotifyMailer, type: :mailer do
     end
   end
 
-  describe 'application_details_text' do
-    before do
-      Timecop.freeze(Time.zone.local(2017, 1, 1, 12, 0, 0))
+  # def reset_employee_password(_emploee, token, _opts={})
+  # set_template(template(nil, :reset_password_instructions))
+
+  # set_personalisation(
+  #   reset_url: edit_employee_password_url(reset_password_token: token, locale: :en)
+  # )
+  # end
+
+  describe '#reset_password_instructions for Employee' do
+    let(:mail) { described_class.reset_password_instructions(employee, token) }
+    let(:employee) { Employee.new(email: 'employee@example.com') }
+    let(:token) { '0xDEADBEEF' }
+
+    it_behaves_like 'a Notify mail', template_id: 'NOTIFY_RESET_PASSWORD_TEMPLATE_ID'
+
+    it 'has the right keys' do
+      expect(mail.govuk_notify_personalisation).to eq({
+        reset_url: "https://tax.justice.uk/employees/password/edit?locale=en&reset_password_token=0xDEADBEEF"
+      })
     end
 
-    after do
-      Timecop.return
-    end
-
-    languages = [
-      { name: 'English', template_id: 'NOTIFY_SEND_APPLICATION_DETAIL_TEXT_TEMPLATE_ID' },
-      { name: 'Welsh', template_id: 'NOTIFY_SEND_APPLICATION_DETAIL_TEXT_CY_TEMPLATE_ID' }
-    ]
-
-    languages.each do |language|
-      context "with tribunal_case language set to #{language[:name]}" do
-        include_examples 'sends the correct text message', language[:name], language[:template_id]
-      end
+    it 'sends the email to the correct recipient' do
+      expect(mail.to).to eq(['employee@example.com'])
     end
   end
 
