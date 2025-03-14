@@ -193,6 +193,7 @@ Rails.application.routes.draw do
     end
     mount Sidekiq::Web => "/sidekiq"
   end
+  get 'admin/index', to: 'admin#index'
 
   scope module: 'tax_tribs' do
     get '/health', to: 'status#index'
@@ -225,4 +226,6 @@ Rails.application.routes.draw do
   match '*path', to: 'errors#not_found', via: :all, constraints:
                                                       lambda { |_request| !Rails.application.config.consider_all_requests_local }
   # :nocov:
+
+  devise_for :employees, controllers: { sessions: 'employees/sessions', passwords: 'employees/passwords' }
 end
