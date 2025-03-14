@@ -227,5 +227,5 @@ Rails.application.routes.draw do
                                                       lambda { |_request| !Rails.application.config.consider_all_requests_local }
   # :nocov:
 
-  devise_for :employees, controllers: { sessions: 'employees/sessions' }
+  devise_for :employees, controllers: { sessions: 'employees/sessions', passwords: 'employees/passwords' }
 end
