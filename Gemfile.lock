@@ -212,6 +212,8 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    devise-security (0.18.0)
+      devise (>= 4.3.0)
     diff-lcs (1.6.0)
     docile (1.4.1)
     domain_name (0.6.20240107)
@@ -674,6 +676,7 @@ DEPENDENCIES
   cucumber-rails (~> 3.0)
   database_cleaner-active_record
   devise
+  devise-security
   dotenv-rails
   factory_bot_rails
   faker
