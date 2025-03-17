@@ -14,59 +14,34 @@ RSpec.describe TaxTribs::CaseCreator do
 
   describe '#call' do
     before do
-      allow(TaxTribs::GlimrNewCase).to receive(:new).with(tribunal_case).and_return(glimr_new_case_double)
       Timecop.freeze(current_time)
+      allow(GlimrApiCallJob).to receive(:perform_later)
     end
 
     after { Timecop.return }
 
-    context 'registering the case into glimr' do
-      context 'marking the tribunal case as `submit_in_progress`' do
-        let(:glimr_new_case_double) {
-          instance_double(TaxTribs::GlimrNewCase, call: double(case_reference: 'TC/2017/12345', confirmation_code: 'ABCDEF'))
-        }
-
-        it 'should mark the tribunal case as `submit_in_progress` while GLiMR call is executed' do
-          expect(tribunal_case).to receive(:update).with(case_status: CaseStatus::SUBMIT_IN_PROGRESS)
-          expect(tribunal_case).to receive(:update).with(
-            case_reference: 'TC/2017/12345', case_status: CaseStatus::SUBMITTED,
-            submitted_at: current_time
-          )
-          subject.call
-        end
+    context 'successful glimr call' do
+      it 'should mark the tribunal case as `submitted`' do
+        expect(tribunal_case).to receive(:update).with(
+          case_status: CaseStatus::SUBMITTED,
+          submitted_at: current_time
+        )
+        subject.call
       end
 
-      context 'when glimr call was success' do
-        let(:glimr_new_case_double) {
-          instance_double(TaxTribs::GlimrNewCase, call: double(case_reference: 'TC/2017/12345', confirmation_code: 'ABCDEF'))
-        }
-
-        it 'should store the case reference in the DB entry' do
-          subject.call
-          expect(tribunal_case.case_reference).to eq('TC/2017/12345')
-        end
-
-        it 'should mark the case as `submitted`' do
-          subject.call
-          expect(tribunal_case.case_status).to eq(CaseStatus::SUBMITTED)
-        end
+      it 'should enqueue glimr api call job' do
+        expect(GlimrApiCallJob).to receive(:perform_later).with(tribunal_case)
+        subject.call
       end
+    end
 
-      context 'when glimr call fails' do
-        let(:glimr_new_case_double) {
-          instance_double(TaxTribs::GlimrNewCase, call: double(case_reference: nil, confirmation_code: nil))
-        }
-
-        it 'should remain with a nil case reference in the DB entry' do
-          subject.call
-          expect(tribunal_case.case_reference).to be_nil
-        end
-
-        it 'should mark the case as `submitted` regardless' do
-          subject.call
-          expect(tribunal_case.case_status).to eq(CaseStatus::SUBMITTED)
-          expect(tribunal_case.submitted_at.strftime("%Y-%m-%d %H:%M:%S")).to eq(current_time.strftime("%Y-%m-%d %H:%M:%S"))
-        end
+    context 'unsuccessful glimr call' do
+      it 'should mark the tribunal case as `submitted`' do
+        expect(tribunal_case).to receive(:update).with(
+          case_status: CaseStatus::SUBMITTED,
+          submitted_at: current_time
+        )
+        subject.call
       end
     end
   end
