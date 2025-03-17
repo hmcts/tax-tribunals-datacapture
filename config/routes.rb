@@ -29,11 +29,11 @@ Rails.application.routes.draw do
   # TODO: these redirections can be removed in the future, as it is to ensure
   # users accessing through the old domain are redirected to the new one
   #
-  constraints host: 'tax-tribunal.service.dsd.io' do
-    get '/' => redirect(public_domain, status: 301)
-    match '*path.:format' => redirect("#{public_domain}/%{path}.%{format}", status: 301), via: :get
-    match '*path' => redirect("#{public_domain}/%{path}", status: 301), via: :get
-  end
+  # constraints host: 'tax-tribunal.service.dsd.io' do
+  #   get '/' => redirect(public_domain, status: 301)
+  #   match '*path.:format' => redirect("#{public_domain}/%{path}.%{format}", status: 301), via: :get
+  #   match '*path' => redirect("#{public_domain}/%{path}", status: 301), via: :get
+  # end
 
   scope "/:locale", locale: /en|cy/ do
     devise_for :users,
