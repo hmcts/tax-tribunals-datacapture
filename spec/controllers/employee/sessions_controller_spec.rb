@@ -42,7 +42,7 @@ RSpec.describe Employees::SessionsController, type: :controller do
 
     it 'signs out the employee and redirects to the sign-in page' do
       delete :destroy
-      expect(response).to redirect_to(root_path)
+      expect(response).to redirect_to(new_employee_session_path)
       expect(controller.current_employee).to be_nil
     end
   end

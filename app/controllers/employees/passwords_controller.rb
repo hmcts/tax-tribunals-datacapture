@@ -29,6 +29,6 @@ class Employees::PasswordsController < Devise::PasswordsController
 
   # The path used after sending reset password instructions
   def after_sending_reset_password_instructions_path_for(_resource_name)
-    root_path
+    new_employee_session_path
   end
 end

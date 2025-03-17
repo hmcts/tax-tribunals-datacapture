@@ -18,4 +18,7 @@ class Employees::SessionsController < Devise::SessionsController
   #   super
   # end
 
+  def after_sign_out_path_for(_resource)
+    new_employee_session_path
+  end
 end

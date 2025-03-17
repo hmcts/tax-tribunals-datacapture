@@ -6,7 +6,7 @@ RSpec.describe Employees::PasswordsController do
 
   describe '#after_sending_reset_password_instructions_path_for' do
     it 'redirects to the root path' do
-      expect(subject.after_sending_reset_password_instructions_path_for(:employee)).to eq(root_path)
+      expect(subject.after_sending_reset_password_instructions_path_for(:employee)).to eq(new_employee_session_path)
     end
   end
 
@@ -16,7 +16,7 @@ RSpec.describe Employees::PasswordsController do
     context 'when the employee exists' do
       it 'sends reset password instructions' do
         post :create, params: { employee: { email: employee.email } }
-        expect(response).to redirect_to(root_path)
+        expect(response).to redirect_to(new_employee_session_path)
         expect(NotifyMailer).to have_received(:reset_password_instructions)
       end
     end
