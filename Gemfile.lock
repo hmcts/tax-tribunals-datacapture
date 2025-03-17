@@ -693,7 +693,7 @@ DEPENDENCIES
   mutant-license (= 0.1.1.2.1739399027284447558325915053311580324856.4)!
   mutant-rspec
   net-pop!
-  nokogiri (>= 1.18.3)
+  nokogiri (>= 1.16.2)
   ostruct
   pg
   phantomjs
@@ -743,7 +743,7 @@ DEPENDENCIES
   zendesk_api (~> 1.28)
 
 RUBY VERSION
-   ruby 3.4.2p28
+   ruby 3.4.1p0
 
 BUNDLED WITH
    2.6.2
