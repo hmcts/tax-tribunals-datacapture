@@ -1,0 +1,36 @@
+<% title t('.page_title') %>
+<h1 class="govuk-heading-l">List of Employees</h1>
+
+<%= form_for :employee, url: employees_accounts_filtered_path, method: :post, local: true do |form| %>
+  <div class="govuk-form-group">
+    <%= form.label :status, t('.status_label'), class: 'govuk-label' %>
+    <%= form.select :status, options_for_select([['Active', 'active'], ['Inactive', 'inactive']], @status), { prompt: 'Please select' }, class: 'govuk-select' %>
+  </div>
+  <div class="govuk-form-group">
+    <%= form.submit t('.filter'), class: 'govuk-button' %>
+
+    <%= link_to t('.clear'), employees_accounts_path, class: 'govuk-button govuk-!-margin-left-5' %>
+  </div>
+<% end %>
+
+<table class="govuk-table">
+  <caption class="govuk-table__caption">Employee Accounts</caption>
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header">Full name</th>
+      <th scope="col" class="govuk-table__header">Email</th>
+      <th scope="col" class="govuk-table__header">Role</th>
+      <th scope="col" class="govuk-table__header">Status</th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+    <% @employees.each do |employee| %>
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell"><%= employee.full_name %></td>
+        <td class="govuk-table__cell"><%= employee.email %></td>
+        <td class="govuk-table__cell"><%= employee.role %></td>
+        <td class="govuk-table__cell"><%= t('.active.' + employee.active?.to_s) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

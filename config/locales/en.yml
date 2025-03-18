@@ -2029,3 +2029,13 @@ en:
       edit:
         page_title: 'Employee edit'
         heading: 'Change your password'
+    accounts:
+      index:
+        page_title: 'Employee accounts'
+        heading: 'Employee accounts'
+        active:
+          true: 'Active'
+          false: 'Inactive'
+        status_label: 'Status'
+        filter: 'List staff'
+        clear: 'Clear'

@@ -30,6 +30,11 @@ Rails.application.routes.draw do
   # users accessing through the old domain are redirected to the new one
   #
   devise_for :employees, controllers: { sessions: 'employees/sessions', passwords: 'employees/passwords' }
+  namespace :employees do
+    get 'accounts', to: 'accounts#index'
+    post 'accounts_filtered', to: 'accounts#index'
+  end
+
 
   constraints host: 'tax-tribunal.service.dsd.io' do
     get '/' => redirect(public_domain, status: 301)
