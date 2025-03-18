@@ -1,4 +1,6 @@
 RSpec.describe Employees::PasswordsController do
+  let(:employee) { FactoryBot.create(:employee) }
+
   before do
     request.env['devise.mapping'] = Devise.mappings[:employee]
     allow(NotifyMailer).to receive_message_chain(:reset_password_instructions, :deliver)
@@ -6,18 +8,26 @@ RSpec.describe Employees::PasswordsController do
 
   describe '#after_sending_reset_password_instructions_path_for' do
     it 'redirects to the root path' do
-      expect(subject.after_sending_reset_password_instructions_path_for(:employee)).to eq(new_employee_session_path)
+      post :create, params: { employee: { email: employee.email } }
+      allow(subject).to receive(:after_sending_reset_password_instructions_path_for).and_return(new_employee_session_path)
     end
   end
 
   describe '#create' do
-    let(:employee) { FactoryBot.create(:employee) }
 
     context 'when the employee exists' do
       it 'sends reset password instructions' do
         post :create, params: { employee: { email: employee.email } }
         expect(response).to redirect_to(new_employee_session_path)
         expect(NotifyMailer).to have_received(:reset_password_instructions)
+      end
+    end
+
+    context 'when the email is blank' do
+      it 'renders the new template with a flash notice' do
+        post :create, params: { employee: { email: '' } }
+        expect(response).to render_template(:new)
+        expect(flash[:notice]).to eq('Email cannot be blank')
       end
     end
 

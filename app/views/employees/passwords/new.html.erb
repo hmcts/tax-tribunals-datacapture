@@ -14,7 +14,7 @@
       <%= f.govuk_email_field :email, width: 'two-thirds', autocomplete: 'email', spellcheck: 'false', autofocus: true %>
       <div class="util_mb-0">
         <%= f.submit t('helpers.submit.reset_password'), class: 'govuk-button' %>
-        <%= link_to 'Cancel', root_path, class: 'govuk-button govuk-!-margin-left-5' %>
+        <%= link_to 'Cancel', new_employee_session_path, class: 'govuk-button govuk-!-margin-left-5' %>
       </div>
     <% end %>
   </div>
