@@ -2029,8 +2029,8 @@ en:
       edit:
         page_title: 'Employee edit'
         heading: 'Change your password'
-        password_label: 'New password'
-        password_confirmation: 'Password confirmation'
+        current_password: 'Current password'
+        new_password: 'New password'
     accounts:
       index:
         page_title: 'Employee accounts'
