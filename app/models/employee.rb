@@ -2,7 +2,7 @@ class Employee < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :secure_validatable, :confirmable, :trackable
+         :recoverable, :rememberable, :validatable, :confirmable, :trackable
 
   scope :active_list, -> { where('last_sign_in_at > ?', 3.months.ago) }
   scope :inactive_list, -> { where('last_sign_in_at <= ? OR last_sign_in_at IS NULL', 3.months.ago) }
