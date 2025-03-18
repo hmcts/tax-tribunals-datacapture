@@ -2018,7 +2018,9 @@ en:
         account_text: Remember, if you haven't signed in for 30 days we disable your account for security reasons.
       edit:
         page_title: 'Employee change password'
-        heading: 'Change your password'
+        heading: 'Reset your password'
+        new_password: 'New password'
+        confirm_new_password: 'Confirm new password'
     registrations:
       new:
         page_title: 'Employee sign up'
