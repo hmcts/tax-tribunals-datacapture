@@ -62,6 +62,7 @@ RSpec.describe NotifyMailer, type: :mailer do
     allow(ENV).to receive(:fetch).with('NOTIFY_REPORT_PROBLEM_TEMPLATE_ID').and_return('report-problem-template')
     allow(ENV).to receive(:fetch).with('NOTIFY_GLIMR_GENERATION_COMPLETE_TEMPLATE_ID').and_return('glimr-generation-template')
     allow(ENV).to receive(:fetch).with('GOVUK_NOTIFY_API_KEY').and_return('dev_test-7bdad799-cfd7-4b9c-aafd-5d3162595af8-9e8cfc38-73f5-4164-b2f5-d5a9aa25bcdb')
+    allow(ENV).to receive(:fetch).with('EXTERNAL_URL').and_return('https://tax.justice.uk')
     stub_const('GOVUK_NOTIFY_TEMPLATES', govuk_notify_templates)
   end
 
@@ -325,9 +326,16 @@ RSpec.describe NotifyMailer, type: :mailer do
 
     it_behaves_like 'a Notify mail', template_id: 'NOTIFY_RESET_PASSWORD_TEMPLATE_ID'
 
-    it 'has the right keys' do
+    it 'has the right keys with tax host' do
       expect(mail.govuk_notify_personalisation).to eq({
         reset_url: "https://tax.justice.uk/employees/password/edit?locale=en&reset_password_token=0xDEADBEEF"
+      })
+    end
+
+    it 'has the right keys with localhost' do
+      allow(ENV).to receive(:fetch).with('EXTERNAL_URL').and_return('https://localhost')
+      expect(mail.govuk_notify_personalisation).to eq({
+        reset_url: "https://localhost/employees/password/edit?locale=en&reset_password_token=0xDEADBEEF"
       })
     end
 

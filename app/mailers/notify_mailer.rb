@@ -53,7 +53,7 @@ class NotifyMailer < GovukNotifyRails::Mailer
     set_template(template(nil, :reset_password_instructions))
 
     set_personalisation(
-      reset_url: edit_employee_password_url(reset_password_token: token, locale: :en)
+      reset_url: edit_employee_password_url(reset_password_token: token, locale: :en, host: url_host)
     )
   end
 
@@ -200,5 +200,9 @@ class NotifyMailer < GovukNotifyRails::Mailer
 
   def filter_key?(key)
     PERSONALISATION_ERROR_FILTER.include?(key)
+  end
+
+  def url_host
+    ENV.fetch('EXTERNAL_URL')
   end
 end
