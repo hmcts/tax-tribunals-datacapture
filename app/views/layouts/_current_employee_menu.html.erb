@@ -3,7 +3,10 @@
   <nav>
     <ul id="navigation" class="govuk-header__navigation" aria-label="Top Level Navigation">
       <li class="govuk-header__navigation-item">
-        <%= link_to t('.change_password'), edit_employee_registration_path, class: 'govuk-header__link' %>
+        <%= link_to t('.manage_employees'), employees_accounts_path, class: 'govuk-header__link' %>
+      </li>
+      <li class="govuk-header__navigation-item">
+        <%= link_to t('.employee_profile'), employees_account_path(current_employee), class: 'govuk-header__link' %>
       </li>
       <li class="govuk-header__navigation-item">
         <%= current_employee.email %>

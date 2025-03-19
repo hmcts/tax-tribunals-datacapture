@@ -13,7 +13,7 @@
       <%= f.govuk_password_field :password, width: 'two-thirds', autocomplete: 'off', spellcheck: 'false', label: { text: t('.new_password') } %>
 
       <%= f.submit t('helpers.submit.change_password'), class: 'govuk-button' %>
-      <%= link_to 'Cancel', root_path, class: 'govuk-button govuk-!-margin-left-5' %>
+      <%= link_to 'Cancel', employees_account_path(resource), class: 'govuk-button govuk-!-margin-left-5' %>
     <% end %>
   </div>
 </div>

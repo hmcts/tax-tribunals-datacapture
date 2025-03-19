@@ -1,5 +1,7 @@
 class Employees::AccountsController < ApplicationController
   before_action :authenticate_employee!
+  before_action :check_edit_permmission, only: %i[edit update]
+  before_action :load_employee, only: %i[edit update show]
 
   def index
     redirect_with_warning unless current_employee&.admin?
@@ -11,7 +13,24 @@ class Employees::AccountsController < ApplicationController
     end
   end
 
+  def show; end
+  def edit; end
+
+  def update
+    if @employee.update(employee_params)
+      flash[:notice] = "Staff account successfully updated."
+      redirect_to employees_accounts_path
+    else
+      flash[:alert] = @employee.errors.full_messages.join(', ')
+      render :edit
+    end
+  end
+
   protected
+
+  def load_employee
+    @employee = Employee.find(params[:id])
+  end
 
   def redirect_with_warning
     flash[:notice] = 'You are not authorized to access this page.'
@@ -32,5 +51,14 @@ class Employees::AccountsController < ApplicationController
                  else
                    Employee.all
                  end
+  end
+
+  def check_edit_permmission
+    return if current_employee&.admin? || current_employee.id == params[:id].to_i
+    redirect_with_warning
+  end
+
+  def employee_params
+    params.expect(employee: [:full_name, :role, :email])
   end
 end

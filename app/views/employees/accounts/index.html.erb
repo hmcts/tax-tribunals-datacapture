@@ -21,15 +21,17 @@
       <th scope="col" class="govuk-table__header">Email</th>
       <th scope="col" class="govuk-table__header">Role</th>
       <th scope="col" class="govuk-table__header">Status</th>
+      <th scope="col" class="govuk-table__header">Update</th>
     </tr>
   </thead>
   <tbody class="govuk-table__body">
     <% @employees.each do |employee| %>
       <tr class="govuk-table__row">
-        <td class="govuk-table__cell"><%= employee.full_name %></td>
+        <td class="govuk-table__cell"><%= link_to employee.full_name, employees_account_path(employee), class: "govuk-link" %></td>
         <td class="govuk-table__cell"><%= employee.email %></td>
-        <td class="govuk-table__cell"><%= employee.role %></td>
+        <td class="govuk-table__cell"><%= employee.role.capitalize %></td>
         <td class="govuk-table__cell"><%= t('.active.' + employee.active?.to_s) %></td>
+        <td class="govuk-table__cell"><%= link_to t('.manage_account'), edit_employees_account_path(employee) %></td>
       </tr>
     <% end %>
   </tbody>

@@ -1,0 +1,51 @@
+<% page_title = current_employee == @employee ? t('.my_page_title') : t('.page_title') %>
+<% title page_title %>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl"> <%= page_title %> </h1>
+
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Name</dt>
+        <dd class="govuk-summary-list__value"><%= @employee.full_name %></dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Email</dt>
+        <dd class="govuk-summary-list__value"><%= @employee.email %></dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Position</dt>
+        <dd class="govuk-summary-list__value"><%= @employee.role.capitalize %></dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Last sign in</dt>
+        <dd class="govuk-summary-list__value"><%= @employee.last_sign_in_at&.to_fs(:db) %></dd>
+      </div>
+    </dl>
+
+    <p class="govuk-body">
+      <% if current_employee == @employee %>
+        <p class="govuk-body">
+          <%= link_to "Change my account", edit_employees_account_path(@employee), class: "govuk-link" %>
+        </p>
+        <p class="govuk-body">
+          <%= link_to "Change my password", edit_employee_registration_path(@employee), class: "govuk-link" %>
+        </p>
+        <% if current_employee.admin? %>
+          <p class="govuk-body">
+            <%= link_to "Back to manage staff account", employees_accounts_path, class: "govuk-link" %>
+          </p>
+        <% end %>
+      </li>
+      <% elsif current_employee.admin? %>
+        <p class="govuk-body">
+          <%= link_to "Change staff account", edit_employees_account_path(@employee), class: "govuk-link" %>
+        </p>
+        <p class="govuk-body">
+          <%= link_to "Back to manage staff account", employees_accounts_path, class: "govuk-link" %>
+        </p>
+      <% end %>
+    </p>
+  </div>
+</div>

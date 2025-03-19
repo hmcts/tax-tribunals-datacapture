@@ -825,6 +825,15 @@ en:
             current_password:
               blank: Please enter your current password
               invalid: The password is not valid
+
+        employee:
+            attributes:
+              full_name:
+                blank: Full name can't be blank
+              email:
+                blank: Email can't be blank
+              password:
+                blank: Password can't be blank
   helpers:
     fieldset:
       steps_appeal_case_type_form:
@@ -1581,6 +1590,8 @@ en:
     current_employee_menu:
       logout: Sign out
       change_password: Change password
+      manage_employees: "Manage employees"
+      employee_profile: "My profile"
     govuk_template:
       skip_to_main_content: Skip to main content
       default_page_title: GOV.UK - The best place to find government services and information
@@ -2021,6 +2032,8 @@ en:
         heading: 'Reset your password'
         new_password: 'New password'
         confirm_new_password: 'Confirm new password'
+        reset_password_token: 'asdads'
+
     registrations:
       new:
         page_title: 'Employee sign up'
@@ -2043,3 +2056,9 @@ en:
         status_label: 'Status'
         filter: 'List staff'
         clear: 'Clear'
+        manage_account: "Manage account details"
+      edit:
+        page_title: 'Change staff account'
+      show:
+        my_page_title: "My account details"
+        page_title: "Staff account details"
