@@ -1,5 +1,5 @@
-class Employees::AccountsController < ApplicationController
-  before_action :authenticate_employee!
+class Employees::AccountsController < AdminController
+  # before_action :authenticate_employee!
   before_action :check_edit_permmission, only: %i[edit update]
   before_action :load_employee, only: %i[edit update show]
 
@@ -54,7 +54,7 @@ class Employees::AccountsController < ApplicationController
   end
 
   def check_edit_permmission
-    return if current_employee.id == params[:id] || current_employee&.admin?
+    return if current_employee.present? && (current_employee.id == params[:id] || current_employee&.admin?)
     redirect_with_warning
   end
 

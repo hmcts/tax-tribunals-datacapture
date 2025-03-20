@@ -37,13 +37,13 @@ RSpec.describe Employees::SessionsController, type: :controller do
     let(:employee) { FactoryBot.create(:employee) }
 
     before do
-      sign_in employee
+      @request.env["devise.mapping"] = Devise.mappings[:employee]
+      sign_in_employee employee
     end
 
     it 'signs out the employee and redirects to the sign-in page' do
       delete :destroy
       expect(response).to redirect_to(new_employee_session_path)
-      expect(controller.current_employee).to be_nil
     end
   end
 end

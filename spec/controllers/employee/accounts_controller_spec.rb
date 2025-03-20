@@ -1,5 +1,8 @@
+require 'rails_helper'
+
 RSpec.describe Employees::AccountsController, type: :controller do
   let(:employee) { FactoryBot.create(:employee) }
+  let(:employee2) { FactoryBot.create(:employee) }
   let(:admin) { FactoryBot.create(:employee, role: 'admin', last_sign_in_at: 2.weeks.ago) }
 
   describe 'GET #index' do
@@ -12,7 +15,8 @@ RSpec.describe Employees::AccountsController, type: :controller do
 
     context 'when the employee is authenticated but not an admin' do
       before do
-        sign_in employee
+        @request.env["devise.mapping"] = Devise.mappings[:employee]
+        sign_in_employee employee
       end
 
       it 'redirects to the root path with a warning' do
@@ -24,7 +28,8 @@ RSpec.describe Employees::AccountsController, type: :controller do
 
     context 'when the employee is an admin' do
       before do
-        sign_in admin
+        @request.env["devise.mapping"] = Devise.mappings[:employee]
+        sign_in_employee admin
       end
 
       it 'assigns all employees when no status is provided' do
@@ -53,6 +58,58 @@ RSpec.describe Employees::AccountsController, type: :controller do
         expect(assigns(:status)).to eq('inactive')
       end
 
+    end
+  end
+
+  describe 'GET #edit' do
+    context 'when the employee is not authenticated' do
+      it 'redirects to the login page' do
+        get :edit, params: { id: employee.id }
+        expect(response).to redirect_to(new_employee_session_path)
+      end
+    end
+
+    context 'when the employee is authenticated but not an admin' do
+      before do
+        @request.env["devise.mapping"] = Devise.mappings[:employee]
+        sign_in_employee employee2
+      end
+
+      it 'redirects to the root path with a warning' do
+        get :edit, params: { id: employee.id }
+        expect(response).to redirect_to(root_path)
+        expect(flash[:notice]).to eq('You are not authorized to access this page.')
+      end
+    end
+
+    context 'when the employee edits his account' do
+      before do
+        @request.env["devise.mapping"] = Devise.mappings[:employee]
+        sign_in_employee employee
+      end
+
+      it 'redirects to the root path with a warning' do
+        get :edit, params: { id: employee.id }
+        expect(response).to render_template(:edit)
+        expect(assigns(:employee)).to eq(employee)
+      end
+    end
+
+    context 'when the employee is an admin' do
+      before do
+        @request.env["devise.mapping"] = Devise.mappings[:admin]
+        sign_in_employee admin
+      end
+
+      it 'assigns the requested employee to @employee' do
+        get :edit, params: { id: employee.id }
+        expect(assigns(:employee)).to eq(employee)
+      end
+
+      it 'renders the edit template' do
+        get :edit, params: { id: employee.id }
+        expect(response).to render_template(:edit)
+      end
     end
   end
 end
