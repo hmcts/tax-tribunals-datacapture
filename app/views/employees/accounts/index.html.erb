@@ -1,6 +1,10 @@
 <% title t('.page_title') %>
-<h1 class="govuk-heading-l">List of Employees</h1>
+<h1 class="govuk-heading-l">Manage staff accounts</h1>
 
+<p class="govuk-body">
+  You can use the filter below to see whether a user is active (has logged on in the last 90 days) or inactive (has not logged on in the last 90 days).
+  To use the filter, select 'Active' or 'Inactive' from the drop-down list and then click the List staff button.
+</p>
 <%= form_for :employee, url: employees_accounts_filtered_path, method: :post, local: true do |form| %>
   <div class="govuk-form-group">
     <%= form.label :status, t('.status_label'), class: 'govuk-label' %>
@@ -14,7 +18,6 @@
 <% end %>
 
 <table class="govuk-table">
-  <caption class="govuk-table__caption">Employee Accounts</caption>
   <thead class="govuk-table__head">
     <tr class="govuk-table__row">
       <th scope="col" class="govuk-table__header">Full name</th>
