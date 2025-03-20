@@ -1,6 +1,6 @@
 class Employees::AccountsController < AdminController
-  # before_action :authenticate_employee!
   before_action :check_edit_permmission, only: %i[edit update]
+  before_action :check_destroy_permmission, only: %i[destroy]
   before_action :load_employee, only: %i[edit update show destroy]
 
   def index
@@ -27,16 +27,12 @@ class Employees::AccountsController < AdminController
   end
 
   def destroy
-    if current_employee&.admin? && @employee != current_employee
-      if @employee.destroy
-        flash[:notice] = "Staff account successfully deleted."
-        redirect_to employees_accounts_path
-      else
-        render :edit
-      end
+    if @employee.destroy
+      flash[:notice] = "Staff account successfully deleted."
+      redirect_to employees_accounts_path
     else
-      flash[:notice] = "You are not authorized to delete this account."
-      redirect_to root_url
+      flash[:alert] = @employee.errors.full_messages.join(', ')
+      render :edit
     end
   end
 
@@ -46,8 +42,8 @@ class Employees::AccountsController < AdminController
     @employee = Employee.find(params[:id])
   end
 
-  def redirect_with_warning
-    flash[:notice] = 'You are not authorized to access this page.'
+  def redirect_with_warning(message = 'You are not authorized to access this page.')
+    flash[:notice] = message
     redirect_to root_path
   end
 
@@ -70,6 +66,11 @@ class Employees::AccountsController < AdminController
   def check_edit_permmission
     return if current_employee.present? && (current_employee.id == params[:id] || current_employee&.admin?)
     redirect_with_warning
+  end
+
+  def check_destroy_permmission
+    return if current_employee.present? && current_employee&.admin? && current_employee.id != params[:id]
+    redirect_with_warning('You are not authorized to delete this account.')
   end
 
   def employee_params
