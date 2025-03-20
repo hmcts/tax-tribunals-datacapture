@@ -20,9 +20,8 @@
         <span class="govuk-visually-hidden">Error:</span> <%= @employee.errors[:email].first %>
       </p>
     <% end %>
-    <%= f.email_field :email, class: "govuk-input" %>
+    <%= f.email_field :email, class: "govuk-input", disabled: true %>
   </div>
-
 
   <% if current_employee.admin? %>
     <div class="govuk-form-group">

@@ -9,7 +9,7 @@ class Employees::AccountsController < AdminController
     if params_permit.present?
       filter_employess(params_permit['status'])
     else
-      @employees = Employee.all
+      @employees = Employee.all.default_order
     end
   end
 
@@ -55,9 +55,9 @@ class Employees::AccountsController < AdminController
   def filter_employess(status)
     @status = status
     @employees = if status == 'active'
-                   Employee.active_list
+                   Employee.active_list.default_order
                  elsif status == 'inactive'
-                   Employee.inactive_list
+                   Employee.inactive_list.default_order
                  else
                    Employee.all
                  end
