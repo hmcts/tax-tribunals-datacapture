@@ -1,7 +1,7 @@
 class Employees::AccountsController < AdminController
   # before_action :authenticate_employee!
   before_action :check_edit_permmission, only: %i[edit update]
-  before_action :load_employee, only: %i[edit update show]
+  before_action :load_employee, only: %i[edit update show destroy]
 
   def index
     redirect_with_warning unless current_employee&.admin?
@@ -23,6 +23,20 @@ class Employees::AccountsController < AdminController
     else
       flash[:alert] = @employee.errors.full_messages.join(', ')
       render :edit
+    end
+  end
+
+  def destroy
+    if current_employee&.admin? && @employee != current_employee
+      if @employee.destroy
+        flash[:notice] = "Staff account successfully deleted."
+        redirect_to employees_accounts_path
+      else
+        render :edit
+      end
+    else
+      flash[:notice] = "You are not authorized to delete this account."
+      redirect_to root_url
     end
   end
 

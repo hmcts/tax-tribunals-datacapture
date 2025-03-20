@@ -112,4 +112,42 @@ RSpec.describe Employees::AccountsController, type: :controller do
       end
     end
   end
+
+  describe 'DELETE #destroy' do
+    context 'when the employee is not authenticated' do
+      it 'redirects to the login page' do
+        delete :destroy, params: { id: employee.id }
+        expect(response).to redirect_to(new_employee_session_path)
+      end
+    end
+
+    context 'when the employee is authenticated but not an admin' do
+      before do
+        @request.env["devise.mapping"] = Devise.mappings[:employee]
+        sign_in_employee employee2
+      end
+
+      it 'redirects to the root path with a warning' do
+        delete :destroy, params: { id: employee.id }
+        expect(response).to redirect_to(root_path)
+        expect(flash[:notice]).to eq('You are not authorized to delete this account.')
+      end
+    end
+
+    context 'when the employee is an admin' do
+      before do
+        @request.env["devise.mapping"] = Devise.mappings[:admin]
+        sign_in_employee admin
+      end
+
+      it 'deletes the employee and redirects to the index page' do
+        employee_to_delete = FactoryBot.create(:employee)
+        expect {
+          delete :destroy, params: { id: employee_to_delete.id }
+        }.to change(Employee, :count).by(-1)
+        expect(response).to redirect_to(employees_accounts_path)
+        expect(flash[:notice]).to eq('Staff account successfully deleted.')
+      end
+    end
+  end
 end
