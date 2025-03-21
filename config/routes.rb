@@ -29,7 +29,12 @@ Rails.application.routes.draw do
   # TODO: these redirections can be removed in the future, as it is to ensure
   # users accessing through the old domain are redirected to the new one
   #
-  devise_for :employees, controllers: { sessions: 'employees/sessions', passwords: 'employees/passwords', registrations: 'employees/registrations' }
+  devise_for :employees, controllers: {
+    sessions: 'employees/sessions',
+    passwords: 'employees/passwords',
+    registrations: 'employees/registrations',
+    invitations: 'employees/invitations'
+  }
   namespace :employees do
     get 'accounts', to: 'accounts#index'
     post 'accounts_filtered', to: 'accounts#index'

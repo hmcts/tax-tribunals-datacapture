@@ -1,0 +1,24 @@
+<% title "devise.invitations.edit.header" %>
+
+<%= govuk_error_summary(resource) %>
+
+<h2><%= t "devise.invitations.edit.header" %></h2>
+
+<%= form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :put, class: "govuk-form" }) do |f| %>
+
+  <%= f.hidden_field :invitation_token, readonly: true %>
+
+  <% if f.object.class.require_password_on_accepting %>
+    <div class="govuk-form-group">
+      <%= f.govuk_password_field :password, class: "govuk-input", width: 'two-thirds', autocomplete: 'new-password', autofocus: true, spellcheck: 'false', value: nil %>
+    </div>
+
+    <div class="govuk-form-group">
+      <%= f.govuk_password_field :password_confirmation, class: "govuk-input", width: 'two-thirds', autocomplete: 'new-password', autofocus: true, spellcheck: 'false', value: nil, label: { text: t('.password_confirmation') }  %>
+    </div>
+  <% end %>
+
+  <div class="govuk-form-group">
+    <%= f.submit t(".accept_invitation"), class: "govuk-button" %>
+  </div>
+<% end %>

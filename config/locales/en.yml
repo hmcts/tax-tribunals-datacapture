@@ -2058,8 +2058,20 @@ en:
         filter: 'List staff'
         clear: 'Clear'
         manage_account: "Manage account details"
+        add_staff_account: "Add staff account"
       edit:
         page_title: 'Change staff account'
       show:
         my_page_title: "My account details"
         page_title: "Staff account details"
+    invitations:
+      new:
+        page_title: 'Invite staff'
+        heading: 'Invite staff'
+        send_invitation: 'Send invitation'
+      edit:
+        page_title: 'Edit staff invitation'
+        heading: 'Edit staff invitation'
+        accept_invitation: 'Accept invitation'
+        password_confirmation: 'Password confirmation'
+

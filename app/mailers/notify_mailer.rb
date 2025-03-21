@@ -57,6 +57,17 @@ class NotifyMailer < GovukNotifyRails::Mailer
     )
   end
 
+  def invitation_instructions(employee, *_args)
+    set_template(ENV.fetch('NOTIFY_EMPLOYEE_INVITE_TEMPLATE_ID'))
+
+    set_personalisation(
+      invite_url: accept_employee_invitation_url(invitation_token: employee.raw_invitation_token, host: url_host),
+      full_name: employee.full_name
+    )
+
+    mail(to: employee.email)
+  end
+
   # Triggered automatically by Devise when the user changes its password
   def password_change(user, _opts={})
     tribunal_case = TribunalCase.latest_case(user)
@@ -179,11 +190,6 @@ class NotifyMailer < GovukNotifyRails::Mailer
       personalisation: filtered_personalisation
     )
     Sentry.capture_exception(exception)
-  end
-
-  def invitation_instructions(employee, token, options)
-    binding.pry
-    :a
   end
 
   private

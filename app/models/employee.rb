@@ -19,6 +19,8 @@ class Employee < ApplicationRecord
   }
   validates :full_name, presence: true
 
+  before_invitation_created :set_full_name
+
   def admin?
     role == 'admin'
   end
@@ -26,5 +28,10 @@ class Employee < ApplicationRecord
   def active?
     return false if last_sign_in_at.nil?
     last_sign_in_at > 3.months.ago
+  end
+
+  def set_full_name
+    # binding.pry
+    # self.full_name = full_name
   end
 end

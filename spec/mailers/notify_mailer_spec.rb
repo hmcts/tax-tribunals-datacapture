@@ -63,6 +63,7 @@ RSpec.describe NotifyMailer, type: :mailer do
     allow(ENV).to receive(:fetch).with('NOTIFY_GLIMR_GENERATION_COMPLETE_TEMPLATE_ID').and_return('glimr-generation-template')
     allow(ENV).to receive(:fetch).with('GOVUK_NOTIFY_API_KEY').and_return('dev_test-7bdad799-cfd7-4b9c-aafd-5d3162595af8-9e8cfc38-73f5-4164-b2f5-d5a9aa25bcdb')
     allow(ENV).to receive(:fetch).with('EXTERNAL_URL').and_return('https://tax.justice.uk')
+    allow(ENV).to receive(:fetch).with('NOTIFY_EMPLOYEE_INVITE_TEMPLATE_ID').and_return('123654789aaa')
     stub_const('GOVUK_NOTIFY_TEMPLATES', govuk_notify_templates)
   end
 
@@ -311,14 +312,6 @@ RSpec.describe NotifyMailer, type: :mailer do
     end
   end
 
-  # def reset_employee_password(_emploee, token, _opts={})
-  # set_template(template(nil, :reset_password_instructions))
-
-  # set_personalisation(
-  #   reset_url: edit_employee_password_url(reset_password_token: token, locale: :en)
-  # )
-  # end
-
   describe '#reset_password_instructions for Employee' do
     let(:mail) { described_class.reset_password_instructions(employee, token) }
     let(:employee) { Employee.new(email: 'employee@example.com') }
@@ -344,4 +337,20 @@ RSpec.describe NotifyMailer, type: :mailer do
     end
   end
 
+  describe '#invitation_instructions' do
+    let(:mail) { described_class.invitation_instructions(employee, {}) }
+    let(:employee) { Employee.invite!(email: 'new.employee@example.com', full_name: 'John Doe', skip_invitation: true) }
+    let(:token) { employee.raw_invitation_token }
+
+    it 'has the right keys' do
+      expect(mail.govuk_notify_personalisation).to eq({
+        full_name: 'John Doe',
+        invite_url: "https://tax.justice.uk/employees/invitation/accept?invitation_token=#{token}&locale=en"
+      })
+    end
+
+    it 'sends the email to the correct recipient' do
+      expect(mail.to).to eq(['new.employee@example.com'])
+    end
+  end
 end
