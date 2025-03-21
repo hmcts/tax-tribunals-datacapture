@@ -1,0 +1,14 @@
+  <aside class="govuk-grid-column-one-third">
+    <div class="guidance">
+      <h2 class="govuk-heading-m">Get help</h2>
+      <% if hide_password_link != true %>
+        <p class="util_mb-0">
+          <p class="govuk-body"><%= link_to t('.forgot_password'), new_employee_password_path, class: 'govuk-link' %></p>
+        </p>
+      <% end %>
+    <p class="util_mb-0">
+      <strong>Don't have an account</strong>
+    </p>
+    <p>Contact your manager to set up your account.</p>
+    </div>
+  </aside>

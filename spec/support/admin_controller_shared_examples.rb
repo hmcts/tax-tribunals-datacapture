@@ -1,32 +1,19 @@
-require 'rails_helper'
-
-RSpec.shared_examples 'a password-protected admin controller' do |method|
-  context 'correct credentials' do
-    before do
-      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Basic.encode_credentials('admin', 'test')
-    end
-
-    it 'returns http success' do
-      local_get method
-      expect(response).to have_http_status(:success)
+RSpec.shared_examples "a password-protected admin controller" do |action|
+  context "when employee is not signed in" do
+    it "redirects to the sign in page" do
+      local_get action
+      expect(response).to redirect_to(new_employee_session_path)
     end
   end
 
-  context 'missing credentials' do
-    it 'requires basic auth' do
-      local_get method
-      expect(response).to have_http_status(:unauthorized)
-    end
-  end
-
-  context 'wrong credentials' do
+  context "when employee is signed in" do
     before do
-      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Basic.encode_credentials('admin', 'whatever')
+      sign_in double("employee")
     end
 
-    it 'returns http unauthorized' do
-      local_get method
-      expect(response).to have_http_status(:unauthorized)
+    it "does not redirect to the sign in page" do
+      local_get action
+      expect(response).not_to redirect_to(new_employee_session_path)
     end
   end
 end

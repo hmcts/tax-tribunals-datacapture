@@ -4,6 +4,8 @@ Devise.setup do |config|
   # Configure the class responsible to send e-mails.
   config.mailer = 'NotifyMailer'
 
+  config.scoped_views = true
+
   # Send a notification email when the user's password is changed
   config.send_password_change_notification = true
 
@@ -129,4 +131,5 @@ Devise.setup do |config|
   # This is to remove deprecation error = DEPRECATION WARNING: Rails.application.secrets is deprecated in favor of Rails.application.credentials and will be removed in Rails 7.2
   # current devise version 4.9.4
   config.secret_key = Rails.application.secret_key_base
+  config.allow_passwords_equal_to_email = false
 end
