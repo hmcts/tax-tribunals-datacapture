@@ -181,6 +181,11 @@ class NotifyMailer < GovukNotifyRails::Mailer
     Sentry.capture_exception(exception)
   end
 
+  def invitation_instructions(employee, token, options)
+    binding.pry
+    :a
+  end
+
   private
 
   def client
