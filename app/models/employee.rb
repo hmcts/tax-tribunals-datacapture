@@ -14,7 +14,7 @@ class Employee < ApplicationRecord
         WHEN last_sign_in_at > '#{3.months.ago}' AND role = 'user' THEN 2
         WHEN (last_sign_in_at <= '#{3.months.ago}' OR last_sign_in_at IS NULL) AND role = 'admin' THEN 3
         ELSE 4
-      END
+      END, full_name ASC
     SQL
   }
   validates :full_name, presence: true

@@ -2061,13 +2061,14 @@ en:
         add_staff_account: "Add staff account"
       edit:
         page_title: 'Change staff account'
+        my_page_title: 'Change my account'
       show:
         my_page_title: "My account details"
         page_title: "Staff account details"
     invitations:
       new:
-        page_title: 'Invite staff'
-        heading: 'Invite staff'
+        page_title: 'Send invitation: Add staff account'
+        heading: 'Send invitation: Add staff account'
         send_invitation: 'Send invitation'
       edit:
         page_title: 'Edit staff invitation'

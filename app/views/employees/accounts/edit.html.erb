@@ -1,5 +1,5 @@
-<% title t('.page_title') %>
-<h1 class="govuk-heading-l"><%= t('.page_title') %></h1>
+<% title current_employee == @employee ? t('.my_page_title') : t('.page_title') %>
+<h1 class="govuk-heading-l"><%= current_employee == @employee ? t('.my_page_title') : t('.page_title') %></h1>
 
 <%= form_with model: @employee, url: employees_account_path(@employee), method: :patch, class: "govuk-form-group" do |f| %>
 
@@ -42,6 +42,6 @@
   <div class="govuk-form-group">
     <%= f.submit "Save Changes", class: "govuk-button" %>
 
-    <%= link_to 'Cancel', employees_account_path(@employee), class: 'govuk-button govuk-!-margin-left-5' %>
+    <%= link_to 'Cancel', request.referer || employees_account_path(@employee), class: 'govuk-button govuk-!-margin-left-5' %>
   </div>
 <% end %>
