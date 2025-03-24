@@ -2,7 +2,7 @@ class Employee < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable, :trackable
+         :recoverable, :rememberable, :confirmable, :trackable, :secure_validatable
 
   scope :active_list, -> { where('last_sign_in_at > ?', 3.months.ago) }
   scope :inactive_list, -> { where('last_sign_in_at <= ? OR last_sign_in_at IS NULL', 3.months.ago) }
@@ -19,8 +19,6 @@ class Employee < ApplicationRecord
   }
   validates :full_name, presence: true
 
-  before_invitation_created :set_full_name
-
   def admin?
     role == 'admin'
   end
@@ -30,8 +28,4 @@ class Employee < ApplicationRecord
     last_sign_in_at > 3.months.ago
   end
 
-  def set_full_name
-    # binding.pry
-    # self.full_name = full_name
-  end
 end

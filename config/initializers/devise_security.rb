@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 
 Devise.setup do |config|
   # ==> Security Extension
@@ -10,7 +9,7 @@ Devise.setup do |config|
   # Need 1 char each of: A-Z, a-z, 0-9, and a punctuation mark or symbol
   # You may use "digits" in place of "digit" and "symbols" in place of
   # "symbol" based on your preference
-  # config.password_complexity = { digit: 1, lower: 1, symbol: 1, upper: 1 }
+  config.password_complexity = { digit: 1, lower: 1, symbol: 1, upper: 1 }
 
   # How many passwords to keep in archive
   # config.password_archiving_count = 5
@@ -45,7 +44,7 @@ Devise.setup do |config|
   # config.expire_after = 90.days
 
   # Allow password to equal the email
-  # config.allow_passwords_equal_to_email = false
+  config.allow_passwords_equal_to_email = false
 
   # paranoid_verification will regenerate verification code after failed attempt
   # config.paranoid_code_regenerate_after_attempt = 10

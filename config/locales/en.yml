@@ -827,13 +827,24 @@ en:
               invalid: The password is not valid
 
         employee:
-            attributes:
-              full_name:
-                blank: Full name can't be blank
-              email:
-                blank: Email can't be blank
-              password:
-                blank: Password can't be blank
+          attributes:
+            full_name:
+              blank: Full name can't be blank
+            email:
+              blank: Email can't be blank
+            password:
+              blank: Password can't be blank
+            password_confirmation:
+              blank: Please enter the password again
+              too_short: Your password must be at least 8 characters long
+              too_long: Your password must be no longer than %{count} characters
+              confirmation: The password confirmation doesn't match
+            current_password:
+              blank: Please enter your current password
+              invalid: The password is not valid
+            password:
+              too_short: "The password must be at least %{count} characters long"
+
   helpers:
     fieldset:
       steps_appeal_case_type_form:
@@ -1800,6 +1811,7 @@ en:
       signed_in: "Signed in successfully."
       signed_out: "Signed out successfully."
       already_signed_out: "Signed out successfully."
+
   users:
     logins:
       new:
@@ -2033,6 +2045,13 @@ en:
         new_password: 'New password'
         confirm_new_password: 'Confirm new password'
         reset_password_token: 'asdads'
+    password_guidelines_html: |
+      <p class="govuk-body">Your password must:</p>
+      <ul class="govuk-list standard-list">
+        <li>be at least 8 characters</li>
+        <li>not be the same as your email address</li>
+        <li>must include at least 1 digit, 1 lowercase letter, 1 uppercase letter, and 1 special character</li>
+      </ul>
 
     registrations:
       new:
@@ -2075,4 +2094,3 @@ en:
         heading: 'Edit staff invitation'
         accept_invitation: 'Accept invitation'
         password_confirmation: 'Password confirmation'
-
