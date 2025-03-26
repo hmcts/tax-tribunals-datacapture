@@ -2080,7 +2080,7 @@ en:
         add_staff_account: "Add staff account"
       edit:
         page_title: 'Change staff account'
-        my_page_title: 'Change my account'
+        my_page_title: 'Change my account details'
       show:
         my_page_title: "My account details"
         page_title: "Staff account details"
