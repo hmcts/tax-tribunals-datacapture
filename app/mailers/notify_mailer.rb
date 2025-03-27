@@ -70,6 +70,7 @@ class NotifyMailer < GovukNotifyRails::Mailer
 
   # Triggered automatically by Devise when the user changes its password
   def password_change(user, _opts={})
+    return if user.is_a?(Employee)
     tribunal_case = TribunalCase.latest_case(user)
     set_template(template(tribunal_case&.language, :password_change))
 

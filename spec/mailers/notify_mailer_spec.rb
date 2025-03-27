@@ -170,6 +170,15 @@ RSpec.describe NotifyMailer, type: :mailer do
     end
   end
 
+  describe '#password_change Employee' do
+    let(:mail) { described_class.password_change(employee) }
+    let(:employee) { build(:employee, email:'shirley.schmidt@cranepooleandschmidt.com') }
+
+    it 'has the right keys' do
+      expect(TribunalCase).not_to receive(:latest_case)
+    end
+  end
+
   describe '#glimr_batch_complete' do
     let(:status) { double('status', total: 3, failures: 1) }
     let(:mail) { described_class.glimr_batch_complete('test@example.com', status) }
