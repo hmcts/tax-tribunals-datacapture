@@ -36,7 +36,7 @@ RSpec.describe User, type: :model do
   end
 
   describe 'email validation' do
-    let(:user) { User.new(password: 'Fe94#lG1!') }
+    let(:user) { User.new(password: 'Fe94#lG1!11') }
     context 'custom value casting' do
       #
       # This is just a quick test to ensure the `NormalisedEmailType` casting is being used.
@@ -100,7 +100,7 @@ RSpec.describe User, type: :model do
     end
 
     context "accepts valid passwords" do
-      let(:password) { 'ab3Df21!' }
+      let(:password) { 'ab3Df21!9s' }
       it '' do
         expect(user.errors[:password]).to be_empty
       end
@@ -108,8 +108,8 @@ RSpec.describe User, type: :model do
 
     I18n.available_locales.each do |locale|
       context "with #{locale.upcase} language" do
-        context "must be 8 characters long" do
-          let(:password) { 'a' * 7 }
+        context "must be 10 characters long" do
+          let(:password) { 'a' * 9 }
 
           it 'so does not accept short passwords' do
             expect(user.errors[:password]).to include(
@@ -120,8 +120,8 @@ RSpec.describe User, type: :model do
           end
         end
 
-        context "is allowed to be 8 characters long" do
-          let(:password) { 'ab3Df21!' }
+        context "is allowed to be 10 characters long" do
+          let(:password) { 'ab3Df21125s' }
 
           it 'so accepts long passwords' do
             expect(user.errors[:password]).to be_empty
@@ -129,9 +129,10 @@ RSpec.describe User, type: :model do
         end
 
         context "does not accept common passwords" do
-          %w[airborne elephant snowball 55555555].each do |pass|
+          %w[adventure journalism compromise 5555555555].each do |pass|
             let(:password) { pass }
             it "such as #{pass}" do
+              puts user.errors[:password]
               expect(user.errors[:password]).to include(
                 I18n.t('errors.messages.password.password_strength')
               )
@@ -155,7 +156,7 @@ RSpec.describe User, type: :model do
 
   describe '::Signin class' do
     let(:email) { 'foo@bar.com' }
-    let(:password) { 'XIY19@fdb' }
+    let(:password) { 'XIY19@fdb23' }
     let(:user_signin) { User::Signin.new(email:, password:) }
     before { user_signin.valid? }
 
@@ -194,7 +195,7 @@ RSpec.describe User, type: :model do
 
   describe '.signin_errors' do
     it 'returns a user::signin filled with error messages' do
-      obj = User.signin_errors(email: 'foo@bar.com', password: 'XIY19@fdb')
+      obj = User.signin_errors(email: 'foo@bar.com', password: 'XIY19@fdb12')
       expect(obj).to be_kind_of(User::Signin)
       expect(obj.errors).to be_present
     end

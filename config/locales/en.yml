@@ -815,11 +815,11 @@ en:
               taken: You already have cases saved with this email address. Try signing in.
             password:
               blank: Please enter a password
-              too_short: Your password must be at least 8 characters long
+              too_short: Your password must be at least 10 characters long
               too_long: Your password must be no longer than %{count} characters
             password_confirmation:
               blank: Please enter the password again
-              too_short: Your password must be at least 8 characters long
+              too_short: Your password must be at least 10 characters long
               too_long: Your password must be no longer than %{count} characters
               confirmation: The password confirmation doesn't match
             current_password:
@@ -1913,7 +1913,7 @@ en:
       password_guidelines_html: |
           <p class="govuk-body">Your password must:</p>
           <ul class="govuk-list standard-list">
-            <li>be at least 8 characters</li>
+            <li>be at least 10 characters</li>
             <li>not be the same as your email address</li>
             <li>not be a weak anagram or commonly used password</li>
           </ul>
