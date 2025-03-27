@@ -132,7 +132,6 @@ RSpec.describe User, type: :model do
           %w[adventure journalism compromise 5555555555].each do |pass|
             let(:password) { pass }
             it "such as #{pass}" do
-              puts user.errors[:password]
               expect(user.errors[:password]).to include(
                 I18n.t('errors.messages.password.password_strength')
               )
