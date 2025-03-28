@@ -43,9 +43,9 @@ When(/^I successfully upload a document to the letter page$/) do
     allow(Uploader).to receive(:list_files).and_return([])
     allow(Uploader).to receive(:add_file).and_return(double(name: '123/foo/bar.png'))
     expect(letter_upload_page.content).to have_lead_text
-    identifier  = 'steps-details-letter-upload-form-supporting-letter-document-field'
-    filename    = 'features/support/sample_file/to_upload.jpg'
-    letter_upload_page.attach_file(identifier, filename)
+    filename = 'features/support/sample_file/to_upload.jpg'
+    letter_upload_page.attach_file_to_uploader(filename)
+
     continue_or_save_continue
   end
 end

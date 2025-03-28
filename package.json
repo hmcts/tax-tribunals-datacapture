@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "govuk-frontend": "^5.8.0",
+    "govuk-frontend": "^5.9.0",
     "puppeteer": "^23.10.4"
   }
 }

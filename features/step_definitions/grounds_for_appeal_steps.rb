@@ -30,9 +30,8 @@ When(/^I then upload a valid file type$/) do
   RSpec::Mocks.with_temporary_scope do
     allow(Uploader).to receive(:list_files).and_return([])
     allow(Uploader).to receive(:add_file).and_return(double(name: '123/foo/bar.png'))
-    identifier  = 'steps-details-grounds-for-appeal-form-grounds-for-appeal-document-field'
-    filename    = 'features/support/sample_file/to_upload.jpg'
-    grounds_for_appeal_page.attach_file(identifier, filename)
+    filename = 'features/support/sample_file/to_upload.jpg'
+    grounds_for_appeal_page.attach_file_to_uploader(filename)
     continue_or_save_continue
   end
 end
