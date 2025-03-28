@@ -67,9 +67,8 @@ When(/^I successfully upload a document to the reasons page$/) do
   RSpec::Mocks.with_temporary_scope do
     allow(Uploader).to receive(:list_files).and_return([])
     allow(Uploader).to receive(:add_file).and_return(double(name: '123/foo/bar.png'))
-    identifier  = 'steps-lateness-lateness-reason-form-lateness-reason-document-field'
-    filename    = 'features/support/sample_file/to_upload.jpg'
-    lateness_reason_page.attach_file(identifier, filename)
+    filename = 'features/support/sample_file/to_upload.jpg'
+    lateness_reason_page.attach_file_to_uploader(filename)
     continue_or_save_continue
   end
 end

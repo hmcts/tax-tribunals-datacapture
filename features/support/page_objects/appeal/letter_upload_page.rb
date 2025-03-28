@@ -20,5 +20,11 @@ class LetterUploadPage < BasePage
     content.textarea.set 'Reason for not uploading a letter'
     continue_or_save_continue
   end
+
+  def attach_file_to_uploader(filename)
+    within(".govuk-drop-zone") do
+      find('input[type="file"]', visible: false).attach_file(filename)
+    end
+  end
 end
 
