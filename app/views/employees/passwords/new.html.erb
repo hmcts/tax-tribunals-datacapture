@@ -1,0 +1,23 @@
+<% title t('.page_title') %>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= govuk_error_summary(resource) %>
+
+    <h1 class="govuk-heading-l"><%=t '.heading' %></h1>
+
+    <p class="govuk-body"><%= t '.lead_text' %></p>
+
+    <p class="govuk-body"><%= t '.account_text' %></p>
+
+    <%= form_for(resource, as: 'employee', url: employee_password_path, html: { method: :post }) do |f| %>
+      <%= render "employees/shared/error_messages", resource: resource %>
+      <%= f.govuk_email_field :email, width: 'two-thirds', autocomplete: 'email', spellcheck: 'false', autofocus: true %>
+      <div class="util_mb-0">
+        <%= f.submit t('helpers.submit.reset_password'), class: 'govuk-button' %>
+        <%= link_to 'Cancel', new_employee_session_path, class: 'govuk-button govuk-!-margin-left-5' %>
+      </div>
+    <% end %>
+  </div>
+  <%= render "employees/shared/get_help", { hide_password_link: true } %>
+
+</div>

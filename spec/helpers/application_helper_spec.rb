@@ -81,6 +81,18 @@ RSpec.describe ApplicationHelper, type: :helper do
           '<div class="govuk-error-summary" data-module="govuk-error-summary"><div role="alert"><h2 class="govuk-error-summary__title">There is a problem</h2><div class="govuk-error-summary__body"><ul class="govuk-list govuk-error-summary__list"><li><a data-turbo="false" href="#base-form-base-field-error">Please enter an answer</a></li></ul></div></div></div>'
         )
       end
+
+      describe '#token_messsage' do
+        let(:form_object) { BaseForm.new }
+
+        it 'clears existing errors and adds a reset token error message' do
+          form_object.errors.add(:base, 'Some existing error')
+          helper.token_messsage(form_object)
+
+          expect(form_object.errors[:base]).to be_empty
+          expect(form_object.errors[:reset_password_token]).to include('Reset password token is expired or invalid')
+        end
+      end
     end
   end
 

@@ -19,7 +19,7 @@ When("I enter a valid email address") do
   save_appeal_page.content.email_input.set Faker::Internet.email
 end
 
-When("I enter a password that is not at least 8 characters") do
+When("I enter a password that is not at least 10 characters") do
   expect(save_appeal_page.content.login_label[1].text).to eq I18n.t('helpers.label.user.password')
   save_appeal_page.content.password_input.set 'Pa$0'
   save
