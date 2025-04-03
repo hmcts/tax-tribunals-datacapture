@@ -17,5 +17,11 @@ class RepresentativeApprovalPage < BasePage
   def file_upload_dropdown
     content.file_upload_requirements_dropdown.click
   end
+
+  def attach_file_to_uploader(filename)
+    within(".govuk-drop-zone") do
+      find('input[type="file"]', visible: false).attach_file(filename)
+    end
+  end
 end
 
