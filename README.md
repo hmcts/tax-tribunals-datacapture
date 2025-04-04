@@ -30,7 +30,7 @@ Before proceeding, ensure you have the following installed on your system:
     https://frontend.design-system.service.gov.uk/installing-with-npm/#requirements
 
     ```bash
-    npm install govuk-frontend --save
+    yarn install govuk-frontend --save
     ```
 
     And then precompile the assets
@@ -78,6 +78,15 @@ Before proceeding, ensure you have the following installed on your system:
      ```bash
      bundle exec cucumber
      ```
+
+## Jenkins CI ##
+
+The Jenkins pipeline defined in Jenkinsfile_CNP shows the actions run when a PR is created.
+Additional to the Jenkinsfile_CNP, there are default actions which are run in the pipeline such as:
+
+Checkout, Build, Static checks, Promote Docker, AKS deploy - AAT, Smoke Test - AAT, Functional Test - AAT, Uninstall Helm Release - AAT, Publish Helm chart, Prod build, Sync Branches.
+
+More details about above can be found in the Jenkins Pipeline Steps within a build.
 
 ## AZURE Blob storage ##
 
