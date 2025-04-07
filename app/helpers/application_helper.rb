@@ -30,12 +30,19 @@ module ApplicationHelper
 
     error_messages = form_object.errors.messages.dup
     error_messages.compact_blank!
-
+    token_messsage(form_object) if error_messages.key?(:reset_password_token)
     fields_for(form_object, form_object) do |f|
       f.govuk_error_summary t('errors.error_summary.heading')
     end
   end
   # rubocop:enable Rails/HelperInstanceVariable
+
+  # TODO: if you find the way to display a devise error message for already used token
+  # then you can remove this method
+  def token_messsage(form_object)
+    form_object.errors.clear
+    form_object.errors.add(:reset_password_token, 'Reset password token is expired or invalid')
+  end
 
   def translate_for_user_type(key, params={})
     suffix = '_html' if key.end_with?('_html')
