@@ -20,4 +20,10 @@ class GroundsForAppealPage < BasePage
   def file_upload_requirements
     content.file_requirements.click
   end
+
+  def attach_file_to_uploader(filename)
+    within(".govuk-drop-zone") do
+      find('input[type="file"]', visible: false).attach_file(filename)
+    end
+  end
 end
