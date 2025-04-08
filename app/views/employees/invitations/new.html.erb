@@ -1,0 +1,43 @@
+<% title t('.page_title') %>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <%= form_for(resource, as: 'employee', url: employee_invitation_path) do |f| %>
+
+      <%= f.govuk_fieldset legend: { text: t('.heading'), size: 'm' } do %>
+
+        <div class="govuk-form-group <%= @employee.errors[:full_name].any? ? 'govuk-form-group--error' : '' %>">
+          <%= f.label :full_name, "Full Name", class: "govuk-label" %>
+          <% if @employee.errors[:full_name].any? %>
+            <p id="full-name-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> <%= @employee.errors[:full_name].first %>
+            </p>
+          <% end %>
+          <%= f.text_field :full_name, class: "govuk-input", required: true %>
+        </div>
+        <%= f.govuk_email_field :email, name: 'employee[email]', autocomplete: 'email', spellcheck: 'false', autofocus: true, required: true %>
+      <% end %>
+
+      <div class="govuk-form-group">
+        <%= f.label :role, "Role", class: "govuk-label" %>
+        <div class="govuk-radios govuk-radios--inline">
+          <div class="govuk-radios__item">
+            <%= f.radio_button :role, "admin", id: "role_admin", class: "govuk-radios__input" %>
+            <%= f.label :role_admin, "Admin", class: "govuk-label govuk-radios__label" %>
+          </div>
+          <div class="govuk-radios__item">
+            <%= f.radio_button :role, "user", id: "role_user", class: "govuk-radios__input" %>
+            <%= f.label :role_user, "User", class: "govuk-label govuk-radios__label" %>
+          </div>
+
+        </div>
+      </div>
+
+
+      <%= f.submit t('.send_invitation'), class: 'govuk-button' %>
+      <%= link_to 'Cancel', employees_accounts_path, class: 'govuk-button govuk-!-margin-left-5' %>
+    <% end %>
+  </div>
+</div>
+
