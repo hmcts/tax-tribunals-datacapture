@@ -12,7 +12,7 @@ Before proceeding, ensure you have the following installed on your system:
 * **Database:** Ensure PostgreSQL server is running and `libpq-dev` (or equivalent) is installed for native gem compilation.
 * **Yarn:** Install it using `npm install -g yarn`.
 
-## Setup Instructions
+## Setup Instructions ##
 
 1.  **Clone the Repository**
 
