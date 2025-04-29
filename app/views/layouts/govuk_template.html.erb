@@ -113,9 +113,13 @@
 </footer>
 
 <script type="module" nonce="<%= content_security_policy_nonce %>">
-    import { initAll } from '<%= asset_path "govuk-frontend/dist/govuk/govuk-frontend.min.js" %>';
+    import { initAll, FileUpload } from '<%= asset_path "govuk-frontend/dist/govuk/govuk-frontend.min.js" %>';
 
     initAll();
+
+    window.GOVUKFrontend = {
+        FileUpload: FileUpload
+    };
 
     window.moj.init();
 </script>
