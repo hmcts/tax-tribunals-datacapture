@@ -138,9 +138,9 @@ end
 And("I upload a file and continue to the representative type page") do
   RSpec::Mocks.with_temporary_scope do
     stub_uploader
-    identifier  = 'steps-details-representative-approval-form-representative-approval-document-field'
-    filename    = 'features/support/sample_file/to_upload.jpg'
-    representative_approval_page.attach_file(identifier, filename)
+    filename = 'features/support/sample_file/to_upload.jpg'
+    representative_approval_page.attach_file_to_uploader(filename)
+
     continue_or_save_continue
   end
 end

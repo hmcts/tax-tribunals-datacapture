@@ -127,6 +127,7 @@ def complete_valid_appeal_application
     save_return_page.continue_new_appeal
     expect(appeal_case_type_page.content).to have_header
     appeal_case_type_page.submit_income_tax
+    continue_or_save_continue
     select_language_page.select_english
     expect(challenge_decision_page.content).to have_appeal_header
     submit_yes
@@ -167,9 +168,8 @@ def complete_valid_appeal_application
     expect(letter_upload_type_page.content).to have_header
     letter_upload_type_page.submit_one_document_option
     expect(letter_upload_page.content).to have_lead_text
-    identifier  = 'steps-details-letter-upload-form-supporting-letter-document-field'
-    filename    = 'features/support/sample_file/to_upload.jpg'
-    letter_upload_page.attach_file(identifier, filename)
+    filename = 'features/support/sample_file/to_upload.jpg'
+    letter_upload_page.attach_file_to_uploader(filename)
     continue_or_save_continue
     expect(check_answers_page.content).to have_header
     submit_check_your_answers
@@ -299,6 +299,7 @@ def navigate_to_challenge_decision_page_no_user
   navigate_to_save_return_page_appeal
   save_return_page.continue_new_appeal
   appeal_case_type_page.submit_income_tax
+  continue_or_save_continue
   select_language_page.select_english
 end
 

@@ -65,7 +65,6 @@ en:
 
     CASE_TYPE_QUESTION: &CASE_TYPE_QUESTION
       heading: What is your appeal about?
-      lead_text: Choose the most relevant option based on the original notice or review conclusion letter.
     CHALLENGE_STATUS: &CHALLENGE_STATUS
       received: I have a review conclusion letter
       pending: I have been waiting less than 45 days for a review to finish
@@ -132,10 +131,18 @@ en:
         edit:
           page_title: Case type
           <<: *CASE_TYPE_QUESTION
-      case_type_show_more:
+      case_type_details:
         edit:
-          page_title: Case type
-          <<: *CASE_TYPE_QUESTION
+          page_title: Case Guidance
+          income_tax_description_text: Including tax paid through Pay As You Earn (PAYE) and Self Assessment.
+          information_notice_description_text: A request for further information about your tax position.
+          alcoholic_liquor_duties_description_text: Includes the Alcohol Wholesaler Registration Scheme (AWRS).
+          landfill_tax_description_text: Includes Landfill Disposal Tax (in Wales).
+          restoration_case_description_text: Apply for the return of seized goods.
+          stamp_duties_description_text: Includes Stamp Duty Reserve Tax (SDRT), Stamp Duty Land Tax (SDLT) and Land Transaction Tax (in Wales).
+          statutory_payments_description_text: For example statutory sick pay, maternity pay, paternity pay or adoption pay.
+          tax_credits_description_text: Including Child Tax Credit and Working Tax Credit.
+          general_description_text: Appeal type can be found from the original decision notice or review conclusion letter.
       dispute_type:
         edit:
           heading: What is your dispute about?
@@ -578,14 +585,14 @@ en:
           attributes:
             case_type:
               inclusion: Select what your appeal is about
+              multiple_selected: Select what your appeal is about from the options or drop down list
+              conflicted_selected: Select what your appeal is about from the options or drop down list or select the checkbox and enter your appeal type
+            case_type_other_value:
+              blank: Select what your appeal is about from the options or drop down list or select the checkbox and enter your appeal type
         select_language/save_language_form:
           attributes:
             language:
               inclusion: Select your preferred language
-        steps/appeal/case_type_show_more_form:
-          attributes:
-            case_type:
-              inclusion: Select what your appeal is about
         steps/appeal/dispute_type_form:
           attributes:
             dispute_type:
@@ -808,21 +815,39 @@ en:
               taken: You already have cases saved with this email address. Try signing in.
             password:
               blank: Please enter a password
-              too_short: Your password must be at least 8 characters long
+              too_short: Your password must be at least 10 characters long
               too_long: Your password must be no longer than %{count} characters
             password_confirmation:
               blank: Please enter the password again
-              too_short: Your password must be at least 8 characters long
+              too_short: Your password must be at least 10 characters long
               too_long: Your password must be no longer than %{count} characters
               confirmation: The password confirmation doesn't match
             current_password:
               blank: Please enter your current password
               invalid: The password is not valid
+
+        employee:
+          attributes:
+            full_name:
+              blank: Full name can't be blank
+            email:
+              blank: Email can't be blank
+            password:
+              blank: Password can't be blank
+            password_confirmation:
+              blank: Please enter the password again
+              too_short: Your password must be at least 10 characters long
+              too_long: Your password must be no longer than %{count} characters
+              confirmation: The password confirmation doesn't match
+            current_password:
+              blank: Please enter your current password
+              invalid: The password is not valid
+            password:
+              too_short: "The password must be at least %{count} characters long"
+
   helpers:
     fieldset:
       steps_appeal_case_type_form:
-        case_type_html: What is your appeal about?
-      steps_appeal_case_type_show_more_form:
         case_type_html: What is your appeal about?
       steps_appeal_dispute_type_form:
         dispute_type_html: What is your dispute about?
@@ -871,56 +896,44 @@ en:
           continue_with_new_appeal: Continue with a new appeal
       steps_appeal_case_type_form:
         case_type_options:
-          income_tax_html: "<strong>Income Tax</strong><br>including tax paid through
-            Pay As You Earn (PAYE) and Self Assessment"
-          self_assessment_late_penalty_html: "<strong>Penalty for late filing of self-assessment tax return</strong>"
-          vat_html: "<strong>Value Added Tax (VAT)</strong>"
-          capital_gains_tax_html: "<strong>Capital Gains Tax</strong>"
-          corporation_tax_html: "<strong>Corporation Tax</strong>"
-          information_notice_html: "<strong>Information notice</strong><br>a request
-            for further information about your tax position"
-          ni_contributions_html: "<strong>National Insurance (NI) contributions</strong>"
-          _show_more_html: "<strong>Other type of tax, appeal or application</strong>"
-      steps_appeal_case_type_show_more_form:
+          income_tax: Income Tax
+          self_assessment_late_penalty: Penalty for late filing of self-assessment tax return
+          vat: Value Added Tax (VAT)
+          capital_gains_tax: Capital Gains Tax
+          corporation_tax: Corporation Tax
+          apn_penalty: Accelerated Payment Notice (APN) penalty
+          aggregates_levy: Aggregates Levy
+          air_passenger_duty: Air Passenger Duty
+          alcoholic_liquor_duties: Alcoholic Liquor Duties
+          bingo_duty: Bingo Duty
+          climate_change_levy: Climate Change Levy
+          construction_industry_scheme: Construction Industry Scheme (CIS)
+          counter_terrorism: Counter-terrorism decision
+          customs_duty: Customs Duty
+          dotas_penalty: Disclosure Of Tax Avoidance Schemes (DOTAS) penalty
+          gaming_duty: Gaming Duty
+          general_betting_duty: General Betting Duty
+          export_regulations_penalty: Export (Penalty) Regulations / FA 2003 decision
+          hydrocarbon_oil_duties: Hydrocarbon Oil Duties
+          information_notice: Information notice
+          inheritance_tax: Inheritance Tax
+          insurance_premium_tax: Insurance Premium Tax
+          landfill_tax: Landfill Tax
+          lottery_duty: Lottery Duty
+          money_laundering_decisions: Money laundering decisions
+          ni_contributions: National Insurance (NI) contributions
+          petroleum_revenue_tax: Petroleum Revenue Tax
+          pool_betting_duty: Pool Betting Duty
+          remote_gaming_duty: Remote Gaming Duty
+          restoration_case: Restoration case
+          stamp_duties: Stamp duties
+          statutory_payments: Statutory payments
+          student_loans: Student loans
+          tax_credits: Tax credits
+          tobacco_products_duty: Tobacco Products Duty
+        case_type_select_other_hint: Select other type of tax or dispute based on the original notice or review conclusion letter.
+        case_type_not_present: I can't find the type of tax or dispute based on the original notice or review conclusion letter.
         case_type_other_value: Enter the type of tax or dispute involved in your case
-        case_type_options:
-          apn_penalty_html: "<strong>Accelerated Payment Notice (APN) penalty</strong>"
-          aggregates_levy_html: "<strong>Aggregates Levy</strong>"
-          air_passenger_duty_html: "<strong>Air Passenger Duty</strong>"
-          alcoholic_liquor_duties_html: "<strong>Alcoholic Liquor Duties</strong><br>
-            includes the Alcohol Wholesaler Registration Scheme (AWRS)"
-          bingo_duty_html: "<strong>Bingo Duty</strong>"
-          climate_change_levy_html: "<strong>Climate Change Levy</strong>"
-          construction_industry_scheme_html: "<strong>Construction Industry Scheme
-            (CIS)</strong>"
-          counter_terrorism_html: "<strong>Counter-terrorism decision</strong>"
-          customs_duty_html: "<strong>Customs Duty</strong>"
-          dotas_penalty_html: "<strong>Disclosure Of Tax Avoidance Schemes (DOTAS)
-            penalty</strong>"
-          gaming_duty_html: "<strong>Gaming Duty</strong>"
-          general_betting_duty_html: "<strong>General Betting Duty</strong>"
-          export_regulations_penalty_html: "<strong>Export (Penalty) Regulations /
-            FA 2003 decision</strong>"
-          hydrocarbon_oil_duties_html: "<strong>Hydrocarbon Oil Duties</strong>"
-          inheritance_tax_html: "<strong>Inheritance Tax</strong>"
-          insurance_premium_tax_html: "<strong>Insurance Premium Tax</strong>"
-          landfill_tax_html: "<strong>Landfill Tax</strong><br>includes Landfill Disposal Tax (in Wales)"
-          lottery_duty_html: "<strong>Lottery Duty</strong>"
-          ni_contributions_html: "<strong>National Insurance (NI) contributions</strong>"
-          money_laundering_decisions_html: "<strong>Money laundering decisions</strong>"
-          petroleum_revenue_tax_html: "<strong>Petroleum Revenue Tax</strong>"
-          pool_betting_duty_html: "<strong>Pool Betting Duty</strong>"
-          remote_gaming_duty_html: "<strong>Remote Gaming Duty</strong>"
-          restoration_case_html: "<strong>Restoration case</strong><br>apply for the
-            return of seized goods"
-          stamp_duties_html: "<strong>Stamp duties</strong><br>includes Stamp Duty
-            Reserve Tax (SDRT), Stamp Duty Land Tax (SDLT) and Land Transaction Tax (in Wales)"
-          statutory_payments_html: "<strong>Statutory payments</strong><br>for example
-            statutory sick pay, maternity pay, paternity pay or adoption pay"
-          student_loans_html: "<strong>Student loans</strong>"
-          tax_credits_html: "<strong>Tax credits</strong><br>including Child Tax Credit and Working Tax Credit"
-          tobacco_products_duty_html: "<strong>Tobacco Products Duty</strong>"
-          other_html: "<strong>None of the above</strong>"
       steps_appeal_dispute_type_form:
         dispute_type_other_value: What is your dispute about?
         amount_of_tax_owed_by_hmrc: You want HMRC or other agency to repay money
@@ -1585,6 +1598,11 @@ en:
       logout: Sign out
       change_password: Change password
       your_cases: Your saved cases
+    current_employee_menu:
+      logout: Sign out
+      change_password: Change password
+      manage_employees: "Manage staff accounts"
+      employee_profile: "My profile"
     govuk_template:
       skip_to_main_content: Skip to main content
       default_page_title: GOV.UK - The best place to find government services and information
@@ -1596,7 +1614,7 @@ en:
     errors:
       file_size: "%{file_name} is too big. You will need to resubmit a smaller version,
         less than %{max_size} megabytes (MB)"
-      content_type: "%{file_name} is in a format we don't accept. You can upload MS Word, 
+      content_type: "%{file_name} is in a format we don't accept. You can upload MS Word,
       MS Excel, PDF, JPG, GIF, PNG, TXT or RTF files."
       invalid_characters: "%{file_name} contains invalid characters. Please do not use
         characters like £ or ¬ in the file name"
@@ -1789,10 +1807,12 @@ en:
       signed_up_but_unconfirmed: "A message with a confirmation link has been sent to your email address. Please follow the link to activate your account."
       update_needs_confirmation: "You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirm link to confirm your new email address."
       updated: "Your account has been updated successfully."
+      new_password_blank: "New password can't be blank"
     sessions:
       signed_in: "Signed in successfully."
       signed_out: "Signed out successfully."
       already_signed_out: "Signed out successfully."
+
   users:
     logins:
       new:
@@ -1879,7 +1899,7 @@ en:
       reset_sent:
         heading: Please check your email
         lead_text: We have sent you an email with a link to reset your password. Please check your inbox and spam folder.
-        deleted_account_html: You won't get an email if you haven't signed in for <strong>30 days</strong>. We delete your account  for your security. You will need to start again. 
+        deleted_account_html: You won't get an email if you haven't signed in for <strong>30 days</strong>. We delete your account  for your security. You will need to start again.
         no_email_heading: Can't see the email?
         no_email_junk: It can take a few minutes to arrive. Check your junk mail if you can't see it in your inbox.
         no_email_incorrect: If the email was entered incorrectly when you originally created your account, or the email you have just provided is not connected to an account, you will not receive an email and you will need to start again.
@@ -1894,7 +1914,7 @@ en:
       password_guidelines_html: |
           <p class="govuk-body">Your password must:</p>
           <ul class="govuk-list standard-list">
-            <li>be at least 8 characters</li>
+            <li>be at least 10 characters</li>
             <li>not be the same as your email address</li>
             <li>not be a weak anagram or commonly used password</li>
           </ul>
@@ -1906,7 +1926,7 @@ en:
         await_confirmation: Please remain on this page until you receive the confirmation email, as it may take a few minutes to arrive.
         no_email_heading: Can't see the email?
         no_email_junk: Check your junk mail if you can't see it in your inbox.
-        no_email_invalid_entry: If you do not receive the confirmation email, you might have entered your email address incorrectly. It is recommended that you 
+        no_email_invalid_entry: If you do not receive the confirmation email, you might have entered your email address incorrectly. It is recommended that you
         no_email_invalid_entry_link: try again
         no_email_invalid_entry_end: otherwise you will be unable to access your case later and will have to start again.
         no_email_signed_out: If you choose to try again, your current progress will be saved and you will be signed out of your existing account, which will be automatically deleted after 30 days.
@@ -1959,6 +1979,8 @@ en:
         heading: Thank you for reporting this problem
         continue: Back to start
   admin:
+    index:
+      page_title: Admin
     glimr_generation:
       new:
         page_title: Generate GLiMR records
@@ -2002,3 +2024,74 @@ en:
       upload_problems_link: Upload problems
       other_case_types_link: Other case types
       other_dispute_types_link: Other dispute types
+  employees:
+    shared:
+      get_help:
+        forgot_password: 'Forgot your password?'
+    sessions:
+      new:
+        page_title: 'Employee sign in'
+        heading: 'Sign in'
+        forgot_password: 'Forgot your password?'
+    passwords:
+      new:
+        page_title: 'Employee forgot password'
+        heading: 'Forgot your password'
+        lead_text: 'Enter your email address and we’ll send you a link to reset your password.'
+        sign_in: 'Go back and sign in'
+        account_text: Remember, if you haven't signed in for 30 days we disable your account for security reasons.
+      edit:
+        page_title: 'Employee change password'
+        heading: 'Reset your password'
+        new_password: 'New password'
+        confirm_new_password: 'Confirm new password'
+        reset_password_token: 'asdads'
+    password_guidelines_html: |
+      <p class="govuk-body">Your password must:</p>
+      <ul class="govuk-list standard-list">
+        <li>be at least 10 characters</li>
+        <li>not be the same as your email address</li>
+        <li>must include at least 1 digit, 1 lowercase letter, 1 uppercase letter, and 1 special character</li>
+      </ul>
+
+    registrations:
+      new:
+        page_title: 'Employee sign up'
+        heading: 'Sign up'
+        existing_account: 'Sign into an existing account'
+        account_warning_html: |
+          <p class="govuk-body
+      edit:
+        page_title: 'Employee edit'
+        heading: 'Change your password'
+        current_password: 'Current password'
+        new_password: 'New password'
+        new_password_confirmation: 'Confirm new password'
+    accounts:
+      index:
+        page_title: 'Manage staff accounts'
+        heading: 'Employee accounts'
+        active:
+          true: 'Active'
+          false: 'Inactive'
+        status_label: 'Status'
+        filter: 'List staff'
+        clear: 'Clear'
+        manage_account: "Manage account details"
+        add_staff_account: "Add staff account"
+      edit:
+        page_title: 'Change staff account'
+        my_page_title: 'Change my account details'
+      show:
+        my_page_title: "My account details"
+        page_title: "Staff account details"
+    invitations:
+      new:
+        page_title: 'Send invitation: Add staff account'
+        heading: 'Send invitation: Add staff account'
+        send_invitation: 'Send invitation'
+      edit:
+        page_title: 'Edit staff invitation'
+        heading: 'Edit staff invitation'
+        accept_invitation: 'Accept invitation'
+        password_confirmation: 'Password confirmation'

@@ -29,6 +29,19 @@ Rails.application.routes.draw do
   # TODO: these redirections can be removed in the future, as it is to ensure
   # users accessing through the old domain are redirected to the new one
   #
+  devise_for :employees, controllers: {
+    sessions: 'employees/sessions',
+    passwords: 'employees/passwords',
+    registrations: 'employees/registrations',
+    invitations: 'employees/invitations'
+  }
+  namespace :employees do
+    get 'accounts', to: 'accounts#index'
+    post 'accounts_filtered', to: 'accounts#index'
+    resources :accounts, except: [:index]
+  end
+
+
   constraints host: 'tax-tribunal.service.dsd.io' do
     get '/' => redirect(public_domain, status: 301)
     match '*path.:format' => redirect("#{public_domain}/%{path}.%{format}", status: 301), via: :get
@@ -52,7 +65,7 @@ Rails.application.routes.draw do
         root 'case_type#edit'
 
         edit_step :case_type
-        edit_step :case_type_show_more
+        edit_step :case_type_details
         edit_step :dispute_type
         edit_step :penalty_amount
         edit_step :tax_amount
@@ -193,6 +206,7 @@ Rails.application.routes.draw do
     end
     mount Sidekiq::Web => "/sidekiq"
   end
+  get 'admin/index', to: 'admin#index'
 
   scope module: 'tax_tribs' do
     get '/health', to: 'status#index'
@@ -225,4 +239,5 @@ Rails.application.routes.draw do
   match '*path', to: 'errors#not_found', via: :all, constraints:
                                                       lambda { |_request| !Rails.application.config.consider_all_requests_local }
   # :nocov:
+
 end
