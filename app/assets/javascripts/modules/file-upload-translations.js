@@ -31,7 +31,8 @@ moj.Modules.fileUploadTranslations = {
     },
 
     overrideGovukFileUpload(t) {
-        const FileUpload = window.GOVUKFrontend?.FileUpload;
+        const FileUpload = window.GOVUKFrontend.FileUpload;
+
         if (typeof FileUpload === 'function') {
             window.GOVUKFrontend.FileUpload = class extends FileUpload {
                 constructor($root, config = {}) {
