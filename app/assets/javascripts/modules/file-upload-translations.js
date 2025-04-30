@@ -56,7 +56,7 @@ moj.Modules.fileUploadTranslations = {
         const statusMessage = this.getStatusMessage(t, fileCount);
         if (statusMessage) {
             const $status = document.querySelector(this.selectors.statusText);
-            if ($status) $status.innerText = statusMessage;
+            this.updateElementText($status, statusMessage);
         }
     },
 
