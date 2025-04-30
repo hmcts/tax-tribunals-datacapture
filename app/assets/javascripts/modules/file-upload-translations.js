@@ -5,55 +5,66 @@ moj.Modules.fileUploadTranslations = {
         buttonContainer: '.govuk-file-upload-button',
         chooseButton: '.govuk-button--secondary',
         dropInstruction: '.govuk-file-upload-button__instruction',
-        statusText: '.govuk-file-upload-button__status'
+        statusText: '.govuk-file-upload-button__status',
+        fileInput: 'input[type="file"]'
     },
 
     translationsFor(lang) {
+        const basePath = `moj.Modules.fileUploaderTranslations.${lang}`;
         return {
-            chooseFilesButton: moj.t(`moj.Modules.fileUploaderTranslations.${lang}.chooseFilesButton`),
-            dropInstruction: moj.t(`moj.Modules.fileUploaderTranslations.${lang}.dropInstruction`),
-            noFileChosen: moj.t(`moj.Modules.fileUploaderTranslations.${lang}.noFileChosen`),
+            chooseFilesButton: moj.t(`${basePath}.chooseFilesButton`),
+            dropInstruction: moj.t(`${basePath}.dropInstruction`),
+            noFileChosen: moj.t(`${basePath}.noFileChosen`),
             multipleFilesChosen: {
-                one: moj.t(`moj.Modules.fileUploaderTranslations.${lang}.multipleFilesChosen.one`),
-                other: moj.t(`moj.Modules.fileUploaderTranslations.${lang}.multipleFilesChosen.other`)
-            },
-            enteredDropZone: moj.t(`moj.Modules.fileUploaderTranslations.${lang}.enteredDropZone`),
-            leftDropZone: moj.t(`moj.Modules.fileUploaderTranslations.${lang}.leftDropZone`)
+                one: moj.t(`${basePath}.multipleFilesChosen.one`),
+                other: moj.t(`${basePath}.multipleFilesChosen.other`)
+            }
         };
     },
 
     init() {
         const lang = window.location.pathname.includes('/cy') ? 'cy' : 'en';
         const t = this.translationsFor(lang);
-
-        this.overrideGovukFileUpload(t);
         this.updateFileUploadUI(t);
-    },
-
-    overrideGovukFileUpload(t) {
-        const FileUpload = window.GOVUKFrontend.FileUpload;
-
-        if (typeof FileUpload === 'function') {
-            window.GOVUKFrontend.FileUpload = class extends FileUpload {
-                constructor($root, config = {}) {
-                    super($root, { ...config, i18n: t });
-                }
-            };
-        }
+        this.setupFileInputListener(t);
     },
 
     updateFileUploadUI(t) {
         const { buttonContainer, chooseButton, dropInstruction, statusText } = this.selectors;
-
         const $container = document.querySelector(buttonContainer);
         if (!$container) return;
 
-        const $chooseBtn = $container.querySelector(chooseButton);
-        const $instruction = $container.querySelector(dropInstruction);
-        const $status = $container.querySelector(statusText);
+        this.updateElementText($container.querySelector(chooseButton), t.chooseFilesButton);
+        this.updateElementText($container.querySelector(dropInstruction), t.dropInstruction);
+        this.updateElementText($container.querySelector(statusText), t.noFileChosen);
+    },
 
-        if ($chooseBtn) $chooseBtn.innerText = t.chooseFilesButton;
-        if ($instruction) $instruction.innerText = t.dropInstruction;
-        if ($status) $status.innerText = t.noFileChosen;
+    updateElementText(element, text) {
+        if (element) element.innerText = text;
+    },
+
+    setupFileInputListener(t) {
+        const fileInput = document.querySelector(this.selectors.fileInput);
+        if (fileInput) {
+            fileInput.addEventListener('change', (e) => {
+                this.updateStatusText(t, e.target.files.length);
+            });
+        }
+    },
+
+    updateStatusText(t, fileCount) {
+        const statusMessage = this.getStatusMessage(t, fileCount);
+        if (statusMessage) {
+            const $status = document.querySelector(this.selectors.statusText);
+            if ($status) $status.innerText = statusMessage;
+        }
+    },
+
+    getStatusMessage(t, fileCount) {
+        if (fileCount === 0) {
+            return t.noFileChosen;
+        } else if (fileCount > 1) {
+            return t.multipleFilesChosen.other.replace('%{count}', fileCount);
+        }
     }
 };
