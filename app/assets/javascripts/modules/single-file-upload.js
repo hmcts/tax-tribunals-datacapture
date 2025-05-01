@@ -45,8 +45,10 @@ moj.Modules.singleFileUpload = {
 
 
     $removeBtn.on('click', function (e){
+        const lang = window.location.pathname.includes('/cy') ? 'cy' : 'en';
+        var text = `moj.Modules.fileUploaderTranslations.${lang}.noFileChosen`;
         $button.addClass(self.empty_class);
-        $areaText.text('No file chosen');
+        $areaText.text(moj.t(text));
         $el.val(null);
         $removeBtn.hide();
         $('.js-file-status').text('');
