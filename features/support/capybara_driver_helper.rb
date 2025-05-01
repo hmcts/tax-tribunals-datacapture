@@ -1,7 +1,7 @@
 Selenium::WebDriver.logger.level = :error
 
 Capybara.configure do |config|
-  driver = ENV['DRIVER']&.to_sym || :firefox
+  driver = ENV['DRIVER']&.to_sym || :safari
   config.default_driver = driver
   config.default_max_wait_time = 30
   config.match = :prefer_exact
@@ -22,7 +22,7 @@ Capybara.register_driver :chrome do |app|
   Capybara::Selenium::Driver.new(app, browser: :chrome)
 end
 
-Capybara::Screenshot.register_driver(:firefox) do |driver, path|
+Capybara::Screenshot.register_driver(:headless) do |driver, path|
   driver.browser.save_screenshot(path)
 end
 
