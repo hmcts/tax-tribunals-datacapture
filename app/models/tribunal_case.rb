@@ -131,7 +131,6 @@ class TribunalCase < ApplicationRecord
   private
 
   # TODO: refactor this
-  # rubocop:disable Performance/CollectionLiteralInLoop
   def sanitize
     self.class.columns.each do |col|
       # Skip uuids, integers, datetimes, et al.
@@ -143,7 +142,6 @@ class TribunalCase < ApplicationRecord
       end
     end
   end
-  # rubocop:enable Performance/CollectionLiteralInLoop
 
   def sanitizer(value)
     Sanitize.fragment(value).
