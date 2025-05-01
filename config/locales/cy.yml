@@ -1903,3 +1903,12 @@ cy:
           <li>bod yn wahanol i'ch cyfeiriad e-bost</li>
           <li>peidio â bod yn anagram gwan neu'n gyfrinair cyffredin</li>
         </ul>
+  file_upload:
+    choose_file: "Dewis ffeil"
+    drop_instruction: "neu ollwng ffeil"
+    no_file_chosen: "Dim ffeil wedi'i dewis"
+    multiple_files:
+      one: "Ffeil %{count} wedi'i dewis"
+      other: "Ffeil %{count} wedi'i dewis"
+    entered_drop_zone: "Man cywir i ollwng ffeil"
+    left_drop_zone: "I'r chwith o'r man cywir i ollwng ffeil"

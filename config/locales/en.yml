@@ -2095,3 +2095,12 @@ en:
         heading: 'Edit staff invitation'
         accept_invitation: 'Accept invitation'
         password_confirmation: 'Password confirmation'
+  file_upload:
+    choose_file: 'Choose file'
+    drop_instruction: 'or drop file'
+    no_file_chosen: 'No file chosen'
+    multiple_files:
+      one: '%{count} file chosen'
+      other: '%{count} files chosen'
+    entered_drop_zone: 'Entered drop zone'
+    left_drop_zone: 'Left drop zone'
