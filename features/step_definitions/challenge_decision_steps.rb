@@ -46,6 +46,7 @@ When("I press 'challenge a tax decision with HM Revenue and Customs'") do
 end
 
 Then("I will be on the gov 'tax-appeals' page") do
+  puts "Current URL is: #{page.current_url}"
   expect(page.current_url).to start_with('https://www.gov.uk/tax-appeals')
 end
 

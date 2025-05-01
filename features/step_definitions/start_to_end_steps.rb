@@ -15,6 +15,7 @@ When("I click Finish") do
 end
 
 Then("I should be on the Smart Survey link") do
+  puts "Current URL is: #{page.current_url}"
   expected_url = Rails.application.config.survey_link
   expect(page.current_url).to start_with(expected_url)
 end
