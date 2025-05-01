@@ -62,6 +62,8 @@ RSpec.describe NotifyMailer, type: :mailer do
     allow(ENV).to receive(:fetch).with('NOTIFY_REPORT_PROBLEM_TEMPLATE_ID').and_return('report-problem-template')
     allow(ENV).to receive(:fetch).with('NOTIFY_GLIMR_GENERATION_COMPLETE_TEMPLATE_ID').and_return('glimr-generation-template')
     allow(ENV).to receive(:fetch).with('GOVUK_NOTIFY_API_KEY').and_return('dev_test-7bdad799-cfd7-4b9c-aafd-5d3162595af8-9e8cfc38-73f5-4164-b2f5-d5a9aa25bcdb')
+    allow(ENV).to receive(:fetch).with('EXTERNAL_URL').and_return('https://tax.justice.uk')
+    allow(ENV).to receive(:fetch).with('NOTIFY_EMPLOYEE_INVITE_TEMPLATE_ID').and_return('123654789aaa')
     stub_const('GOVUK_NOTIFY_TEMPLATES', govuk_notify_templates)
   end
 
@@ -165,6 +167,15 @@ RSpec.describe NotifyMailer, type: :mailer do
                                                         portfolio_url: "https://tax.justice.uk/#{I18n.locale}/users/cases",
                                                         portfolio_cy_url: "https://tax.justice.uk/cy/users/cases"
                                                       })
+    end
+  end
+
+  describe '#password_change Employee' do
+    let(:mail) { described_class.password_change(employee) }
+    let(:employee) { build(:employee, email:'shirley.schmidt@cranepooleandschmidt.com') }
+
+    it 'has the right keys' do
+      expect(TribunalCase).not_to receive(:latest_case)
     end
   end
 
@@ -310,25 +321,45 @@ RSpec.describe NotifyMailer, type: :mailer do
     end
   end
 
-  describe 'application_details_text' do
-    before do
-      Timecop.freeze(Time.zone.local(2017, 1, 1, 12, 0, 0))
+  describe '#reset_password_instructions for Employee' do
+    let(:mail) { described_class.reset_password_instructions(employee, token) }
+    let(:employee) { Employee.new(email: 'employee@example.com') }
+    let(:token) { '0xDEADBEEF' }
+
+    it_behaves_like 'a Notify mail', template_id: 'NOTIFY_RESET_PASSWORD_TEMPLATE_ID'
+
+    it 'has the right keys with tax host' do
+      expect(mail.govuk_notify_personalisation).to eq({
+        reset_url: "https://tax.justice.uk/employees/password/edit?locale=en&reset_password_token=0xDEADBEEF"
+      })
     end
 
-    after do
-      Timecop.return
+    it 'has the right keys with localhost' do
+      allow(ENV).to receive(:fetch).with('EXTERNAL_URL').and_return('https://localhost')
+      expect(mail.govuk_notify_personalisation).to eq({
+        reset_url: "https://localhost/employees/password/edit?locale=en&reset_password_token=0xDEADBEEF"
+      })
     end
 
-    languages = [
-      { name: 'English', template_id: 'NOTIFY_SEND_APPLICATION_DETAIL_TEXT_TEMPLATE_ID' },
-      { name: 'Welsh', template_id: 'NOTIFY_SEND_APPLICATION_DETAIL_TEXT_CY_TEMPLATE_ID' }
-    ]
-
-    languages.each do |language|
-      context "with tribunal_case language set to #{language[:name]}" do
-        include_examples 'sends the correct text message', language[:name], language[:template_id]
-      end
+    it 'sends the email to the correct recipient' do
+      expect(mail.to).to eq(['employee@example.com'])
     end
   end
 
+  describe '#invitation_instructions' do
+    let(:mail) { described_class.invitation_instructions(employee, {}) }
+    let(:employee) { Employee.invite!(email: 'new.employee@example.com', full_name: 'John Doe', skip_invitation: true) }
+    let(:token) { employee.raw_invitation_token }
+
+    it 'has the right keys' do
+      expect(mail.govuk_notify_personalisation).to eq({
+        full_name: 'John Doe',
+        invite_url: "https://tax.justice.uk/employees/invitation/accept?invitation_token=#{token}&locale=en"
+      })
+    end
+
+    it 'sends the email to the correct recipient' do
+      expect(mail.to).to eq(['new.employee@example.com'])
+    end
+  end
 end

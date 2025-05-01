@@ -3,6 +3,9 @@
 moj.Modules.singleFileUpload = {
   input_class: '.single-file-upload',
   remove_class: '.remove-btn',
+  empty_class: 'govuk-file-upload-button--empty',
+  area_id: '#grounds_for_appeal_document_input',
+  area_text: '.govuk-file-upload-button__status',
   spinnerImagePath: moj.Modules.fileUploadSpinnerPath,
   strings: {
     selected: moj.t('moj.Modules.fileUploadSelectedText'),
@@ -22,6 +25,8 @@ moj.Modules.singleFileUpload = {
     var self = this,
         $el = $(self.input_class).eq(0),
         $removeBtn = $(self.remove_class),
+        $button = $(self.area_id),
+        $areaText = $(self.area_text),
         $form = $el.closest('form');
 
     $removeBtn.hide();
@@ -40,6 +45,10 @@ moj.Modules.singleFileUpload = {
 
 
     $removeBtn.on('click', function (e){
+        const lang = window.location.pathname.includes('/cy') ? 'cy' : 'en';
+        var text = `moj.Modules.fileUploaderTranslations.${lang}.noFileChosen`;
+        $button.addClass(self.empty_class);
+        $areaText.text(moj.t(text));
         $el.val(null);
         $removeBtn.hide();
         $('.js-file-status').text('');

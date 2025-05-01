@@ -30,7 +30,16 @@ class NotifyMailer < GovukNotifyRails::Mailer
   end
 
   # Triggered automatically by Devise when the user resets its password
-  def reset_password_instructions(user, token, _opts={})
+  def reset_password_instructions(record, token, _opts={})
+    if record.is_a?(User)
+      reset_user_password(record, token)
+    elsif record.is_a?(Employee)
+      reset_employee_password(record, token)
+    end
+    mail(to: record.email)
+  end
+
+  def reset_user_password(user, token, _opts={})
     tribunal_case = TribunalCase.latest_case(user)
     set_template(template(tribunal_case&.language, :reset_password_instructions))
 
@@ -38,12 +47,30 @@ class NotifyMailer < GovukNotifyRails::Mailer
       reset_url: edit_user_password_url(reset_password_token: token, locale: :en),
       reset_cy_url: edit_user_password_url(reset_password_token: token, locale: :cy)
     )
+  end
 
-    mail(to: user.email)
+  def reset_employee_password(_emploee, token, _opts={})
+    set_template(template(nil, :reset_password_instructions))
+
+    set_personalisation(
+      reset_url: edit_employee_password_url(reset_password_token: token, locale: :en, host: url_host)
+    )
+  end
+
+  def invitation_instructions(employee, *_args)
+    set_template(ENV.fetch('NOTIFY_EMPLOYEE_INVITE_TEMPLATE_ID'))
+
+    set_personalisation(
+      invite_url: accept_employee_invitation_url(invitation_token: employee.raw_invitation_token, host: url_host),
+      full_name: employee.full_name
+    )
+
+    mail(to: employee.email)
   end
 
   # Triggered automatically by Devise when the user changes its password
   def password_change(user, _opts={})
+    return if user.is_a?(Employee)
     tribunal_case = TribunalCase.latest_case(user)
     set_template(template(tribunal_case&.language, :password_change))
 
@@ -185,5 +212,9 @@ class NotifyMailer < GovukNotifyRails::Mailer
 
   def filter_key?(key)
     PERSONALISATION_ERROR_FILTER.include?(key)
+  end
+
+  def url_host
+    ENV.fetch('EXTERNAL_URL')
   end
 end

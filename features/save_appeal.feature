@@ -6,7 +6,7 @@ Feature: Save appeal
     Then I am taken to the save your appeal page
 
   Scenario: Password must be at least 8 characters
-    When I enter a password that is not at least 8 characters
+    When I enter a password that is not at least 10 characters
     Then I should see a password error message
 
   Scenario: Password can not be the same as the email address field

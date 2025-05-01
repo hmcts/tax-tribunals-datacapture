@@ -815,16 +815,36 @@ en:
               taken: You already have cases saved with this email address. Try signing in.
             password:
               blank: Please enter a password
-              too_short: Your password must be at least 8 characters long
+              too_short: Your password must be at least 10 characters long
               too_long: Your password must be no longer than %{count} characters
             password_confirmation:
               blank: Please enter the password again
-              too_short: Your password must be at least 8 characters long
+              too_short: Your password must be at least 10 characters long
               too_long: Your password must be no longer than %{count} characters
               confirmation: The password confirmation doesn't match
             current_password:
               blank: Please enter your current password
               invalid: The password is not valid
+
+        employee:
+          attributes:
+            full_name:
+              blank: Full name can't be blank
+            email:
+              blank: Email can't be blank
+            password:
+              blank: Password can't be blank
+            password_confirmation:
+              blank: Please enter the password again
+              too_short: Your password must be at least 10 characters long
+              too_long: Your password must be no longer than %{count} characters
+              confirmation: The password confirmation doesn't match
+            current_password:
+              blank: Please enter your current password
+              invalid: The password is not valid
+            password:
+              too_short: "The password must be at least %{count} characters long"
+
   helpers:
     fieldset:
       steps_appeal_case_type_form:
@@ -1578,6 +1598,11 @@ en:
       logout: Sign out
       change_password: Change password
       your_cases: Your saved cases
+    current_employee_menu:
+      logout: Sign out
+      change_password: Change password
+      manage_employees: "Manage staff accounts"
+      employee_profile: "My profile"
     govuk_template:
       skip_to_main_content: Skip to main content
       default_page_title: GOV.UK - The best place to find government services and information
@@ -1589,7 +1614,7 @@ en:
     errors:
       file_size: "%{file_name} is too big. You will need to resubmit a smaller version,
         less than %{max_size} megabytes (MB)"
-      content_type: "%{file_name} is in a format we don't accept. You can upload MS Word, 
+      content_type: "%{file_name} is in a format we don't accept. You can upload MS Word,
       MS Excel, PDF, JPG, GIF, PNG, TXT or RTF files."
       invalid_characters: "%{file_name} contains invalid characters. Please do not use
         characters like £ or ¬ in the file name"
@@ -1782,10 +1807,12 @@ en:
       signed_up_but_unconfirmed: "A message with a confirmation link has been sent to your email address. Please follow the link to activate your account."
       update_needs_confirmation: "You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirm link to confirm your new email address."
       updated: "Your account has been updated successfully."
+      new_password_blank: "New password can't be blank"
     sessions:
       signed_in: "Signed in successfully."
       signed_out: "Signed out successfully."
       already_signed_out: "Signed out successfully."
+
   users:
     logins:
       new:
@@ -1872,7 +1899,7 @@ en:
       reset_sent:
         heading: Please check your email
         lead_text: We have sent you an email with a link to reset your password. Please check your inbox and spam folder.
-        deleted_account_html: You won't get an email if you haven't signed in for <strong>30 days</strong>. We delete your account  for your security. You will need to start again. 
+        deleted_account_html: You won't get an email if you haven't signed in for <strong>30 days</strong>. We delete your account  for your security. You will need to start again.
         no_email_heading: Can't see the email?
         no_email_junk: It can take a few minutes to arrive. Check your junk mail if you can't see it in your inbox.
         no_email_incorrect: If the email was entered incorrectly when you originally created your account, or the email you have just provided is not connected to an account, you will not receive an email and you will need to start again.
@@ -1887,7 +1914,7 @@ en:
       password_guidelines_html: |
           <p class="govuk-body">Your password must:</p>
           <ul class="govuk-list standard-list">
-            <li>be at least 8 characters</li>
+            <li>be at least 10 characters</li>
             <li>not be the same as your email address</li>
             <li>not be a weak anagram or commonly used password</li>
           </ul>
@@ -1899,7 +1926,7 @@ en:
         await_confirmation: Please remain on this page until you receive the confirmation email, as it may take a few minutes to arrive.
         no_email_heading: Can't see the email?
         no_email_junk: Check your junk mail if you can't see it in your inbox.
-        no_email_invalid_entry: If you do not receive the confirmation email, you might have entered your email address incorrectly. It is recommended that you 
+        no_email_invalid_entry: If you do not receive the confirmation email, you might have entered your email address incorrectly. It is recommended that you
         no_email_invalid_entry_link: try again
         no_email_invalid_entry_end: otherwise you will be unable to access your case later and will have to start again.
         no_email_signed_out: If you choose to try again, your current progress will be saved and you will be signed out of your existing account, which will be automatically deleted after 30 days.
@@ -1952,6 +1979,8 @@ en:
         heading: Thank you for reporting this problem
         continue: Back to start
   admin:
+    index:
+      page_title: Admin
     glimr_generation:
       new:
         page_title: Generate GLiMR records
@@ -1995,3 +2024,83 @@ en:
       upload_problems_link: Upload problems
       other_case_types_link: Other case types
       other_dispute_types_link: Other dispute types
+  employees:
+    shared:
+      get_help:
+        forgot_password: 'Forgot your password?'
+    sessions:
+      new:
+        page_title: 'Employee sign in'
+        heading: 'Sign in'
+        forgot_password: 'Forgot your password?'
+    passwords:
+      new:
+        page_title: 'Employee forgot password'
+        heading: 'Forgot your password'
+        lead_text: 'Enter your email address and we’ll send you a link to reset your password.'
+        sign_in: 'Go back and sign in'
+        account_text: Remember, if you haven't signed in for 30 days we disable your account for security reasons.
+      edit:
+        page_title: 'Employee change password'
+        heading: 'Reset your password'
+        new_password: 'New password'
+        confirm_new_password: 'Confirm new password'
+        reset_password_token: 'asdads'
+    password_guidelines_html: |
+      <p class="govuk-body">Your password must:</p>
+      <ul class="govuk-list standard-list">
+        <li>be at least 10 characters</li>
+        <li>not be the same as your email address</li>
+        <li>must include at least 1 digit, 1 lowercase letter, 1 uppercase letter, and 1 special character</li>
+      </ul>
+
+    registrations:
+      new:
+        page_title: 'Employee sign up'
+        heading: 'Sign up'
+        existing_account: 'Sign into an existing account'
+        account_warning_html: |
+          <p class="govuk-body
+      edit:
+        page_title: 'Employee edit'
+        heading: 'Change your password'
+        current_password: 'Current password'
+        new_password: 'New password'
+        new_password_confirmation: 'Confirm new password'
+    accounts:
+      index:
+        page_title: 'Manage staff accounts'
+        heading: 'Employee accounts'
+        active:
+          true: 'Active'
+          false: 'Inactive'
+        status_label: 'Status'
+        filter: 'List staff'
+        clear: 'Clear'
+        manage_account: "Manage account details"
+        add_staff_account: "Add staff account"
+      edit:
+        page_title: 'Change staff account'
+        my_page_title: 'Change my account details'
+      show:
+        my_page_title: "My account details"
+        page_title: "Staff account details"
+    invitations:
+      new:
+        page_title: 'Send invitation: Add staff account'
+        heading: 'Send invitation: Add staff account'
+        send_invitation: 'Send invitation'
+      edit:
+        page_title: 'Edit staff invitation'
+        heading: 'Edit staff invitation'
+        accept_invitation: 'Accept invitation'
+        password_confirmation: 'Password confirmation'
+  file_upload:
+    choose_file: 'Choose file'
+    drop_instruction: 'or drop file'
+    no_file_chosen: 'No file chosen'
+    multiple_files:
+      one: '%{count} file chosen'
+      other: '%{count} files chosen'
+    entered_drop_zone: 'Entered drop zone'
+    left_drop_zone: 'Left drop zone'
