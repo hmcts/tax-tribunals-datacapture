@@ -11,7 +11,29 @@ Then("I should be told that the application has been successfully submitted") do
 end
 
 When("I click Finish") do
-  confirmation_page.finish
+  max_attempts = 5
+  attempts = 0
+  success = false
+
+  until success || attempts >= max_attempts
+    attempts += 1
+    begin
+      puts "Attempt #{attempts} to click Finish"
+      confirmation_page.finish
+
+      timestamp = Time.now.to_i
+      save_screenshot("tmp/finish_debug_#{timestamp}.png")
+      File.write("tmp/finish_debug_#{timestamp}.html", page.html)
+      puts "Finish button clicked and page captured successfully"
+
+      success = true
+    rescue => e
+      puts "Error on attempt #{attempts} while clicking Finish: #{e.message}"
+      sleep 2 unless attempts >= max_attempts
+    end
+  end
+
+  raise "Failed to click Finish after #{max_attempts} attempts" unless success
 end
 
 Then("I should be on the Smart Survey link") do
