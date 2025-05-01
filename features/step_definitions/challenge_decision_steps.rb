@@ -46,7 +46,7 @@ When("I press 'challenge a tax decision with HM Revenue and Customs'") do
 end
 
 Then("I will be on the gov 'tax-appeals' page") do
-  expect(page).to have_text "Disagree with a tax decision"
+  expect(page.current_url).to start_with('https://www.gov.uk/tax-appeals')
 end
 
 When("I press 'options when UK border force seizes your things'") do
