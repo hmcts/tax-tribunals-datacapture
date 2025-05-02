@@ -59,8 +59,6 @@ Rails.application.configure do
   config.action_controller.raise_on_missing_callback_actions = false
   config.action_controller.raise_on_open_redirects = false
   WebMock.disable_net_connect!(allow_localhost: true)
-  # config.kickout_survey_link = '/mocked-survey.html'.freeze
-  # config.survey_link = '/mocked-survey.html'.freeze
 end
 
 Rails.application.routes.default_url_options[:locale] = I18n.default_locale
