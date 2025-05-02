@@ -47,8 +47,6 @@ end
 
 Then("I will be on the gov 'tax-appeals' page") do
   expect(page).to have_text "Disagree with a tax decision"
-  WebMock.reset!
-  WebMock.allow_net_connect!(net_http_connect_on_start: true, allow_localhost: true)
 end
 
 When("I press 'options when UK border force seizes your things'") do

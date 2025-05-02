@@ -15,9 +15,8 @@ When("I click Finish") do
 end
 
 Then("I should be on the Smart Survey link") do
-  expect(page).to have_text "Thank you for taking your time to tell us what you think about the Tax Tribunal online service."
-  WebMock.reset!
-  WebMock.allow_net_connect!(net_http_connect_on_start: true, allow_localhost: true)
+  expect(page).to have_current_path('/mocked-survey.html', ignore_query: true)
+  expect(page).to have_selector('#mock-survey-message', text: "Thank you for taking your time to tell us what you think about the Tax Tribunal online service.")
 end
 
 # rubocop:disable Lint/AmbiguousRegexpLiteral
