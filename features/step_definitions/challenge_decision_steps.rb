@@ -33,38 +33,24 @@ Then("I am taken to the must appeal decision status page") do
   expect(page).to have_text 'You must appeal the original decision to HMRC'
 end
 
+Then('I will see the original notice text') do
+  expect(challenge_decision_page.content).to have_dropdown_text
+end
+
 When("I press 'Help with challenging a decision'") do
   challenge_decision_page.help_with_challenging_dropdown
 end
 
-Then("I will see the drop down list") do
-  expect(challenge_decision_page.content).to have_dropdown_content
+When("I see a link 'challenge a tax decision with HM Revenue and Customs' with the correct URL") do
+  expect(challenge_decision_page.challenging_decision_HMRC_link).to eq('https://www.gov.uk/tax-appeals')
 end
 
-When("I press 'challenge a tax decision with HM Revenue and Customs'") do
-  WebMock.stub_request(:get, "www.gov.uk/")
-         .to_return(status: 200, body: '<html><body>Disagree with a tax decision</body></html>', headers: {})
-  challenge_decision_page.challenging_decision_HMRC
+When("I see a link 'options when UK border force seizes your things' with the correct URL") do
+  expect(challenge_decision_page.border_force_link).to eq('https://www.gov.uk/customs-seizures/overview')
 end
 
-Then("I will be on the gov 'tax-appeals' page") do
-  expect(page).to have_text "Disagree with a tax decision"
-end
-
-When("I press 'options when UK border force seizes your things'") do
-  challenge_decision_page.border_force
-end
-
-Then("I will be on the gov 'customs-seizures' page") do
-  expect(page).to have_text "Options when customs seizes your things"
-end
-
-And("I press how to 'challenge a national crime agency'") do
-  challenge_decision_page.nca
-end
-
-Then("I will be on the appeal home page") do
-  expect(page).to have_text "Appeal to the tax tribunal"
+When("I see a link 'challenge a national crime agency' with the correct URL") do
+  expect(challenge_decision_page.nca_link).to eq('https://www.gov.uk/tax-tribunal/overview')
 end
 
 When("I press continue with no response selected") do
