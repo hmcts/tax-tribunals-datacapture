@@ -11,6 +11,7 @@ require 'cucumber/rails'
 require 'rest-client'
 require 'selenium-webdriver'
 require 'webmock'
+include WebMock::API
 ENV['TEST_LOCALE'] = "en" if ENV['TEST_LOCALE'] != "cy"
 require_relative 'page_objects/base_page'
 require_relative 'document_upload_helper_stub'

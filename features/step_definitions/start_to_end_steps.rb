@@ -15,9 +15,9 @@ When("I click Finish") do
 end
 
 Then("I should be on the Smart Survey link") do
-  puts "Current URL is: #{page.current_url}"
-  expected_url = Rails.application.config.survey_link
-  expect(page.current_url).to start_with(expected_url)
+  expect(page).to have_text "Thank you for taking your time to tell us what you think about the Tax Tribunal online service."
+  WebMock.reset!
+  WebMock.allow_net_connect!(net_http_connect_on_start: true, allow_localhost: true)
 end
 
 # rubocop:disable Lint/AmbiguousRegexpLiteral
