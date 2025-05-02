@@ -42,9 +42,9 @@ Then("I will see the drop down list") do
 end
 
 When("I press 'challenge a tax decision with HM Revenue and Customs'") do
-  challenge_decision_page.challenging_decision_HMRC
   WebMock.stub_request(:get, "www.gov.uk/")
          .to_return(status: 200, body: '<html><body>Disagree with a tax decision</body></html>', headers: {})
+  challenge_decision_page.challenging_decision_HMRC
 end
 
 Then("I will be on the gov 'tax-appeals' page") do
