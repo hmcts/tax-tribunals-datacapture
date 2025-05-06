@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe GlimrApiCallJob, type: :job do
-  let!(:tribunal_case) { TribunalCase.create }
+  let!(:tribunal_case) { TribunalCase.create id: "8efbbd3f-67ca-4db8-aef1-29d8690928f5" }
   let(:current_time) { Time.zone.now }
 
   describe '#perform' do
@@ -14,7 +14,8 @@ RSpec.describe GlimrApiCallJob, type: :job do
 
       before do
         allow(TaxTribs::GlimrNewCase).to receive(:new).with(tribunal_case).and_return(glimr_new_case_double)
-        GlimrApiCallJob.perform_now(tribunal_case)
+        allow(Sentry).to receive(:capture_message)
+        GlimrApiCallJob.perform_now(tribunal_case.id)
       end
 
       it 'calls GlimrNewCase.call' do
@@ -22,7 +23,8 @@ RSpec.describe GlimrApiCallJob, type: :job do
       end
 
       it 'should store the case reference in the DB entry' do
-        expect(tribunal_case.case_reference).to eq('TC/2017/12345')
+        expect(tribunal_case.reload.case_reference).to eq('TC/2017/12345')
+        expect(Sentry).to have_received(:capture_message).with("GLIMR call updated true for 8efbbd3f-67ca-4db8-aef1-29d8690928f5.")
       end
     end
 
@@ -38,7 +40,7 @@ RSpec.describe GlimrApiCallJob, type: :job do
 
       it 'throws a NoMethodError and Sentry captures exception' do
         expect {
-          GlimrApiCallJob.perform_now(tribunal_case)
+          GlimrApiCallJob.perform_now(tribunal_case.id)
         }.to raise_error(NoMethodError)
         expect(Sentry).to have_received(:capture_exception).with(instance_of(NoMethodError), extra: { tribunal_case_id: tribunal_case.id })
       end
