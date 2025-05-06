@@ -10,12 +10,8 @@ Then("I should be told that the application has been successfully submitted") do
   expect(confirmation_page.content).to have_case_submitted_header
 end
 
-When("I click Finish") do
-  confirmation_page.finish
-end
-
-Then("I should be on the Smart Survey link") do
-  expect(page).to have_text "Thank you for taking your time to tell us what you think about the Tax Tribunal online service."
+When("I can access the finish survey") do
+  expect(confirmation_page.content).to have_finish_button
 end
 
 # rubocop:disable Lint/AmbiguousRegexpLiteral

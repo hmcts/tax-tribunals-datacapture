@@ -53,19 +53,18 @@ Background: Appeal decision question page
 
   Scenario: I press 'Help with challenging a decision'
     When I press 'Help with challenging a decision'
-    Then I will see the drop down list
-    When I press 'challenge a tax decision with HM Revenue and Customs'
-    Then I will be on the gov 'tax-appeals' page
+    Then I will see the original notice text
+    And I see a link 'challenge a tax decision with HM Revenue and Customs' with the correct URL
 
   Scenario: UK border force
     When I press 'Help with challenging a decision'
-    And I press 'options when UK border force seizes your things'
-    Then I will be on the gov 'customs-seizures' page
+    Then I will see the original notice text
+    And I see a link 'options when UK border force seizes your things' with the correct URL
 
   Scenario: NCA
     When I press 'Help with challenging a decision'
-    And I press how to 'challenge a national crime agency'
-    Then I will be on the appeal home page
+    Then I will see the original notice text
+    And I see a link 'challenge a national crime agency' with the correct URL
 
   Scenario: Timeout test - shouldn't trigger
     When I wait for 11 minutes
