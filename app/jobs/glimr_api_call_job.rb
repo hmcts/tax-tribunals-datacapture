@@ -1,5 +1,5 @@
 class GlimrApiCallJob < ApplicationJob
-  queue_as :glimr_api_calls
+  queue_as :default
   sidekiq_options retry: 3
 
   def perform(tribunal_case)
