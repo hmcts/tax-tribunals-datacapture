@@ -30,7 +30,7 @@ RSpec.describe TaxTribs::CaseCreator do
       end
 
       it 'should enqueue glimr api call job' do
-        expect(GlimrApiCallJob).to receive(:perform_later).with(tribunal_case)
+        expect(GlimrApiCallJob).to receive(:perform_later).with(tribunal_case.id)
         subject.call
       end
     end
