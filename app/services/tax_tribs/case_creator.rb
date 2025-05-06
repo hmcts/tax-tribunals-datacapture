@@ -11,7 +11,7 @@ module TaxTribs
         submitted_at: Time.zone.now,
         case_status: CaseStatus::SUBMITTED
       )
-      GlimrApiCallJob.perform_later(tribunal_case.id)
+      GlimrApiCallJob.perform_now(tribunal_case.id)
     end
   end
 end
