@@ -6,10 +6,10 @@ class ChallengeDecisionPage < BasePage
     element :review_header, 'h1', text: I18n.t('steps.challenge.decision.edit.heading_indirect')
     element :help_with_challenging_a_decision, 'span', text: I18n.t('steps.challenge.decision.edit.help_panel.heading')
     element :sign_out, 'label', text: 'layouts.current_user_menu.logout'
-    element :dropdown_content, 'p', text: "The original notice letter will say what you can do when you disagree with a tax decision."
-    element :challenge_dropdown, 'li', text: 'challenging a tax decision with HM Revenue & Customs (HMRC)'
-    element :border_force, 'li', text: 'options when UK Border Force (UKBF) seizes your things'
-    element :challenge_NCA, 'li', text: 'how to challenge a National Crime Agency (NCA) decision'
+    element :dropdown_text, 'p', text: "The original notice letter will say what you can do when you disagree with a tax decision."
+    element :challenge_hmrc_link, 'a', text: 'challenging a tax decision with HM Revenue & Customs (HMRC)'
+    element :border_force, 'a', text: 'options when UK Border Force (UKBF) seizes your things'
+    element :challenge_NCA, 'a', text: 'how to challenge a National Crime Agency (NCA) decision'
     section :error, '.govuk-error-summary' do
       element :error_heading, '.govuk-error-summary__title', text: I18n.t('errors.error_summary.heading')
     end
@@ -19,16 +19,16 @@ class ChallengeDecisionPage < BasePage
     content.help_with_challenging_a_decision.click
   end
 
-  def challenging_decision_HMRC
-    content.challenge_dropdown.click
+  def challenging_decision_HMRC_link
+    content.challenge_hmrc_link.native.attribute('href')
   end
 
-  def nca
-    content.challenge_NCA.click
+  def nca_link
+    content.challenge_NCA.native.attribute('href')
   end
 
-  def border_force
-    content.border_force.click
+  def border_force_link
+    content.border_force.native.attribute('href')
   end
 
   def logout
