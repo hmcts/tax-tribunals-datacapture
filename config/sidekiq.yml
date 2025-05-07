@@ -1,4 +1,4 @@
 :queues:
+  - glimr_api_calls
   - default
   - mailers
-  - glimr_api_calls
