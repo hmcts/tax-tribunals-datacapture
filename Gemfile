@@ -1,19 +1,17 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.4.2'
+ruby '3.4.1'
 
 gem 'azure_env_secrets', git: 'https://github.com/hmcts/azure_env_secrets.git', tag: 'v1.0.1'
 gem 'bootsnap',                        '~> 1.16', require: false
 gem 'devise'
-gem 'devise-security'
-gem 'devise_invitable'
 gem "valid_email2"
 gem 'glimr-api-client', github: 'ministryofjustice/glimr-api-client', tag: 'v0.4.1'
 gem 'govuk_design_system_formbuilder'
 gem 'govuk_notify_rails', '~> 3.0'
 gem 'jquery-rails'
-gem 'nokogiri', '>= 1.18.3'
+gem 'nokogiri', '>= 1.16.2'
 gem 'pg'
 gem 'pry-rails'
 gem 'puma'
