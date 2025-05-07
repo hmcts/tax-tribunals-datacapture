@@ -1,5 +1,5 @@
 class GlimrApiCallJob < ApplicationJob
-  queue_as :glimr_api_calls
+  queue_as :default
   sidekiq_options retry: 3
 
   def tribunal_case_record(tribunal_case_id)
@@ -7,7 +7,6 @@ class GlimrApiCallJob < ApplicationJob
   end
 
   def perform(tribunal_case_id)
-    Sentry.capture_message("GLIMR call start for #{tribunal_case_id}.")
     tribunal_case = tribunal_case_record(tribunal_case_id)
     glimr_case = TaxTribs::GlimrNewCase.new(tribunal_case).call
 
