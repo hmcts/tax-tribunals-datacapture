@@ -1,4 +1,4 @@
-FROM ruby:3.4.2-alpine3.21
+FROM ruby:3.4.3-alpine3.21
 
 # Adding argument support for ping.json
 ARG APP_VERSION=unknown
@@ -102,7 +102,7 @@ USER appuser
 WORKDIR /home/app
 COPY Gemfile* .ruby-version ./
 
-RUN gem install bundler -v 2.6.2 && \
+RUN gem install bundler -v 2.6.8 && \
     bundle config set frozen 'true' && \
     bundle config set force_ruby_platform true \
     bundle config without test:development && \
