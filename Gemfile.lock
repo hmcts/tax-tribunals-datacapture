@@ -408,7 +408,7 @@ GEM
     puma (6.6.0)
       nio4r (~> 2.0)
     racc (1.8.1)
-    rack (2.2.14)
+    rack (2.2.15)
     rack-attack (6.7.0)
       rack (>= 1.0, < 4)
     rack-brotli (1.2.0)
@@ -527,12 +527,12 @@ GEM
       lint_roller (~> 1.1)
       rubocop (>= 1.75.0, < 2.0)
       rubocop-ast (>= 1.38.0, < 2.0)
-    rubocop-rails (2.31.0)
+    rubocop-rails (2.32.0)
       activesupport (>= 4.2.0)
       lint_roller (~> 1.1)
       rack (>= 1.1)
       rubocop (>= 1.75.0, < 2.0)
-      rubocop-ast (>= 1.38.0, < 2.0)
+      rubocop-ast (>= 1.44.0, < 2.0)
     rubocop-rspec (3.6.0)
       lint_roller (~> 1.1)
       rubocop (~> 1.72, >= 1.72.1)
@@ -590,7 +590,7 @@ GEM
       capybara (~> 3.34)
       site_prism-all_there (> 3, < 5)
     site_prism-all_there (3.0.6)
-    sorbet-runtime (0.5.12104)
+    sorbet-runtime (0.5.12115)
     sprockets (4.2.2)
       concurrent-ruby (~> 1.0)
       logger
@@ -753,7 +753,7 @@ DEPENDENCIES
   zendesk_api (~> 1.28)
 
 RUBY VERSION
-   ruby 3.4.3p32
+   ruby 3.4.4p34
 
 BUNDLED WITH
-   2.6.2
+   2.6.7
