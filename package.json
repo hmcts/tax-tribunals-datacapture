@@ -4,6 +4,6 @@
   "private": true,
   "dependencies": {
     "govuk-frontend": "^5.10.1",
-    "puppeteer": "^23.10.4"
+    "puppeteer": "^24.0.0"
   }
 }
