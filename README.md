@@ -38,7 +38,7 @@ Before proceeding, ensure you have the following installed on your system:
     ```bash
     rake assets:precompile
     ```
-3.  **Configure Database:**
+3.  ***Configure Database:***
 
     * Edit `config/database.yml` and configure your database settings. Replace the placeholders with your database credentials.
 
