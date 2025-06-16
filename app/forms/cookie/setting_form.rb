@@ -36,7 +36,9 @@ module Cookie
       end
     end
 
+    # rubocop:disable Naming/PredicateMethod
     def persist!
+      # rubocop:enable Naming/PredicateMethod
       response.delete_cookie(COOKIE_NAME, {})
       response.set_cookie(
         COOKIE_NAME,

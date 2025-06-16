@@ -24,7 +24,7 @@ RSpec.describe GlimrApiCallJob, type: :job do
 
       it 'should store the case reference in the DB entry' do
         expect(tribunal_case.reload.case_reference).to eq('TC/2017/12345')
-        expect(Sentry).to have_received(:capture_message).with("GLIMR call updated true for 8efbbd3f-67ca-4db8-aef1-29d8690928f5.")
+        expect(Sentry).to have_received(:capture_message).with("GLIMR call updated true for 8efbbd3f-67ca-4db8-aef1-29d8690928f5.", {level: :info})
       end
     end
 

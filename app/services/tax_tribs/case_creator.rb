@@ -12,6 +12,7 @@ module TaxTribs
         case_status: CaseStatus::SUBMITTED
       )
       GlimrApiCallJob.perform_now(tribunal_case.id)
+      tribunal_case.reload
     end
   end
 end
