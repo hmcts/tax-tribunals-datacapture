@@ -40,7 +40,6 @@ class CaseMailPresenter < SimpleDelegator
 
   # rubocop:disable Naming/PredicateMethod
   def show_deadline_warning?
-    # rubocop:enable Naming/PredicateMethod
     intent.eql?(Intent::TAX_APPEAL) ? 'yes' : 'no'
   end
   # rubocop:enable Naming/PredicateMethod
