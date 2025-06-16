@@ -38,9 +38,11 @@ class CaseMailPresenter < SimpleDelegator
     (started_by_representative? ? representative_organisation_name : taxpayer_organisation_name).to_s
   end
 
+  # rubocop:disable Naming/PredicateMethod
   def show_deadline_warning?
     intent.eql?(Intent::TAX_APPEAL) ? 'yes' : 'no'
   end
+  # rubocop:enable Naming/PredicateMethod
 
   # Email address to use for `GLiMR is down` notifications
   def ftt_recipient_email

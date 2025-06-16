@@ -330,7 +330,7 @@ Bundler/OrderedGems:
 Rails/WhereRange:
   Enabled: false
 
-Naming/PredicateName:
+Naming/PredicatePrefix:
   Enabled: false
 
 Performance/MethodObjectAsBlock:

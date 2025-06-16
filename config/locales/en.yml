@@ -1665,7 +1665,7 @@ en:
       description_html: |
         <p class="govuk-body">This accessibility statement applies to the online service for 'appealing against a
         tax decision’ and ‘applying to close a tax enquiry’.</p>
-        <p class="govuk-body">This website is run by Her Majesty's Courts and Tribunals Service (HMCTS). We want as
+        <p class="govuk-body">This website is run by HM Courts and Tribunals Service (HMCTS). We want as
         many people as possible to be able to use this service. For example, that means you should be able to:</p>
         <ul class="govuk-list govuk-list--bullet">
           <li>change colours, contrast levels and fonts
@@ -1752,8 +1752,7 @@ en:
         <h1 class="govuk-heading-l">Preparation of this accessibility statement</h1>
         <p class="govuk-body">This statement was prepared on 23 November 2020. It was last updated on
         23 November 2020.</p>
-        <p class="govuk-body">This website was last tested on 23 November 2020. The tests were carried out by Her
-        Majesty’s Courts and Tribunals Service (HMCTS).</p>
+        <p class="govuk-body">This website was last tested on 23 November 2020. The tests were carried out by HM’s Courts and Tribunals Service (HMCTS).</p>
   session:
     note:
       heading: Security time-out

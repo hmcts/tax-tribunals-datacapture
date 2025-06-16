@@ -3,12 +3,12 @@ module PrivacyHelper
     link_to(t('privacy.call_charges'),
             t('links.call_charges_link'),
       target: '_blank',
-      title: t('privacy.call_charges_title'),
+      title: t('privacy.call_charges'),
       class: 'govuk-link', rel: 'noopener'
     )
   end
 
-  def moj_personal_character_link
+  def moj_charter_link
     link_to(t('privacy.who_managing.personal_character'),
             t('links.moj_charter_link'),
       target: '_blank',
