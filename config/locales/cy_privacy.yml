@@ -46,7 +46,10 @@ cy:
           email: dataprotection@justice.gov.uk
           postcode: "SW1H 9AJ"
           street: "102 Petty France"
-        gov_uk_policy_html: "Gallwch weld polisi preifatrwydd GOV.UK yma."
+        #gov_uk_policy_html: "Gallwch weld polisi preifatrwydd GOV.UK yma."
+      #  gov_uk_policy_html: Refer to <a href='https://www.gov.uk/help/privacy-notice' class="govuk-link" title="GOV.UK privacy policy page" target='_blank' rel='external'>
+        gov_uk_policy_html: Gallwch weld polisi preifatrwydd <a href='https://www.gov.uk/help/privacy-notice' class="govuk-link" title="GOV.UK" target='_blank' rel='external'>GOV.UK yma</a>.
+     #   Refer to GOV.UK privacy policy here.
         header: "Cael rhagor o wybodaeth"
         line_1: "Gallwch gael rhagor o fanylion ynghylch:"
         line_2: "Trwy gysylltu â’r llys sy’n delio â'ch gwybodaeth neu weld yr wybodaeth a ddarparwyd gennych wrth ichi ddefnyddio ein gwasanaethau neu oedden ni wedi cysylltu â chi. Gellir cysylltu â Swyddog Diogelu Data y Weinyddiaeth Gyfiawnder yn:"
@@ -96,7 +99,7 @@ cy:
       list_3: "y system weithredu a'r porwr gwe rydych chi’n eu defnyddio"
       use_cookies: "defnyddio cwcis"
       use_cookies_title: "Tudalen rheoli cwcis"
-    info_1: "Mae eich preifatrwydd yn bwysig i ni. Mae’r datganiad preifatrwydd hwn yn egluro pa fath o ddata personol mae Gwasanaeth Llysoedd a Thribiwnlysoedd Ei Mawrhydi (GLlTEM) yn ei gasglu gennych pan fyddwch yn defnyddio'r gwasanaeth hwn, trwy ryngweithio gyda chi a thrwy ein gwasanaeth, a sut byddwn yn defnyddio y data hwnnw."
+    info_1: "Mae eich preifatrwydd yn bwysig i ni. Mae’r datganiad preifatrwydd hwn yn egluro pa fath o ddata personol mae Gwasanaeth Llysoedd a Thribiwnlysoedd Ei Fawrhydi (GLlTEM) yn ei gasglu gennych pan fyddwch yn defnyddio'r gwasanaeth hwn, trwy ryngweithio gyda chi a thrwy ein gwasanaeth, a sut byddwn yn defnyddio y data hwnnw."
     info_2: "Os oes gennych unrhyw gwestiynau, gallwch gysylltu â’r tribiwnlys treth ar 0300 303 5176 (Gwybodaeth am %{call_charges})."
     last_update: "Diweddarwyd diwethaf: Mai 2018"
     personal_data:
@@ -126,7 +129,7 @@ cy:
       list_7: "eu cyfeiriad e-bost a’u rhif ffôn (dewisol)"
       using_save_return:
         header: "Defnyddio'r nodwedd ‘Cadw a Dychwelyd’"
-        line_1: "Os byddwch yn penderfynu defnyddio nodwedd ‘Cadw a Dychwelyd’ y gwasanaeth hwn, bydd gofyn ichi ddarparu eich cyfeiriad e-bost a dewis cyfrinair i greu cyfrif dros dro i reoli eich apêl/apeliadau neu eich cais/ceisiadau, gweler 'Storio gan ddefnyddio’r nodwedd 'Cadw a Dychwelyd' o dan %{how_we_use}"
+        line_1: "Os byddwch yn penderfynu defnyddio nodwedd ‘Cadw a Dychwelyd’ y gwasanaeth hwn, bydd gofyn ichi ddarparu eich cyfeiriad e-bost a dewis cyfrinair i greu cyfrif dros dro i reoli eich apêl/apeliadau neu eich cais/ceisiadau, gweler 'Storio gan ddefnyddio’r nodwedd 'Cadw a Dychwelyd' o dan %{how_we_use_link}"
     privacy: "Polisi preifatrwydd"
     section_list:
       cookies: "Cwcis a thechnolegau tebyg"
@@ -140,10 +143,10 @@ cy:
     terms: "Telerau ac amodau"
     who_managing:
       header: "Pwy sy’n rheoli'r gwasanaeth hwn"
-      line_1: "Gwasanaeth Llysoedd a Thribiwnlysoedd Ei Mawrhydi (GLlTEM) sy’n rheoli’r gwasanaeth hwn, sef  un o asiantaethau gweithredol y Weinyddiaeth Gyfiawnder (MoJ)."
+      line_1: "Gwasanaeth Llysoedd a Thribiwnlysoedd Ei Fawrhydi (GLlTEM) sy’n rheoli’r gwasanaeth hwn, sef  un o asiantaethau gweithredol y Weinyddiaeth Gyfiawnder (MoJ)."
       line_2: "MoJ yw’r rheolydd data at ddibenion diogelu data. Mae %{moj_personal_character} yn egluro sut mae’r MoJ yn prosesu data personol."
       line_3: "Fel rhan o’r MoJ, mae GLlTEM yn gyfrifol am benderfynu sut mae eich data personol yn cael ei ddefnyddio ac am ddiogelu'r data personol rydych yn ei ddarparu."
-      line_4: "Mae yna ragor o wybodaeth am ddefnyddio’r gwasanaeth hwn yn y %{terms_condition}."
+      line_4: "Mae yna ragor o wybodaeth am ddefnyddio’r gwasanaeth hwn yn y %{terms_link}."
       personal_character: "Siarter gwybodaeth bersonol y Weinyddiaeth Gyfiawnder"
     why_collect:
       header: "Pam rydym ni’n casglu eich data personol"

@@ -1130,7 +1130,7 @@ cy:
     accessibility:
       description_html: |-
         <p class="govuk-body">Mae'r datganiad hygyrchedd hwn yn berthnasol i'r gwasanaeth ar-lein ‘apelio yn erbyn penderfyniad treth' a ‘gwneud cais i gau ymholiad treth'.</p>
-        <p class="govuk-body">Gwasanaeth Llysoedd a Thribiwnlysoedd Ei Mawrhydi (GLlTEM) sy'n gyfrifol am y wefan hon. Rydym eisiau i gymaint o bobl â phosibl allu defnyddio'r gwasanaeth hwn.  Er enghraifft, golyga hyn y dylech allu:</p>
+        <p class="govuk-body">Gwasanaeth Llysoedd a Thribiwnlysoedd Ei Fawrhydi (GLlTEM) sy'n gyfrifol am y wefan hon. Rydym eisiau i gymaint o bobl â phosibl allu defnyddio'r gwasanaeth hwn.  Er enghraifft, golyga hyn y dylech allu:</p>
         <ul class="govuk-list govuk-list--bullet">
           <li>newid lliwiau, lefelau cyferbyniad a ffontiau</li>
           <li>gwneud y testun hyd at 300% yn fwy heb iddo ddiflannu oddi ar y sgrin</li>
@@ -1189,7 +1189,7 @@ cy:
         <p class="govuk-body">Rydym yn y broses o drefnu archwiliad llawn o WCAG 2.1. Byddwn wedyn yn diweddaru'r datganiad hwn. </p>
         <h1 class="govuk-heading-l">Paratoi'r datganiad hygyrchedd hwn</h1>
         <p class="govuk-body">Paratowyd y datganiad hwn ar y 23ain o Dachwedd 2020. Cafodd ei ddiweddaru ddiwethaf ar y 23ain o Dachwedd 2020.</p>
-        <p class="govuk-body">Profwyd y wefan hon ddiwethaf ar y 23ain o Dachwedd 2020. Cynhaliwyd y profion gan Wasanaeth Llysoedd a Thribiwnlysoedd Ei Mawrhydi (GLlTEM).</p>
+        <p class="govuk-body">Profwyd y wefan hon ddiwethaf ar y 23ain o Dachwedd 2020. Cynhaliwyd y profion gan Wasanaeth Llysoedd a Thribiwnlysoedd Ei Fawrhydi (GLlTEM).</p>
       heading_html: "Datganiad hygyrchedd ar gyfer y gwasanaeth Apelio i'r Tribiwnlys Treth"
       page_title: "Datganiad hygyrchedd"
     contact:
