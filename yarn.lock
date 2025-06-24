@@ -309,9 +309,9 @@ get-uri@^6.0.1:
     debug "^4.3.4"
 
 govuk-frontend@^5.10.1:
-  version "5.10.1"
-  resolved "https://registry.yarnpkg.com/govuk-frontend/-/govuk-frontend-5.10.1.tgz#5534357267919e26e72cdc028bbad1906b4c9ba1"
-  integrity sha512-VmzKE+pkuOqEXhit0cGqic4i2mOQwflfXDiEcsa6Lrqs//rxV5AYf+C71jbREPwQLH4wYSJAlz/GlGoO5nik7Q==
+  version "5.11.0"
+  resolved "https://registry.yarnpkg.com/govuk-frontend/-/govuk-frontend-5.11.0.tgz#01364ca98e4f5f86102dcb93f7d811d5387d2fec"
+  integrity sha512-RYZDEF1J6nVw5XauQGH+91qplExgHUXfXII7dtIme6I4u3eSvU59yZ0/EFKEwRgTslSqlhJODOnAi5rnQFU5Gw==
 
 http-proxy-agent@^7.0.0, http-proxy-agent@^7.0.1:
   version "7.0.2"
