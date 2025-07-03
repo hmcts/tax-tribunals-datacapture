@@ -18,17 +18,14 @@ webpages and highlights accessibility issues.
 ### Using Pa11y
 
 Install pa11y-ci using documentation at https://github.com/pa11y/pa11y-ci.
-Set up the MOJ uploader so that pages with upload functionality can be accessed https://github.com/ministryofjustice/mojfile-uploader
 
 For the tt-datacapture, tests may be carried out on the Appeal journey or the Closure journey.
 
-First, open 3 terminals and cd into the `mojfile-uploader` in one and `tax-tribunals-datacapture` in the other two.
+First, open 2 terminals for `tax-tribunals-datacapture`.
 
-Run the mojfile-uploader using `DO_NOT_SCAN=true dotenv rackup`
+Run  TT datacapture in one of the two terminals using `rails s -p 3000`
 
-Run  TT datacapture in one of the two remaining terminals using `rails s -p 3000`
-
-In the final terminal, depending on which journey you wish to test, execute the following commands:
+In the second terminal, depending on which journey you wish to test, execute the following commands:
 
 #### Appeal journey:
 
