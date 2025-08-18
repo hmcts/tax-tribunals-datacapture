@@ -5,6 +5,7 @@
   "dependencies": {
     "govuk-frontend": "^5.11.0",
     "pa11y-reporter-html": "^2.0.0",
-    "puppeteer": "^24.0.0"
+    "puppeteer": "^24.0.0",
+    "puppeteer-core": "24.15.0"
   }
 }
