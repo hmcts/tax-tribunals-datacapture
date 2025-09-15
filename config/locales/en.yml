@@ -1647,7 +1647,7 @@ en:
       description_html: |
         <p class="govuk-body"><strong>Tax tribunal helpline</strong></p>
         <p class="govuk-body">Telephone: %{tax_tribunal_phone} (<a href="https://www.gov.uk/call-charges?_ga=2.133422285.259545069.1613375547-566027510.1611311315" class="govuk-link">find out about call charges)</a></p>
-        <p class="govuk-body">Monday to Friday, 8:30am to 5pm</p>
+        <p class="govuk-body">Monday to Friday, 9am to 4pm</p>
         <p class="govuk-body">Please note: the helpline can't give you legal advice.</p>
         <p class="govuk-body"><strong>Other ways to get help</strong></p>
         <ul class="govuk-list govuk-list--bullet">

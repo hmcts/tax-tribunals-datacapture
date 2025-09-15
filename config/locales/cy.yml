@@ -1196,11 +1196,11 @@ cy:
       description_html: |-
         <p class="govuk-body"><strong>Llinell gymorth y tribiwnlys treth</strong></p>
         <p class="govuk-body">Ffôn: %{tax_tribunal_phone} (<a href="https://www.gov.uk/costau-galwadau" class="govuk-link">gwybodaeth am brisiau galwadau</a>)</p>
-        <p class="govuk-body">Dydd Llun i ddydd Gwener, 8:30am tan 5pm</p>
+        <p class="govuk-body">Dydd Llun i ddydd Gwener, 9am tan 4pm</p>
         <p class="govuk-body">Noder: ni all staff y llinell gymorth roi cyngor cyfreithiol i chi.</p>
         <p class="govuk-body"><strong>Ffyrdd eraill o gael cymorth</strong></p>
         <ul class="govuk-list govuk-list--bullet">
-           <li><a href="https://www.citizensadvice.org.uk" class="govuk-link" target="_blank" rel="noopener">Cyngor ar Bopeth<span class="govuk-visually-hidden"> (agor mewn ffenestr newydd)</span></a></li>
+           <li><a href="https://www.citizensadvice.org.uk/cymraeg/" class="govuk-link" target="_blank" rel="noopener">Cyngor ar Bopeth<span class="govuk-visually-hidden"> (agor mewn ffenestr newydd)</span></a></li>
           <p class="govuk-body">(ffoniwch 03444 77 20 20 yng Nghymru, 03444 111 444 yn Lloegr, neu chwiliwch am fanylion cyswllt eich swyddfa Cyngor ar Bopeth leol)</p>
               <li><a href="http://www.litrg.org.uk" class="govuk-link" target="_blank" rel="noopener">Low Incomes Tax Reform Group<span class="govuk-visually-hidden">  (agor mewn ffenestr newydd)</span></a></li>
            <li><a href="http://taxaid.org.uk" class="govuk-link" target="_blank" rel="noopener">TaxAid<span class="govuk-visually-hidden"> (agor mewn ffenestr newydd)</span></a></li>
