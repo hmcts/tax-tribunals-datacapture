@@ -64,7 +64,7 @@ module TaxTribunalsDatacapture
     config.gds_service_homepage_url = 'https://www.gov.uk/tax-tribunal'.freeze
 
     config.tax_tribunal_email = 'taxappeals@hmcts.gsi.gov.uk'
-    config.tax_tribunal_phone = '0300 123 1024'
+    config.tax_tribunal_phone = '0300 303 5857'
 
     config.x.session.expires_in_minutes = ENV.fetch('SESSION_EXPIRES_IN_MINUTES', 30).to_i
     config.x.session.warning_when_remaining = ENV.fetch('SESSION_WARNING_WHEN_REMAINING', 5).to_i
