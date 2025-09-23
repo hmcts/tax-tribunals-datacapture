@@ -101,7 +101,7 @@ group :test do
   gem 'brakeman'
   gem 'apparition'
   gem 'capybara'
-  gem 'cucumber-rails', '~> 3.0', require: false
+  gem 'cucumber-rails', '~> 4.0', require: false
   gem 'capybara-screenshot'
   gem 'database_cleaner-active_record'
   gem 'geckodriver-helper', '~> 0.24.0'
