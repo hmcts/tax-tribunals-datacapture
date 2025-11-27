@@ -17,7 +17,7 @@ gem 'nokogiri', '>= 1.18.3'
 gem 'pg'
 gem 'pry-rails'
 gem 'puma'
-gem 'rack-attack',                     '~> 6.7.0'
+gem 'rack-attack',                     '~> 6.8.0'
 gem 'rackup',                          '1.0.1', require: false
 gem 'rails',                           '~> 8.0.0'
 gem 'responders'

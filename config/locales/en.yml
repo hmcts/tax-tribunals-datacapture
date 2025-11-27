@@ -81,8 +81,8 @@ en:
 
     CONTACT_PREFERENCES: &CONTACT_PREFERENCES
       'email': 'Email only'
-      'text': 'Text message (SMS) only'
-      'both': 'Both email and text message (SMS)'
+      'text': 'Text message to a UK Mobile Number (SMS) only'
+      'both': 'Both email and text message to a UK Mobile Number (SMS)'
       'none': 'No email or text message (SMS)'
 
     CONTACT_PREFERENCES_CYA: &CONTACT_PREFERENCES_CYA
@@ -1009,7 +1009,7 @@ en:
             example a partnership, LLP (Limited Liability Partnership), trust, club or association"
       steps_details_send_application_details_form:
         email_address: Email address
-        phone_number: Phone number
+        phone_number: UK Mobile Phone number
         send_application_details_options:
           <<: *CONTACT_PREFERENCES
       steps_details_has_representative_form:

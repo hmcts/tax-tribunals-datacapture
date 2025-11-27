@@ -5,8 +5,8 @@ cy:
     language: English
     locale: en
   dictionary:
-    taxpayer: trethdalwr
-    representative: cynrychiolydd
+    taxpayer: "trethdalwr"
+    representative: "cynrychiolydd"
     select_language_question: &select_language_question Pa iaith ydych chi eisiau i ni ei defnyddio pan fyddwn yn cysylltu â chi?
     SUPPORTED_LANGUAGES: &SUPPORTED_LANGUAGES
       english: Saesneg
@@ -45,12 +45,11 @@ cy:
       review_late_rejection: "Roedd fy nghais yn hwyr. Rwy'n gwneud cais am ganiatâd i ofyn am adolygiad hwyr"
 
     SEND_CASE_DETAILS_COPY: &SEND_CASE_DETAILS_COPY
-      heading: "Dewiswch fanylion cyswllt dewisol y %{entity} ar gyfer copi o fanylion yr achos"
-      lead_text: "Os byddwch yn dewis e-bost a/neu neges testun, byddwn yn anfon copi o fanylion yr achos at y %{entity} pan fyddwch yn cyflwyno’r achos. Argymhellir eich bod yn cadw copi ar gyfer eich cofnodion."
+      heading: "Dewiswch y ffordd orau i gysylltu â’r %{entity} am gopi o fanylion yr achos"
+      lead_text: "Os byddwch yn dewis e-bost a / neu neges destun, byddwn yn anfon copi o fanylion yr achos at y %{entity} pan fyddwch yn cyflwyno’r achos. Argymhellir eich bod yn cadw copi ar gyfer eich cofnodion."
       page_title: "Y ffordd orau i gyfathrebu"
-      confirm_email_text: "I amddiffyn preifatrwydd, gofynnwn i chi gadarnhau'r cyfeiriad e-bost a roddoch yn flaenorol ar gyfer manylion y %{entity}."
+      confirm_email_text: "I ddiogelu preifatrwydd, gofynnwn i chi gadarnhau'r cyfeiriad e-bost a roddwyd gennych yn gynharach ar gyfer manylion y %{entity}."
       confirm_phone_text: "Rhowch y rhif ffôn cyswllt ar gyfer manylion y %{entity}."
-
     CYA_CONFIRMATION: &CYA_CONFIRMATION
       check_answers:
         resume:
@@ -103,9 +102,9 @@ cy:
 
     CONTACT_PREFERENCES: &CONTACT_PREFERENCES
       'email': 'E-bost yn unig'
-      'text': 'Neges testun (SMS) yn unig'
-      'both': 'E-bost a neges testun (SMS)'
-      'none': 'Dim e-bost na neges testun (SMS)'
+      'text': 'Neges destun i rif ffôn symudol yn y DU (SMS) yn unig'
+      'both': 'E-bost a neges destun i rif ffôn symudol yn y DU (SMS)'
+      'none': 'Dim e-bost na neges destun (SMS)'
 
     CONTACT_PREFERENCES_CYA: &CONTACT_PREFERENCES_CYA
       'email': 'E-bost'
@@ -1035,6 +1034,7 @@ cy:
           other_organisation_html: "<strong>Math arall o sefydliad</strong><br>er enghraifft partneriaeth neu LLP (Partneriaeth Atebolrwydd Cyfyngedig)"
       steps_details_send_application_details_form:
         email_address: "Cyfeiriad e-bost"
+        phone_number: "Rhif ffôn symudol yn y DU"
         send_application_details_options:
           <<: *YESNO
       steps_details_taxpayer_company_details_form:
@@ -1121,7 +1121,7 @@ cy:
       create: Parhau
       create_account: Cadw
       reset_password: "Ailosod cyfrinair"
-      save_and_come_back_later: "Cadw'r cais a dychwelyd yn hwyrach ymlaen"
+      save_and_come_back_later: "Cadw a dychwelyd yn hwyrach ymlaen"
       save_and_continue: "Cadw a pharhau"
       sign_in: Mewngofnodi
       update: Parhau
