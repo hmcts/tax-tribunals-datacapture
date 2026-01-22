@@ -1,6 +1,6 @@
 # Tax Tribunals Data Capture
 
-Ruby on Rails Web application for making an appeal or closure to the Tax Tribunal..
+Ruby on Rails Web application for making an appeal or closure to the Tax Tribunal.
 
 ## Prerequisites
 
