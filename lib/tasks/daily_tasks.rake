@@ -49,7 +49,7 @@ namespace :tribunal_case do
 end
 
 namespace :users do
-  desc "Expire users who have not logged in for 30 days"
+  desc "Expire users who have not logged in for 120 days"
   task purge: :environment do
     expire_after = Rails.configuration.x.users.expire_in_days
     puts "Purging users who have not logged in for #{expire_after} days."
