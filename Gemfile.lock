@@ -606,7 +606,7 @@ GEM
       capybara (~> 3.34)
       site_prism-all_there (> 3, < 5)
     site_prism-all_there (3.0.7)
-    sorbet-runtime (0.6.12894)
+    sorbet-runtime (0.6.12897)
     sprockets (4.2.2)
       concurrent-ruby (~> 1.0)
       logger
