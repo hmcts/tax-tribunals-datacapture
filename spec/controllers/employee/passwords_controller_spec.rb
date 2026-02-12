@@ -3,7 +3,7 @@ RSpec.describe Employees::PasswordsController do
 
   before do
     request.env['devise.mapping'] = Devise.mappings[:employee]
-    allow(NotifyMailer).to receive_message_chain(:reset_password_instructions, :deliver)
+    allow(NotifyMailer).to receive_message_chain(:reset_password_instructions, :deliver_now)
   end
 
   describe '#after_sending_reset_password_instructions_path_for' do
