@@ -367,7 +367,7 @@ GEM
       rspec-core (>= 3.8.0, < 4.0.0)
     net-http-persistent (4.0.8)
       connection_pool (>= 2.2.4, < 4)
-    net-imap (0.6.2)
+    net-imap (0.6.3)
       date
       net-protocol
     net-protocol (0.2.2)
@@ -643,7 +643,7 @@ GEM
       prism (>= 1.5.1)
     uri (1.1.1)
     useragent (0.16.11)
-    valid_email2 (7.0.13)
+    valid_email2 (7.0.15)
       activemodel (>= 6.0)
       mail (~> 2.5)
     virtus (2.0.0)
