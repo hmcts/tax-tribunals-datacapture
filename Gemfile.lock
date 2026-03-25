@@ -282,7 +282,7 @@ GEM
     govuk_notify_rails (3.0.0)
       notifications-ruby-client (~> 6.2)
       rails (>= 4.1.0)
-    grover (1.2.9)
+    grover (1.2.8)
       nokogiri (~> 1)
     gserver (0.0.1)
     hashdiff (1.2.1)
@@ -379,14 +379,14 @@ GEM
       net-protocol
     netrc (0.11.0)
     nio4r (2.7.5)
-    nokogiri (1.19.1)
+    nokogiri (1.19.2)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
-    nokogiri (1.19.1-arm64-darwin)
+    nokogiri (1.19.2-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.19.1-x86_64-darwin)
+    nokogiri (1.19.2-x86_64-darwin)
       racc (~> 1.4)
-    nokogiri (1.19.1-x86_64-linux-gnu)
+    nokogiri (1.19.2-x86_64-linux-gnu)
       racc (~> 1.4)
     notifications-ruby-client (6.3.0)
       jwt (>= 1.5, < 4)
@@ -715,7 +715,7 @@ DEPENDENCIES
   glimr-api-client!
   govuk_design_system_formbuilder
   govuk_notify_rails (~> 3.0)
-  grover
+  grover (= 1.2.8)
   hashdiff (>= 0.4.0)
   i18n-debug
   jquery-rails
