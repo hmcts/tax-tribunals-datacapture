@@ -50,7 +50,7 @@ gem 'sidekiq_alive'
 
 # PDF generation
 gem "select2-rails"
-gem 'grover'
+gem 'grover','1.2.8'
 
 # Azure blob storage
 gem 'azure-storage-blob', '~> 2'
