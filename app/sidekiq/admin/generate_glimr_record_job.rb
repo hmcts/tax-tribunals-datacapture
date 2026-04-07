@@ -1,8 +1,5 @@
 require_relative '../../services/glimr_direct_api_client'
 
-class GlimrError < StandardError
-end
-
 class Admin::GenerateGlimrRecordJob
   include Sidekiq::Job
 
