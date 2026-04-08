@@ -607,11 +607,9 @@ GEM
     simplecov-rcov (0.3.7)
       simplecov (>= 0.4.1)
     simplecov_json_formatter (0.1.4)
-    site_prism (6.0)
+    site_prism (5.1.1)
       addressable (~> 2.8, >= 2.8.4)
-      base64 (~> 0.3.0)
-      capybara (~> 3.37)
-      logger (~> 1.7)
+      capybara (~> 3.34)
       site_prism-all_there (> 3, < 5)
     site_prism-all_there (3.0.8)
     sorbet-runtime (0.6.13108)
@@ -766,7 +764,7 @@ DEPENDENCIES
   sidekiq_alive
   simplecov (~> 0.22.0)
   simplecov-rcov
-  site_prism
+  site_prism (= 5.1.1)
   sprockets
   strong_password (~> 0.0.8)
   timecop
@@ -779,7 +777,7 @@ DEPENDENCIES
   zendesk_api (~> 1.28)
 
 RUBY VERSION
-   ruby 3.4.8p72
+   ruby 3.4.9p82
 
 BUNDLED WITH
    2.6.9
