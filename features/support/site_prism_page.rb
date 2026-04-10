@@ -9,6 +9,7 @@ module SitePrism
         @page = Capybara.string(expansion_or_html)
       else
         expanded_url = url(expansion_or_html)
+        puts "DEBUG: Visiting URL → #{expanded_url}"
         raise SitePrism::NoUrlForPage if expanded_url.nil?
 
         visit expanded_url

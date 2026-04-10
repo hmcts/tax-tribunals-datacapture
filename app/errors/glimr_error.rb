@@ -1,3 +1,0 @@
-class GlimrError < StandardError
-end
-
