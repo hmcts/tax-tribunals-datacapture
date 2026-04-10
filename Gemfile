@@ -113,7 +113,7 @@ group :test do
   gem 'selenium-webdriver'
   gem 'simplecov', '~> 0.22.0'
   gem 'simplecov-rcov'
-  gem 'site_prism', '5.1.1'
+  gem 'site_prism'
   gem 'webmock'
   gem 'rspec-sidekiq'
 end
