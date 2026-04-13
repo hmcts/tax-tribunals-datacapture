@@ -15,7 +15,10 @@ end
 
 Capybara.register_driver :headless do |app|
   chrome_options = Selenium::WebDriver::Chrome::Options.new(args: ['headless', 'disable-gpu', 'window-size=1366,768'])
-  Capybara::Selenium::Driver.new(app, browser: :chrome, options: chrome_options)
+  chrome_options.page_load_strategy = 'eager'
+  driver = Capybara::Selenium::Driver.new(app, browser: :chrome, options: chrome_options)
+  driver.browser.manage.timeouts.page_load = 120
+  driver
 end
 
 Capybara.register_driver :chrome do |app|
@@ -30,7 +33,10 @@ Capybara.register_driver :firefox do |app|
   options = Selenium::WebDriver::Firefox::Options.new
   options.args << '--headless'
   options.args << '--disable-gpu'
-  Capybara::Selenium::Driver.new(app, browser: :firefox, options: options)
+  options.page_load_strategy = 'eager'
+  driver = Capybara::Selenium::Driver.new(app, browser: :firefox, options: options)
+  driver.browser.manage.timeouts.page_load = 120
+  driver
 end
 
 Capybara.register_driver :safari do |app|
