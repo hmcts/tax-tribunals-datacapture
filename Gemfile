@@ -44,7 +44,7 @@ gem 'webrick', '>= 1.8.2'
 gem 'net-pop', github: 'ruby/net-pop'
 
 # Admin
-gem 'sidekiq'
+gem 'sidekiq', '6.5.12'
 gem 'sidekiq-batch'
 gem 'sidekiq_alive'
 
