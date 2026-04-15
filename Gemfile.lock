@@ -282,7 +282,7 @@ GEM
     govuk_notify_rails (3.0.0)
       notifications-ruby-client (~> 6.2)
       rails (>= 4.1.0)
-    grover (1.2.8)
+    grover (1.2.10)
       nokogiri (~> 1)
     gserver (0.0.1)
     hashdiff (1.2.1)
@@ -715,7 +715,7 @@ DEPENDENCIES
   glimr-api-client!
   govuk_design_system_formbuilder
   govuk_notify_rails (~> 3.0)
-  grover (= 1.2.8)
+  grover (= 1.2.10)
   hashdiff (>= 0.4.0)
   i18n-debug
   jquery-rails
