@@ -351,7 +351,6 @@ GEM
       nokogiri (~> 1)
       rake
     mini_mime (1.1.5)
-    mini_portile2 (2.8.9)
     minitest (6.0.4)
       drb (~> 2.0)
       prism (~> 1.5)
@@ -380,9 +379,6 @@ GEM
       net-protocol
     netrc (0.11.0)
     nio4r (2.7.5)
-    nokogiri (1.19.2)
-      mini_portile2 (~> 2.8.2)
-      racc (~> 1.4)
     nokogiri (1.19.2-arm64-darwin)
       racc (~> 1.4)
     nokogiri (1.19.2-x86_64-darwin)
@@ -484,8 +480,7 @@ GEM
       erb
       psych (>= 4.0.0)
       tsort
-    redis-client (0.28.0)
-      connection_pool
+    redis (4.8.1)
     regexp_parser (2.12.0)
     reline (0.6.3)
       io-console (~> 0.5)
@@ -684,7 +679,7 @@ GEM
 PLATFORMS
   arm64-darwin-22
   arm64-darwin-23
-  ruby
+  arm64-darwin-24
   x86_64-darwin-22
   x86_64-linux
 
