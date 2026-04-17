@@ -1,4 +1,4 @@
-@Library("Infrastructure")
+@Library("Infrastructure@DTSPO-31578-Increase-Smoke-Test-Timeout")
 
 def type = "ruby"
 def product = "tax-tribunals"
@@ -70,8 +70,8 @@ withPipeline(type, product, component) {
         sh script:"""#!/bin/bash -l
             set +x
             source /usr/local/rvm/scripts/rvm
-            rvm install ruby-3.4.8
-            rvm use ruby-3.4.8 --default
+            rvm install ruby-3.4.9
+            rvm use ruby-3.4.9 --default
         """, label: 'Ruby version install'
     }
 
