@@ -1,4 +1,4 @@
-@Library("Infrastructure@DTSPO-31578-Increase-Smoke-Test-Timeout")
+@Library("Infrastructure")
 
 def type = "ruby"
 def product = "tax-tribunals"
