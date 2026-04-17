@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.4.8'
+ruby '3.4.9'
 
 gem 'azure_env_secrets', git: 'https://github.com/hmcts/azure_env_secrets.git', tag: 'v1.0.1'
 gem 'bootsnap',                        '~> 1.16', require: false
@@ -89,7 +89,7 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'timecop'
   gem 'rspec-rails'
-  gem 'rubocop', require: false
+  gem 'rubocop', '1.84.2', require: false
   gem 'rubocop-performance'
   gem 'rubocop-rspec_rails'
   gem 'rubocop-rails'
