@@ -17,6 +17,7 @@ withPipeline(type, product, component) {
     env.DB_PASSWORD = 'mysecretpassword'
     env.DB_HOST = 'localhost'
     env.DB_PORT = '5421'
+    env.TEST_BROWSER = 'chrome_local'
     env.DRIVER = 'headless'
     env.CAPYBARA_SERVER_HOST = 'localhost'
     env.CAPYBARA_APP_HOST = 'http://localhost'
