@@ -18,6 +18,16 @@ Capybara.register_driver :headless do |app|
   Capybara::Selenium::Driver.new(app, browser: :chrome, options: chrome_options)
 end
 
+Capybara.register_driver :headless_test do |app|
+  chrome_options = Selenium::WebDriver::Chrome::Options.new
+  chrome_options.add_argument('--headless=new') # Use the updated headless engine  chrome_options.add_argument('--disable-gpu')
+  chrome_options.add_argument('--window-size=1366,768')
+  # Critical for CI/CDP stability:  chrome_options.add_argument('--disable-search-engine-choice-screen')
+  chrome_options.add_argument('--no-sandbox')
+  chrome_options.add_argument('--disable-dev-shm-usage')
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options: chrome_options)
+end
+
 Capybara.register_driver :chrome do |app|
   Capybara::Selenium::Driver.new(app, browser: :chrome)
 end
