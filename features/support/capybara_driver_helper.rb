@@ -36,6 +36,10 @@ Capybara::Screenshot.register_driver(:headless) do |driver, path|
   driver.browser.save_screenshot(path)
 end
 
+Capybara::Screenshot.register_driver(:headless_test) do |driver, path|
+  driver.browser.save_screenshot(path)
+end
+
 Capybara.register_driver :firefox do |app|
   options = Selenium::WebDriver::Firefox::Options.new
   options.args << '--headless'
