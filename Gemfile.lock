@@ -603,11 +603,13 @@ GEM
     simplecov-rcov (0.3.7)
       simplecov (>= 0.4.1)
     simplecov_json_formatter (0.1.4)
-    site_prism (5.1.1)
+    site_prism (6.0)
       addressable (~> 2.8, >= 2.8.4)
-      capybara (~> 3.34)
+      base64 (~> 0.3.0)
+      capybara (~> 3.37)
+      logger (~> 1.7)
       site_prism-all_there (> 3, < 5)
-    site_prism-all_there (3.0.7)
+    site_prism-all_there (3.0.8)
     sorbet-runtime (0.6.12938)
     sprockets (4.2.2)
       concurrent-ruby (~> 1.0)
@@ -679,7 +681,6 @@ GEM
 PLATFORMS
   arm64-darwin-22
   arm64-darwin-23
-  ruby
   x86_64-darwin-22
   x86_64-linux
 
