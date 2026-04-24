@@ -25,7 +25,45 @@ Capybara.register_driver :headless_test do |app|
   # Critical for CI/CDP stability:  chrome_options.add_argument('--disable-search-engine-choice-screen')
   chrome_options.add_argument('--no-sandbox')
   chrome_options.add_argument('--disable-dev-shm-usage')
-  Capybara::Selenium::Driver.new(app, browser: :chrome, options: chrome_options)
+  # Core stability fixes for CDP and DOM handling
+  chrome_options.add_argument('--disable-gpu')
+  # Prevent automation detection and reduce interference
+  chrome_options.add_argument('--disable-blink-features=AutomationControlled') #Reduces detection of automation, improving test stability
+  chrome_options.add_argument('--disable-extensions')
+  chrome_options.add_argument('--disable-plugins')
+
+  # Reduce DOM mutation issues from sync operations
+  chrome_options.add_argument('--disable-sync') #Prevents background sync operations that can mutate the DOM unexpectedly
+  chrome_options.add_argument('--disable-default-apps')
+
+  # Performance and CI-specific flags
+  chrome_options.add_argument('--disable-search-engine-choice-screen')
+  chrome_options.add_argument('--disable-preconnect')
+  chrome_options.add_argument('--disable-background-networking')
+
+  # Disable features that can cause stale element references. Keeps the browser process in foreground, reducing DOM detachment issues
+  chrome_options.add_argument('--disable-renderer-backgrounding')
+  chrome_options.add_argument('--disable-backgrounding-occluded-windows')
+
+  # Disable logging/metrics that can slow things down. Lightweight mode for faster execution
+  chrome_options.add_argument('--metrics-recording-only')
+
+  # Add prefs for additional stability
+  prefs = {
+    'profile.default_content_settings.popups' => 0,
+    'profile.managed_default_content_settings.images' => 2 # Disable images for speed
+  }
+  chrome_options.add_experimental_option('prefs', prefs)
+
+  # Disable USB/Bluetooth to reduce noise
+  chrome_options.add_argument('--disable-usb-transfer-info') #to reduce interference
+
+  driver = Capybara::Selenium::Driver.new(app, browser: :chrome, options: chrome_options)
+
+  # Add wait conditions to handle async operations. Gives Selenium 5 seconds to find elements before throwing "not found" errors, reducing stale element references
+  driver.browser.manage.timeouts.implicit_wait = 5  # 5 second implicit wait
+
+  driver
 end
 
 Capybara.register_driver :chrome do |app|
