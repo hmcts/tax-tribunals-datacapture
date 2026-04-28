@@ -48,15 +48,21 @@ Capybara.register_driver :headless_test do |app|
   # Disable logging/metrics that can slow things down. Lightweight mode for faster execution
   chrome_options.add_argument('--metrics-recording-only')
 
-  # Add prefs for additional stability
-  prefs = {
-    'profile.default_content_settings.popups' => 0,
-    'profile.managed_default_content_settings.images' => 2 # Disable images for speed
-  }
-  chrome_options.add_experimental_option('prefs', prefs)
-
   # Disable USB/Bluetooth to reduce noise
   chrome_options.add_argument('--disable-usb-transfer-info') #to reduce interference
+
+  #Additional options to prevent DOM instability and inspector errors
+  chrome_options.add_argument('--disable-features=VizDisplayCompositor') # Disables the Viz display compositor to prevent rendering-related DOM issues
+  chrome_options.add_argument('--disable-ipc-flooding-protection') # Prevents IPC flooding protection that can interfere with DOM operations
+  chrome_options.add_argument('--disable-web-security') # Disables web security features that might cause unexpected DOM changes
+  chrome_options.add_argument('--disable-background-timer-throttling') # Prevents throttling of background timers that can affect DOM updates
+  chrome_options.add_argument('--disable-renderer-accessibility') # Disables accessibility features in the renderer to reduce potential interference
+  chrome_options.add_argument('--disable-background-networking') # Disables background networking to prevent unexpected DOM changes
+  chrome_options.add_argument('--disable-component-extensions-with-background-pages') # Disables extensions with background pages that can mutate DOM
+  chrome_options.add_argument('--disable-ipc-flooding-protection') # Additional IPC protection disable (if not already present)
+  chrome_options.add_argument('--no-first-run') # Skips first-run setup that can cause DOM issues
+  chrome_options.add_argument('--disable-default-apps') # Additional disable for default apps (if not already present)
+
 
   driver = Capybara::Selenium::Driver.new(app, browser: :chrome, options: chrome_options)
 
