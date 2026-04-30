@@ -57,8 +57,8 @@ Capybara.javascript_driver = :selenium
 Capybara.raise_server_errors = false
 
 ENV['NO_PROXY'] = ENV['no_proxy'] = '127.0.0.1'
-if ENV['APP_HOST']
-  Capybara.app_host = ENV['APP_HOST']
+if ENV['TEST_URL']
+  Capybara.app_host = ENV['TEST_URL']
   if Capybara.app_host.chars.last != '/'
     Capybara.app_host += '/'
   end
