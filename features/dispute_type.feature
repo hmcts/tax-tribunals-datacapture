@@ -1,3 +1,4 @@
+@features @db
 Feature: Dispute type options
 
   Background: Navigating to the dispute type page

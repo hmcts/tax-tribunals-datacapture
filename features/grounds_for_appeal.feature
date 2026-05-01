@@ -1,3 +1,4 @@
+@features @db
 Feature: Grounds for Appeal
 
   Background: Navigate to grounds for appeal page

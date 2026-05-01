@@ -1,3 +1,4 @@
+@features
 Feature: Did you appeal the original decision (page both closure and appeal)
 
 Background: Appeal decision question page

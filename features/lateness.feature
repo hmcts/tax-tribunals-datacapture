@@ -1,3 +1,4 @@
+@features @db
 Feature: In time feature
 
   Background: Lateness page

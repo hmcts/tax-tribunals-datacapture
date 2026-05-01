@@ -1,3 +1,4 @@
+@features @db
 Feature: Representative Path
 
   Background: Navigate to representative page

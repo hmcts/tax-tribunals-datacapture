@@ -1,3 +1,4 @@
+@features
 Feature: Cookies
 
   Background: I visit the home page

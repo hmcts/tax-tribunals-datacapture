@@ -1,3 +1,4 @@
+@features
 Feature: Save appeal
 
   Background: An appeal in progress

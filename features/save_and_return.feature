@@ -1,5 +1,7 @@
+@features
 Feature: Save and return
 
+  @db
   Scenario: User signed in, does not see save and return page (appeal journey)
     Given I am on the appeal case type page
     When I click continue
@@ -9,6 +11,7 @@ Feature: Save and return
     And I choose to select english only
     Then I should be on the challenge decision page
 
+  @db
   Scenario: User signed in, does not see save and return page (closure journey)
     Given I am on the closure case type page
     When I click continue
@@ -32,6 +35,7 @@ Feature: Save and return
     And I create an account in closure journey
     Then I should be on the language selection page
 
+  @db
   Scenario: Timeout test - shouldn't trigger (logged in user)
     Given I am on the appeal case type page
     When I click on continue after selecting Income Tax option
@@ -48,4 +52,3 @@ Feature: Save and return
     And I wait for 11 minutes
     And I click the continue button
     And I will not see the invalid timeout error
-

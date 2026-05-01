@@ -1,3 +1,4 @@
+@features @db
 Feature: Case type page
 
   Background: Case type page
@@ -52,4 +53,3 @@ Feature: Case type page
     When I wait for 11 minutes
     And I click continue
     Then I will see the invalid session timeout error
-

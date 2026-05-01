@@ -1,3 +1,4 @@
+@features
 Feature: Guidance page
 
   Background: Guidance page
