@@ -1,4 +1,4 @@
-@features @db
+@db
 Feature: Hardship contact HMRC page
 
   Background: Contact HMRC page

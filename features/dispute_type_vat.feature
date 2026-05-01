@@ -1,4 +1,4 @@
-@features @db
+@db
 Feature: Dispute type options for VAT
 
   Background: Navigating to the dispute type page

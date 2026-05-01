@@ -19,7 +19,9 @@ When("I select yes") do
 end
 
 Then("I am taken to the challenge decision status page") do
-  expect(challenge_decision_status_page.content).to have_header
+  retry_transient_inspector_node_error(reset_session: false) do
+    expect(page).to have_css('h1', text: I18n.t('steps.challenge.decision_status.edit.heading'))
+  end
 end
 
 When("I select no") do

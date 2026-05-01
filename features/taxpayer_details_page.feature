@@ -1,4 +1,4 @@
-@features @db
+@db
 Feature: Taxpayer details page
 
   Background: Taxpayer details page

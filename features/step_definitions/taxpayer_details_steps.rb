@@ -8,6 +8,7 @@ end
 
 When("I successfully submit taxpayers details") do
   expect(taxpayer_details_page.content).to have_header
+  taxpayer_details_page.show_manual_address_fields
   expect(taxpayer_details_page.content.input_field[0].input_label.text).to eq I18n.t('helpers.label.steps_details_taxpayer_individual_details_form.taxpayer_individual_first_name')
   expect(taxpayer_details_page.content.input_field[1].input_label.text).to eq I18n.t('helpers.label.steps_details_taxpayer_individual_details_form.taxpayer_individual_last_name')
   expect(taxpayer_details_page.content.input_field[2].input_label.text).to eq I18n.t('dictionary.TAXPAYER_ADDRESS.taxpayer_contact_address')
@@ -44,6 +45,7 @@ end
 
 When(/^I submit a taxpayers details form with an invalid email$/) do
   expect(taxpayer_details_page.content).to have_header
+  taxpayer_details_page.show_manual_address_fields
   expect(taxpayer_details_page.content.input_field[0].input_label.text).to eq I18n.t('helpers.label.steps_details_taxpayer_individual_details_form.taxpayer_individual_first_name')
   expect(taxpayer_details_page.content.input_field[1].input_label.text).to eq I18n.t('helpers.label.steps_details_taxpayer_individual_details_form.taxpayer_individual_last_name')
   expect(taxpayer_details_page.content.input_field[2].input_label.text).to eq I18n.t('dictionary.TAXPAYER_ADDRESS.taxpayer_contact_address')
@@ -65,6 +67,7 @@ end
 
 When(/^I submit a taxpayers details form with no phone number$/) do
   expect(taxpayer_details_page.content).to have_header
+  taxpayer_details_page.show_manual_address_fields
   expect(taxpayer_details_page.content.input_field[0].input_label.text).to eq I18n.t('helpers.label.steps_details_taxpayer_individual_details_form.taxpayer_individual_first_name')
   expect(taxpayer_details_page.content.input_field[1].input_label.text).to eq I18n.t('helpers.label.steps_details_taxpayer_individual_details_form.taxpayer_individual_last_name')
   expect(taxpayer_details_page.content.input_field[2].input_label.text).to eq I18n.t('dictionary.TAXPAYER_ADDRESS.taxpayer_contact_address')
