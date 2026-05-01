@@ -1,5 +1,5 @@
 def base_page
-  @base_page ||= BasePage.new
+  BasePage.new
 end
 
 def home_page
