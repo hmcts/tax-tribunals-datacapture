@@ -3,12 +3,12 @@ class RepresentativeDetailsPage < BasePage
 
   section :content, '#main-content' do
     element :header, 'h1', text: I18n.t('steps.details.representative_details.edit.heading')
-    element :individual_rep,  'govuk-label',
+    element :individual_rep, 'govuk-label',
             text: I18n.t('helpers.label.steps_details_representative_individual_details_form.representative_individual_first_name')
     element :input_label, '.govuk-label'
-    element :individual_rep,  'govuk-label',
+    element :individual_rep, 'govuk-label',
             text: I18n.t('helpers.label.steps_details_representative_individual_details_form.representative_individual_first_name')
-    element :company_rep,  'govuk-label',
+    element :company_rep, 'govuk-label',
             text: I18n.t('helpers.label.steps_details_representative_company_details_form.representative_organisation_name')
     element :manual_address_link, 'a', text: I18n.t('helpers.address_lookup.enter_address_manually')
     element :first_name_input, "input[name='steps_details_representative_individual_details_form[representative_individual_first_name]']"
@@ -27,9 +27,10 @@ class RepresentativeDetailsPage < BasePage
   end
 
   def show_manual_address_fields
-    return if content.has_address_input?(wait: 0)
+    return content.address_input if content.has_address_input?(visible: true, wait: 0)
 
-    content.manual_address_link.click if content.has_manual_address_link?(wait: 0)
+    content.manual_address_link.click
+    content.address_input
   end
 
   def submit_representative_details_with_email

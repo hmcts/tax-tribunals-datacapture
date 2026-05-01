@@ -15,7 +15,7 @@ ENV['TEST_LOCALE'] = "en" if ENV['TEST_LOCALE'] != "cy"
 require_relative 'page_objects/base_page'
 require_relative 'document_upload_helper_stub'
 
-Dir[File.dirname(__FILE__) + '/page_objects/**/*.rb'].each { |f| require f }
+Dir["#{File.dirname(__FILE__)}/page_objects/**/*.rb"].each { |f| require f }
 
 # Capybara defaults to CSS3 selectors rather than XPath.
 # If you'd prefer to use XPath, just uncomment this line and adjust any
@@ -44,7 +44,7 @@ DocumentUploadHelperStub.stub_uploaded_document_methods
 
 Capybara.register_driver :selenium do |app|
   capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
-    chromeOptions: { args: %w[headless disable-gpu] }
+    chromeOptions: { args: ['headless', 'disable-gpu'] }
   )
 
   Capybara::Selenium::Driver.new app,

@@ -28,9 +28,10 @@ class TaxpayerDetailsPage < BasePage
   end
 
   def show_manual_address_fields
-    return if content.has_address_input?(wait: 0)
+    return content.address_input if content.has_address_input?(visible: true, wait: 0)
 
-    content.manual_address_link.click if content.has_manual_address_link?(wait: 0)
+    content.manual_address_link.click
+    content.address_input
   end
 
   def submit_taxpayer_details

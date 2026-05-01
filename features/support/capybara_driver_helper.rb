@@ -2,7 +2,7 @@ Selenium::WebDriver.logger.level = :error
 
 def browser_timeouts
   timeout = ENV.fetch('CAPYBARA_PAGE_LOAD_TIMEOUT', 30).to_i * 1000
-  {page_load: timeout, script: timeout}
+  { page_load: timeout, script: timeout }
 end
 
 def page_load_strategy
@@ -10,16 +10,9 @@ def page_load_strategy
 end
 
 def default_capybara_driver
-  return ENV['DRIVER'].to_sym if ENV['DRIVER'] && !ENV['DRIVER'].empty?
+  return ENV.fetch('DRIVER').to_sym if ENV.fetch('DRIVER', nil).present?
 
-  case ENV['TEST_BROWSER']
-  when 'chrome_local'
-    :headless
-  when 'firefox_local'
-    :firefox
-  else
-    :firefox
-  end
+  ENV.fetch('TEST_BROWSER', nil) == 'chrome_local' ? :headless : :firefox
 end
 
 Capybara.configure do |config|
@@ -65,22 +58,22 @@ Capybara.register_driver :safari do |app|
   Capybara::Selenium::Driver.new(app, browser: :safari)
 end
 
-#............. Sauce Labs .............#
+# ............. Sauce Labs .............#
 
 Capybara.register_driver :chrome_saucelabs do |app|
-  browser = {:browserName=>"chrome", :name=>"WIN_CHROME_LATEST", :platform=>"Windows 10", :version=>"latest"}
+  browser = { browserName: "chrome", name: "WIN_CHROME_LATEST", platform: "Windows 10", version: "latest" }
   Capybara::Selenium::Driver.new(app, browser: :remote,
 url: "http://#{ENV.fetch('SAUCE_USERNAME', nil)}:#{ENV.fetch('SAUCE_ACCESS_KEY', nil)}@ondemand.eu-central-1.saucelabs.com:80/wd/hub", desired_capabilities: browser)
 end
 
 Capybara.register_driver :ms_edge_saucelabs do |app|
-  browser = {:browserName=>"MicrosoftEdge", :name=>"EDGE_LATEST", :platform=>"Windows 10", :version=>"latest"}
+  browser = { browserName: "MicrosoftEdge", name: "EDGE_LATEST", platform: "Windows 10", version: "latest" }
   Capybara::Selenium::Driver.new(app, browser: :remote, desired_capabilities: browser,
 url: "http://#{ENV.fetch('SAUCE_USERNAME', nil)}:#{ENV.fetch('SAUCE_ACCESS_KEY', nil)}@ondemand.eu-central-1.saucelabs.com:80/wd/hub")
 end
 
 Capybara.register_driver :ff_saucelabs do |app|
-  browser = {:browserName=>"firefox", :name=>"FIREFOX_LATEST", :platform=>"Windows 10", :version=>"latest", :acceptInsecureCerts=>true}
+  browser = { browserName: "firefox", name: "FIREFOX_LATEST", platform: "Windows 10", version: "latest", acceptInsecureCerts: true }
   Capybara::Selenium::Driver.new(app, browser: :remote, desired_capabilities: browser,
 url: "http://#{ENV.fetch('SAUCE_USERNAME', nil)}:#{ENV.fetch('SAUCE_ACCESS_KEY', nil)}@ondemand.eu-central-1.saucelabs.com:80/wd/hub")
 end
@@ -92,7 +85,7 @@ Capybara.register_driver :safari_saucelabs do |app|
       version: 'latest',
       platform: 'macOS 10.15',
       "sauce:options" => {
-        screen_resolution: '2360x1770',
+        screen_resolution: '2360x1770'
       }
   }
   caps = Selenium::WebDriver::Remote::Capabilities.send('safari', capabilities)
@@ -104,7 +97,7 @@ Capybara.register_driver :ie_saucelabs do |app|
   capabilities = {
     browser: 'internet_explorer',
       version: 'latest',
-      platform: 'Windows 10',
+      platform: 'Windows 10'
   }
   caps = Selenium::WebDriver::Remote::Capabilities.send('internet_explorer', capabilities)
   Capybara::Selenium::Driver.new(app, browser: :remote, desired_capabilities: caps,
@@ -116,9 +109,9 @@ Capybara.current_driver = Capybara.default_driver
 puts "Using Capybara driver: #{Capybara.default_driver}"
 puts "Using page load strategy: #{page_load_strategy}"
 
-test_url = ENV['CAPYBARA_APP_HOST'] || ENV['TEST_URL'] || ENV['APP_HOST']
+test_url = ENV.fetch('CAPYBARA_APP_HOST', nil) || ENV.fetch('TEST_URL', nil) || ENV.fetch('APP_HOST', nil)
 
-if test_url && !test_url.empty?
+if test_url.present?
   Capybara.run_server = false
   Capybara.always_include_port = false
   Capybara.app_host = test_url.chomp('/')

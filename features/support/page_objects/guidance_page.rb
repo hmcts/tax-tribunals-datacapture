@@ -15,6 +15,11 @@ class GuidancePage < BasePage
   end
 
   def click_open_all
-    content.open_all.click
+    if content.has_open_all?(wait: 0)
+      content.open_all.click
+    else
+      content.visible_first_question.click unless content.has_visible_first_answer?(visible: true, wait: 0)
+      content.visible_second_question.click unless content.has_visible_second_answer?(visible: true, wait: 0)
+    end
   end
 end
