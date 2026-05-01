@@ -85,10 +85,17 @@ end
 
 Capybara.javascript_driver = Capybara.default_driver
 Capybara.current_driver = Capybara.default_driver
-# To run tests on production url and for running any saucelab driver. Replace line 93 and 94 with this:
-# Capybara.always_include_port = false
-# Capybara.app_host = "https://appeal-tax-tribunal.service.gov.uk"
-Capybara.always_include_port = true
-Capybara.app_host = ENV.fetch('CAPYBARA_APP_HOST', "http://#{ENV.fetch('HOSTNAME', 'localhost')}")
-Capybara.server_host = ENV.fetch('CAPYBARA_SERVER_HOST', ENV.fetch('HOSTNAME', 'localhost'))
-Capybara.server_port = ENV.fetch('CAPYBARA_SERVER_PORT', '3001') unless ENV['CAPYBARA_SERVER_PORT'] == 'random'
+
+test_url = ENV['CAPYBARA_APP_HOST'] || ENV['TEST_URL'] || ENV['APP_HOST']
+
+if test_url && !test_url.empty?
+  Capybara.run_server = false
+  Capybara.always_include_port = false
+  Capybara.app_host = test_url.chomp('/')
+  puts "Using Capybara app host: #{Capybara.app_host}"
+else
+  Capybara.always_include_port = true
+  Capybara.app_host = "http://#{ENV.fetch('HOSTNAME', 'localhost')}"
+  Capybara.server_host = ENV.fetch('CAPYBARA_SERVER_HOST', ENV.fetch('HOSTNAME', 'localhost'))
+  Capybara.server_port = ENV.fetch('CAPYBARA_SERVER_PORT', '3001') unless ENV['CAPYBARA_SERVER_PORT'] == 'random'
+end
