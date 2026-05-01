@@ -1,5 +1,12 @@
 Selenium::WebDriver.logger.level = :error
 
+def configure_browser_timeouts(driver)
+  timeout = ENV.fetch('CAPYBARA_PAGE_LOAD_TIMEOUT', 30).to_i
+  driver.browser.manage.timeouts.page_load = timeout
+  driver.browser.manage.timeouts.script = timeout
+  driver
+end
+
 Capybara.configure do |config|
   driver = ENV['DRIVER']&.to_sym || :firefox
   config.default_driver = driver
@@ -15,11 +22,14 @@ end
 
 Capybara.register_driver :headless do |app|
   chrome_options = Selenium::WebDriver::Chrome::Options.new(args: ['headless', 'disable-gpu', 'window-size=1366,768'])
-  Capybara::Selenium::Driver.new(app, browser: :chrome, options: chrome_options)
+  chrome_options.page_load_strategy = :eager
+  configure_browser_timeouts(Capybara::Selenium::Driver.new(app, browser: :chrome, options: chrome_options))
 end
 
 Capybara.register_driver :chrome do |app|
-  Capybara::Selenium::Driver.new(app, browser: :chrome)
+  chrome_options = Selenium::WebDriver::Chrome::Options.new
+  chrome_options.page_load_strategy = :eager
+  configure_browser_timeouts(Capybara::Selenium::Driver.new(app, browser: :chrome, options: chrome_options))
 end
 
 Capybara::Screenshot.register_driver(:headless) do |driver, path|
@@ -28,9 +38,10 @@ end
 
 Capybara.register_driver :firefox do |app|
   options = Selenium::WebDriver::Firefox::Options.new
+  options.page_load_strategy = :eager
   options.args << '--headless'
   options.args << '--disable-gpu'
-  Capybara::Selenium::Driver.new(app, browser: :firefox, options: options)
+  configure_browser_timeouts(Capybara::Selenium::Driver.new(app, browser: :firefox, options: options))
 end
 
 Capybara.register_driver :safari do |app|
@@ -85,6 +96,7 @@ end
 
 Capybara.javascript_driver = Capybara.default_driver
 Capybara.current_driver = Capybara.default_driver
+puts "Using Capybara driver: #{Capybara.default_driver}"
 
 test_url = ENV['CAPYBARA_APP_HOST'] || ENV['TEST_URL'] || ENV['APP_HOST']
 
