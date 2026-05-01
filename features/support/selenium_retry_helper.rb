@@ -2,7 +2,7 @@ def transient_inspector_node_error?(error)
   error.message.include?('Node with given id does not belong to the document')
 end
 
-def retry_transient_inspector_node_error
+def retry_transient_inspector_node_error(reset_session: true)
   attempts = 0
 
   begin
@@ -12,7 +12,11 @@ def retry_transient_inspector_node_error
 
     attempts += 1
     warn "Retrying after transient Selenium inspector error"
-    Capybara.reset_sessions!
+    if reset_session
+      Capybara.reset_sessions!
+    else
+      sleep 0.5
+    end
     retry
   end
 end
