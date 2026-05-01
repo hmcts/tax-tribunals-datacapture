@@ -1,15 +1,25 @@
 Selenium::WebDriver.logger.level = :error
 
-def configure_browser_timeouts(driver)
-  timeout = ENV.fetch('CAPYBARA_PAGE_LOAD_TIMEOUT', 30).to_i
-  driver.browser.manage.timeouts.page_load = timeout
-  driver.browser.manage.timeouts.script = timeout
-  driver
+def browser_timeouts
+  timeout = ENV.fetch('CAPYBARA_PAGE_LOAD_TIMEOUT', 30).to_i * 1000
+  {page_load: timeout, script: timeout}
+end
+
+def default_capybara_driver
+  return ENV['DRIVER'].to_sym if ENV['DRIVER'] && !ENV['DRIVER'].empty?
+
+  case ENV['TEST_BROWSER']
+  when 'chrome_local'
+    :headless
+  when 'firefox_local'
+    :firefox
+  else
+    :firefox
+  end
 end
 
 Capybara.configure do |config|
-  driver = ENV['DRIVER']&.to_sym || :firefox
-  config.default_driver = driver
+  config.default_driver = default_capybara_driver
   config.default_max_wait_time = 30
   config.match = :prefer_exact
   config.exact = true
@@ -23,13 +33,15 @@ end
 Capybara.register_driver :headless do |app|
   chrome_options = Selenium::WebDriver::Chrome::Options.new(args: ['headless', 'disable-gpu', 'window-size=1366,768'])
   chrome_options.page_load_strategy = :eager
-  configure_browser_timeouts(Capybara::Selenium::Driver.new(app, browser: :chrome, options: chrome_options))
+  chrome_options.timeouts = browser_timeouts
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options: chrome_options)
 end
 
 Capybara.register_driver :chrome do |app|
   chrome_options = Selenium::WebDriver::Chrome::Options.new
   chrome_options.page_load_strategy = :eager
-  configure_browser_timeouts(Capybara::Selenium::Driver.new(app, browser: :chrome, options: chrome_options))
+  chrome_options.timeouts = browser_timeouts
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options: chrome_options)
 end
 
 Capybara::Screenshot.register_driver(:headless) do |driver, path|
@@ -39,9 +51,10 @@ end
 Capybara.register_driver :firefox do |app|
   options = Selenium::WebDriver::Firefox::Options.new
   options.page_load_strategy = :eager
+  options.timeouts = browser_timeouts
   options.args << '--headless'
   options.args << '--disable-gpu'
-  configure_browser_timeouts(Capybara::Selenium::Driver.new(app, browser: :firefox, options: options))
+  Capybara::Selenium::Driver.new(app, browser: :firefox, options: options)
 end
 
 Capybara.register_driver :safari do |app|
