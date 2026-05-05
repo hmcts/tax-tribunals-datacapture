@@ -279,5 +279,13 @@ def back
 end
 
 def save_and_come_back
-  base_page.content.save_and_come_back_link.click
+  retry_transient_inspector_node_error(
+    reset_session: false,
+    success_condition: lambda {
+      page.has_css?('h1', text: I18n.t('users.registrations.new.heading_test_fixed_as_appeal'), wait: 5) ||
+        page.has_css?('h1', text: I18n.t('users.registrations.new.heading_test_fixed_as_application'), wait: 5)
+    }
+  ) do
+    base_page.content.save_and_come_back_link.click
+  end
 end

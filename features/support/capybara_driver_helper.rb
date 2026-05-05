@@ -28,7 +28,9 @@ Capybara.register_driver :apparition do |app|
 end
 
 Capybara.register_driver :headless do |app|
-  chrome_options = Selenium::WebDriver::Chrome::Options.new(args: ['headless', 'disable-gpu', 'window-size=1366,768'])
+  chrome_options = Selenium::WebDriver::Chrome::Options.new(
+    args: ['--headless=new', '--disable-gpu', '--disable-dev-shm-usage', '--no-sandbox', '--window-size=1366,768']
+  )
   chrome_options.page_load_strategy = page_load_strategy
   chrome_options.timeouts = browser_timeouts
   Capybara::Selenium::Driver.new(app, browser: :chrome, options: chrome_options)

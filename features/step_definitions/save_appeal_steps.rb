@@ -1,12 +1,14 @@
 Given("I have an appeal in progress") do
-  home_page.load_page
-  home_page.appeal
-  appeal_page.continue
-  save_return_page.continue_new_appeal
-  appeal_case_type_page.submit_income_tax
-  continue_or_save_continue
-  select_language_page.select_english
-  expect(challenge_decision_page.content).to have_appeal_header
+  retry_transient_inspector_node_error do
+    home_page.load_page
+    home_page.appeal
+    appeal_page.continue
+    save_return_page.continue_new_appeal
+    appeal_case_type_page.submit_income_tax
+    continue_or_save_continue
+    select_language_page.select_english
+    expect(challenge_decision_page.content).to have_appeal_header
+  end
 end
 
 Then("I am taken to the save your appeal page") do

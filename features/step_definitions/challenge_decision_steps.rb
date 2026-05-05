@@ -40,7 +40,12 @@ Then('I will see the original notice text') do
 end
 
 When("I press 'Help with challenging a decision'") do
-  challenge_decision_page.help_with_challenging_dropdown
+  retry_transient_inspector_node_error(
+    reset_session: false,
+    success_condition: -> { challenge_decision_page.content.has_dropdown_text?(visible: true, wait: 5) }
+  ) do
+    challenge_decision_page.help_with_challenging_dropdown
+  end
 end
 
 When("I see a link 'challenge a tax decision with HM Revenue and Customs' with the correct URL") do
