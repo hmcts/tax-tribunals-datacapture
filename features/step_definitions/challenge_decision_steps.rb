@@ -1,5 +1,8 @@
 Given("I am on the challenge decision page") do
-  navigate_to_challenge_decision_page_no_user
+  retry_transient_inspector_node_error do
+    navigate_to_challenge_decision_page_no_user
+    expect(challenge_decision_page.content).to have_appeal_header
+  end
 end
 
 When("I continue with no option selected") do
