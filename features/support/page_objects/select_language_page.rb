@@ -3,6 +3,7 @@ class SelectLanguagePage < BasePage
 
   section :content, '#main-content' do
     element :header, 'h1', text: I18n.t('dictionary.select_language_question')
+    element :english_radio, "input[name='select_language_save_language_form[language]'][value='english']", visible: :all
     element :english_checkbox, 'label', text: I18n.t('dictionary.SUPPORTED_LANGUAGES.english')
     element :welsh_checkbox, 'label', text: I18n.t('dictionary.SUPPORTED_LANGUAGES.welsh')
     section :error, '.govuk-error-summary' do
@@ -15,7 +16,12 @@ class SelectLanguagePage < BasePage
   end
 
   def select_english
-    content.english_checkbox.click
-    continue
+    retry_transient_inspector_node_error(
+      reset_session: false,
+      success_condition: -> { page.has_no_css?('h1', text: I18n.t('dictionary.select_language_question'), wait: 5) }
+    ) do
+      content.english_radio.set(true)
+      continue
+    end
   end
 end

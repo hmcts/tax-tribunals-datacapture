@@ -7,7 +7,7 @@ class GuidancePage < BasePage
     element :visible_second_question, '#accordion-1-heading-1', visible: true
     element :visible_first_answer, '#accordion-1-content-0', visible: :all
     element :visible_second_answer, '#accordion-1-content-1', visible: :all
-    element :open_all, '#accordion-1 .govuk-accordion__show-all-text'
+    element :open_all, '#accordion-1 .govuk-accordion__show-all'
   end
 
   def click_a_question
@@ -15,6 +15,11 @@ class GuidancePage < BasePage
   end
 
   def click_open_all
-    content.open_all.click
+    if content.has_open_all?(wait: 0)
+      content.open_all.click
+    else
+      content.visible_first_question.click unless content.has_visible_first_answer?(visible: true, wait: 0)
+      content.visible_second_question.click unless content.has_visible_second_answer?(visible: true, wait: 0)
+    end
   end
 end
