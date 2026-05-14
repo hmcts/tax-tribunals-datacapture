@@ -1,5 +1,8 @@
 Given("I am on the challenge decision page") do
-  navigate_to_challenge_decision_page_no_user
+  retry_transient_inspector_node_error do
+    navigate_to_challenge_decision_page_no_user
+    expect(challenge_decision_page.content).to have_appeal_header
+  end
 end
 
 When("I continue with no option selected") do
@@ -19,7 +22,9 @@ When("I select yes") do
 end
 
 Then("I am taken to the challenge decision status page") do
-  expect(challenge_decision_status_page.content).to have_header
+  retry_transient_inspector_node_error(reset_session: false) do
+    expect(page).to have_css('h1', text: I18n.t('steps.challenge.decision_status.edit.heading'))
+  end
 end
 
 When("I select no") do
@@ -38,7 +43,12 @@ Then('I will see the original notice text') do
 end
 
 When("I press 'Help with challenging a decision'") do
-  challenge_decision_page.help_with_challenging_dropdown
+  retry_transient_inspector_node_error(
+    reset_session: false,
+    success_condition: -> { challenge_decision_page.content.has_dropdown_text?(visible: true, wait: 5) }
+  ) do
+    challenge_decision_page.help_with_challenging_dropdown
+  end
 end
 
 When("I see a link 'challenge a tax decision with HM Revenue and Customs' with the correct URL") do
