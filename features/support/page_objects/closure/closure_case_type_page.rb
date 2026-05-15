@@ -16,47 +16,47 @@ class ClosureCaseTypePage < BasePage
   end
 
   def submit_personal_return
-    content.personal_return.click
+    page.execute_script("arguments[0].click();", content.personal_return.native)
     continue_or_save_continue
   end
 
   def submit_company_return
-    content.company_return.click
+    page.execute_script("arguments[0].click();", content.company_return.native)
     continue_or_save_continue
   end
 
   def submit_partnership_return
-    content.partnership_return.click
+    page.execute_script("arguments[0].click();", content.partnership_return.native)
     continue_or_save_continue
   end
 
   def submit_trustee_return
-    content.trustee_return.click
+    page.execute_script("arguments[0].click();", content.trustee_return.native)
     continue_or_save_continue
   end
 
   def submit_enterprise_mgmt_incentives
-    content.enterprise_mgmt_incentives.click
+    page.execute_script("arguments[0].click();", content.enterprise_mgmt_incentives.native)
     continue_or_save_continue
   end
 
   def submit_non_resident_capital_gains_tax
-    content.non_resident_capital_gains_tax.click
+    page.execute_script("arguments[0].click();", content.non_resident_capital_gains_tax.native)
     continue_or_save_continue
   end
 
   def submit_stamp_duty_land_tax_return
-    content.stamp_duty_land_tax_return.click
+    page.execute_script("arguments[0].click();", content.stamp_duty_land_tax_return.native)
     continue_or_save_continue
   end
 
   def submit_transactions_in_securities
-    content.transactions_in_securities.click
+    page.execute_script("arguments[0].click();", content.transactions_in_securities.native)
     continue_or_save_continue
   end
 
   def submit_claim_or_amendment
-    content.claim_or_amendment.click
+    page.execute_script("arguments[0].click();", content.claim_or_amendment.native)
     continue_or_save_continue
   end
 end

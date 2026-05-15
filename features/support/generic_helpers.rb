@@ -226,8 +226,24 @@ def submit_check_your_answers
   check_answers_page.submit_check_answers
 end
 
+# Add this helper method for robust button clicking
 def continue_or_save_continue
-  base_page.content.continue_or_save_continue.click
+  button = base_page.content.continue_or_save_continue
+
+  # Wait for the button to be present and clickable
+  wait = Selenium::WebDriver::Wait.new(timeout: 5)
+  wait.until { button.native.displayed? && button.native.enabled? }
+
+  # Use JavaScript click for better stability with form changes
+  page.execute_script("arguments[0].click();", button.native)
+
+  # Wait for navigation to start
+  sleep(0.5)
+rescue Selenium::WebDriver::Error::StaleElementReferenceError
+  # Retry once if element becomes stale
+  sleep(0.5)
+  button = base_page.content.continue_or_save_continue
+  page.execute_script("arguments[0].click();", button.native)
 end
 
 def submit_yes

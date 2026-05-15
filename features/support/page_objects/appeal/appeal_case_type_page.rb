@@ -15,7 +15,7 @@ class AppealCaseTypePage < BasePage
   end
 
   def submit_income_tax
-    content.income_tax.click
+    page.execute_script("arguments[0].click();", content.income_tax.native)
     continue
   end
 
@@ -25,12 +25,12 @@ class AppealCaseTypePage < BasePage
   end
 
   def submit_other
-    content.other_option_checkbox.click
+    page.execute_script("arguments[0].click();", content.other_option_checkbox.native)
     continue_or_save_continue
   end
 
   def submit_other_with_text
-    content.other_option_checkbox.click
+    page.execute_script("arguments[0].click();", content.other_option_checkbox.native)
     content.other_option_text_input.set 'other case type'
     continue_or_save_continue
   end
