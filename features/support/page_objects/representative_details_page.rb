@@ -3,12 +3,12 @@ class RepresentativeDetailsPage < BasePage
 
   section :content, '#main-content' do
     element :header, 'h1', text: I18n.t('steps.details.representative_details.edit.heading')
-    element :individual_rep,  'govuk-label',
+    element :individual_rep, 'govuk-label',
             text: I18n.t('helpers.label.steps_details_representative_individual_details_form.representative_individual_first_name')
     element :input_label, '.govuk-label'
-    element :individual_rep,  'govuk-label',
+    element :individual_rep, 'govuk-label',
             text: I18n.t('helpers.label.steps_details_representative_individual_details_form.representative_individual_first_name')
-    element :company_rep,  'govuk-label',
+    element :company_rep, 'govuk-label',
             text: I18n.t('helpers.label.steps_details_representative_company_details_form.representative_organisation_name')
     element :first_name_input, "input[name='steps_details_representative_individual_details_form[representative_individual_first_name]']"
     element :last_name_input, "input[name='steps_details_representative_individual_details_form[representative_individual_last_name]']"
