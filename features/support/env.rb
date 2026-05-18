@@ -57,12 +57,12 @@ Capybara.javascript_driver = :selenium
 Capybara.raise_server_errors = false
 
 ENV['NO_PROXY'] = ENV['no_proxy'] = '127.0.0.1'
-if ENV['APP_HOST']
- Capybara.app_host = ENV['APP_HOST']
- if Capybara.app_host.chars.last != '/'
-   Capybara.app_host += '/'
- end
-end
+#if ENV['APP_HOST']
+#Capybara.app_host = ENV['APP_HOST']
+#if Capybara.app_host.chars.last != '/'
+#   Capybara.app_host += '/'
+# end
+#end
 
 if ENV['TEST_LOCALE'] == "cy"
   I18n.locale = 'cy'
