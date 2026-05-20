@@ -1,4 +1,3 @@
-@db
 Feature: Case type page
 
   Background: Case type page

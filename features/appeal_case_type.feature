@@ -1,4 +1,3 @@
-@db
 Feature: Appeal case type page
 
   Background: Appeal case type page

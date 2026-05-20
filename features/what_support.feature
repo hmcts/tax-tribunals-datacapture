@@ -1,4 +1,3 @@
-@db
 Feature: What support page
 
   Background: Navigating to the what support page

@@ -1,4 +1,3 @@
-@db
 Feature: Send details
 
   Scenario: Started by taxpayer and send to taxpayer and representative

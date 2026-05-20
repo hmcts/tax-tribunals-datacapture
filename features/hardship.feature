@@ -1,4 +1,3 @@
-@db
 Feature: Hardship journey
 
   Scenario: Direct tax (Income) and HMRC claim I owe money application

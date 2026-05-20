@@ -1,4 +1,3 @@
-@db
 Feature: Taxpayer type page
 
   Background: Taxpayer type page

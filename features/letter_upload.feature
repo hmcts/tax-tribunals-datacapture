@@ -1,4 +1,3 @@
-@db
 Feature: Letter upload type page (review conclusion letter)
 
   Background: Navigate to the letter upload type page

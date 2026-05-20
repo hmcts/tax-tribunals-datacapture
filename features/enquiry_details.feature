@@ -1,4 +1,3 @@
-@db
 Feature: Enquiry details
 
   Background: Navigate to the enquiry details page
