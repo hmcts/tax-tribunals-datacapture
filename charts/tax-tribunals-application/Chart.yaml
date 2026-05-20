@@ -15,3 +15,7 @@ dependencies:
   - name: job
     version: 2.2.0
     repository: 'oci://hmctsprod.azurecr.io/helm'
+  - name: postgresql
+    version: 1.1.1
+    repository: 'oci://hmctsprod.azurecr.io/helm'
+    condition: postgresql.enabled
