@@ -11,10 +11,12 @@ def vaultOverrides = [
   'preview': 'aat',
 ]
 
+def dbSecrets = [
+  secret('preview-password', 'DB_PASSWORD')
+]
+
 def secrets = [
-  'tax-tribunals-cft-${env}': [
-    secret('preview-password', 'DB_PASSWORD')
-  ],
+  'tax-tribunals-cft-${env}': dbSecrets,
 ]
 
 static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
