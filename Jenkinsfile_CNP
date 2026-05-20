@@ -28,20 +28,24 @@ static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
   ]
 }
 
-withPipeline(type, product, component) {
-    overrideVaultEnvironments(vaultOverrides)
-    loadVaultSecrets(secrets)
-    env.RAILS_ENV = 'test'
-    env.RACK_ENV = 'test'
-    env.CI = 'test'
-    env.ENV='test'
-    env.DB_NAME = "pr-${env.CHANGE_ID}"
-    env.DB_USERNAME = 'hmcts'
-    env.DB_HOST = 'tax-tribunals-preview.postgres.database.azure.com'
-    env.DB_PORT = '5432'
-    env.TEST_BROWSER = 'chrome_local'
-    env.NODE_OPTIONS='--openssl-legacy-provider'
-    env.ENABLE_COVERAGE='true'
+withAzureKeyvault(
+    azureKeyVaultSecrets: dbSecrets,
+    keyVaultURLOverride: 'https://tax-tribunals-cft-aat.vault.azure.net/'
+) {
+    withPipeline(type, product, component) {
+        overrideVaultEnvironments(vaultOverrides)
+        loadVaultSecrets(secrets)
+        env.RAILS_ENV = 'test'
+        env.RACK_ENV = 'test'
+        env.CI = 'test'
+        env.ENV='test'
+        env.DB_NAME = "pr-${env.CHANGE_ID}"
+        env.DB_USERNAME = 'hmcts'
+        env.DB_HOST = 'tax-tribunals-preview.postgres.database.azure.com'
+        env.DB_PORT = '5432'
+        env.TEST_BROWSER = 'chrome_local'
+        env.NODE_OPTIONS='--openssl-legacy-provider'
+        env.ENABLE_COVERAGE='true'
 
     // random free port should probably be used instead
     env.GOVUK_NOTIFY_API_KEY = 'mocked_in_tests'
@@ -97,11 +101,7 @@ withPipeline(type, product, component) {
         """, label: 'Ruby version install'
     }
 
-    before('test') {
-        withAzureKeyvault(
-            azureKeyVaultSecrets: dbSecrets,
-            keyVaultURLOverride: 'https://tax-tribunals-cft-aat.vault.azure.net/'
-        ) {
+        before('test') {
             sh script: '''
                 set +x
                 echo "DB_HOST=$DB_HOST"
