@@ -29,7 +29,6 @@ static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
 withPipeline(type, product, component) {
     overrideVaultEnvironments(vaultOverrides)
     loadVaultSecrets(secrets)
-    loadVaultSecrets(secrets)
     env.RAILS_ENV = 'test'
     env.RACK_ENV = 'test'
     env.CI = 'test'
