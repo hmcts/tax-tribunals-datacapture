@@ -1,9 +1,9 @@
+@features
 Feature: One email required
 
   Background: Go to closure user type page
     Given I navigate to closure user type page
 
-  @features
   Scenario: Started by taxpayer with representative
     Given I submit that I am the tax payer making the application
     And I submit that I am an individual
@@ -17,7 +17,6 @@ Feature: One email required
     And I submit a blank representative details form
     Then I should see a blank email error
 
-  @features
   Scenario: Started by representative
     Given I submit that I am not the tax payer making the application
     And I submit that the representative is a practising solicitor
@@ -30,7 +29,6 @@ Feature: One email required
     When I submit a blank taxpayers details form
     Then I should not see an email error
 
-  @features
   Scenario: Non solicitor representative
     Given I submit that I am not the tax payer making the application
     And I submit that the representative is a tax agent

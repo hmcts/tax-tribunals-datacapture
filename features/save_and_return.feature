@@ -1,3 +1,4 @@
+@features
 Feature: Save and return
 
   Scenario: User signed in, does not see save and return page (appeal journey)
@@ -17,7 +18,6 @@ Feature: Save and return
     And I choose to select english only
     Then I should be on the closure user type page
 
-  @features
   Scenario: User not signed in, create an account (appeal journey)
     Given I am on the appeal case type page without login
     And I click on continue after selecting Income Tax option
@@ -26,7 +26,6 @@ Feature: Save and return
     And I create an account in appeal journey
     Then I should be on the language selection page
 
-  @features
   Scenario: User not signed in, create an account (closure journey)
     Given I am on the closure case type page without login
     And I submit that it is a personal return
@@ -42,7 +41,6 @@ Feature: Save and return
     And I choose to select english only
     And I will not see the invalid timeout error
 
-  @features
   Scenario: Timeout test - shouldn't trigger (not logged in user)
     Given I am on the closure case type page without login
     And I submit that it is a personal return
