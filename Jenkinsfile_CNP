@@ -7,23 +7,15 @@ def component = "application"
 def rubyBuilder = new uk.gov.hmcts.contino.RubyBuilder(this)
 def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
 
-def secrets = [
-  'tax-tribunals-cft-aat': [
-    secret('preview-password', 'DB_PASSWORD'),
-  ],
-]
-
-static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
-  [$class     : 'AzureKeyVaultSecret',
-   secretType : 'Secret',
-   name       : secretName,
-   version    : '',
-   envVariable: envVar
-  ]
-}
+def dbSecrets = [[
+    $class     : 'AzureKeyVaultSecret',
+    secretType : 'Secret',
+    name       : 'preview-password',
+    version    : '',
+    envVariable: 'DB_PASSWORD'
+]]
 
 withPipeline(type, product, component) {
-    loadVaultSecrets(secrets)
     env.RAILS_ENV = 'test'
     env.RACK_ENV = 'test'
     env.CI = 'test'
@@ -91,7 +83,25 @@ withPipeline(type, product, component) {
     }
 
     before('test') {
-        rubyBuilder.bundle("exec rails db:create db:schema:load")
-        rubyBuilder.bundle("install")
+        withAzureKeyvault(
+            azureKeyVaultSecrets: dbSecrets,
+            keyVaultURLOverride: 'https://tax-tribunals-cft-aat.vault.azure.net/'
+        ) {
+            sh script: '''
+                set +x
+                echo "DB_HOST=$DB_HOST"
+                echo "DB_NAME=$DB_NAME"
+                echo "DB_USERNAME=$DB_USERNAME"
+                if [ -n "$DB_PASSWORD" ]; then
+                  echo "DB_PASSWORD is set"
+                else
+                  echo "DB_PASSWORD is MISSING"
+                  exit 1
+                fi
+            ''', label: 'Check DB env'
+
+            rubyBuilder.bundle("exec rails db:create db:schema:load")
+            rubyBuilder.bundle("install")
+        }
     }
 }
