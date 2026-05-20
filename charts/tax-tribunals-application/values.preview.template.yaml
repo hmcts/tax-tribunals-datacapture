@@ -77,7 +77,6 @@ base:
     DB_HOST: "tax-tribunals-preview.postgres.database.azure.com"
     DB_USERNAME: "hmcts"
     DB_NAME: "pr-${CHANGE_ID}"
-    DOCKER_STATE: 'create'
   secrets:
     DB_PASSWORD:
       secretRef: "postgres"
