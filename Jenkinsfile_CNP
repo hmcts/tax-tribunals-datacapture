@@ -102,20 +102,9 @@ withAzureKeyvault(
     }
 
         before('test') {
-            sh script: '''
-                set +x
-                echo "DB_HOST=$DB_HOST"
-                echo "DB_NAME=$DB_NAME"
-                echo "DB_USERNAME=$DB_USERNAME"
-                if [ -n "$DB_PASSWORD" ]; then
-                  echo "DB_PASSWORD is set"
-                else
-                  echo "DB_PASSWORD is MISSING"
-                  exit 1
-                fi
-            ''', label: 'Check DB env'
-
-            rubyBuilder.bundle("exec rails db:create db:schema:load")
+            withEnv(['DISABLE_DATABASE_ENVIRONMENT_CHECK=1']) {
+                rubyBuilder.bundle("exec rails db:drop db:create db:schema:load")
+            }
             rubyBuilder.bundle("install")
         }
     }
