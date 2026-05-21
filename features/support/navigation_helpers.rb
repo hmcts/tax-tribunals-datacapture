@@ -92,7 +92,7 @@ def complete_valid_closure_application
     else
       submit_yes
     end
-    expect(taxpayer_type_page.content).to have_closure_header
+    expect_taxpayer_type_header(I18n.t('steps.details.taxpayer_type.edit.heading.application_test'))
     taxpayer_type_page.submit_individual
     expect(taxpayer_details_page.content).to have_header
     taxpayer_details_page.submit_taxpayer_details
@@ -145,7 +145,7 @@ def complete_valid_appeal_application
     else
       submit_yes
     end
-    expect(taxpayer_type_page.content).to have_appeal_header
+    expect_taxpayer_type_header(I18n.t('steps.details.taxpayer_type.edit.heading.appeal_test'))
     taxpayer_type_page.submit_individual
     expect(taxpayer_details_page.content).to have_header
     taxpayer_details_page.submit_taxpayer_details
@@ -177,6 +177,15 @@ def complete_valid_appeal_application
 end
 
 # rubocop:enable MethodLength
+
+def expect_taxpayer_type_header(heading)
+  retry_transient_inspector_node_error(
+    reset_session: false,
+    success_condition: -> { page.has_css?('h1', text: heading, wait: 5) }
+  ) do
+    expect(page).to have_css('h1', text: heading)
+  end
+end
 
 def go_to_login_page
   login_page.load_page

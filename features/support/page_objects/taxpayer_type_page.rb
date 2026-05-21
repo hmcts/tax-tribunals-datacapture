@@ -13,17 +13,31 @@ class TaxpayerTypePage < BasePage
   end
 
   def submit_individual
-    content.individual.click
-    continue_or_save_continue
+    submit_type(:individual)
   end
 
   def submit_company
-    content.company.click
-    continue_or_save_continue
+    submit_type(:company)
   end
 
   def submit_other
-    content.other.click
-    continue_or_save_continue
+    submit_type(:other)
+  end
+
+  private
+
+  def submit_type(type)
+    retry_transient_inspector_node_error(
+      reset_session: false,
+      success_condition: -> { left_taxpayer_type_page? }
+    ) do
+      content.public_send(type).click
+      continue_or_save_continue
+    end
+  end
+
+  def left_taxpayer_type_page?
+    page.has_no_css?('h1', text: I18n.t('steps.details.taxpayer_type.edit.heading.application_test'), wait: 5) &&
+      page.has_no_css?('h1', text: I18n.t('steps.details.taxpayer_type.edit.heading.appeal_test'), wait: 0)
   end
 end

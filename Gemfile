@@ -116,5 +116,4 @@ group :test do
   gem 'site_prism'
   gem 'webmock'
   gem 'rspec-sidekiq'
-  gem 'activestorage', '8.1.2.1'
 end
