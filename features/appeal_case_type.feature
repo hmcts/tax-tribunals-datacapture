@@ -33,3 +33,4 @@ Feature: Appeal case type page
     When I wait for 11 minutes
     And I click continue
     Then I will see the invalid session timeout error
+

@@ -1,6 +1,5 @@
 Given("I am on the contact HMRC page") do
   go_to_contact_hmrc_page
-  go_to_contact_hmrc_page unless contact_hmrc_page.content.has_header?(wait: 5)
   expect(contact_hmrc_page.content).to have_header
 end
 
@@ -21,3 +20,4 @@ Then('the button is link to a form') do
   form_path = contact_hmrc_page.content.form_field.native.attribute('action')
   expect(form_path).to include('steps/hardship/hardship_contact_hmrc')
 end
+

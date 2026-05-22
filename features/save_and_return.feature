@@ -48,3 +48,4 @@ Feature: Save and return
     And I wait for 11 minutes
     And I click the continue button
     And I will not see the invalid timeout error
+
