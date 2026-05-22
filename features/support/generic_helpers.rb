@@ -227,6 +227,8 @@ def submit_check_your_answers
 end
 
 def continue_or_save_continue
+  return if respond_to?(:consume_browser_session_timeout?, true) && consume_browser_session_timeout?
+
   retry_transient_inspector_node_error(reset_session: false) do
     base_page.content.continue_or_save_continue.click
   end
