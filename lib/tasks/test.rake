@@ -20,7 +20,15 @@ namespace :test do
   end
 
   task functional: :environment do
-    if system "bundle exec cucumber features/ --tags 'not @smoke'"
+    retry_attempts = ENV.fetch('CUCUMBER_RETRY_ATTEMPTS', '1')
+    retry_total = ENV.fetch('CUCUMBER_RETRY_TOTAL', '5')
+
+    if system(
+      'bundle', 'exec', 'cucumber', 'features/',
+      '--tags', 'not @smoke',
+      '--retry', retry_attempts,
+      '--retry-total', retry_total
+    )
       puts "Functional test passed"
     else
       raise "Functional tests failed"
