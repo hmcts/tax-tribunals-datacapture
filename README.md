@@ -105,4 +105,4 @@ Find a tax-tribunals-cft-aat key/vault on portal (https://portal.azure.com/#@HMC
 
 Copy azure-storage-account, azure-storage-container and azure-storage-key into your localhost .env setup accordingly.
 
-Trigger rebuild: 9
+Trigger rebuild: 6
