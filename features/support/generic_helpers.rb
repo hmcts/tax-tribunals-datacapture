@@ -227,7 +227,9 @@ def submit_check_your_answers
 end
 
 def continue_or_save_continue
-  base_page.content.continue_or_save_continue.click
+  retry_transient_inspector_node_error(reset_session: false) do
+    base_page.content.continue_or_save_continue.click
+  end
 end
 
 def submit_yes

@@ -54,3 +54,4 @@ public/assets/
 
 # Redis
 *.rdb
+exports.sh
