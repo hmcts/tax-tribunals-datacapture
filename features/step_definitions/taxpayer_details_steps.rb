@@ -17,14 +17,7 @@ When("I submit a blank taxpayers details form") do
 end
 
 Then("I am taken to the send taxpayer copy page") do
-  header_text = I18n.t('check_answers.send_taxpayer_copy.question')
-
-  retry_transient_inspector_node_error(
-    reset_session: false,
-    success_condition: -> { page.has_css?('h1', text: header_text, wait: 5) }
-  ) do
-    expect(page).to have_css('h1', text: header_text)
-  end
+  expect(page).to have_css('h1', text: I18n.t('check_answers.send_taxpayer_copy.question'))
 end
 
 Then("I am shown all the taxpayer details errors") do

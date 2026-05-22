@@ -179,23 +179,13 @@ end
 # rubocop:enable MethodLength
 
 def expect_taxpayer_type_header(heading)
-  retry_transient_inspector_node_error(
-    reset_session: false,
-    success_condition: -> { page.has_css?('h1', text: heading, wait: 5) }
-  ) do
-    expect(page).to have_css('h1', text: heading)
-  end
+  expect(page).to have_css('h1', text: heading)
 end
 
 def expect_in_time_header
   heading = I18n.t('steps.lateness.in_time.edit.heading')
 
-  retry_transient_inspector_node_error(
-    reset_session: false,
-    success_condition: -> { page.has_css?('h1', text: heading, wait: 5) }
-  ) do
-    expect(page).to have_css('h1', text: heading)
-  end
+  expect(page).to have_css('h1', text: heading)
 end
 
 def go_to_login_page

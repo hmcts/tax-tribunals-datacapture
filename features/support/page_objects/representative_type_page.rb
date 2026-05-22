@@ -28,16 +28,7 @@ class RepresentativeTypePage < BasePage
   def submit_type(type)
     return if respond_to?(:consume_browser_session_timeout?, true) && consume_browser_session_timeout?
 
-    retry_transient_inspector_node_error(
-      reset_session: false,
-      success_condition: -> { left_representative_type_page? }
-    ) do
-      content.public_send(type).click
-      continue_or_save_continue
-    end
-  end
-
-  def left_representative_type_page?
-    page.has_no_css?('h1', text: I18n.t('helpers.fieldset.steps_details_representative_type_form.representative_type_html'), wait: 5)
+    content.public_send(type).click
+    continue_or_save_continue
   end
 end

@@ -28,16 +28,7 @@ class InTimePage < BasePage
   def submit_option(option)
     return if respond_to?(:consume_browser_session_timeout?, true) && consume_browser_session_timeout?
 
-    retry_transient_inspector_node_error(
-      reset_session: false,
-      success_condition: -> { left_in_time_page? }
-    ) do
-      content.public_send(option).click
-      continue_or_save_continue
-    end
-  end
-
-  def left_in_time_page?
-    page.has_no_css?('h1', text: I18n.t('steps.lateness.in_time.edit.heading'), wait: 5)
+    content.public_send(option).click
+    continue_or_save_continue
   end
 end

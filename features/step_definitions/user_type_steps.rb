@@ -1,8 +1,6 @@
 Given("I navigate to closure user type page") do
-  retry_transient_inspector_node_error do
-    navigate_to_closure_user_type_page_no_user
-    expect(user_type_page.content).to have_closure_header
-  end
+  navigate_to_closure_user_type_page_no_user
+  expect(user_type_page.content).to have_closure_header
 end
 
 When("I submit that I am the tax payer making the application") do

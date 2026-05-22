@@ -229,9 +229,7 @@ end
 def continue_or_save_continue
   return if respond_to?(:consume_browser_session_timeout?, true) && consume_browser_session_timeout?
 
-  retry_transient_inspector_node_error(reset_session: false) do
-    base_page.content.continue_or_save_continue.click
-  end
+  base_page.content.continue_or_save_continue.click
 end
 
 def submit_yes
@@ -283,13 +281,5 @@ def back
 end
 
 def save_and_come_back
-  retry_transient_inspector_node_error(
-    reset_session: false,
-    success_condition: lambda {
-      page.has_css?('h1', text: I18n.t('users.registrations.new.heading_test_fixed_as_appeal'), wait: 5) ||
-        page.has_css?('h1', text: I18n.t('users.registrations.new.heading_test_fixed_as_application'), wait: 5)
-    }
-  ) do
-    base_page.content.save_and_come_back_link.click
-  end
+  base_page.content.save_and_come_back_link.click
 end

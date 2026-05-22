@@ -1,23 +1,19 @@
 Given("I create an account in appeal journey") do
   save_and_come_back
-  retry_transient_inspector_node_error(reset_session: false) do
-    expect(save_appeal_page.content).to have_appeal_header
-  end
+  expect(save_appeal_page.content).to have_appeal_header
   save_appeal_page.content.email_input.set Faker::Internet.email
   save_appeal_page.content.password_input.set 'TaxTribun4!'
-  retry_transient_inspector_node_error(reset_session: false) { save }
-  retry_transient_inspector_node_error(reset_session: false) { save_confirmation_page.continue }
+  save
+  save_confirmation_page.continue
 end
 
 Given("I create an account in closure journey") do
   save_and_come_back
-  retry_transient_inspector_node_error(reset_session: false) do
-    expect(save_appeal_page.content).to have_closure_header
-  end
+  expect(save_appeal_page.content).to have_closure_header
   save_appeal_page.content.email_input.set Faker::Internet.email
   save_appeal_page.content.password_input.set 'TaxTribun4!'
-  retry_transient_inspector_node_error(reset_session: false) { save }
-  retry_transient_inspector_node_error(reset_session: false) { save_confirmation_page.continue }
+  save
+  save_confirmation_page.continue
 end
 
 When("I click on continue when I am on the save confirmation page") do
