@@ -27,9 +27,7 @@ Given('I select english only') do
 end
 
 def current_type_page
-  representative_type_heading = I18n.t('helpers.fieldset.steps_details_representative_type_form.representative_type_html')
-
-  return representative_type_page if page.has_css?('h1', text: representative_type_heading, wait: 0)
+  return representative_type_page if page.current_path&.end_with?('/steps/details/representative_type')
 
   taxpayer_type_page
 end
