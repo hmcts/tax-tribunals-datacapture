@@ -1,4 +1,3 @@
-@features
 Feature: Layout
 
   Background: I am on the home page

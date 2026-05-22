@@ -1,4 +1,3 @@
-@features
 Feature: Homepage
 
   Background: Homepage

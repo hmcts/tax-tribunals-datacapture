@@ -1,4 +1,3 @@
-@features
 Feature: Logging in
 
   Background: Navigate to login page

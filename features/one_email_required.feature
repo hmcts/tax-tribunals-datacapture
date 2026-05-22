@@ -1,4 +1,3 @@
-@features
 Feature: One email required
 
   Background: Go to closure user type page

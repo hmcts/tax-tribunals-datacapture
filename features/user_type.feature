@@ -1,4 +1,3 @@
-@features
 Feature: User type page
 
   Background: User type page

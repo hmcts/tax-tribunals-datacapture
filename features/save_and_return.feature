@@ -1,4 +1,3 @@
-@features
 Feature: Save and return
 
   Scenario: User signed in, does not see save and return page (appeal journey)
