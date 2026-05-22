@@ -95,10 +95,12 @@ withAzureKeyvault(
     before('build') {
         yarnBuilder.runYarn("--mutex network install --frozen-lockfile")
         sh script:"""#!/bin/bash -l
+            set -e
             set +x
             source /usr/local/rvm/scripts/rvm
             rvm install ruby-3.4.8
             rvm use ruby-3.4.8 --default
+            ruby --version
         """, label: 'Ruby version install'
     }
 

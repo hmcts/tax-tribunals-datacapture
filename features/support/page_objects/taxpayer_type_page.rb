@@ -27,6 +27,8 @@ class TaxpayerTypePage < BasePage
   private
 
   def submit_type(type)
+    return if respond_to?(:consume_browser_session_timeout?, true) && consume_browser_session_timeout?
+
     retry_transient_inspector_node_error(
       reset_session: false,
       success_condition: -> { left_taxpayer_type_page? }

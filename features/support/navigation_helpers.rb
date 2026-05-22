@@ -137,7 +137,7 @@ def complete_valid_appeal_application
     dispute_type_page.submit_penalty_or_surcharge
     expect(penalty_amount_page.content).to have_header
     penalty_amount_page.submit_100_or_less
-    expect(in_time_page.content).to have_header
+    expect_in_time_header
     in_time_page.submit_yes
     expect(user_type_page.content).to have_appeal_header
     if ENV['TEST_LOCALE'] == 'cy'
@@ -179,6 +179,17 @@ end
 # rubocop:enable MethodLength
 
 def expect_taxpayer_type_header(heading)
+  retry_transient_inspector_node_error(
+    reset_session: false,
+    success_condition: -> { page.has_css?('h1', text: heading, wait: 5) }
+  ) do
+    expect(page).to have_css('h1', text: heading)
+  end
+end
+
+def expect_in_time_header
+  heading = I18n.t('steps.lateness.in_time.edit.heading')
+
   retry_transient_inspector_node_error(
     reset_session: false,
     success_condition: -> { page.has_css?('h1', text: heading, wait: 5) }
