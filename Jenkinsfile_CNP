@@ -43,6 +43,7 @@ withAzureKeyvault(
         env.DB_USERNAME = 'hmcts'
         env.DB_HOST = 'tax-tribunals-preview.postgres.database.azure.com'
         env.DB_PORT = '5432'
+        env.DATABASE_URL = "postgresql://${env.DB_USERNAME}@${env.DB_HOST}:${env.DB_PORT}/${env.DB_NAME}"
         env.TEST_BROWSER = 'chrome_local'
         env.NODE_OPTIONS='--openssl-legacy-provider'
         env.ENABLE_COVERAGE='true'
