@@ -44,7 +44,7 @@ When(/^I submit a taxpayers details form with an invalid email$/) do
 end
 
 Then(/^I am shown an invalid email error$/) do
-  expect(taxpayer_details_page.content.input_field[6].input_error.text).to have_text(I18n.t('dictionary.invalid_email'))
+  expect(page).to have_css('.govuk-error-summary', text: I18n.t('dictionary.invalid_email'))
 end
 
 When(/^I re-submit a valid email$/) do
