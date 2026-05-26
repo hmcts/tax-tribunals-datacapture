@@ -29,7 +29,7 @@ end
 
 Capybara.register_driver :headless do |app|
   chrome_options = Selenium::WebDriver::Chrome::Options.new(
-    args: ['--headless=new', '--disable-gpu', '--disable-dev-shm-usage', '--no-sandbox', '--window-size=1366,768', '--disable-blink-features=AutomationControlled', '--disable-extensions', '--disable-plugins', '--disable-background-timer-throttling', '--disable-renderer-backgrounding']
+    args: ['--headless=new', '--disable-gpu', '--disable-dev-shm-usage', '--no-sandbox', '--window-size=1366,768']
   )
   chrome_options.page_load_strategy = page_load_strategy
   chrome_options.timeouts = browser_timeouts

@@ -226,7 +226,6 @@ def submit_check_your_answers
   check_answers_page.submit_check_answers
 end
 
-# Add this helper method for robust button clicking
 def continue_or_save_continue
   return if respond_to?(:consume_browser_session_timeout?, true) && consume_browser_session_timeout?
 

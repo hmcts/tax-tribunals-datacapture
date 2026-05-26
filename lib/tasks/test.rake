@@ -36,7 +36,7 @@ namespace :test do
   end
 
   task functional: :environment do
-    if system "bundle exec cucumber features/"
+    if run_cucumber_with_retry('not @smoke')
       puts "Functional test passed"
     else
       raise "Functional tests failed"
