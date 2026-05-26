@@ -12,17 +12,23 @@ class InTimePage < BasePage
   end
 
   def submit_yes
-    content.yes_option.click
-    continue_or_save_continue
+    submit_option(:yes_option)
   end
 
   def submit_no
-    content.no_option.click
-    continue_or_save_continue
+    submit_option(:no_option)
   end
 
   def submit_not_sure
-    content.not_sure_option.click
+    submit_option(:not_sure_option)
+  end
+
+  private
+
+  def submit_option(option)
+    return if respond_to?(:consume_browser_session_timeout?, true) && consume_browser_session_timeout?
+
+    content.public_send(option).click
     continue_or_save_continue
   end
 end

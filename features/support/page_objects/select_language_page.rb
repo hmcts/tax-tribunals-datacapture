@@ -16,12 +16,7 @@ class SelectLanguagePage < BasePage
   end
 
   def select_english
-    retry_transient_inspector_node_error(
-      reset_session: false,
-      success_condition: -> { page.has_no_css?('h1', text: I18n.t('dictionary.select_language_question'), wait: 5) }
-    ) do
-      content.english_radio.set(true)
-      continue
-    end
+    content.english_radio.set(true)
+    continue
   end
 end
