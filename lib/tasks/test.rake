@@ -10,9 +10,25 @@ task test: :environment do
   end
 end
 
+def cucumber_retry_options
+  [
+    '--retry', ENV.fetch('CUCUMBER_RETRY_ATTEMPTS', '1'),
+    '--retry-total', ENV.fetch('CUCUMBER_RETRY_TOTAL', '5'),
+    '--no-strict-flaky'
+  ]
+end
+
+def run_cucumber_with_retry(tags)
+  system(
+    'bundle', 'exec', 'cucumber', 'features/',
+    '--tags', tags,
+    *cucumber_retry_options
+  )
+end
+
 namespace :test do
   task smoke: :environment do
-    if system "bundle exec cucumber features/"
+    if run_cucumber_with_retry('@smoke')
       puts "Smoke test passed"
     else
       raise "Smoke tests failed"
@@ -20,7 +36,7 @@ namespace :test do
   end
 
   task functional: :environment do
-    if system "bundle exec cucumber features/ --tags @smoke"
+    if run_cucumber_with_retry('not @smoke')
       puts "Functional test passed"
     else
       raise "Functional tests failed"

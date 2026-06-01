@@ -92,7 +92,7 @@ def complete_valid_closure_application
     else
       submit_yes
     end
-    expect(taxpayer_type_page.content).to have_closure_header
+    expect_taxpayer_type_header(I18n.t('steps.details.taxpayer_type.edit.heading.application_test'))
     taxpayer_type_page.submit_individual
     expect(taxpayer_details_page.content).to have_header
     taxpayer_details_page.submit_taxpayer_details
@@ -137,7 +137,7 @@ def complete_valid_appeal_application
     dispute_type_page.submit_penalty_or_surcharge
     expect(penalty_amount_page.content).to have_header
     penalty_amount_page.submit_100_or_less
-    expect(in_time_page.content).to have_header
+    expect_in_time_header
     in_time_page.submit_yes
     expect(user_type_page.content).to have_appeal_header
     if ENV['TEST_LOCALE'] == 'cy'
@@ -145,7 +145,7 @@ def complete_valid_appeal_application
     else
       submit_yes
     end
-    expect(taxpayer_type_page.content).to have_appeal_header
+    expect_taxpayer_type_header(I18n.t('steps.details.taxpayer_type.edit.heading.appeal_test'))
     taxpayer_type_page.submit_individual
     expect(taxpayer_details_page.content).to have_header
     taxpayer_details_page.submit_taxpayer_details
@@ -177,6 +177,16 @@ def complete_valid_appeal_application
 end
 
 # rubocop:enable MethodLength
+
+def expect_taxpayer_type_header(heading)
+  expect(page).to have_css('h1', text: heading)
+end
+
+def expect_in_time_header
+  heading = I18n.t('steps.lateness.in_time.edit.heading')
+
+  expect(page).to have_css('h1', text: heading)
+end
 
 def go_to_login_page
   login_page.load_page

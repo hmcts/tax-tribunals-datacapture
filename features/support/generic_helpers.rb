@@ -1,5 +1,5 @@
 def base_page
-  @base_page ||= BasePage.new
+  BasePage.new
 end
 
 def home_page
@@ -227,6 +227,8 @@ def submit_check_your_answers
 end
 
 def continue_or_save_continue
+  return if respond_to?(:consume_browser_session_timeout?, true) && consume_browser_session_timeout?
+
   base_page.content.continue_or_save_continue.click
 end
 

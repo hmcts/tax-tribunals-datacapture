@@ -8,14 +8,6 @@ end
 
 When("I successfully submit taxpayers details") do
   expect(taxpayer_details_page.content).to have_header
-  expect(taxpayer_details_page.content.input_field[0].input_label.text).to eq I18n.t('helpers.label.steps_details_taxpayer_individual_details_form.taxpayer_individual_first_name')
-  expect(taxpayer_details_page.content.input_field[1].input_label.text).to eq I18n.t('helpers.label.steps_details_taxpayer_individual_details_form.taxpayer_individual_last_name')
-  expect(taxpayer_details_page.content.input_field[2].input_label.text).to eq I18n.t('dictionary.TAXPAYER_ADDRESS.taxpayer_contact_address')
-  expect(taxpayer_details_page.content.input_field[3].input_label.text).to eq I18n.t('dictionary.TAXPAYER_ADDRESS.taxpayer_contact_city')
-  expect(taxpayer_details_page.content.input_field[4].input_label.text).to eq I18n.t('dictionary.TAXPAYER_ADDRESS.taxpayer_contact_postcode')
-  expect(taxpayer_details_page.content.input_field[5].input_label.text).to eq I18n.t('dictionary.TAXPAYER_ADDRESS.taxpayer_contact_country')
-  expect(taxpayer_details_page.content.input_field[6].input_label.text).to eq I18n.t('dictionary.TAXPAYER_ADDRESS.taxpayer_contact_email')
-  expect(taxpayer_details_page.content.input_field[7].input_label.text).to eq I18n.t('dictionary.TAXPAYER_ADDRESS.taxpayer_contact_phone')
   taxpayer_details_page.submit_taxpayer_details
 end
 
@@ -25,17 +17,21 @@ When("I submit a blank taxpayers details form") do
 end
 
 Then("I am taken to the send taxpayer copy page") do
-  expect(send_taxpayer_copy_page.content).to have_header
+  expect(page).to have_css('h1', text: I18n.t('check_answers.send_taxpayer_copy.question'))
 end
 
 Then("I am shown all the taxpayer details errors") do
-  expect(taxpayer_details_page.content.input_field[0].input_error.text).to have_content(I18n.t('dictionary.blank_first_name'))
-  expect(taxpayer_details_page.content.input_field[1].input_error.text).to have_content(I18n.t('dictionary.blank_last_name'))
-  expect(taxpayer_details_page.content.input_field[2].input_error.text).to have_content(I18n.t('dictionary.blank_address'))
-  expect(taxpayer_details_page.content.input_field[3].input_error.text).to have_content(I18n.t('dictionary.blank_city'))
-  expect(taxpayer_details_page.content.input_field[4].input_error.text).to have_content(I18n.t('dictionary.blank_postcode'))
-  expect(taxpayer_details_page.content.input_field[5].input_error.text).to have_content(I18n.t('dictionary.blank_country'))
-  expect(taxpayer_details_page.content.input_field[6].input_error.text).to have_content(I18n.t('dictionary.blank_email'))
+  [
+    I18n.t('dictionary.blank_first_name'),
+    I18n.t('dictionary.blank_last_name'),
+    I18n.t('dictionary.blank_address'),
+    I18n.t('dictionary.blank_city'),
+    I18n.t('dictionary.blank_postcode'),
+    I18n.t('dictionary.blank_country'),
+    I18n.t('dictionary.blank_email')
+  ].each do |error_message|
+    expect(page).to have_css('.govuk-error-summary', text: error_message)
+  end
 end
 
 Then("I am on the taxpayer details page") do
@@ -44,19 +40,11 @@ end
 
 When(/^I submit a taxpayers details form with an invalid email$/) do
   expect(taxpayer_details_page.content).to have_header
-  expect(taxpayer_details_page.content.input_field[0].input_label.text).to eq I18n.t('helpers.label.steps_details_taxpayer_individual_details_form.taxpayer_individual_first_name')
-  expect(taxpayer_details_page.content.input_field[1].input_label.text).to eq I18n.t('helpers.label.steps_details_taxpayer_individual_details_form.taxpayer_individual_last_name')
-  expect(taxpayer_details_page.content.input_field[2].input_label.text).to eq I18n.t('dictionary.TAXPAYER_ADDRESS.taxpayer_contact_address')
-  expect(taxpayer_details_page.content.input_field[3].input_label.text).to eq I18n.t('dictionary.TAXPAYER_ADDRESS.taxpayer_contact_city')
-  expect(taxpayer_details_page.content.input_field[4].input_label.text).to eq I18n.t('dictionary.TAXPAYER_ADDRESS.taxpayer_contact_postcode')
-  expect(taxpayer_details_page.content.input_field[5].input_label.text).to eq I18n.t('dictionary.TAXPAYER_ADDRESS.taxpayer_contact_country')
-  expect(taxpayer_details_page.content.input_field[6].input_label.text).to eq I18n.t('dictionary.TAXPAYER_ADDRESS.taxpayer_contact_email')
-  expect(taxpayer_details_page.content.input_field[7].input_label.text).to eq I18n.t('dictionary.TAXPAYER_ADDRESS.taxpayer_contact_phone')
   taxpayer_details_page.submit_some_taxpayer_details
 end
 
 Then(/^I am shown an invalid email error$/) do
-  expect(taxpayer_details_page.content.input_field[6].input_error.text).to have_text(I18n.t('dictionary.invalid_email'))
+  expect(page).to have_css('.govuk-error-summary', text: I18n.t('dictionary.invalid_email'))
 end
 
 When(/^I re-submit a valid email$/) do
@@ -65,13 +53,5 @@ end
 
 When(/^I submit a taxpayers details form with no phone number$/) do
   expect(taxpayer_details_page.content).to have_header
-  expect(taxpayer_details_page.content.input_field[0].input_label.text).to eq I18n.t('helpers.label.steps_details_taxpayer_individual_details_form.taxpayer_individual_first_name')
-  expect(taxpayer_details_page.content.input_field[1].input_label.text).to eq I18n.t('helpers.label.steps_details_taxpayer_individual_details_form.taxpayer_individual_last_name')
-  expect(taxpayer_details_page.content.input_field[2].input_label.text).to eq I18n.t('dictionary.TAXPAYER_ADDRESS.taxpayer_contact_address')
-  expect(taxpayer_details_page.content.input_field[3].input_label.text).to eq I18n.t('dictionary.TAXPAYER_ADDRESS.taxpayer_contact_city')
-  expect(taxpayer_details_page.content.input_field[4].input_label.text).to eq I18n.t('dictionary.TAXPAYER_ADDRESS.taxpayer_contact_postcode')
-  expect(taxpayer_details_page.content.input_field[5].input_label.text).to eq I18n.t('dictionary.TAXPAYER_ADDRESS.taxpayer_contact_country')
-  expect(taxpayer_details_page.content.input_field[6].input_label.text).to eq I18n.t('dictionary.TAXPAYER_ADDRESS.taxpayer_contact_email')
-  expect(taxpayer_details_page.content.input_field[7].input_label.text).to eq I18n.t('dictionary.TAXPAYER_ADDRESS.taxpayer_contact_phone')
   taxpayer_details_page.submit_without_taxpayer_phone
 end

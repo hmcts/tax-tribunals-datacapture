@@ -13,17 +13,23 @@ class TaxpayerTypePage < BasePage
   end
 
   def submit_individual
-    content.individual.click
-    continue_or_save_continue
+    submit_type(:individual)
   end
 
   def submit_company
-    content.company.click
-    continue_or_save_continue
+    submit_type(:company)
   end
 
   def submit_other
-    content.other.click
+    submit_type(:other)
+  end
+
+  private
+
+  def submit_type(type)
+    return if respond_to?(:consume_browser_session_timeout?, true) && consume_browser_session_timeout?
+
+    content.public_send(type).click
     continue_or_save_continue
   end
 end

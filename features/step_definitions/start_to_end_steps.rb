@@ -7,11 +7,11 @@ Given("I complete a valid appeal application") do
 end
 
 Then("I should be told that the application has been successfully submitted") do
-  expect(confirmation_page.content).to have_case_submitted_header
+  expect(page).to have_css('h1', text: I18n.t('dictionary.CYA_CONFIRMATION.confirmation.show.page_title'))
 end
 
 When("I can access the finish survey") do
-  expect(confirmation_page.content).to have_finish_button
+  expect(page).to have_button(I18n.t('dictionary.START_FINISH.finish'))
 end
 
 # rubocop:disable Lint/AmbiguousRegexpLiteral

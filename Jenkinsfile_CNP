@@ -7,19 +7,46 @@ def component = "application"
 def rubyBuilder = new uk.gov.hmcts.contino.RubyBuilder(this)
 def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
 
-withPipeline(type, product, component) {
-    env.RAILS_ENV = 'test'
-    env.RACK_ENV = 'test'
-    env.CI = 'test'
-    env.ENV='test'
-    env.DB_NAME='tt-test-postgres'
-    env.DB_USERNAME = 'postgres'
-    env.DB_PASSWORD = 'mysecretpassword'
-    env.DB_HOST = 'localhost'
-    env.DB_PORT = '5421'
-    env.TEST_BROWSER = 'chrome_local'
-    env.NODE_OPTIONS='--openssl-legacy-provider'
-    env.ENABLE_COVERAGE='true'
+def vaultOverrides = [
+  'preview': 'aat',
+]
+
+def dbSecrets = [
+  secret('preview-password', 'DB_PASSWORD')
+]
+
+def secrets = [
+  'tax-tribunals-cft-${env}': dbSecrets,
+]
+
+static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
+  [ $class: 'AzureKeyVaultSecret',
+    secretType: 'Secret',
+    name: secretName,
+    version: '',
+    envVariable: envVar
+  ]
+}
+
+withAzureKeyvault(
+    azureKeyVaultSecrets: dbSecrets,
+    keyVaultURLOverride: 'https://tax-tribunals-cft-aat.vault.azure.net/'
+) {
+    withPipeline(type, product, component) {
+        overrideVaultEnvironments(vaultOverrides)
+        loadVaultSecrets(secrets)
+        env.RAILS_ENV = 'test'
+        env.RACK_ENV = 'test'
+        env.CI = 'test'
+        env.ENV='test'
+        env.DB_NAME = "pr-${env.CHANGE_ID}"
+        env.DB_USERNAME = 'hmcts'
+        env.DB_HOST = 'tax-tribunals-preview.postgres.database.azure.com'
+        env.DB_PORT = '5432'
+        env.DATABASE_URL = "postgresql://${env.DB_USERNAME}@${env.DB_HOST}:${env.DB_PORT}/${env.DB_NAME}"
+        env.TEST_BROWSER = 'chrome_local'
+        env.NODE_OPTIONS='--openssl-legacy-provider'
+        env.ENABLE_COVERAGE='true'
 
     // random free port should probably be used instead
     env.GOVUK_NOTIFY_API_KEY = 'mocked_in_tests'
@@ -68,26 +95,20 @@ withPipeline(type, product, component) {
     before('build') {
         yarnBuilder.runYarn("--mutex network install --frozen-lockfile")
         sh script:"""#!/bin/bash -l
+            set -e
             set +x
             source /usr/local/rvm/scripts/rvm
             rvm install ruby-3.4.8
             rvm use ruby-3.4.8 --default
+            ruby --version
         """, label: 'Ruby version install'
     }
 
-    before('test') {
-        sh script: """
-            docker inspect hmctsprod.azurecr.io/imported/postgres:16-alpine > /dev/null 2>&1 || docker pull hmctsprod.azurecr.io/imported/postgres:16-alpine
-            docker stop tt-test-postgres && docker rm tt-test-postgres || echo 'Ignoring failure in stopping old postgres'
-            docker run --rm --name tt-test-postgres --publish 5421:5432 -e POSTGRES_PASSWORD=mysecretpassword -d hmctsprod.azurecr.io/imported/postgres:16-alpine
-        """, label: 'Start test postgres'
-
-        rubyBuilder.bundle("exec rails db:create db:schema:load")
-        rubyBuilder.bundle("install")
-    }
-
-    afterAlways('smokeTest') {
-        sh script: "docker stop tt-test-postgres && docker rm tt-test-postgres || echo 'Ignoring failure in stopping postgres'",
-            label: "docker stop tt-test-postgres"
+        before('test') {
+            withEnv(['DISABLE_DATABASE_ENVIRONMENT_CHECK=1']) {
+                rubyBuilder.bundle("exec rails db:drop db:create db:schema:load")
+            }
+            rubyBuilder.bundle("install")
+        }
     }
 }

@@ -24,8 +24,12 @@ Given("I submit that the representative is a practising solicitor") do
 end
 
 When("I submit that I have a representative") do
-  expect(has_representative_page.content).to have_header
+  has_representative_heading = I18n.t('steps.details.has_representative.edit.heading')
+  professional_status_heading = I18n.t('steps.details.representative_professional_status.edit.heading.as_taxpayer')
+
+  expect(page).to have_css('h1', text: has_representative_heading)
   submit_yes
+  expect(page).to have_css('h1', text: professional_status_heading)
 end
 
 When("I submit that the representative is an individual") do
