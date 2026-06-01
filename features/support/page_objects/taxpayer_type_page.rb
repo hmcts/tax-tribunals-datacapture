@@ -27,17 +27,9 @@ class TaxpayerTypePage < BasePage
   private
 
   def submit_type(type)
-    retry_transient_inspector_node_error(
-      reset_session: false,
-      success_condition: -> { left_taxpayer_type_page? }
-    ) do
-      content.public_send(type).click
-      continue_or_save_continue
-    end
-  end
+    return if respond_to?(:consume_browser_session_timeout?, true) && consume_browser_session_timeout?
 
-  def left_taxpayer_type_page?
-    page.has_no_css?('h1', text: I18n.t('steps.details.taxpayer_type.edit.heading.application_test'), wait: 5) &&
-      page.has_no_css?('h1', text: I18n.t('steps.details.taxpayer_type.edit.heading.appeal_test'), wait: 0)
+    content.public_send(type).click
+    continue_or_save_continue
   end
 end

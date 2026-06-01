@@ -14,14 +14,19 @@ class RepresentativeProfessionalPage < BasePage
   end
 
   def submit_practising_solicitor
-    content.practising_solicitor_option.click
-    continue_or_save_continue
+    submit_professional_status(:practising_solicitor_option)
   end
 
   def submit_tax_agent
-    content.tax_agent_option.click
+    submit_professional_status(:tax_agent_option)
+  end
+
+  private
+
+  def submit_professional_status(option)
+    return if respond_to?(:consume_browser_session_timeout?, true) && consume_browser_session_timeout?
+
+    content.public_send(option).click
     continue_or_save_continue
   end
 end
-
-

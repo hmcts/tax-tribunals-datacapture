@@ -1,5 +1,5 @@
 def base_page
-  @base_page ||= BasePage.new
+  BasePage.new
 end
 
 def home_page
@@ -226,24 +226,10 @@ def submit_check_your_answers
   check_answers_page.submit_check_answers
 end
 
-# Add this helper method for robust button clicking
 def continue_or_save_continue
-  button = base_page.content.continue_or_save_continue
+  return if respond_to?(:consume_browser_session_timeout?, true) && consume_browser_session_timeout?
 
-  # Wait for the button to be present and clickable
-  wait = Selenium::WebDriver::Wait.new(timeout: 5)
-  wait.until { button.native.displayed? && button.native.enabled? }
-
-  # Use JavaScript click for better stability with form changes
-  page.execute_script("arguments[0].click();", button.native)
-
-  # Wait for navigation to start
-  sleep(0.5)
-rescue Selenium::WebDriver::Error::StaleElementReferenceError
-  # Retry once if element becomes stale
-  sleep(0.5)
-  button = base_page.content.continue_or_save_continue
-  page.execute_script("arguments[0].click();", button.native)
+  base_page.content.continue_or_save_continue.click
 end
 
 def submit_yes
@@ -295,13 +281,5 @@ def back
 end
 
 def save_and_come_back
-  retry_transient_inspector_node_error(
-    reset_session: false,
-    success_condition: lambda {
-      page.has_css?('h1', text: I18n.t('users.registrations.new.heading_test_fixed_as_appeal'), wait: 5) ||
-        page.has_css?('h1', text: I18n.t('users.registrations.new.heading_test_fixed_as_application'), wait: 5)
-    }
-  ) do
-    base_page.content.save_and_come_back_link.click
-  end
+  base_page.content.save_and_come_back_link.click
 end
