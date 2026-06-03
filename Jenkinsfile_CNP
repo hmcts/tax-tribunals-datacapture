@@ -11,12 +11,18 @@ def vaultOverrides = [
   'preview': 'aat',
 ]
 
-def dbSecrets = [
+def previewDbSecrets = [
   secret('preview-password', 'DB_PASSWORD')
 ]
 
+def deployedDbSecrets = [
+  secret('tt-fqdn', 'DEPLOYED_DB_HOST'),
+  secret('tt-username', 'DEPLOYED_DB_USERNAME'),
+  secret('tt-password', 'DEPLOYED_DB_PASSWORD')
+]
+
 def secrets = [
-  'tax-tribunals-cft-${env}': dbSecrets,
+  'tax-tribunals-cft-${env}': deployedDbSecrets,
 ]
 
 static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
@@ -29,7 +35,7 @@ static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
 }
 
 withAzureKeyvault(
-    azureKeyVaultSecrets: dbSecrets,
+    azureKeyVaultSecrets: previewDbSecrets,
     keyVaultURLOverride: 'https://tax-tribunals-cft-aat.vault.azure.net/'
 ) {
     withPipeline(type, product, component) {
@@ -48,61 +54,79 @@ withAzureKeyvault(
         env.NODE_OPTIONS='--openssl-legacy-provider'
         env.ENABLE_COVERAGE='true'
 
-    // random free port should probably be used instead
-    env.GOVUK_NOTIFY_API_KEY = 'mocked_in_tests'
-    env.GLIMR_API_URL = 'replace_this_at_build_time'
-    env.GLIMR_DIRECT_API_URL = 'replace_this_at_build_time'
-    env.GLIMR_DIRECT_ENABLED = 'replace_this_at_build_time'
-    env.EXTERNAL_URL = 'replace_this_at_build_time'
-    env.PAYMENT_ENDPOINT = 'replace_this_at_build_time'
-    env.TAX_TRIBUNALS_DOWNLOADER_URL = 'replace_this_at_build_time'
-    env.SENTRY_DSN = 'replace_this_at_build_time'
-    env.GOVUK_NOTIFY_API_KEY = 'replace_this_at_build_time'
-    env.GTM_TRACKING_ID = 'replace_this_at_build_time'
-    env.TAX_TRIBUNAL_EMAIL = 'replace_this_at_build_time'
-    env.ZENDESK_USERNAME = 'replace_this_at_build_time'
-    env.ZENDESK_TOKEN = 'replace_this_at_build_time'
-    env.UPLOAD_PROBLEMS_REPORT_AUTH_USER = 'replace_this_at_build_time'
-    env.UPLOAD_PROBLEMS_REPORT_AUTH_DIGEST = 'replace_this_at_build_time'
-    env.ADMIN_USERNAME = 'replace_this_at_build_time'
-    env.ADMIN_PASSWORD = 'replace_this_at_build_time'
-    env.NOTIFY_CASE_CONFIRMATION_TEMPLATE_ID = 'replace_this_at_build_time'
-    env.NOTIFY_FTT_CASE_NOTIFICATION_TEMPLATE_ID = 'replace_this_at_build_time'
-    env.NOTIFY_NEW_CASE_SAVED_TEMPLATE_ID = 'replace_this_at_build_time'
-    env.NOTIFY_CHANGE_PASSWORD_TEMPLATE_ID = 'replace_this_at_build_time'
-    env.NOTIFY_RESET_PASSWORD_TEMPLATE_ID = 'replace_this_at_build_time'
-    env.NOTIFY_CASE_FIRST_REMINDER_TEMPLATE_ID = 'replace_this_at_build_time'
-    env.NOTIFY_CASE_LAST_REMINDER_TEMPLATE_ID = 'replace_this_at_build_time'
-    env.NOTIFY_REPORT_PROBLEM_TEMPLATE_ID = 'replace_this_at_build_time'
-    env.REPORT_PROBLEM_EMAIL_ADDRESS = 'replace_this_at_build_time'
-    env.NOTIFY_SEND_APPLICATION_DETAIL_TEMPLATE_ID = 'replace_this_at_build_time'
-    env.NOTIFY_SEND_APPLICATION_DETAIL_TEXT_TEMPLATE_ID = 'replace_this_at_build_time'
-    env.NOTIFY_CASE_CONFIRMATION_CY_TEMPLATE_ID = 'replace_this_at_build_time'
-    env.NOTIFY_FTT_CASE_NOTIFICATION_CY_TEMPLATE_ID = 'replace_this_at_build_time'
-    env.NOTIFY_NEW_CASE_SAVED_CY_TEMPLATE_ID = 'replace_this_at_build_time'
-    env.NOTIFY_CHANGE_PASSWORD_CY_TEMPLATE_ID = 'replace_this_at_build_time'
-    env.NOTIFY_RESET_PASSWORD_CY_TEMPLATE_ID = 'replace_this_at_build_time'
-    env.NOTIFY_CASE_FIRST_REMINDER_CY_TEMPLATE_ID = 'replace_this_at_build_time'
-    env.NOTIFY_CASE_LAST_REMINDER_CY_TEMPLATE_ID = 'replace_this_at_build_time'
-    env.NOTIFY_REPORT_PROBLEM_CY_TEMPLATE_ID = 'replace_this_at_build_time'
-    env.NOTIFY_SEND_APPLICATION_DETAIL_CY_TEMPLATE_ID = 'replace_this_at_build_time'
-    env.NOTIFY_SEND_APPLICATION_DETAIL_CY_TEXT_TEMPLATE_ID = 'replace_this_at_build_time'
-    env.ADDRESS_LOOKUP_ENDPOINT = 'https://api.os.uk/'
-    env.ADDRESS_LOOKUP_API_KEY = 'replace_this_at_build_time'
-    env.ADDRESS_LOOKUP_API_SECRET = 'replace_this_at_build_time'
-    env.DYNATRACE_UI_TRACKING_ID = 'replace_this_at_build_time'
+        // random free port should probably be used instead
+        env.GOVUK_NOTIFY_API_KEY = 'mocked_in_tests'
+        env.GLIMR_API_URL = 'replace_this_at_build_time'
+        env.GLIMR_DIRECT_API_URL = 'replace_this_at_build_time'
+        env.GLIMR_DIRECT_ENABLED = 'replace_this_at_build_time'
+        env.EXTERNAL_URL = 'replace_this_at_build_time'
+        env.PAYMENT_ENDPOINT = 'replace_this_at_build_time'
+        env.TAX_TRIBUNALS_DOWNLOADER_URL = 'replace_this_at_build_time'
+        env.SENTRY_DSN = 'replace_this_at_build_time'
+        env.GOVUK_NOTIFY_API_KEY = 'replace_this_at_build_time'
+        env.GTM_TRACKING_ID = 'replace_this_at_build_time'
+        env.TAX_TRIBUNAL_EMAIL = 'replace_this_at_build_time'
+        env.ZENDESK_USERNAME = 'replace_this_at_build_time'
+        env.ZENDESK_TOKEN = 'replace_this_at_build_time'
+        env.UPLOAD_PROBLEMS_REPORT_AUTH_USER = 'replace_this_at_build_time'
+        env.UPLOAD_PROBLEMS_REPORT_AUTH_DIGEST = 'replace_this_at_build_time'
+        env.ADMIN_USERNAME = 'replace_this_at_build_time'
+        env.ADMIN_PASSWORD = 'replace_this_at_build_time'
+        env.NOTIFY_CASE_CONFIRMATION_TEMPLATE_ID = 'replace_this_at_build_time'
+        env.NOTIFY_FTT_CASE_NOTIFICATION_TEMPLATE_ID = 'replace_this_at_build_time'
+        env.NOTIFY_NEW_CASE_SAVED_TEMPLATE_ID = 'replace_this_at_build_time'
+        env.NOTIFY_CHANGE_PASSWORD_TEMPLATE_ID = 'replace_this_at_build_time'
+        env.NOTIFY_RESET_PASSWORD_TEMPLATE_ID = 'replace_this_at_build_time'
+        env.NOTIFY_CASE_FIRST_REMINDER_TEMPLATE_ID = 'replace_this_at_build_time'
+        env.NOTIFY_CASE_LAST_REMINDER_TEMPLATE_ID = 'replace_this_at_build_time'
+        env.NOTIFY_REPORT_PROBLEM_TEMPLATE_ID = 'replace_this_at_build_time'
+        env.REPORT_PROBLEM_EMAIL_ADDRESS = 'replace_this_at_build_time'
+        env.NOTIFY_SEND_APPLICATION_DETAIL_TEMPLATE_ID = 'replace_this_at_build_time'
+        env.NOTIFY_SEND_APPLICATION_DETAIL_TEXT_TEMPLATE_ID = 'replace_this_at_build_time'
+        env.NOTIFY_CASE_CONFIRMATION_CY_TEMPLATE_ID = 'replace_this_at_build_time'
+        env.NOTIFY_FTT_CASE_NOTIFICATION_CY_TEMPLATE_ID = 'replace_this_at_build_time'
+        env.NOTIFY_NEW_CASE_SAVED_CY_TEMPLATE_ID = 'replace_this_at_build_time'
+        env.NOTIFY_CHANGE_PASSWORD_CY_TEMPLATE_ID = 'replace_this_at_build_time'
+        env.NOTIFY_RESET_PASSWORD_CY_TEMPLATE_ID = 'replace_this_at_build_time'
+        env.NOTIFY_CASE_FIRST_REMINDER_CY_TEMPLATE_ID = 'replace_this_at_build_time'
+        env.NOTIFY_CASE_LAST_REMINDER_CY_TEMPLATE_ID = 'replace_this_at_build_time'
+        env.NOTIFY_REPORT_PROBLEM_CY_TEMPLATE_ID = 'replace_this_at_build_time'
+        env.NOTIFY_SEND_APPLICATION_DETAIL_CY_TEMPLATE_ID = 'replace_this_at_build_time'
+        env.NOTIFY_SEND_APPLICATION_DETAIL_CY_TEXT_TEMPLATE_ID = 'replace_this_at_build_time'
+        env.ADDRESS_LOOKUP_ENDPOINT = 'https://api.os.uk/'
+        env.ADDRESS_LOOKUP_API_KEY = 'replace_this_at_build_time'
+        env.ADDRESS_LOOKUP_API_SECRET = 'replace_this_at_build_time'
+        env.DYNATRACE_UI_TRACKING_ID = 'replace_this_at_build_time'
 
-    before('build') {
-        yarnBuilder.runYarn("--mutex network install --frozen-lockfile")
-        sh script:"""#!/bin/bash -l
-            set -e
-            set +x
-            source /usr/local/rvm/scripts/rvm
-            rvm install ruby-3.4.8
-            rvm use ruby-3.4.8 --default
-            ruby --version
-        """, label: 'Ruby version install'
-    }
+        def useAatDatabase = {
+            env.DB_NAME = 'taxtribunals'
+            env.DB_USERNAME = env.DEPLOYED_DB_USERNAME
+            env.DB_PASSWORD = env.DEPLOYED_DB_PASSWORD
+            env.DB_HOST = env.DEPLOYED_DB_HOST
+            env.DB_PORT = '5432'
+            env.DATABASE_URL = "postgresql://${env.DB_USERNAME}@${env.DB_HOST}:${env.DB_PORT}/${env.DB_NAME}"
+            echo "Using AAT database for deployed tests: ${env.DB_HOST}/${env.DB_NAME}"
+        }
+
+        before('smoketest:aat') {
+            useAatDatabase()
+        }
+
+        before('functionalTest:aat') {
+            useAatDatabase()
+        }
+
+        before('build') {
+            yarnBuilder.runYarn("--mutex network install --frozen-lockfile")
+            sh script:"""#!/bin/bash -l
+                set -e
+                set +x
+                source /usr/local/rvm/scripts/rvm
+                rvm install ruby-3.4.8
+                rvm use ruby-3.4.8 --default
+                ruby --version
+            """, label: 'Ruby version install'
+        }
 
         before('test') {
             withEnv(['DISABLE_DATABASE_ENVIRONMENT_CHECK=1']) {
