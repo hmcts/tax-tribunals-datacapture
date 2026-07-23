@@ -11,18 +11,12 @@ def vaultOverrides = [
   'preview': 'aat',
 ]
 
-def previewDbSecrets = [
+def dbSecrets = [
   secret('preview-password', 'DB_PASSWORD')
 ]
 
-def deployedDbSecrets = [
-  secret('tt-fqdn', 'DEPLOYED_DB_HOST'),
-  secret('tt-username', 'DEPLOYED_DB_USERNAME'),
-  secret('tt-password', 'DEPLOYED_DB_PASSWORD')
-]
-
 def secrets = [
-  'tax-tribunals-cft-${env}': deployedDbSecrets,
+  'tax-tribunals-cft-${env}': dbSecrets,
 ]
 
 static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
@@ -35,7 +29,7 @@ static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
 }
 
 withAzureKeyvault(
-    azureKeyVaultSecrets: previewDbSecrets,
+    azureKeyVaultSecrets: dbSecrets,
     keyVaultURLOverride: 'https://tax-tribunals-cft-aat.vault.azure.net/'
 ) {
     withPipeline(type, product, component) {
@@ -98,24 +92,6 @@ withAzureKeyvault(
         env.ADDRESS_LOOKUP_API_SECRET = 'replace_this_at_build_time'
         env.DYNATRACE_UI_TRACKING_ID = 'replace_this_at_build_time'
 
-        def useAatDatabase = {
-            env.DB_NAME = 'taxtribunals'
-            env.DB_USERNAME = env.DEPLOYED_DB_USERNAME
-            env.DB_PASSWORD = env.DEPLOYED_DB_PASSWORD
-            env.DB_HOST = env.DEPLOYED_DB_HOST
-            env.DB_PORT = '5432'
-            env.DATABASE_URL = "postgresql://${env.DB_USERNAME}@${env.DB_HOST}:${env.DB_PORT}/${env.DB_NAME}"
-            echo "Using AAT database for deployed tests: ${env.DB_HOST}/${env.DB_NAME}"
-        }
-
-        before('smoketest:aat') {
-            useAatDatabase()
-        }
-
-        before('functionalTest:aat') {
-            useAatDatabase()
-        }
-
         before('build') {
             yarnBuilder.runYarn("--mutex network install --frozen-lockfile")
             sh script:"""#!/bin/bash -l
@@ -133,6 +109,28 @@ withAzureKeyvault(
                 rubyBuilder.bundle("exec rails db:drop db:create db:schema:load")
             }
             rubyBuilder.bundle("install")
+        }
+
+        afterAlways('smoketest:preview') {
+            archiveArtifacts(
+                allowEmptyArchive: true,
+                artifacts: 'tmp/capybara/**/*,tmp/test/cucumber/smoke/**/*'
+            )
+            junit(
+                allowEmptyResults: true,
+                testResults: 'tmp/test/cucumber/smoke/**/*.xml'
+            )
+        }
+
+        afterAlways('functionalTest:preview') {
+            archiveArtifacts(
+                allowEmptyArchive: true,
+                artifacts: 'tmp/capybara/**/*,tmp/test/cucumber/functional/**/*'
+            )
+            junit(
+                allowEmptyResults: true,
+                testResults: 'tmp/test/cucumber/functional/**/*.xml'
+            )
         }
     }
 }
