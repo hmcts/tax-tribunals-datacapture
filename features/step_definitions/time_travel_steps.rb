@@ -44,6 +44,12 @@ Before do |scenario|
   @session_timeout_waited = false
 end
 
+After do
+  travel_back if respond_to?(:travel_back)
+  @session_timeout_should_trigger = false
+  @session_timeout_waited = false
+end
+
 When(/^I wait for (\d+) minutes$/) do |arg|
   travel arg.minutes
   if @session_timeout_should_trigger

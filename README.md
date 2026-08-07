@@ -87,6 +87,15 @@ Checkout, Build, Static checks, Promote Docker, AKS deploy - AAT, Smoke Test - A
 
 More details about above can be found in the Jenkins Pipeline Steps within a build.
 
+When Jenkins sets `ENVIRONMENT_NAME=aat`, the `test:smoke` and `test:functional`
+Rake tasks exit without loading the Rails environment or running Cucumber, unless
+`TEST_URL` identifies a Tax Tribunals PR deployment in the preview environment.
+Smoke tests against deployed services do not require database credentials;
+functional tests continue to use the configured test database.
+
+PR preview smoke and functional stages publish Cucumber JUnit results and archive
+Capybara HTML/image screenshots, including when a test stage fails.
+
 ## AZURE Blob storage ##
 
 Until we refactor file uploader to use active storage we have to use storage for Demo or AAT env.
@@ -105,4 +114,4 @@ Find a tax-tribunals-cft-aat key/vault on portal (https://portal.azure.com/#@HMC
 
 Copy azure-storage-account, azure-storage-container and azure-storage-key into your localhost .env setup accordingly.
 
-Trigger rebuild: 6
+Trigger rebuild: 9

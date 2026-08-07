@@ -1,7 +1,11 @@
 .git*
+.bundle
+coverage
 log/*
+node_modules
 tmp/*
 .travis.yml
+vendor/bundle
 Dockerfile
 Dockerfile.development
 docker-compose.yml
