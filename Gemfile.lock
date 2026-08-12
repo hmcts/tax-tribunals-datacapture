@@ -15,7 +15,7 @@ GIT
 
 GIT
   remote: https://github.com/ruby/net-pop.git
-  revision: 30d89b359c940610d84ecd1fed0dba4003508fde
+  revision: d4e1675e7f1f558ac23a43cbedacb5dfdd23739a
   specs:
     net-pop (0.1.2)
       net-protocol
@@ -28,7 +28,7 @@ GEM
 GEM
   remote: https://rubygems.org/
   specs:
-    action_text-trix (2.1.18)
+    action_text-trix (2.1.19)
       railties
     actioncable (8.1.2.1)
       actionpack (= 8.1.2.1)
@@ -228,7 +228,7 @@ GEM
       dotenv (= 3.2.0)
       railties (>= 6.1)
     drb (2.2.3)
-    erb (6.0.4)
+    erb (6.0.7)
     erubi (1.13.1)
     ethon (0.18.0)
       ffi (>= 1.15.0)
@@ -333,13 +333,13 @@ GEM
     loofah (2.25.2)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
-    mail (2.9.0)
+    mail (2.9.1)
       logger
       mini_mime (>= 0.1.1)
       net-imap
       net-pop
       net-smtp
-    marcel (1.1.0)
+    marcel (1.1.1)
     matrix (0.4.3)
     memoist3 (1.0.0)
     method_source (1.1.0)
@@ -370,7 +370,7 @@ GEM
       rspec-core (>= 3.8.0, < 4.0.0)
     net-http-persistent (4.0.8)
       connection_pool (>= 2.2.4, < 4)
-    net-imap (0.6.4.1)
+    net-imap (0.6.6)
       date
       net-protocol
     net-protocol (0.2.2)
@@ -405,7 +405,7 @@ GEM
       capybara (>= 2.1, < 4)
       cliver (~> 0.3.1)
       websocket-driver (>= 0.2.0)
-    pp (0.6.3)
+    pp (0.6.4)
       prettyprint
     prettyprint (0.2.0)
     prism (1.9.0)
@@ -672,7 +672,7 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.8.0)
+    zeitwerk (2.8.3)
     zendesk_api (1.37.0)
       faraday (>= 0.9.0, < 2.0.0)
       hashie (>= 3.5.2, < 6.0.0)
