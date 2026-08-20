@@ -2,7 +2,10 @@ class RepresentativeTypePage < BasePage
   set_url "/#{ENV.fetch('TEST_LOCALE', nil)}/steps/details/representative_type"
 
   section :content, '#main-content' do
-    element :header, 'h1', text: I18n.t('helpers.fieldset.steps_details_representative_type_form.representative_type_html')
+    element :header, 'h1', text: Regexp.union(
+      I18n.t('steps.details.representative_type.edit.heading.as_taxpayer'),
+      I18n.t('steps.details.representative_type.edit.heading.as_representative')
+    )
     element :individual, 'label', text: I18n.t('steps.details.representative_type.edit.individual')
     element :company, 'label', text: I18n.t('steps.details.representative_type.edit.company')
     element :other, 'label', text: I18n.t('steps.details.representative_type.edit.other')

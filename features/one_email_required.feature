@@ -33,7 +33,9 @@ Feature: One email required
     And I submit that the representative is a tax agent
     Then I should see 'Do you want to start receiving correspondence from the tribunal?'
     When I click continue
-    Then I submit that I am an individual
+    Then I am taken to the representative type page
+    And I submit that the representative is an individual
+    Then I am taken to the representative details (individual) page
 
   Scenario: Testing timeout for taxpayer - should trigger
     Given I submit that I am the tax payer making the application
