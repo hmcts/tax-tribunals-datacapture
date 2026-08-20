@@ -165,6 +165,7 @@ end
 When(/^I enter a valid matching email address$/) do
   expect(send_representative_copy_page.content).to have_header
   send_representative_copy_page.submit_valid_email
+  expect(grounds_for_appeal_page.content).to have_header
 end
 
 And(/^I fill in the details without a phone number and progress to the representative copy page$/) do
