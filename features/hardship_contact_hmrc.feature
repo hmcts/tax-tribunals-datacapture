@@ -2,7 +2,10 @@ Feature: Hardship contact HMRC page
 
   Background: Contact HMRC page
     Given I create an indirect tax application where HMRC claim I owe money
-    And I am on the contact HMRC page
+    When I submit a tax amount value
+    And I submit that I have not paid the tax under dispute
+    And I submit that I have not asked HMRC if I could appeal to tribunal
+    Then I should be on the contact HMRC page
 
   Scenario: Redirect to HMRC page buttom
     Given I have the button to contact HMRC
