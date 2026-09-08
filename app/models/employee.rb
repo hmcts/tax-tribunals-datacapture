@@ -28,4 +28,11 @@ class Employee < ApplicationRecord
     last_sign_in_at > 3.months.ago
   end
 
+ def authenticatable_salt
+   "#{super}#{session_token}"
+ end
+
+ def invalidate_all_sessions!
+   update(session_token: SecureRandom.hex)
+ end
 end
