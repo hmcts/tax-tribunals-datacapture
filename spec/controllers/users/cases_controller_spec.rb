@@ -29,6 +29,12 @@ RSpec.describe Users::CasesController, type: :controller do
         expect(finder_double).to receive(:order).with(created_at: :asc)
         local_get :index
       end
+
+      it 'prevents authenticated pages from being cached' do
+        local_get :index
+
+        expect(response.headers['Cache-Control']).to eq('no-store')
+      end
     end
   end
 

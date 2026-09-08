@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception, prepend: true
   before_action :show_maintenance_page
+  after_action :prevent_authenticated_page_caching
 
   # This is required to get request attributes in to the production logs.
   # See the various lograge configurations in `production.rb`.
@@ -44,6 +45,12 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def prevent_authenticated_page_caching
+    return unless respond_to?(:current_user, true) && current_user
+
+    response.headers['Cache-Control'] = 'no-store'
+  end
 
   def switch_locale(&)
     locale = params[:locale] || I18n.default_locale
