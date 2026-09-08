@@ -32,8 +32,10 @@ module Users
     protected
 
     # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
-    def sign_in(_resource_name, user)
-      super
+    def sign_in(resource_name, user)
+      user.invalidate_all_sessions!
+      super(resource_name, user, force: true)
+
       save_for_later = TaxTribs::SaveCaseForLater.new(current_tribunal_case, user)
       if current_tribunal_case&.intent.eql?(Intent::TAX_APPEAL)
         save_for_later.save if current_tribunal_case.respond_to?(:case_type?) && current_tribunal_case.case_type?
