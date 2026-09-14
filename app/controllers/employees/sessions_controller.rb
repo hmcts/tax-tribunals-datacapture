@@ -18,7 +18,19 @@ class Employees::SessionsController < Devise::SessionsController
   #   super
   # end
 
+  def destroy
+    current_employee&.invalidate_all_sessions!
+    super
+  end
+
   def after_sign_out_path_for(_resource)
     new_employee_session_path
+  end
+
+  protected
+
+  def sign_in(resource_name, employee)
+    employee.invalidate_all_sessions!
+    super(resource_name, employee, force: true)
   end
 end

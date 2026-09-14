@@ -58,4 +58,27 @@ RSpec.describe Employee, type: :model do
       end
     end
   end
+
+  describe 'invalidate_all_sessions!' do
+      it 'changes the session token' do
+          employee = create(:employee)
+
+          expect {
+            employee.invalidate_all_sessions!
+          }.to change {
+            employee.reload.session_token
+          }
+      end
+  end
+
+  describe '#authenticatable_salt' do
+    it 'changes when the session token changes' do
+      employee = create(:employee)
+
+      original_salt = employee.authenticatable_salt
+      employee.invalidate_all_sessions!
+
+      expect(employee.reload.authenticatable_salt).not_to eq(original_salt)
+    end
+  end
 end

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Users::LoginsController do
-  let(:user) { User.new(email: 'foo@bar.com') }
+  let(:user) { create(:user, email: 'foo@bar.com') }
   let(:tribunal_case_appeal) { instance_double(TribunalCase, intent: Intent::TAX_APPEAL, user: user, case_type?: true) }
   let(:tribunal_case_closure) { instance_double(TribunalCase, intent: Intent::CLOSE_ENQUIRY, user: user, closure_case_type?: true)
   }
