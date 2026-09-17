@@ -9,9 +9,9 @@ module Steps::Shared
     attribute :other_support, Boolean
     attribute :other_support_details, String
 
-    validates_presence_of  :language_interpreter_details, if: :language_interpreter?
-    validates_presence_of  :sign_language_interpreter_details, if: :sign_language_interpreter?
-    validates_presence_of  :other_support_details, if: :other_support?
+    validates_presence_of :language_interpreter_details, if: :language_interpreter?
+    validates_presence_of :sign_language_interpreter_details, if: :sign_language_interpreter?
+    validates_presence_of :other_support_details, if: :other_support?
     validate :at_least_one_checkbox_validation
 
     def save

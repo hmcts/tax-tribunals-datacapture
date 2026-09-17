@@ -24,7 +24,7 @@ module ApplicationHelper
   end
 
   # TODO: fix the rubocop issue
-  # rubocop:disable Rails/HelperInstanceVariable
+  # rubocop:disable-next Rails/HelperInstanceVariable
   def govuk_error_summary(form_object = @form_object)
     return if form_object.try(:errors).blank?
 
@@ -35,7 +35,6 @@ module ApplicationHelper
       f.govuk_error_summary t('errors.error_summary.heading')
     end
   end
-  # rubocop:enable Rails/HelperInstanceVariable
 
   # TODO: if you find the way to display a devise error message for already used token
   # then you can remove this method
@@ -109,11 +108,11 @@ module ApplicationHelper
     t("check_answers.#{question}.answers.#{answer}")
   end
 
-  def address_lookup(record:, entity: , &block)
+  def address_lookup(record:, entity: , &)
     show_details = address_lookup_details_filled?(record, entity)
 
     if address_lookup_access_token
-      content_for(:form, &block)
+      content_for(:form, &)
       render(
         partial: 'steps/shared/address_lookup',
         locals: {
@@ -122,7 +121,7 @@ module ApplicationHelper
         }
       )
     else
-      yield block
+      yield
     end
   end
 

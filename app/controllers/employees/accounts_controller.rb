@@ -39,7 +39,7 @@ class Employees::AccountsController < AdminController
   protected
 
   def load_employee
-    @employee = Employee.find(params[:id])
+    @employee = Employee.find(params.require(:id))
   end
 
   def redirect_with_warning(message = 'You are not authorized to access this page.')

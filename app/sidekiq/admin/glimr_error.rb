@@ -1,0 +1,2 @@
+class GlimrError < StandardError
+end
