@@ -98,8 +98,8 @@ withAzureKeyvault(
                 set -e
                 set +x
                 source /usr/local/rvm/scripts/rvm
-                rvm install ruby-3.4.8
-                rvm use ruby-3.4.8 --default
+                rvm install ruby-3.4.10
+                rvm use ruby-3.4.10 --default
                 ruby --version
             """, label: 'Ruby version install'
         }

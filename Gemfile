@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.4.8'
+ruby '3.4.10'
 
 gem 'azure_env_secrets', git: 'https://github.com/hmcts/azure_env_secrets.git', tag: 'v1.0.1'
 gem 'bootsnap',                        '~> 1.16', require: false
@@ -10,7 +10,7 @@ gem 'devise-security'
 gem 'devise_invitable'
 gem "valid_email2"
 gem 'glimr-api-client', github: 'ministryofjustice/glimr-api-client', tag: 'v0.4.1'
-gem 'govuk_design_system_formbuilder'
+gem 'govuk_design_system_formbuilder', "5.13.0"
 gem 'govuk_notify_rails', '~> 3.0'
 gem 'jquery-rails'
 gem 'nokogiri', '>= 1.18.3'
@@ -39,6 +39,7 @@ gem 'brotli'
 
 gem 'rexml', '>= 3.3.6'
 gem 'webrick', '>= 1.8.2'
+gem 'json', '2.21.2'
 
 # To fix ruby 3.3.3 gemsepec file issue with this gem
 gem 'net-pop', github: 'ruby/net-pop'

@@ -23,7 +23,7 @@ to_hash: {name: 'image.jpg', encoded_name: "aW1hZ2UuanBn\n", collection_ref: '12
   before do
     allow(subject).to receive(:current_tribunal_case).and_return(current_tribunal_case)
     allow(DocumentUpload).to receive(:new).and_return(document_upload)
-    session[:current_step_path] = 'step/to/redirect'
+    session[:current_step_path] = '/step/to/redirect'
   end
 
   include_examples 'checks the validity of the current tribunal case on create', { document_key: :foo_bar }
@@ -42,7 +42,7 @@ to_hash: {name: 'image.jpg', encoded_name: "aW1hZ2UuanBn\n", collection_ref: '12
 
       context 'HTML format' do
         it 'should create the document and redirect back to the step' do
-          expect(subject).to redirect_to('step/to/redirect')
+          expect(subject).to redirect_to('/step/to/redirect')
           expect(flash.alert).to be_nil
         end
       end
@@ -62,7 +62,7 @@ to_hash: {name: 'image.jpg', encoded_name: "aW1hZ2UuanBn\n", collection_ref: '12
 
       context 'HTML format' do
         it 'should create the document and redirect back to the step' do
-          expect(subject).to redirect_to('step/to/redirect')
+          expect(subject).to redirect_to('/step/to/redirect')
           expect(flash.alert).not_to be_empty
         end
       end
@@ -84,7 +84,7 @@ to_hash: {name: 'image.jpg', encoded_name: "aW1hZ2UuanBn\n", collection_ref: '12
 
       context 'HTML format' do
         it 'should create the document and redirect back to the step' do
-          expect(subject).to redirect_to('step/to/redirect')
+          expect(subject).to redirect_to('/step/to/redirect')
           expect(flash.alert).not_to be_empty
         end
       end
@@ -118,7 +118,7 @@ to_hash: {name: 'image.jpg', encoded_name: "aW1hZ2UuanBn\n", collection_ref: '12
       context 'HTML format' do
         it 'should delete the file and redirect to the step' do
           local_delete(:destroy, params:)
-          expect(subject).to redirect_to('step/to/redirect')
+          expect(subject).to redirect_to('/step/to/redirect')
         end
       end
 

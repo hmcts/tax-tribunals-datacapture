@@ -1,7 +1,7 @@
 inherit_from: .rubocop_todo.yml
 
 AllCops:
-  TargetRubyVersion: 3.4.8
+  TargetRubyVersion: 3.4.10
   NewCops: enable
 
   Exclude:
@@ -249,10 +249,7 @@ RSpec/Dialect:
 RSpec/IndexedLet:
   Enabled: false
 
-Capybara/CurrentPathExpectation:
-  Enabled: false
-
-Capybara/ClickLinkOrButtonStyle:
+Capybara/RSpec/CurrentPathExpectation:
   Enabled: false
 
 RSpec/ExpectInHook:
