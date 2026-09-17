@@ -12,7 +12,7 @@ RSpec.describe Admin::GenerateGlimrRecordJob, type: :job do
       let(:response) { nil }
 
       it 'raises a GlimrError' do
-        expect { Admin::GenerateGlimrRecordJob.new.perform(payload) }.to raise_error(GlimrError, "No response provided")
+        expect { Admin::GenerateGlimrRecordJob.new.perform(payload) }.to raise_error(Admin::GlimrError, "No response provided")
       end
     end
 

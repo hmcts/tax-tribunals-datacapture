@@ -1,5 +1,4 @@
 require_relative '../../services/glimr_direct_api_client'
-require_relative 'glimr_error'
 
 class Admin::GenerateGlimrRecordJob
   include Sidekiq::Job
@@ -9,7 +8,7 @@ class Admin::GenerateGlimrRecordJob
     res = GlimrDirectApiClient::RegisterNewCase.call(payload.symbolize_keys)
     logger.info res.response_body
 
-    raise GlimrError, "No response provided" unless res.response_body
-    Sentry.capture_exception(GlimrError) unless res.response_body
+    raise Admin::GlimrError, "No response provided" unless res.response_body
+    Sentry.capture_exception(Admin::GlimrError) unless res.response_body
   end
 end

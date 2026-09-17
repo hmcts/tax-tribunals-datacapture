@@ -62,7 +62,7 @@ Rails.application.configure do
   config.action_controller.raise_on_missing_callback_actions = true
 
   config.action_controller.raise_on_missing_callback_actions = false
-  config.action_controller.raise_on_open_redirects = false
+  config.action_controller.action_on_open_redirect = :warn
   WebMock.disable_net_connect!(allow_localhost: true)
 end
 
