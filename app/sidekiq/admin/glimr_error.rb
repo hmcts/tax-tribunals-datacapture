@@ -1,2 +1,4 @@
-class GlimrError < StandardError
+module Admin
+  class GlimrError < StandardError
+  end
 end
