@@ -1,4 +1,4 @@
-@Library("Infrastructure@2.5.4")
+@Library("Infrastructure@2.10.0")
 
 def type = "ruby"
 def product = "tax-tribunals"
