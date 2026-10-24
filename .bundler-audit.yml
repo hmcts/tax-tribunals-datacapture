@@ -1,3 +1,5 @@
 ---
 ignore:
   - CVE-2023-26141
+  # Temporary build unblock; remove after upgrading crass to >= 1.0.8.
+  - GHSA-pq4g-8rxf-4g29
