@@ -28,7 +28,7 @@ RSpec.describe Employees::AccountsController do
 
     context 'when the employee is an admin' do
       before do
-        @request.env["devise.mapping"] = Devise.mappings[:employee]
+        @request.env["devise.mapping"] = Devise.mappings[:admin]
         sign_in_employee admin
       end
 

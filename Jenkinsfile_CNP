@@ -1,4 +1,4 @@
-@Library("Infrastructure@2.10.0")
+@Library("Infrastructure@2.13.6")
 
 def type = "ruby"
 def product = "tax-tribunals"
@@ -98,8 +98,8 @@ withAzureKeyvault(
                 set -e
                 set +x
                 source /usr/local/rvm/scripts/rvm
-                rvm install ruby-3.4.10
-                rvm use ruby-3.4.10 --default
+                rvm install ruby-3.4.12
+                rvm use ruby-3.4.12 --default
                 ruby --version
             """, label: 'Ruby version install'
         }
